@@ -2,7 +2,7 @@
 
 Daily golden cross and death cross detections, plus machine-learning trading recommendations for US equities. This repository is the **public read-only feed** of results produced by a private research pipeline.
 
-**Live dashboard:** after GitHub Pages is enabled, open [ryanidnani.github.io/Stock-Market-Predictions-Model](https://ryanidnani.github.io/Stock-Market-Predictions-Model/).
+**Live dashboard:** after GitHub Pages is enabled, open [ryanidnani.github.io/StockMarketPredictionModel](https://ryanidnani.github.io/StockMarketPredictionModel/).
 
 ## What is published here
 
@@ -36,7 +36,7 @@ This project is for **education and research only**. It is not investment advice
 ## Data layout
 
 ```
-Stock-Market-Predictions-Model/
+StockMarketPredictionModel/
 ├── latest/                    # Always points to the newest run
 │   ├── as_of.txt
 │   ├── detected_crosses.csv
