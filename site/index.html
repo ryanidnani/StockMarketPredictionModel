@@ -68,8 +68,8 @@
     <div class="cards">
       <div class="card">
         <h2>Download latest</h2>
-        <p><a id="link-crosses" href="../latest/detected_crosses.csv">Detected crosses (CSV)</a></p>
-        <p><a id="link-predictions" href="../latest/trading_predictions.csv">Trading predictions (CSV)</a></p>
+        <p><a id="link-crosses" href="latest/detected_crosses.csv">Detected crosses (CSV)</a></p>
+        <p><a id="link-predictions" href="latest/trading_predictions.csv">Trading predictions (CSV)</a></p>
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
       </div>
       <div class="card">
@@ -101,10 +101,21 @@
   <script>
     const REPO = "ryanidnani/StockMarketPredictionModel";
     const onPages = location.hostname.endsWith("github.io");
-    const BASE = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
+
+    // Project Pages live at /StockMarketPredictionModel/, not site root.
+    function pagesBase() {
+      const segment = location.pathname.split("/").filter(Boolean)[0];
+      return segment ? `/${segment}/` : "/";
+    }
+
+    function assetUrl(path) {
+      const clean = path.replace(/^\//, "");
+      if (onPages) return pagesBase() + clean;
+      return `https://raw.githubusercontent.com/${REPO}/main/${clean}`;
+    }
 
     async function loadText(path) {
-      const url = `${BASE}/${path}`.replace(/\/+/g, "/").replace(":/", "://");
+      const url = assetUrl(path);
       const r = await fetch(`${url}${onPages ? "" : `?t=${Date.now()}`}`);
       if (!r.ok) throw new Error(path);
       return r.text();
@@ -166,9 +177,8 @@
       try {
         const asOf = (await loadText("latest/as_of.txt")).trim();
         document.getElementById("as-of").textContent = `Latest trading day: ${asOf}`;
-        const prefix = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
-        document.getElementById("link-crosses").href = `${prefix}/latest/detected_crosses.csv`;
-        document.getElementById("link-predictions").href = `${prefix}/latest/trading_predictions.csv`;
+        document.getElementById("link-crosses").href = assetUrl("latest/detected_crosses.csv");
+        document.getElementById("link-predictions").href = assetUrl("latest/trading_predictions.csv");
 
         const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
         const predictions = parseCsv(await loadText("latest/trading_predictions.csv"));
@@ -183,10 +193,9 @@
         const list = document.getElementById("history-list");
         manifest.dates.slice().reverse().forEach(d => {
           const li = document.createElement("li");
-          const base = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
           li.innerHTML = `<strong>${d}</strong> —
-            <a href="${base}/data/daily/${d}/detected_crosses.csv">crosses</a>,
-            <a href="${base}/data/daily/${d}/trading_predictions.csv">predictions</a>`;
+            <a href="${assetUrl(`data/daily/${d}/detected_crosses.csv`)}">crosses</a>,
+            <a href="${assetUrl(`data/daily/${d}/trading_predictions.csv`)}">predictions</a>`;
           list.appendChild(li);
         });
       } catch (e) {
