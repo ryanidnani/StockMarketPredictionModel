@@ -226,7 +226,7 @@
         const toConsider = predictions.filter(r => isConsider(r.recommendation));
 
         document.getElementById("summary-stats").textContent =
-          `${crosses.length} crosses detected · ${toConsider.length} trades to consider`;
+          `${crosses.length} Crosses Detected · ${toConsider.length} Trades to Consider`;
         document.getElementById("crosses-table").innerHTML = renderCrosses(crosses);
         document.getElementById("predictions-table").innerHTML = renderPredictions(predictions);
 
