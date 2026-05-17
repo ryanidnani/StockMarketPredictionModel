@@ -57,18 +57,21 @@
       font-size: 0.78rem;
       line-height: 1.25;
       white-space: normal;
-      text-align: left;
     }
     .data-table td {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-variant-numeric: tabular-nums;
     }
-    .data-table .col-text { text-align: left; }
-    .data-table .col-num { text-align: right; font-variant-numeric: tabular-nums; }
-    .data-table th.col-num { text-align: right; }
-    .data-table .col-tag { text-align: center; }
-    .data-table th.col-tag { text-align: center; }
+    .data-table .col-left,
+    .data-table th.col-left {
+      text-align: left;
+    }
+    .data-table .col-center,
+    .data-table th.col-center {
+      text-align: center;
+    }
     .tag-golden { color: var(--gold); }
     .tag-death { color: var(--red); }
     .consider { color: var(--green); }
@@ -198,22 +201,20 @@
     function renderCrosses(rows) {
       if (!rows.length) return "<p>No crosses in the latest file.</p>";
       let html = `<table class="data-table"><thead><tr>
-        <th class="col-text">Symbol</th>
-        <th class="col-tag">Signal</th>
-        <th class="col-num">Days Ago</th>
-        <th class="col-num">Price</th>
-        <th class="col-num">50 EMA</th>
-        <th class="col-num">200 EMA</th>
+        <th class="col-left">Ticker</th>
+        <th class="col-center">Cross Type</th>
+        <th class="col-center">Current Price</th>
+        <th class="col-center">50 Day EMA</th>
+        <th class="col-center">200 Day EMA</th>
       </tr></thead><tbody>`;
       for (const r of rows) {
         const sig = r.signal_type || (r.golden_cross === "True" ? "golden" : r.death_cross === "True" ? "death" : "—");
         html += `<tr>
-          <td class="col-text">${r.symbol}</td>
-          <td class="col-tag ${crossClass(sig)}">${sig}</td>
-          <td class="col-num">${r.cross_days_ago ?? "—"}</td>
-          <td class="col-num">${r.current_price ?? "—"}</td>
-          <td class="col-num">${r.ema_50_current ?? "—"}</td>
-          <td class="col-num">${r.ema_200_current ?? "—"}</td>
+          <td class="col-left">${r.symbol}</td>
+          <td class="col-center ${crossClass(sig)}">${sig}</td>
+          <td class="col-center">${r.current_price ?? "—"}</td>
+          <td class="col-center">${r.ema_50_current ?? "—"}</td>
+          <td class="col-center">${r.ema_200_current ?? "—"}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
@@ -222,25 +223,25 @@
     function renderPredictions(rows) {
       if (!rows.length) return "<p>No predictions in the latest file.</p>";
       let html = `<table class="data-table"><thead><tr>
-        <th class="col-text">Ticker</th>
-        <th class="col-tag">Cross</th>
-        <th class="col-num">Prob %</th>
-        <th class="col-tag">View</th>
-        <th class="col-num">Entry</th>
-        <th class="col-num">Prudent Take Profit</th>
-        <th class="col-num">Stop Loss</th>
+        <th class="col-left">Ticker</th>
+        <th class="col-center">Cross Type</th>
+        <th class="col-center">Probability %</th>
+        <th class="col-center">Recommendation</th>
+        <th class="col-center">Entry Price</th>
+        <th class="col-center">Prudent Profit Price</th>
+        <th class="col-center">Stop Loss Price</th>
       </tr></thead><tbody>`;
       for (const r of rows) {
         const label = displayRecommendation(r.recommendation);
         const recClass = isConsider(r.recommendation) ? "consider" : "avoid";
         html += `<tr>
-          <td class="col-text">${r.ticker}</td>
-          <td class="col-tag ${crossClass(r.cross_type)}">${r.cross_type}</td>
-          <td class="col-num">${r.probability}</td>
-          <td class="col-tag ${recClass}">${label}</td>
-          <td class="col-num">${r.entry_price ?? "—"}</td>
-          <td class="col-num">${r.prudent_tp_price ?? "—"}</td>
-          <td class="col-num">${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
+          <td class="col-left">${r.ticker}</td>
+          <td class="col-center ${crossClass(r.cross_type)}">${r.cross_type}</td>
+          <td class="col-center">${r.probability}</td>
+          <td class="col-center ${recClass}">${label}</td>
+          <td class="col-center">${r.entry_price ?? "—"}</td>
+          <td class="col-center">${r.prudent_tp_price ?? "—"}</td>
+          <td class="col-center">${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
