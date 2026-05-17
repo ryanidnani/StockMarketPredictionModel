@@ -2,7 +2,7 @@
 
 Daily golden cross and death cross detections, plus machine-learning trading recommendations for US equities. This repository is the **public read-only feed** of results produced by a private research pipeline.
 
-**Live dashboard:** after GitHub Pages is enabled, open [ryanidnani.github.io/StockMarketPredictionModel](https://ryanidnani.github.io/StockMarketPredictionModel/).
+**Live dashboard:** [ryanidnani.github.io/StockMarketPredictionModel](https://ryanidnani.github.io/StockMarketPredictionModel/) (enable Pages once: **Settings → Pages → Build from branch → `gh-pages` / `/`**).
 
 ## What is published here
 
