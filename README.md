@@ -12,8 +12,8 @@ Daily golden cross and death cross detections, plus machine-learning signals for
 
 | Path | Description |
 |------|-------------|
-| [`latest/detected_crosses.csv`](latest/detected_crosses.csv) | Most recent cross scan (all signal types) |
-| [`latest/trading_predictions.csv`](latest/trading_predictions.csv) | Most recent model recommendations |
+| [`latest/detected_crosses.csv`](latest/detected_crosses.csv) | Most recent cross scan (dated copy in each `data/daily/YYYY-MM-DD/` folder) |
+| [`latest/trading_predictions.csv`](latest/trading_predictions.csv) | Most recent predictions (dated copy in each daily folder) |
 | [`data/daily/`](data/daily/) | Historical archive by date (`YYYY-MM-DD/`) |
 | [`data/manifest.json`](data/manifest.json) | Index of published trading days |
 
@@ -45,8 +45,8 @@ StockMarketPredictionModel/
 │   ├── manifest.json
 │   └── daily/
 │       └── YYYY-MM-DD/
-│           ├── detected_crosses.csv
-│           └── trading_predictions.csv
+│           ├── detected_crosses_YYYY-MM-DD.csv
+│           └── trading_predictions_YYYY-MM-DD.csv
 ├── docs/
 │   └── social-preview.png     # Repo banner / social thumbnail
 └── site/                      # GitHub Pages dashboard

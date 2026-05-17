@@ -121,6 +121,20 @@
       return `https://raw.githubusercontent.com/${REPO}/main/${clean}`;
     }
 
+    function dailyCsvPaths(date) {
+      return {
+        crosses: `data/daily/${date}/detected_crosses_${date}.csv`,
+        predictions: `data/daily/${date}/trading_predictions_${date}.csv`,
+      };
+    }
+
+    function setCsvDownloadLink(id, repoPath, downloadName) {
+      const el = document.getElementById(id);
+      el.href = assetUrl(repoPath);
+      el.download = downloadName;
+      el.textContent = downloadName;
+    }
+
     async function loadText(path) {
       const url = assetUrl(path);
       const r = await fetch(`${url}${onPages ? "" : `?t=${Date.now()}`}`);
@@ -194,8 +208,16 @@
       try {
         const asOf = (await loadText("latest/as_of.txt")).trim();
         document.getElementById("as-of").textContent = `Latest trading day: ${asOf}`;
-        document.getElementById("link-crosses").href = assetUrl("latest/detected_crosses.csv");
-        document.getElementById("link-predictions").href = assetUrl("latest/trading_predictions.csv");
+        setCsvDownloadLink(
+          "link-crosses",
+          "latest/detected_crosses.csv",
+          `detected_crosses_${asOf}.csv`
+        );
+        setCsvDownloadLink(
+          "link-predictions",
+          "latest/trading_predictions.csv",
+          `trading_predictions_${asOf}.csv`
+        );
 
         const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
         const predictions = parseCsv(await loadText("latest/trading_predictions.csv"));
@@ -209,10 +231,13 @@
         const manifest = JSON.parse(await loadText("data/manifest.json"));
         const list = document.getElementById("history-list");
         manifest.dates.slice().reverse().forEach(d => {
+          const paths = dailyCsvPaths(d);
+          const crossesName = `detected_crosses_${d}.csv`;
+          const predictionsName = `trading_predictions_${d}.csv`;
           const li = document.createElement("li");
           li.innerHTML = `<strong>${d}</strong> —
-            <a href="${assetUrl(`data/daily/${d}/detected_crosses.csv`)}">crosses</a>,
-            <a href="${assetUrl(`data/daily/${d}/trading_predictions.csv`)}">predictions</a>`;
+            <a href="${assetUrl(paths.crosses)}" download="${crossesName}">${crossesName}</a>,
+            <a href="${assetUrl(paths.predictions)}" download="${predictionsName}">${predictionsName}</a>`;
           list.appendChild(li);
         });
       } catch (e) {
