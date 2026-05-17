@@ -1,7 +1,7 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-01-09,ALGM,golden,60.85,EXECUTE,31.29,36.26,37.61,-6.75,29.18,28.12,15.88
-2026-01-09,ARES,golden,58.2,EXECUTE,175.91,192.94,198.62,-5.62,166.02,161.07,9.68
-2026-01-09,RVTY,golden,52.4,EXECUTE,104.43,116.2,121.61,-2.5,101.82,100.51,11.27
+2026-01-09,ALGM,golden,60.85,CONSIDER,31.29,36.26,37.61,-6.75,29.18,28.12,15.88
+2026-01-09,ARES,golden,58.2,CONSIDER,175.91,192.94,198.62,-5.62,166.02,161.07,9.68
+2026-01-09,RVTY,golden,52.4,CONSIDER,104.43,116.2,121.61,-2.5,101.82,100.51,11.27
 2026-01-09,AVY,golden,31.31,AVOID,,,,,,,
 2026-01-09,WTRG,death,20.49,AVOID,,,,,,,
 2026-01-09,SPYD,golden,19.17,AVOID,,,,,,,

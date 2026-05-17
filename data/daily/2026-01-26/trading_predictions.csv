@@ -1,7 +1,7 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-01-26,ARES,death,65.32,EXECUTE,149.69,141.24,132.79,-11.29,157.18,160.93,-5.64
-2026-01-26,PBA,golden,54.56,EXECUTE,40.61,43.95,45.32,-2.86,39.45,38.87,8.23
-2026-01-26,BCPC,golden,50.4,EXECUTE,166.65,180.45,189.74,-3.21,161.3,158.63,8.28
+2026-01-26,ARES,death,65.32,CONSIDER,149.69,141.24,132.79,-11.29,157.18,160.93,-5.64
+2026-01-26,PBA,golden,54.56,CONSIDER,40.61,43.95,45.32,-2.86,39.45,38.87,8.23
+2026-01-26,BCPC,golden,50.4,CONSIDER,166.65,180.45,189.74,-3.21,161.3,158.63,8.28
 2026-01-26,SUZ,golden,46.82,AVOID,,,,,,,
 2026-01-26,TDG,golden,39.79,AVOID,,,,,,,
 2026-01-26,HUM,death,37.75,AVOID,,,,,,,

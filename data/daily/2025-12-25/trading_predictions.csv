@@ -1,5 +1,5 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2025-12-25,CART,golden,74.92,EXECUTE,45.65,53.16,57.91,-4.02,43.81,42.89,16.44
+2025-12-25,CART,golden,74.92,CONSIDER,45.65,53.16,57.91,-4.02,43.81,42.89,16.44
 2025-12-25,ON,golden,49.5,AVOID,,,,,,,
 2025-12-25,SEIC,golden,43.33,AVOID,,,,,,,
 2025-12-25,VRTX,golden,36.83,AVOID,,,,,,,

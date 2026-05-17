@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stock Market Predictions Model</title>
+  <meta name="description" content="Daily EMA golden cross and death cross detections for trading idea research." />
   <style>
     :root {
       --bg: #0f1419;
@@ -43,16 +44,19 @@
     th { color: var(--muted); font-weight: 600; }
     .tag-golden { color: var(--gold); }
     .tag-death { color: var(--red); }
-    .exec { color: var(--green); }
+    .consider { color: var(--green); }
     .avoid { color: var(--muted); }
     .disclaimer {
-      margin-top: 2.5rem;
-      padding: 1rem;
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.1rem;
       border-radius: 8px;
-      background: rgba(255,255,255,0.04);
-      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
       color: var(--muted);
+      line-height: 1.55;
     }
+    .disclaimer strong { color: var(--text); }
     #history { margin-top: 2rem; }
     #history ul { padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
     #history li { margin: 0.35rem 0; break-inside: avoid; }
@@ -61,8 +65,15 @@
 </head>
 <body>
   <div class="wrap">
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
+      Crosses and model output are automated signals for <strong>trading idea exploration</strong> only, not instructions to buy or sell.
+      Past results do not guarantee future performance. You are solely responsible for your own decisions;
+      the authors may hold positions in securities mentioned.
+    </p>
+
     <h1>Stock Market Predictions Model</h1>
-    <p class="sub">Daily EMA cross detections and machine-learning trading recommendations</p>
+    <p class="sub">Daily EMA cross detections and machine-learning signals for idea research</p>
     <p class="as-of" id="as-of">Loading…</p>
 
     <div class="cards">
@@ -92,10 +103,6 @@
       <h2>Historical archive</h2>
       <ul id="history-list"></ul>
     </section>
-
-    <p class="disclaimer">
-      For education and research only. Not investment advice. Past performance does not guarantee future results.
-    </p>
   </div>
 
   <script>
@@ -138,6 +145,15 @@
       return type.includes("death") ? "tag-death" : "tag-golden";
     }
 
+    function displayRecommendation(rec) {
+      if (rec === "EXECUTE" || rec === "CONSIDER") return "CONSIDER";
+      return rec;
+    }
+
+    function isConsider(rec) {
+      return displayRecommendation(rec) === "CONSIDER";
+    }
+
     function renderCrosses(rows) {
       if (!rows.length) return "<p>No crosses in the latest file.</p>";
       let html = "<table><thead><tr><th>Symbol</th><th>Signal</th><th>Days ago</th><th>Price</th><th>50 EMA</th><th>200 EMA</th></tr></thead><tbody>";
@@ -157,14 +173,15 @@
 
     function renderPredictions(rows) {
       if (!rows.length) return "<p>No predictions in the latest file.</p>";
-      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>Rec</th><th>Entry</th><th>Prudent TP</th><th>Stop</th></tr></thead><tbody>";
+      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>View</th><th>Entry</th><th>Prudent TP</th><th>Stop</th></tr></thead><tbody>";
       for (const r of rows) {
-        const recClass = r.recommendation === "EXECUTE" ? "exec" : "avoid";
+        const label = displayRecommendation(r.recommendation);
+        const recClass = isConsider(r.recommendation) ? "consider" : "avoid";
         html += `<tr>
           <td>${r.ticker}</td>
           <td class="${crossClass(r.cross_type)}">${r.cross_type}</td>
           <td>${r.probability}</td>
-          <td class="${recClass}">${r.recommendation}</td>
+          <td class="${recClass}">${label}</td>
           <td>${r.entry_price ?? "—"}</td>
           <td>${r.prudent_tp_price ?? "—"}</td>
           <td>${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
@@ -182,10 +199,10 @@
 
         const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
         const predictions = parseCsv(await loadText("latest/trading_predictions.csv"));
-        const executes = predictions.filter(r => r.recommendation === "EXECUTE");
+        const toConsider = predictions.filter(r => isConsider(r.recommendation));
 
         document.getElementById("summary-stats").textContent =
-          `${crosses.length} cross(es) detected · ${predictions.length} prediction(s) · ${executes.length} EXECUTE`;
+          `${crosses.length} cross(es) detected · ${predictions.length} prediction(s) · ${toConsider.length} to consider`;
         document.getElementById("crosses-table").innerHTML = renderCrosses(crosses);
         document.getElementById("predictions-table").innerHTML = renderPredictions(predictions);
 

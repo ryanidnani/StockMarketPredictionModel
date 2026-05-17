@@ -1,6 +1,6 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-01-14,KOLD,golden,73.86,EXECUTE,45.3,58.15,65.86,-13.06,39.38,36.43,28.36
-2026-01-14,FIG,death,60.98,EXECUTE,32.36,29.82,27.29,-15.67,35.73,37.42,-7.84
+2026-01-14,KOLD,golden,73.86,CONSIDER,45.3,58.15,65.86,-13.06,39.38,36.43,28.36
+2026-01-14,FIG,death,60.98,CONSIDER,32.36,29.82,27.29,-15.67,35.73,37.42,-7.84
 2026-01-14,EIX,golden,46.48,AVOID,,,,,,,
 2026-01-14,LYV,golden,35.77,AVOID,,,,,,,
 2026-01-14,HLN,golden,32.06,AVOID,,,,,,,

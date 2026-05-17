@@ -1,6 +1,6 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2025-11-25,REGN,golden,51.87,EXECUTE,787.32,863.41,916.72,-7.05,731.84,704.1,9.66
-2025-11-25,META,death,51.13,EXECUTE,636.22,605.13,574.04,-9.77,710.62,747.82,-4.89
+2025-11-25,REGN,golden,51.87,CONSIDER,787.32,863.41,916.72,-7.05,731.84,704.1,9.66
+2025-11-25,META,death,51.13,CONSIDER,636.22,605.13,574.04,-9.77,710.62,747.82,-4.89
 2025-11-25,FEPI,death,25.06,AVOID,,,,,,,
 2025-11-25,EIDO,golden,16.03,AVOID,,,,,,,
 2025-11-25,HMC,death,13.13,AVOID,,,,,,,

@@ -1,6 +1,6 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2025-12-02,VIST,golden,68.96,EXECUTE,49.99,57.15,62.22,-5.15,47.42,46.13,14.31
-2025-12-02,SMR,death,62.4,EXECUTE,18.91,17.07,15.22,-19.49,22.84,24.8,-9.75
+2025-12-02,VIST,golden,68.96,CONSIDER,49.99,57.15,62.22,-5.15,47.42,46.13,14.31
+2025-12-02,SMR,death,62.4,CONSIDER,18.91,17.07,15.22,-19.49,22.84,24.8,-9.75
 2025-12-02,ACHR,death,48.4,AVOID,,,,,,,
 2025-12-02,LYV,death,47.51,AVOID,,,,,,,
 2025-12-02,VFC,golden,42.57,AVOID,,,,,,,

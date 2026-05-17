@@ -1,5 +1,5 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2025-11-24,MRK,golden,69.83,EXECUTE,100.4,111.32,117.69,-4.36,96.03,93.84,10.87
+2025-11-24,MRK,golden,69.83,CONSIDER,100.4,111.32,117.69,-4.36,96.03,93.84,10.87
 2025-11-24,TRNO,golden,46.78,AVOID,,,,,,,
 2025-11-24,EPD,golden,24.32,AVOID,,,,,,,
 2025-11-24,HMC,death,20.41,AVOID,,,,,,,

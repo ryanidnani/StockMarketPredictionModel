@@ -1,9 +1,9 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-05-14,CQQQ,golden,85.97,EXECUTE,56.28,62.68,65.56,-4.53,53.73,52.46,11.38
-2026-05-14,AN,death,71.34,EXECUTE,191.11,181.73,172.34,-9.82,205.3,212.4,4.91
-2026-05-14,GME,death,70.88,EXECUTE,22.08,21.02,19.95,-9.64,24.05,25.04,4.82
-2026-05-14,NTAP,golden,62.7,EXECUTE,118.58,132.45,141.15,-5.41,112.16,108.95,11.69
-2026-05-14,PHM,death,57.79,EXECUTE,112.97,108.0,103.03,-8.8,121.01,125.02,4.4
+2026-05-14,CQQQ,golden,85.97,CONSIDER,56.28,62.68,65.56,-4.53,53.73,52.46,11.38
+2026-05-14,AN,death,71.34,CONSIDER,191.11,181.73,172.34,-9.82,205.3,212.4,4.91
+2026-05-14,GME,death,70.88,CONSIDER,22.08,21.02,19.95,-9.64,24.05,25.04,4.82
+2026-05-14,NTAP,golden,62.7,CONSIDER,118.58,132.45,141.15,-5.41,112.16,108.95,11.69
+2026-05-14,PHM,death,57.79,CONSIDER,112.97,108.0,103.03,-8.8,121.01,125.02,4.4
 2026-05-14,T,death,49.39,AVOID,,,,,,,
 2026-05-14,NDAQ,golden,47.78,AVOID,,,,,,,
 2026-05-14,XYZ,golden,46.38,AVOID,,,,,,,
@@ -12,4 +12,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-14,IYH,death,28.55,AVOID,,,,,,,
 2026-05-14,XLV,death,15.44,AVOID,,,,,,,
 2026-05-14,DRSK,golden,6.34,AVOID,,,,,,,
-2026-05-14,JMBS,death,0.59,EXECUTE,45.13,,,,,,
+2026-05-14,JMBS,death,0.59,CONSIDER,45.13,,,,,,

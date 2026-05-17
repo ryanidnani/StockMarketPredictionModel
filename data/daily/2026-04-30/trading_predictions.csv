@@ -1,10 +1,10 @@
 event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-04-30,USOY,golden,61.41,EXECUTE,9.13,10.68,11.75,-10.07,8.21,7.75,16.94
-2026-04-30,DHI,golden,60.32,EXECUTE,153.86,172.44,186.14,-6.14,144.42,139.7,12.07
+2026-04-30,USOY,golden,61.41,CONSIDER,9.13,10.68,11.75,-10.07,8.21,7.75,16.94
+2026-04-30,DHI,golden,60.32,CONSIDER,153.86,172.44,186.14,-6.14,144.42,139.7,12.07
 2026-04-30,VRTX,death,18.78,AVOID,,,,,,,
 2026-04-30,JEPI,golden,2.0,AVOID,,,,,,,
-2026-04-30,TAFI,death,0.89,EXECUTE,25.2,,,,,,
-2026-04-30,CARY,death,0.67,EXECUTE,20.8,,,,,,
-2026-04-30,BSCZ,death,0.62,EXECUTE,20.5,,,,,,
+2026-04-30,TAFI,death,0.89,CONSIDER,25.2,,,,,,
+2026-04-30,CARY,death,0.67,CONSIDER,20.8,,,,,,
+2026-04-30,BSCZ,death,0.62,CONSIDER,20.5,,,,,,
 2026-04-30,SHV,golden,0.4,AVOID,,,,,,,
 2026-04-30,CLIP,golden,0.4,AVOID,,,,,,,
