@@ -1,0 +1,14 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+MSCI,golden_cross,0,0.6,44.1,565.57,565.3,True,False,578.69,success
+TME,death_cross,0,4.5,27.1,19.03,19.05,False,True,16.6,success
+PPL,death_cross,0,6.2,25.8,35.31,35.33,False,True,34.44,success
+RBA,golden_cross,0,1.0,19.9,103.14,103.12,True,False,106.13,success
+PKG,golden_cross,0,0.8,19.0,204.37,204.36,True,False,206.81,success
+ICLR,golden_cross,0,0.9,15.4,180.81,180.58,True,False,202.92,success
+WTRG,death_cross,0,1.9,10.9,38.71,38.71,False,True,38.02,success
+AR,death_cross,0,5.2,10.0,34.17,34.18,False,True,32.86,success
+XP,death_cross,0,6.5,8.8,17.41,17.43,False,True,16.84,success
+RRC,death_cross,0,3.1,8.1,36.42,36.46,False,True,34.67,success
+CLOI,death_cross,0,0.3,,52.9,52.9,False,True,52.78,success
+FCG,death_cross,0,0.9,,23.53,23.54,False,True,22.65,success
+BNDW,death_cross,0,0.1,,69.32,69.32,False,True,68.98,success

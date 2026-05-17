@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-12,RGTIW,death,98.84,EXECUTE,5.41,4.93,4.44,-17.87,6.8,7.49,-8.93
+2026-02-12,AFRM,death,98.83,EXECUTE,49.76,44.15,38.55,-22.53,54.61,57.03,-11.27
+2026-02-12,BTGD,death,98.68,EXECUTE,28.31,25.71,23.11,-18.38,31.97,33.81,-9.19
+2026-02-12,PTIR,death,98.61,EXECUTE,13.3,12.11,10.91,-17.94,17.0,18.85,-8.97
+2026-02-12,BTCZ,golden,98.58,EXECUTE,6.46,7.24,7.75,-12.95,5.62,5.21,12.0
+2026-02-12,AVL,death,94.73,EXECUTE,39.05,35.9,32.76,-16.12,46.8,50.68,-8.06
+2026-02-12,AMZZ,death,85.16,EXECUTE,23.0,21.09,19.19,-16.58,25.98,27.47,-8.29
+2026-02-12,MAS,golden,68.24,EXECUTE,77.54,86.84,93.05,-5.72,73.11,70.89,12.0
+2026-02-12,TBT,death,65.32,EXECUTE,33.24,31.77,30.31,-8.82,34.35,34.91,-4.41
+2026-02-12,PNQI,death,62.02,EXECUTE,45.92,43.76,41.6,-9.39,47.65,48.51,-4.7
+2026-02-12,VNOM,golden,39.09,AVOID,,,,,,,
+2026-02-12,DTE,golden,24.82,AVOID,,,,,,,
+2026-02-12,VNQ,golden,7.34,AVOID,,,,,,,
+2026-02-12,SHYM,golden,0.37,AVOID,,,,,,,

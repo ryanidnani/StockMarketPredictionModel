@@ -1,0 +1,8 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+KR,death_cross,0,6.9,41.8,66.36,66.41,False,True,62.71,success
+HBAN,golden_cross,0,31.5,26.9,16.19,16.18,True,False,16.9,success
+DOV,golden_cross,0,1.1,26.1,179.86,179.62,True,False,191.09,success
+DAR,golden_cross,0,2.2,5.8,33.89,33.81,True,False,36.51,success
+NNAVW,golden_cross,0,0.1,,5.34,5.33,True,False,6.52,success
+BWX,death_cross,0,0.4,,22.66,22.67,False,True,22.51,success
+SHV,death_cross,0,2.6,,110.29,110.3,False,True,110.2,success

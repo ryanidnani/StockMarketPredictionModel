@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-01,BITI,golden,60.1,EXECUTE,23.17,26.97,29.11,-5.91,21.8,21.12,16.41
+2026-01-01,UBER,death,16.8,AVOID,,,,,,,
+2026-01-01,QGEN,death,15.12,AVOID,,,,,,,
+2026-01-01,CVX,golden,12.37,AVOID,,,,,,,
+2026-01-01,ICSH,death,7.87,AVOID,,,,,,,
+2026-01-01,CLIP,death,7.33,AVOID,,,,,,,
+2026-01-01,CSHI,death,7.33,AVOID,,,,,,,

@@ -1,0 +1,15 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+ARM,death_cross,0,4.0,121.6,141.62,141.75,False,True,113.51,success
+BMY,golden_cross,0,14.9,109.0,48.78,48.7,True,False,53.33,success
+MO,death_cross,0,8.0,99.3,59.91,59.91,False,True,58.39,success
+AZO,death_cross,0,0.1,56.3,3768.25,3769.64,False,True,3426.61,success
+AIG,golden_cross,0,4.9,46.5,79.43,79.29,True,False,86.19,success
+CPNG,death_cross,0,12.5,41.5,27.86,27.89,False,True,22.69,success
+ACGL,golden_cross,0,2.1,34.8,91.78,91.76,True,False,96.45,success
+ZG,death_cross,0,0.8,16.3,71.35,71.38,False,True,66.59,success
+BBY,death_cross,0,4.4,15.0,75.71,75.76,False,True,71.76,success
+CLH,golden_cross,0,0.6,12.7,229.42,229.17,True,False,238.73,success
+HLI,death_cross,0,0.4,12.3,182.2,182.25,False,True,176.32,success
+CHDN,golden_cross,0,0.7,8.2,106.55,106.26,True,False,116.57,success
+KRG,golden_cross,0,1.7,5.2,22.7,22.69,True,False,23.67,success
+SPYD,golden_cross,0,2.1,,43.41,43.4,True,False,43.85,success

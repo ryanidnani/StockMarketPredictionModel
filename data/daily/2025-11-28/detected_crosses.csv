@@ -1,0 +1,13 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+ZTO,golden_cross,0,1.4,16.4,19.21,19.19,True,False,20.65,success
+WMG,death_cross,0,2.0,14.6,31.06,31.1,False,True,28.24,success
+RBRK,death_cross,0,2.4,13.5,75.28,75.29,False,True,69.32,success
+DOCS,death_cross,0,2.0,9.6,59.64,59.78,False,True,51.44,success
+HSIC,golden_cross,0,1.6,8.9,69.28,69.24,True,False,74.57,success
+HIMS,death_cross,0,26.9,8.7,44.45,44.48,False,True,39.76,success
+VNT,death_cross,0,1.2,5.2,38.54,38.57,False,True,36.28,success
+FLG,golden_cross,0,4.8,5.1,11.52,11.52,True,False,12.24,success
+SCEpM,golden_cross,0,0.2,,23.64,23.64,True,False,24.73,success
+XHB,golden_cross,0,1.9,,106.46,106.43,True,False,108.88,success
+COFpJ,death_cross,0,0.1,,18.9,18.91,False,True,18.2,success
+GBTC,death_cross,0,6.0,,80.89,81.02,False,True,71.01,success

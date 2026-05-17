@@ -1,0 +1,13 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+VRTX,death,0,1.2,109.3,434.34,444.51,444.8,False,True,424.36,False,False,,success
+CNC,golden,0,6.6,26.4,44.79,41.51,41.38,True,False,52.98,False,False,,success
+DAPP,golden,0,0.9,,18.52,17.73,17.64,True,False,20.76,False,False,,success
+LSGR,golden,0,0.1,,42.97,42.36,42.34,True,False,43.815,False,False,,success
+FSMB,death,0,0.1,,20.0,20.03,20.04,False,True,19.975,False,False,,success
+JBND,death,0,0.8,,53.7,53.86,53.86,False,True,53.4,False,False,,success
+JPLD,death,0,0.5,,52.23,52.28,52.28,False,True,52.1,False,False,,success
+TMB,death,0,0.1,,25.53,25.58,25.58,False,True,25.445,False,False,,success
+OZK,golden,0,1.2,5.2,47.78,47.31,47.29,True,False,48.48,False,False,,success
+BAB,death,0,0.2,,26.92,27.02,27.02,False,True,26.87,False,False,,success
+FAZ,death,0,0.8,,44.83,45.66,45.68,False,True,44.66,False,False,,success
+LGOV,death,0,0.2,,21.62,21.71,21.72,False,True,21.47,False,False,,success

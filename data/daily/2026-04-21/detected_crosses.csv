@@ -1,0 +1,12 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+ZM,golden,0,3.8,26.7,83.96,82.96,82.76,True,False,90.96,False,False,,success
+FAF,golden,0,1.1,6.8,63.38,63.45,63.39,True,False,66.9,False,False,,success
+WH,golden,0,1.2,6.7,84.46,81.6,81.44,True,False,87.99,False,False,,success
+LTH,golden,0,3.2,6.4,27.56,27.38,27.38,True,False,27.67,False,False,,success
+TGTX,golden,0,2.1,5.9,33.69,32.09,32.05,True,False,36.28,False,False,,success
+SBND,golden,0,0.1,,18.84,18.86,18.86,True,False,18.875,False,False,,success
+SCHG,golden,0,18.8,,30.95,30.8,30.78,True,False,32.33,False,False,,success
+AGG,death,0,11.3,,99.5,99.68,99.69,False,True,99.47,False,False,,success
+DFCF,death,0,1.2,,42.48,42.54,42.54,False,True,42.4,False,False,,success
+MSTZ,death,0,17.8,,9.88,11.21,11.24,False,True,6.57,False,False,,success
+BSCQ,death,0,0.9,,19.54,19.55,19.55,False,True,19.52,False,False,,success

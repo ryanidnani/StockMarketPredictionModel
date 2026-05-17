@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-05,QGEN,golden,62.08,EXECUTE,46.49,51.26,52.44,-3.52,44.86,44.04,10.26
+2026-01-05,LMT,golden,35.44,AVOID,,,,,,,
+2026-01-05,PANW,death,28.73,AVOID,,,,,,,
+2026-01-05,WCLD,death,24.17,AVOID,,,,,,,
+2026-01-05,FTGC,death,20.03,AVOID,,,,,,,
+2026-01-05,CMS,death,17.21,AVOID,,,,,,,
+2026-01-05,DE,death,17.2,AVOID,,,,,,,
+2026-01-05,PEP,death,16.93,AVOID,,,,,,,

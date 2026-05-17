@@ -1,0 +1,14 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+DIS,golden_cross,0,13.1,200.6,109.88,109.82,True,False,113.22,success
+NXPI,golden_cross,0,3.1,57.6,216.6,216.32,True,False,225.98,success
+JEF,golden_cross,0,1.8,13.1,58.76,58.67,True,False,63.47,success
+CFR,golden_cross,0,0.5,8.3,126.26,126.17,True,False,129.31,success
+GNRC,death_cross,0,1.1,8.2,158.34,158.59,False,True,139.87,success
+LW,death_cross,0,2.5,5.9,57.65,57.95,False,True,41.8,success
+ANF,golden_cross,0,2.5,5.7,94.05,93.47,True,False,123.81,success
+BILS,death_cross,0,0.4,,99.31,99.32,False,True,99.13,success
+ETH,death_cross,0,8.6,,31.1,31.17,False,True,28.02,success
+GDLC,death_cross,0,0.2,,45.75,45.82,False,True,41.4,success
+VGLT,death_cross,0,2.0,,56.58,56.6,False,True,55.86,success
+ETSY,death_cross,0,3.6,5.5,57.58,57.63,False,True,55.04,success
+DFGR,death_cross,0,0.5,,26.87,26.88,False,True,26.32,success

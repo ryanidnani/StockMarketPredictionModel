@@ -1,0 +1,13 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+WSO,golden,0,0.6,18.6,418.06,402.05,401.19,True,False,438.47,False,False,,success
+EG,golden,0,0.3,13.7,340.07,334.79,334.51,True,False,347.07,False,False,,success
+MEDP,death,0,0.4,12.0,471.61,484.3,485.17,False,True,409.65,False,False,,success
+PRI,golden,0,0.2,8.8,270.32,263.78,263.43,True,False,280.8,False,False,,success
+BILS,golden,0,0.4,,99.33,99.32,99.31,True,False,99.41,False,False,,success
+BUZZ,golden,0,0.2,,32.47,31.83,31.81,True,False,33.491,False,False,,success
+WINN,golden,0,0.1,,30.32,29.81,29.77,True,False,31.33,False,False,,success
+SHM,death,0,0.2,,47.95,48.01,48.01,False,True,47.92,False,False,,success
+SPAB,death,0,4.7,,25.66,25.7,25.7,False,True,25.62,False,False,,success
+VTES,death,0,0.2,,101.36,101.52,101.53,False,True,101.32,False,False,,success
+GME,golden,0,6.6,11.4,24.35,23.84,23.81,True,False,25.09,False,False,,success
+TBIL,death,0,2.4,,49.93,49.93,49.93,False,True,49.85,False,False,,success

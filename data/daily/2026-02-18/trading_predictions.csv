@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-18,WLK,golden,67.17,EXECUTE,99.53,111.47,119.44,-9.11,90.47,85.93,12.0
+2026-02-18,U,death,65.92,EXECUTE,18.55,17.37,16.19,-12.72,22.69,24.75,-6.36
+2026-02-18,LYFT,death,63.97,EXECUTE,13.71,13.05,12.39,-9.66,16.02,17.18,-4.83
+2026-02-18,TPG,death,61.05,EXECUTE,47.94,45.52,43.1,-10.1,55.07,58.63,-5.05
+2026-02-18,MSCI,death,58.69,EXECUTE,545.25,518.94,492.64,-9.65,615.54,650.69,-4.82
+2026-02-18,CHD,golden,57.28,EXECUTE,102.67,114.99,123.2,-5.51,97.01,94.18,12.0
+2026-02-18,RHP,golden,37.83,AVOID,,,,,,,
+2026-02-18,BDX,death,33.28,AVOID,,,,,,,
+2026-02-18,EIDO,death,28.46,AVOID,,,,,,,
+2026-02-18,JEF,death,26.87,AVOID,,,,,,,
+2026-02-18,PRU,death,26.5,AVOID,,,,,,,
+2026-02-18,OGE,golden,15.93,AVOID,,,,,,,
+2026-02-18,SRVR,golden,15.42,AVOID,,,,,,,
+2026-02-18,YYY,golden,0.98,AVOID,,,,,,,
+2026-02-18,DUSB,death,0.54,AVOID,,,,,,,
+2026-02-18,SCHP,golden,0.37,AVOID,,,,,,,

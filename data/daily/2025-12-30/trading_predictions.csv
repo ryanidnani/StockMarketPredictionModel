@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-30,IONX,death,79.25,EXECUTE,22.11,19.33,16.56,-25.11,24.0,24.95,-12.56
+2025-12-30,RGA,golden,36.55,AVOID,,,,,,,
+2025-12-30,ABNB,golden,35.86,AVOID,,,,,,,
+2025-12-30,ORCL,death,35.83,AVOID,,,,,,,
+2025-12-30,ON,golden,35.28,AVOID,,,,,,,
+2025-12-30,DUK,death,27.13,AVOID,,,,,,,
+2025-12-30,COO,golden,20.77,AVOID,,,,,,,
+2025-12-30,ALSN,golden,20.3,AVOID,,,,,,,
+2025-12-30,J,death,19.04,AVOID,,,,,,,
+2025-12-30,DFGX,death,11.09,AVOID,,,,,,,
+2025-12-30,TDTT,death,7.39,AVOID,,,,,,,

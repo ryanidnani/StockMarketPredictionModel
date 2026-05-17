@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock Market Predictions Model</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d9eff;
+      --green: #3dd68c;
+      --red: #f07178;
+      --gold: #e6c07b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .sub { color: var(--muted); margin-bottom: 1.5rem; }
+    .as-of { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 2rem; }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .table-wrap { overflow-x: auto; margin-top: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    th { color: var(--muted); font-weight: 600; }
+    .tag-golden { color: var(--gold); }
+    .tag-death { color: var(--red); }
+    .exec { color: var(--green); }
+    .avoid { color: var(--muted); }
+    .disclaimer {
+      margin-top: 2.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    #history { margin-top: 2rem; }
+    #history ul { padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
+    #history li { margin: 0.35rem 0; break-inside: avoid; }
+    @media (max-width: 640px) { #history ul { columns: 1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Stock Market Predictions Model</h1>
+    <p class="sub">Daily EMA cross detections and machine-learning trading recommendations</p>
+    <p class="as-of" id="as-of">Loading…</p>
+
+    <div class="cards">
+      <div class="card">
+        <h2>Download latest</h2>
+        <p><a id="link-crosses" href="../latest/detected_crosses.csv">Detected crosses (CSV)</a></p>
+        <p><a id="link-predictions" href="../latest/trading_predictions.csv">Trading predictions (CSV)</a></p>
+        <p><a href="https://github.com/ryanidnani/Stock-Market-Predictions-Model">Repository on GitHub</a></p>
+      </div>
+      <div class="card">
+        <h2>Summary</h2>
+        <p id="summary-stats">—</p>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Detected crosses</h2>
+      <div class="table-wrap" id="crosses-table">Loading…</div>
+    </section>
+
+    <section class="card" style="margin-top: 1rem;">
+      <h2>Trading predictions</h2>
+      <div class="table-wrap" id="predictions-table">Loading…</div>
+    </section>
+
+    <section id="history">
+      <h2>Historical archive</h2>
+      <ul id="history-list"></ul>
+    </section>
+
+    <p class="disclaimer">
+      For education and research only. Not investment advice. Past performance does not guarantee future results.
+    </p>
+  </div>
+
+  <script>
+    const REPO = "ryanidnani/Stock-Market-Predictions-Model";
+    const onPages = location.hostname.endsWith("github.io");
+    const BASE = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
+
+    async function loadText(path) {
+      const url = `${BASE}/${path}`.replace(/\/+/g, "/").replace(":/", "://");
+      const r = await fetch(`${url}${onPages ? "" : `?t=${Date.now()}`}`);
+      if (!r.ok) throw new Error(path);
+      return r.text();
+    }
+
+    function parseCsv(text) {
+      const lines = text.trim().split("\n");
+      if (lines.length < 2) return [];
+      const headers = lines[0].split(",");
+      return lines.slice(1).filter(Boolean).map(line => {
+        const cols = line.split(",");
+        const row = {};
+        headers.forEach((h, i) => { row[h.trim()] = (cols[i] || "").trim(); });
+        return row;
+      });
+    }
+
+    function crossClass(type) {
+      if (!type) return "";
+      return type.includes("death") ? "tag-death" : "tag-golden";
+    }
+
+    function renderCrosses(rows) {
+      if (!rows.length) return "<p>No crosses in the latest file.</p>";
+      let html = "<table><thead><tr><th>Symbol</th><th>Signal</th><th>Days ago</th><th>Price</th><th>50 EMA</th><th>200 EMA</th></tr></thead><tbody>";
+      for (const r of rows) {
+        const sig = r.signal_type || (r.golden_cross === "True" ? "golden" : r.death_cross === "True" ? "death" : "—");
+        html += `<tr>
+          <td>${r.symbol}</td>
+          <td class="${crossClass(sig)}">${sig}</td>
+          <td>${r.cross_days_ago ?? "—"}</td>
+          <td>${r.current_price ?? "—"}</td>
+          <td>${r.ema_50_current ?? "—"}</td>
+          <td>${r.ema_200_current ?? "—"}</td>
+        </tr>`;
+      }
+      return html + "</tbody></table>";
+    }
+
+    function renderPredictions(rows) {
+      if (!rows.length) return "<p>No predictions in the latest file.</p>";
+      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>Rec</th><th>Entry</th><th>Prudent TP</th><th>Stop</th></tr></thead><tbody>";
+      for (const r of rows) {
+        const recClass = r.recommendation === "EXECUTE" ? "exec" : "avoid";
+        html += `<tr>
+          <td>${r.ticker}</td>
+          <td class="${crossClass(r.cross_type)}">${r.cross_type}</td>
+          <td>${r.probability}</td>
+          <td class="${recClass}">${r.recommendation}</td>
+          <td>${r.entry_price ?? "—"}</td>
+          <td>${r.prudent_tp_price ?? "—"}</td>
+          <td>${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
+        </tr>`;
+      }
+      return html + "</tbody></table>";
+    }
+
+    async function init() {
+      try {
+        const asOf = (await loadText("latest/as_of.txt")).trim();
+        document.getElementById("as-of").textContent = `Latest trading day: ${asOf}`;
+        const prefix = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
+        document.getElementById("link-crosses").href = `${prefix}/latest/detected_crosses.csv`;
+        document.getElementById("link-predictions").href = `${prefix}/latest/trading_predictions.csv`;
+
+        const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
+        const predictions = parseCsv(await loadText("latest/trading_predictions.csv"));
+        const executes = predictions.filter(r => r.recommendation === "EXECUTE");
+
+        document.getElementById("summary-stats").textContent =
+          `${crosses.length} cross(es) detected · ${predictions.length} prediction(s) · ${executes.length} EXECUTE`;
+        document.getElementById("crosses-table").innerHTML = renderCrosses(crosses);
+        document.getElementById("predictions-table").innerHTML = renderPredictions(predictions);
+
+        const manifest = JSON.parse(await loadText("data/manifest.json"));
+        const list = document.getElementById("history-list");
+        manifest.dates.slice().reverse().forEach(d => {
+          const li = document.createElement("li");
+          const base = onPages ? "" : `https://raw.githubusercontent.com/${REPO}/main`;
+          li.innerHTML = `<strong>${d}</strong> —
+            <a href="${base}/data/daily/${d}/detected_crosses.csv">crosses</a>,
+            <a href="${base}/data/daily/${d}/trading_predictions.csv">predictions</a>`;
+          list.appendChild(li);
+        });
+      } catch (e) {
+        document.getElementById("as-of").textContent =
+          "Could not load data yet. Browse CSV files in the repository.";
+        document.getElementById("crosses-table").innerHTML = "";
+        document.getElementById("predictions-table").innerHTML = "";
+      }
+    }
+    init();
+  </script>
+</body>
+</html>

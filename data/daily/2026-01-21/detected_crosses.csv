@@ -1,0 +1,14 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+IR,golden_cross,0,2.5,33.6,81.87,81.86,True,False,89.82,success
+LYV,death_cross,0,2.6,32.7,143.44,143.51,False,True,139.71,success
+GPC,golden_cross,0,1.1,18.4,129.25,129.11,True,False,136.24,success
+HLI,golden_cross,0,0.4,13.3,182.46,182.39,True,False,191.06,success
+IBRX,golden_cross,0,32.0,6.4,2.79,2.67,True,False,6.92,success
+GTES,golden_cross,0,2.0,5.8,22.54,22.54,True,False,23.32,success
+HOMB,golden_cross,0,1.4,5.6,28.28,28.26,True,False,29.44,success
+ALKS,golden_cross,0,1.9,5.2,29.6,29.51,True,False,33.85,success
+PFF,golden_cross,0,3.5,,31.28,31.27,True,False,31.85,success
+BSJQ,death_cross,0,0.4,,23.35,23.35,False,True,23.28,success
+GOVI,death_cross,0,0.2,,27.69,27.69,False,True,27.43,success
+IGV,death_cross,0,4.9,,105.57,105.85,False,True,95.4,success
+INDA,death_cross,0,5.8,,53.56,53.62,False,True,51.55,success

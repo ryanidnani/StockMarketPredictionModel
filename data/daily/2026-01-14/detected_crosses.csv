@@ -1,0 +1,13 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+HDB,death_cross,0,4.4,170.3,35.32,35.32,False,True,32.92,success
+UPS,golden_cross,0,5.7,90.4,99.05,98.88,True,False,107.4,success
+HLN,golden_cross,0,9.7,43.7,9.78,9.78,True,False,9.95,success
+LYV,golden_cross,0,2.7,33.9,143.6,143.57,True,False,146.78,success
+EIX,golden_cross,0,3.1,23.3,58.8,58.76,True,False,61.62,success
+FWONA,death_cross,0,0.1,20.8,87.45,87.55,False,True,82.25,success
+FIG,death_cross,0,5.2,16.6,39.89,40.08,False,True,32.36,success
+KOLD,golden_cross,0,5.9,,34.59,34.35,True,False,45.3,success
+SMIG,golden_cross,0,0.2,,29.01,29.0,True,False,29.73,success
+CSHI,death_cross,0,0.3,,49.76,49.77,False,True,49.59,success
+DFGP,death_cross,0,0.2,,54.57,54.57,False,True,54.47,success
+TUA,death_cross,0,0.2,,21.92,21.92,False,True,21.815,success

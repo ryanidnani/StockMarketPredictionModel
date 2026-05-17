@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-05-11,CRCL,golden,96.48,EXECUTE,131.76,180.21,190.59,-12.45,115.36,107.16,36.77
+2026-05-11,DDOG,golden,93.68,EXECUTE,202.32,258.28,283.18,-6.61,188.95,182.26,27.66
+2026-05-11,QCOM,golden,86.76,EXECUTE,237.53,308.79,354.51,-18.71,193.09,170.86,30.0
+2026-05-11,SITE,death,61.95,EXECUTE,121.55,116.52,111.49,-8.28,132.77,138.38,4.14
+2026-05-11,CACI,death,55.31,EXECUTE,482.57,461.55,440.53,-8.71,536.45,563.39,4.36
+2026-05-11,SMMT,death,40.89,AVOID,,,,,,,
+2026-05-11,TFX,golden,33.87,AVOID,,,,,,,
+2026-05-11,IYH,death,30.85,AVOID,,,,,,,
+2026-05-11,XLV,death,29.44,AVOID,,,,,,,
+2026-05-11,SCIO,death,1.15,AVOID,,,,,,,
+2026-05-11,DIAL,death,0.72,EXECUTE,18.21,,,,,,
+2026-05-11,RYLD,golden,0.62,EXECUTE,15.67,,,,,,

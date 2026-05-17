@@ -1,0 +1,11 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+HLN,death,0,7.6,42.6,9.74,9.98,9.99,False,True,9.49,False,False,,success
+TLN,golden,0,0.7,16.5,342.58,342.8,342.28,True,False,369.67,False,False,,success
+HMY,death,0,5.8,10.5,16.79,17.45,17.46,False,True,16.46,False,False,,success
+VOYA,golden,0,1.2,7.4,73.72,72.05,71.94,True,False,81.72,False,False,,success
+LTH,death,0,3.0,6.1,27.4,27.33,27.34,False,True,26.17,False,False,,success
+DFCF,death,0,1.1,,42.45,42.52,42.52,False,True,42.38,False,False,,success
+GME,golden,0,6.7,11.2,24.27,23.79,23.75,True,False,25.41,False,False,,success
+SSB,golden,0,0.9,9.3,96.67,96.41,96.39,True,False,97.84,False,False,,success
+CSHI,golden,0,0.4,,49.78,49.75,49.74,True,False,49.825,False,False,,success
+TBIL,golden,0,2.5,,49.94,49.93,49.93,True,False,49.99,False,False,,success

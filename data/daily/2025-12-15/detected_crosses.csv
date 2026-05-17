@@ -1,0 +1,17 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+BKNG,golden_cross,0,0.3,170.9,5129.85,5122.9,True,False,5457.7,success
+UNP,golden_cross,0,3.3,142.3,228.29,228.07,True,False,240.47,success
+SPOT,death_cross,0,2.1,123.1,623.81,624.85,False,True,577.15,success
+SLB,golden_cross,0,14.7,58.9,36.56,36.53,True,False,38.9,success
+FTV,golden_cross,0,2.9,17.4,51.86,51.79,True,False,55.35,success
+SN,golden_cross,0,2.1,15.9,100.13,99.77,True,False,113.62,success
+OVV,death_cross,0,3.6,10.2,39.75,39.76,False,True,39.24,success
+PSN,death_cross,0,1.8,6.7,78.37,78.51,False,True,61.61,success
+OPCH,golden_cross,0,2.2,5.3,29.61,29.55,True,False,33.54,success
+MC,golden_cross,0,0.9,5.2,66.66,66.65,True,False,69.41,success
+DPST,golden_cross,0,0.7,,94.55,94.4,True,False,111.89,success
+MVSTW,death_cross,0,0.1,,0.25,0.25,False,True,0.1355,success
+TLT,death_cross,0,32.6,,89.15,89.2,False,True,87.4,success
+WCLD,death_cross,0,0.3,,34.94,34.95,False,True,34.6692,success
+STVN,death_cross,0,0.4,5.7,23.21,23.27,False,True,21.3,success
+MNTSW,death_cross,0,0.2,,0.03,0.03,False,True,0.0183,success

@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-06,VNT,golden,94.43,EXECUTE,42.1,47.15,50.52,-4.32,40.28,39.38,12.0
+2026-02-06,TGT,golden,83.66,EXECUTE,115.55,129.42,138.66,-5.29,109.43,106.38,12.0
+2026-02-06,FLR,golden,81.31,EXECUTE,46.92,52.55,56.3,-5.53,44.33,43.03,12.0
+2026-02-06,SIGI,golden,59.41,EXECUTE,90.1,100.91,108.12,-6.15,84.56,81.79,12.0
+2026-02-06,APO,death,40.36,AVOID,,,,,,,
+2026-02-06,KBWD,death,23.69,AVOID,,,,,,,
+2026-02-06,FLGV,death,0.55,AVOID,,,,,,,

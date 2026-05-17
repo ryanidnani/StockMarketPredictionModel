@@ -1,0 +1,10 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+CRWD,golden,0,3.2,138.0,471.41,446.36,445.23,True,False,546.18,False,False,,success
+ELV,golden,0,1.7,82.9,357.63,338.48,337.63,True,False,393.3,False,False,,success
+CPAY,golden,0,0.5,22.3,318.4,315.48,314.89,True,False,338.34,False,False,,success
+ULTA,death,0,0.7,22.3,533.34,555.28,555.42,False,True,505.2,False,False,,success
+NBIX,golden,0,1.3,15.1,138.8,135.08,134.97,True,False,155.8,False,False,,success
+CUBE,golden,0,2.3,9.2,39.73,39.12,39.12,True,False,40.94,False,False,,success
+ALV,golden,0,0.8,9.0,116.52,114.75,114.72,True,False,119.41,False,False,,success
+AMTM,death,0,2.0,5.8,25.65,26.99,27.01,False,True,24.31,False,False,,success
+SMBS,death,0,1.1,,25.51,25.58,25.59,False,True,25.345,False,False,,success

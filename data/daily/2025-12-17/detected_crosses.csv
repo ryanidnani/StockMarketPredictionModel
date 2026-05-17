@@ -1,0 +1,9 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+BUD,golden_cross,0,2.1,125.7,62.17,62.13,True,False,65.28,success
+COIN,death_cross,0,9.7,68.1,289.25,290.36,False,True,244.19,success
+MET,golden_cross,0,3.9,54.2,78.83,78.76,True,False,82.53,success
+STLA,golden_cross,0,12.9,34.2,10.8,10.79,True,False,11.67,success
+Z,death_cross,0,2.7,17.0,73.74,73.74,False,True,68.77,success
+ACM,death_cross,0,1.6,13.0,114.24,114.71,False,True,96.69,success
+SGOV,golden_cross,0,15.4,,100.53,100.52,True,False,100.56,success
+RIOX,death_cross,0,0.5,,21.45,21.51,False,True,12.07,success

@@ -1,0 +1,12 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+ABT,death_cross,0,6.2,217.5,128.02,128.06,False,True,122.09,success
+TRGP,golden_cross,0,1.6,38.8,167.6,167.59,True,False,179.1,success
+SLF,death_cross,0,0.5,32.6,59.5,59.51,False,True,58.47,success
+VRSN,death_cross,0,1.0,23.1,255.3,255.36,False,True,250.95,success
+KOF,golden_cross,0,0.1,19.0,87.32,87.31,True,False,91.79,success
+RBRK,golden_cross,0,3.2,17.0,75.51,75.35,True,False,89.1,success
+SCI,death_cross,0,1.0,10.6,79.68,79.7,False,True,77.13,success
+WAY,death_cross,0,2.0,6.6,36.37,36.42,False,True,33.21,success
+KEX,golden_cross,0,0.9,6.1,102.85,102.65,True,False,112.08,success
+UBSI,golden_cross,0,0.7,5.3,36.85,36.82,True,False,38.0,success
+BKLN,golden_cross,0,8.7,,20.91,20.91,True,False,20.98,success

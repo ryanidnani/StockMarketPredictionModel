@@ -1,0 +1,15 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+DTE,golden_cross,0,1.6,29.0,134.42,134.31,True,False,140.91,success
+AFRM,death_cross,0,6.9,18.8,68.01,68.03,False,True,49.76,success
+MAS,golden_cross,0,2.7,15.6,68.45,68.42,True,False,77.54,success
+VNOM,golden_cross,0,2.3,7.4,39.87,39.81,True,False,43.73,success
+BTCZ,golden_cross,0,21.4,,4.48,4.47,True,False,6.46,success
+SHYM,golden_cross,0,0.2,,22.33,22.33,True,False,22.43,success
+VNQ,golden_cross,0,4.4,,90.59,90.53,True,False,93.25,success
+AMZZ,death_cross,0,0.4,,31.05,31.05,False,True,23.0,success
+AVL,death_cross,0,0.7,,44.51,44.62,False,True,39.05,success
+BTGD,death_cross,0,0.1,,36.09,36.28,False,True,28.31,success
+PNQI,death_cross,0,0.1,,51.83,51.97,False,True,45.9162,success
+PTIR,death_cross,0,4.7,,23.2,23.5,False,True,13.3,success
+RGTIW,death_cross,0,0.1,,11.76,11.85,False,True,5.41,success
+TBT,death_cross,0,0.4,,34.42,34.45,False,True,33.24,success

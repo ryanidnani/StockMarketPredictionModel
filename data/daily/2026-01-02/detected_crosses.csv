@@ -1,0 +1,8 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+DKS,death_cross,0,1.8,17.8,213.3,213.39,False,True,200.22,success
+RRX,golden_cross,0,0.7,9.3,143.04,142.99,True,False,146.1,success
+DFIP,death_cross,0,0.1,,41.9,41.9,False,True,41.545,success
+IAGG,death_cross,0,1.1,,51.1,51.12,False,True,50.05,success
+USDU,death_cross,0,0.4,,26.62,26.63,False,True,25.83,success
+VTIP,death_cross,0,1.9,,49.91,49.92,False,True,49.45,success
+UBER,death_cross,0,19.7,169.8,86.85,86.96,False,True,82.86,success

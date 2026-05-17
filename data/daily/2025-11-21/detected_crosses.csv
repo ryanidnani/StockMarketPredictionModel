@@ -1,0 +1,8 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+ICL,death_cross,0,0.8,6.8,6.05,6.07,False,True,5.39,success
+UUP,golden_cross,0,1.1,,27.94,27.93,True,False,28.39,success
+ACHR.WS,death_cross,0,0.3,,2.43,2.46,False,True,1.28,success
+DBA,death_cross,0,0.2,,26.52,26.53,False,True,25.88,success
+GDXY,death_cross,0,0.7,,16.01,16.02,False,True,15.12,success
+NFLU,death_cross,0,0.2,,51.24,51.27,False,True,41.03,success
+NFXL,death_cross,0,0.7,,50.69,50.88,False,True,40.68,success

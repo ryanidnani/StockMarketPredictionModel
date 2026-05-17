@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-29,ON,golden,38.17,AVOID,,,,,,,
+2025-12-29,MNSO,death,33.84,AVOID,,,,,,,
+2025-12-29,MSFX,death,28.55,AVOID,,,,,,,
+2025-12-29,ADT,death,26.85,AVOID,,,,,,,
+2025-12-29,RBLX,death,25.91,AVOID,,,,,,,
+2025-12-29,ZS,death,25.34,AVOID,,,,,,,
+2025-12-29,TSN,golden,21.44,AVOID,,,,,,,
+2025-12-29,APOPA,golden,4.91,AVOID,,,,,,,

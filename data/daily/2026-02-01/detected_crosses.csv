@@ -1,0 +1,16 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+APOpA,death_cross,0,0.3,,72.64,72.69,False,True,69.37,success
+KBWD,death_cross,0,0.3,,13.99,14.0,False,True,13.91,success
+TBLL,death_cross,0,0.2,,105.67,105.67,False,True,105.61,success
+TUSI,death_cross,0,0.1,,25.38,25.38,False,True,25.365,success
+AMP,golden_cross,0,0.6,48.1,494.48,494.16,True,False,527.19,success
+DDOG,death_cross,0,4.9,45.3,139.19,139.43,False,True,129.32,success
+BNTX,golden_cross,0,1.1,28.5,104.66,104.46,True,False,113.75,success
+DRS,golden_cross,0,1.2,10.9,38.41,38.37,True,False,41.06,success
+PLNT,death_cross,0,1.7,7.6,101.74,101.81,False,True,91.04,success
+LTH,golden_cross,0,2.1,6.4,27.39,27.37,True,False,29.17,success
+NEU,death_cross,0,0.1,6.3,705.8,706.65,False,True,670.79,success
+AVT,golden_cross,0,1.1,5.1,51.1,50.99,True,False,62.39,success
+COMT,golden_cross,0,0.2,,26.21,26.21,True,False,27.4241,success
+HOOX,death_cross,0,0.2,,24.01,24.02,False,True,15.41,success
+KKRpD,death_cross,0,0.6,,51.72,51.74,False,True,48.94,success

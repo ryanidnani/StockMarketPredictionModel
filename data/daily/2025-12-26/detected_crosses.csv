@@ -1,0 +1,14 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+ETN,death_cross,0,3.1,125.7,344.45,344.5,False,True,322.17,success
+TAK,golden_cross,0,2.8,49.2,14.49,14.47,True,False,15.65,success
+EHC,death_cross,0,0.9,10.8,113.27,113.42,False,True,107.52,success
+MNSO,death_cross,0,0.7,5.9,20.45,20.45,False,True,19.63,success
+APOpA,golden_cross,0,0.2,,72.28,72.18,True,False,77.13,success
+AMZU,death_cross,0,1.8,,36.15,36.16,False,True,35.52,success
+FLRN,death_cross,0,0.9,,30.77,30.77,False,True,30.72,success
+SJNK,death_cross,0,3.9,,25.34,25.34,False,True,25.3,success
+SPTL,death_cross,0,7.9,,26.81,26.82,False,True,26.59,success
+USRT,death_cross,0,0.5,,57.67,57.69,False,True,57.18,success
+ON,golden_cross,0,9.4,22.2,52.26,52.19,True,False,54.93,success
+SEIC,golden_cross,0,0.6,10.5,82.75,82.71,True,False,84.85,success
+COMT,death_cross,0,0.3,,26.23,26.26,False,True,25.0,success

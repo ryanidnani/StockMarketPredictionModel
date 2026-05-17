@@ -1,0 +1,10 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+VRTX,death,0,1.2,109.4,437.08,446.86,447.45,False,True,427.38,False,False,,success
+DHI,golden,0,2.8,44.4,151.29,149.32,149.3,True,False,153.86,False,False,,success
+CLIP,golden,0,0.3,,100.27,100.24,100.24,True,False,100.35,False,False,,success
+SHV,golden,0,3.1,,110.29,110.27,110.27,True,False,110.39,False,False,,success
+USOY,golden,0,0.9,,8.66,8.29,8.27,True,False,9.13,False,False,,success
+BSCZ,death,0,0.1,,20.61,20.66,20.66,False,True,20.4965,False,False,,success
+CARY,death,0,0.4,,20.88,20.9,20.9,False,True,20.8,False,False,,success
+TAFI,death,0,0.5,,25.21,25.24,25.24,False,True,25.2,False,False,,success
+JEPI,golden,0,5.2,,57.34,57.51,57.51,True,False,57.59,False,False,,success

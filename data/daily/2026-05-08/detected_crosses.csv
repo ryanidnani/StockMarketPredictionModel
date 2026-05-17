@@ -1,0 +1,17 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+TM,death,0,0.4,223.8,197.23,206.17,206.72,False,True,187.53,False,False,,success
+SCHW,death,0,11.0,155.6,91.83,93.49,93.63,False,True,88.61,False,False,,success
+FTNT,golden,0,6.2,79.0,89.61,85.43,85.43,True,False,114.07,False,False,,success
+INSM,death,0,2.6,22.8,135.07,143.65,144.64,False,True,101.35,False,False,,success
+SMMT,death,0,4.3,13.3,19.57,18.98,19.0,False,True,18.08,False,False,,success
+FROG,golden,0,2.8,6.9,50.61,48.48,48.45,True,False,70.55,False,False,,success
+EAT,death,0,1.2,6.3,145.46,146.76,146.99,False,True,138.68,False,False,,success
+TFX,golden,0,0.9,5.8,126.57,121.94,121.89,True,False,133.06,False,False,,success
+AMDY,golden,0,0.3,,43.48,39.05,38.92,True,False,54.48,False,False,,success
+IGOV,golden,0,0.6,,41.8,41.76,41.75,True,False,42.27,False,False,,success
+PFF,golden,0,2.8,,31.33,31.2,31.19,True,False,31.72,False,False,,success
+TSMY,golden,0,0.1,,16.53,16.26,16.26,True,False,16.79,False,False,,success
+VOT,golden,0,0.2,,282.21,277.34,277.07,True,False,288.69,False,False,,success
+QXOpB,death,0,0.1,,56.94,58.88,58.94,False,True,52.59,False,False,,success
+AUR,golden,0,23.1,14.0,5.73,5.1,5.04,True,False,7.08,False,False,,success
+AN,golden,0,0.4,6.9,203.32,201.17,201.07,True,False,205.97,False,False,,success

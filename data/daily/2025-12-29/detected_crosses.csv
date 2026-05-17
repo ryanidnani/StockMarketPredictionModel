@@ -1,0 +1,9 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
+RBLX,death_cross,0,7.3,57.7,98.64,98.86,False,True,81.52,success
+ZS,death_cross,0,2.1,36.8,263.51,264.45,False,True,228.02,success
+TSN,golden_cross,0,3.1,20.7,56.26,56.24,True,False,58.58,success
+ADT,death_cross,0,5.9,6.7,8.23,8.23,False,True,8.08,success
+MSFX,death_cross,0,0.1,,30.85,30.87,False,True,27.71,success
+ON,golden_cross,0,9.3,22.1,52.33,52.3,True,False,54.02,success
+MNSO,death_cross,0,0.7,6.0,20.4,20.43,False,True,19.28,success
+APOpA,golden_cross,0,0.2,,72.45,72.33,True,False,76.72,success
