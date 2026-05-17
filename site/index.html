@@ -187,7 +187,7 @@
 
     function renderPredictions(rows) {
       if (!rows.length) return "<p>No predictions in the latest file.</p>";
-      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>View</th><th>Entry</th><th>Prudent TP</th><th>Stop</th></tr></thead><tbody>";
+      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>View</th><th>Entry</th><th>Prudent Take Profit</th><th>Stop Loss</th></tr></thead><tbody>";
       for (const r of rows) {
         const label = displayRecommendation(r.recommendation);
         const recClass = isConsider(r.recommendation) ? "consider" : "avoid";
