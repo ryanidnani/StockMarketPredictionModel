@@ -128,11 +128,11 @@
       };
     }
 
-    function setCsvDownloadLink(id, repoPath, downloadName) {
+    function setCsvDownloadLink(id, repoPath, downloadName, linkLabel) {
       const el = document.getElementById(id);
       el.href = assetUrl(repoPath);
       el.download = downloadName;
-      el.textContent = downloadName;
+      if (linkLabel) el.textContent = linkLabel;
     }
 
     async function loadText(path) {
@@ -211,12 +211,14 @@
         setCsvDownloadLink(
           "link-crosses",
           "latest/detected_crosses.csv",
-          `detected_crosses_${asOf}.csv`
+          `detected_crosses_${asOf}.csv`,
+          "Detected crosses (CSV)"
         );
         setCsvDownloadLink(
           "link-predictions",
           "latest/trading_predictions.csv",
-          `trading_predictions_${asOf}.csv`
+          `trading_predictions_${asOf}.csv`,
+          "Trading predictions (CSV)"
         );
 
         const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
@@ -236,8 +238,8 @@
           const predictionsName = `trading_predictions_${d}.csv`;
           const li = document.createElement("li");
           li.innerHTML = `<strong>${d}</strong> —
-            <a href="${assetUrl(paths.crosses)}" download="${crossesName}">${crossesName}</a>,
-            <a href="${assetUrl(paths.predictions)}" download="${predictionsName}">${predictionsName}</a>`;
+            <a href="${assetUrl(paths.crosses)}" download="${crossesName}">crosses</a>,
+            <a href="${assetUrl(paths.predictions)}" download="${predictionsName}">predictions</a>`;
           list.appendChild(li);
         });
       } catch (e) {
