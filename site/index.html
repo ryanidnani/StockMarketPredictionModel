@@ -39,9 +39,36 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .table-wrap { overflow-x: auto; margin-top: 0.5rem; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-    th, td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
-    th { color: var(--muted); font-weight: 600; }
+    .data-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .data-table th,
+    .data-table td {
+      padding: 0.55rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      vertical-align: middle;
+    }
+    .data-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      line-height: 1.25;
+      white-space: normal;
+      text-align: left;
+    }
+    .data-table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .data-table .col-text { text-align: left; }
+    .data-table .col-num { text-align: right; font-variant-numeric: tabular-nums; }
+    .data-table th.col-num { text-align: right; }
+    .data-table .col-tag { text-align: center; }
+    .data-table th.col-tag { text-align: center; }
     .tag-golden { color: var(--gold); }
     .tag-death { color: var(--red); }
     .consider { color: var(--green); }
@@ -170,16 +197,23 @@
 
     function renderCrosses(rows) {
       if (!rows.length) return "<p>No crosses in the latest file.</p>";
-      let html = "<table><thead><tr><th>Symbol</th><th>Signal</th><th>Days ago</th><th>Price</th><th>50 EMA</th><th>200 EMA</th></tr></thead><tbody>";
+      let html = `<table class="data-table"><thead><tr>
+        <th class="col-text">Symbol</th>
+        <th class="col-tag">Signal</th>
+        <th class="col-num">Days Ago</th>
+        <th class="col-num">Price</th>
+        <th class="col-num">50 EMA</th>
+        <th class="col-num">200 EMA</th>
+      </tr></thead><tbody>`;
       for (const r of rows) {
         const sig = r.signal_type || (r.golden_cross === "True" ? "golden" : r.death_cross === "True" ? "death" : "—");
         html += `<tr>
-          <td>${r.symbol}</td>
-          <td class="${crossClass(sig)}">${sig}</td>
-          <td>${r.cross_days_ago ?? "—"}</td>
-          <td>${r.current_price ?? "—"}</td>
-          <td>${r.ema_50_current ?? "—"}</td>
-          <td>${r.ema_200_current ?? "—"}</td>
+          <td class="col-text">${r.symbol}</td>
+          <td class="col-tag ${crossClass(sig)}">${sig}</td>
+          <td class="col-num">${r.cross_days_ago ?? "—"}</td>
+          <td class="col-num">${r.current_price ?? "—"}</td>
+          <td class="col-num">${r.ema_50_current ?? "—"}</td>
+          <td class="col-num">${r.ema_200_current ?? "—"}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
@@ -187,18 +221,26 @@
 
     function renderPredictions(rows) {
       if (!rows.length) return "<p>No predictions in the latest file.</p>";
-      let html = "<table><thead><tr><th>Ticker</th><th>Cross</th><th>Prob %</th><th>View</th><th>Entry</th><th>Prudent Take Profit</th><th>Stop Loss</th></tr></thead><tbody>";
+      let html = `<table class="data-table"><thead><tr>
+        <th class="col-text">Ticker</th>
+        <th class="col-tag">Cross</th>
+        <th class="col-num">Prob %</th>
+        <th class="col-tag">View</th>
+        <th class="col-num">Entry</th>
+        <th class="col-num">Prudent Take Profit</th>
+        <th class="col-num">Stop Loss</th>
+      </tr></thead><tbody>`;
       for (const r of rows) {
         const label = displayRecommendation(r.recommendation);
         const recClass = isConsider(r.recommendation) ? "consider" : "avoid";
         html += `<tr>
-          <td>${r.ticker}</td>
-          <td class="${crossClass(r.cross_type)}">${r.cross_type}</td>
-          <td>${r.probability}</td>
-          <td class="${recClass}">${label}</td>
-          <td>${r.entry_price ?? "—"}</td>
-          <td>${r.prudent_tp_price ?? "—"}</td>
-          <td>${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
+          <td class="col-text">${r.ticker}</td>
+          <td class="col-tag ${crossClass(r.cross_type)}">${r.cross_type}</td>
+          <td class="col-num">${r.probability}</td>
+          <td class="col-tag ${recClass}">${label}</td>
+          <td class="col-num">${r.entry_price ?? "—"}</td>
+          <td class="col-num">${r.prudent_tp_price ?? "—"}</td>
+          <td class="col-num">${r.recommended_actual_stop ?? r.stop_loss_price ?? "—"}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
