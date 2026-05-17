@@ -1,8 +1,8 @@
 # Stock Market Predictions Model
 
 > **Disclaimer:** For education and research only — not financial, investment, or trading advice.  
-> Published crosses and model output are for **trading idea exploration** only, not buy/sell instructions.  
-> You are solely responsible for your own decisions; authors may hold positions in mentioned securities.
+> Daily crosses and model scores are automated outputs for **idea research**, not recommendations to buy or sell.  
+> Past performance does not guarantee future results. You are responsible for your own decisions; authors may hold positions in securities shown here.
 
 Daily golden cross and death cross detections, plus machine-learning signals for US equities. This repository is the **public read-only feed** of results produced by a private research pipeline.
 

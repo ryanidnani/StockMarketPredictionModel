@@ -67,9 +67,9 @@
   <div class="wrap">
     <p class="disclaimer">
       <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
-      Crosses and model output are automated signals for <strong>trading idea exploration</strong> only, not instructions to buy or sell.
-      Past results do not guarantee future performance. You are solely responsible for your own decisions;
-      the authors may hold positions in securities mentioned.
+      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
+      Past performance does not guarantee future results. You are responsible for your own decisions;
+      the authors may hold positions in securities shown here.
     </p>
 
     <h1>Stock Market Predictions Model</h1>
@@ -79,8 +79,8 @@
     <div class="cards">
       <div class="card">
         <h2>Download latest</h2>
-        <p><a id="link-crosses" href="latest/detected_crosses.csv">Detected crosses (CSV)</a></p>
-        <p><a id="link-predictions" href="latest/trading_predictions.csv">Trading predictions (CSV)</a></p>
+        <p><a id="link-predictions" href="latest/trading_predictions.csv">Trading Predictions (CSV)</a></p>
+        <p><a id="link-crosses" href="latest/detected_crosses.csv">Detected Crosses (CSV)</a></p>
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
       </div>
       <div class="card">
@@ -212,13 +212,13 @@
           "link-crosses",
           "latest/detected_crosses.csv",
           `detected_crosses_${asOf}.csv`,
-          "Detected crosses (CSV)"
+          "Detected Crosses (CSV)"
         );
         setCsvDownloadLink(
           "link-predictions",
           "latest/trading_predictions.csv",
           `trading_predictions_${asOf}.csv`,
-          "Trading predictions (CSV)"
+          "Trading Predictions (CSV)"
         );
 
         const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
