@@ -165,9 +165,18 @@
       if (linkLabel) el.textContent = linkLabel;
     }
 
-    async function loadText(path) {
+    async function loadText(path, cacheKey) {
       const url = assetUrl(path);
-      const r = await fetch(`${url}${onPages ? "" : `?t=${Date.now()}`}`);
+      const bust =
+        cacheKey != null
+          ? String(cacheKey)
+          : onPages
+            ? null
+            : String(Date.now());
+      const fetchUrl = bust
+        ? `${url}${url.includes("?") ? "&" : "?"}v=${encodeURIComponent(bust)}`
+        : url;
+      const r = await fetch(fetchUrl);
       if (!r.ok) throw new Error(path);
       return r.text();
     }
@@ -249,7 +258,12 @@
 
     async function init() {
       try {
-        const asOf = (await loadText("latest/as_of.txt")).trim();
+        const manifest = JSON.parse(
+          await loadText("data/manifest.json", Date.now())
+        );
+        const cacheKey = manifest.updated_at || Date.now();
+
+        const asOf = (await loadText("latest/as_of.txt", cacheKey)).trim();
         document.getElementById("as-of").textContent = `Latest trading day: ${asOf}`;
         setCsvDownloadLink(
           "link-crosses",
@@ -264,16 +278,18 @@
           "Trading Predictions (CSV)"
         );
 
-        const crosses = parseCsv(await loadText("latest/detected_crosses.csv"));
-        const predictions = parseCsv(await loadText("latest/trading_predictions.csv"));
+        const crosses = parseCsv(
+          await loadText("latest/detected_crosses.csv", cacheKey)
+        );
+        const predictions = parseCsv(
+          await loadText("latest/trading_predictions.csv", cacheKey)
+        );
         const toConsider = predictions.filter(r => isConsider(r.recommendation));
 
         document.getElementById("summary-stats").textContent =
           `${crosses.length} Crosses Detected · ${toConsider.length} Trades to Consider`;
         document.getElementById("crosses-table").innerHTML = renderCrosses(crosses);
         document.getElementById("predictions-table").innerHTML = renderPredictions(predictions);
-
-        const manifest = JSON.parse(await loadText("data/manifest.json"));
         const list = document.getElementById("history-list");
         manifest.dates.slice().reverse().forEach(d => {
           const paths = dailyCsvPaths(d);
