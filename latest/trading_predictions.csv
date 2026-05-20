@@ -4,7 +4,6 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-20,CCJ,death_st,89.97,CONSIDER,103.52,98.13,92.74,-10.42,117.34,124.25,5.21
 2026-05-20,BLD,death_st,87.92,CONSIDER,398.26,382.16,366.05,-8.09,435.51,454.14,4.04
 2026-05-20,UEC,death_st,85.6,CONSIDER,11.91,11.25,10.59,-11.1,13.85,14.82,5.55
-2026-05-20,PIIIW,golden,81.12,CONSIDER,0.03,0.05,0.05,-16.08,0.03,0.03,48.75
 2026-05-20,NXE,death_st,78.84,CONSIDER,10.53,9.98,9.44,-10.35,12.07,12.85,5.18
 2026-05-20,MSI,death,77.67,CONSIDER,398.73,376.51,354.29,-11.14,418.36,428.18,5.57
 2026-05-20,ICL,golden,73.75,CONSIDER,6.5,7.64,8.17,-5.92,6.11,5.92,17.59
@@ -16,7 +15,6 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-20,FTAI,death_st,39.27,AVOID,,,,,,,
 2026-05-20,EQR,golden,29.12,AVOID,,,,,,,
 2026-05-20,CIBR,golden,28.94,AVOID,,,,,,,
-2026-05-20,STRC,death_st,28.14,AVOID,,,,,,,
 2026-05-20,SNPS,golden,24.31,AVOID,,,,,,,
 2026-05-20,SUI,death,17.72,AVOID,,,,,,,
 2026-05-20,BVN,death_st,16.2,AVOID,,,,,,,
