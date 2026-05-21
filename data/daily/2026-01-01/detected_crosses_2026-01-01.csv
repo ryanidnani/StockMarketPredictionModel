@@ -1,8 +1,8 @@
-symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
-CVX,golden_cross,0,8.4,304.7,151.58,151.57,True,False,152.41,success
-UBER,death_cross,0,19.9,169.8,87.01,87.03,False,True,81.71,success
-QGEN,death_cross,0,1.1,9.8,45.94,45.94,False,True,44.97,success
-BITI,golden_cross,0,2.8,,21.89,21.85,True,False,23.17,success
-CLIP,death_cross,0,0.3,,100.25,100.26,False,True,100.11,success
-CSHI,death_cross,0,0.2,,49.78,49.78,False,True,49.73,success
-ICSH,death_cross,0,1.4,,50.62,50.62,False,True,50.58,success
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+CVX,golden_cross,0,8.4,304.7,,151.58,151.57,True,False,152.41,False,False,,success
+UBER,death_cross,0,19.9,169.8,,87.01,87.03,False,True,81.71,False,False,,success
+QGEN,death_cross,0,1.1,9.8,,45.94,45.94,False,True,44.97,False,False,,success
+BITI,golden_cross,0,2.8,,,21.89,21.85,True,False,23.17,False,False,,success
+CLIP,death_cross,0,0.3,,,100.25,100.26,False,True,100.11,False,False,,success
+CSHI,death_cross,0,0.2,,,49.78,49.78,False,True,49.73,False,False,,success
+ICSH,death_cross,0,1.4,,,50.62,50.62,False,True,50.58,False,False,,success

@@ -1,7 +1,7 @@
-symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
-NFLX,death_cross,0,46.5,393.3,109.42,109.74,False,True,94.09,success
-BSX,death_cross,0,9.0,137.4,98.93,99.11,False,True,91.75,success
-SE,death_cross,0,5.4,73.5,148.77,149.23,False,True,126.6,success
-CTSH,golden_cross,0,4.7,40.2,74.51,74.25,True,False,83.82,success
-LQTI,death_cross,0,0.1,,20.22,20.22,False,True,20.06,success
-MA,golden_cross,0,2.8,483.9,553.53,553.34,True,False,563.37,success
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+NFLX,death_cross,0,46.5,393.3,,109.42,109.74,False,True,94.09,False,False,,success
+BSX,death_cross,0,9.0,137.4,,98.93,99.11,False,True,91.75,False,False,,success
+SE,death_cross,0,5.4,73.5,,148.77,149.23,False,True,126.6,False,False,,success
+CTSH,golden_cross,0,4.7,40.2,,74.51,74.25,True,False,83.82,False,False,,success
+LQTI,death_cross,0,0.1,,,20.22,20.22,False,True,20.06,False,False,,success
+MA,golden_cross,0,2.8,483.9,,553.53,553.34,True,False,563.37,False,False,,success

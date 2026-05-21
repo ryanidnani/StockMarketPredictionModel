@@ -1,7 +1,7 @@
-symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,status
-ITW,golden_cross,0,1.3,75.4,252.92,252.79,True,False,259.69,success
-SCI,golden_cross,0,0.9,11.5,79.69,79.67,True,False,81.0,success
-BITI,golden_cross,0,2.5,,21.9,21.89,True,False,22.56,success
-FLRN,golden_cross,0,0.8,,30.77,30.77,True,False,30.83,success
-KNG,golden_cross,0,0.4,,49.79,49.76,True,False,51.0,success
-KOLD,death_cross,0,6.3,,34.19,34.35,False,True,23.01,success
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21_current,ema_50_current,ema_200_current,golden_cross,death_cross,current_price,golden_st,death_st,cross_days_ago_st,status
+ITW,golden_cross,0,1.3,75.4,,252.92,252.79,True,False,259.69,False,False,,success
+SCI,golden_cross,0,0.9,11.5,,79.69,79.67,True,False,81.0,False,False,,success
+BITI,golden_cross,0,2.5,,,21.9,21.89,True,False,22.56,False,False,,success
+FLRN,golden_cross,0,0.8,,,30.77,30.77,True,False,30.83,False,False,,success
+KNG,golden_cross,0,0.4,,,49.79,49.76,True,False,51.0,False,False,,success
+KOLD,death_cross,0,6.3,,,34.19,34.35,False,True,23.01,False,False,,success
