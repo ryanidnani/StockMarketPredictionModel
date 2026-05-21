@@ -281,6 +281,7 @@
         <th class="col-left">Ticker</th>
         <th class="col-center">Cross Type</th>
         <th class="col-center">Current Price</th>
+        <th class="col-center">21 Day EMA</th>
         <th class="col-center">50 Day EMA</th>
         <th class="col-center">200 Day EMA</th>
       </tr></thead><tbody>`;
@@ -290,6 +291,7 @@
           <td class="col-left">${r.symbol}</td>
           <td class="col-center ${crossClass(sig)}">${sig}</td>
           <td class="col-center">${r.current_price ?? "—"}</td>
+          <td class="col-center">${r.ema_21_current ?? "—"}</td>
           <td class="col-center">${r.ema_50_current ?? "—"}</td>
           <td class="col-center">${r.ema_200_current ?? "—"}</td>
         </tr>`;
