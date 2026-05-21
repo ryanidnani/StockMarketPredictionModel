@@ -291,9 +291,9 @@
           <td class="col-left">${r.symbol}</td>
           <td class="col-center ${crossClass(sig)}">${sig}</td>
           <td class="col-center">${r.current_price ?? "—"}</td>
-          <td class="col-center">${r.ema_21_current ?? "—"}</td>
-          <td class="col-center">${r.ema_50_current ?? "—"}</td>
-          <td class="col-center">${r.ema_200_current ?? "—"}</td>
+          <td class="col-center">${r.ema_21 ?? r.ema_21_current ?? "—"}</td>
+          <td class="col-center">${r.ema_50 ?? r.ema_50_current ?? "—"}</td>
+          <td class="col-center">${r.ema_200 ?? r.ema_200_current ?? "—"}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
