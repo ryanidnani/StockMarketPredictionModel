@@ -851,12 +851,8 @@
 
     function updateAsOfLine() {
       const updatedAt = formatUpdatedAt(state.manifest.updated_at);
-      const viewingLatest = state.selectedDate === state.latestDate;
-      const updatedPart = viewingLatest && updatedAt
-        ? ` · Last updated: ${updatedAt}`
-        : "";
       document.getElementById("as-of").textContent =
-        `Viewing trading day: ${state.selectedDate}${updatedPart}`;
+        updatedAt ? `Last updated: ${updatedAt}` : "";
     }
 
     function updateDownloadLinks() {
