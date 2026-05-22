@@ -107,10 +107,24 @@
     .data-table th.sortable.is-sorted {
       color: var(--accent);
     }
+    .data-table th.sortable .th-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      width: 100%;
+    }
+    .data-table th.col-left .th-inner {
+      justify-content: flex-start;
+    }
+    .data-table th.sortable .th-label {
+      min-width: 0;
+      line-height: 1.25;
+    }
     .sort-indicator {
-      display: inline-block;
-      margin-left: 0.2rem;
-      font-size: 0.68rem;
+      flex: 0 0 auto;
+      font-size: 0.65rem;
+      line-height: 1;
       opacity: 0.45;
     }
     .data-table th.sortable.is-sorted .sort-indicator {
@@ -765,7 +779,7 @@
           title="${escapeHtml(col.tooltip)}"
           tabindex="0"
           aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
-        >${escapeHtml(col.label)} <span class="sort-indicator">${indicator}</span></th>`;
+        ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
       }
 
       let body = "";
