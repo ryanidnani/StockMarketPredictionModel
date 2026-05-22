@@ -88,6 +88,35 @@
     .tag-death { color: var(--red); }
     .consider { color: var(--green); }
     .avoid { color: var(--muted); }
+    .summary-total {
+      margin: 0 0 0.85rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .summary-table th,
+    .summary-table td {
+      padding: 0.45rem 0.35rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+    .summary-table th:first-child,
+    .summary-table td:first-child {
+      text-align: left;
+    }
+    .summary-table tr:last-child td {
+      border-bottom: none;
+    }
     .disclaimer {
       margin: 0 0 1.5rem;
       padding: 1rem 1.1rem;
@@ -157,7 +186,7 @@
       </div>
       <div class="card">
         <h2>Summary</h2>
-        <p id="summary-stats">—</p>
+        <div id="summary-stats">—</div>
       </div>
     </div>
 
@@ -346,6 +375,51 @@
       return `${datePart} at ${pt} PT (${et} ET)`;
     }
 
+    const CROSS_TYPES = ["golden", "death", "golden_st", "death_st"];
+
+    function countByType(rows, field) {
+      const counts = Object.fromEntries(CROSS_TYPES.map((type) => [type, 0]));
+      for (const row of rows) {
+        const type = (row[field] || "").trim();
+        if (type in counts) counts[type]++;
+      }
+      return counts;
+    }
+
+    function renderSummary(crosses, predictions) {
+      const crossCounts = countByType(crosses, "signal_type");
+      const considerCounts = countByType(
+        predictions.filter((row) => isConsider(row.recommendation)),
+        "cross_type"
+      );
+      const totalCrosses = crosses.length;
+      const totalConsider = predictions.filter((row) =>
+        isConsider(row.recommendation)
+      ).length;
+
+      let rows = "";
+      for (const type of CROSS_TYPES) {
+        rows += `<tr>
+          <td class="${crossClass(type)}">${type}</td>
+          <td>${crossCounts[type]}</td>
+          <td>${considerCounts[type]}</td>
+        </tr>`;
+      }
+
+      return `
+        <p class="summary-total">${totalCrosses} crosses · ${totalConsider} to consider</p>
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Crosses</th>
+              <th>Consider</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
     function evenColgroup(count) {
       const width = (100 / count).toFixed(3);
       let cols = "";
@@ -405,7 +479,7 @@
         html += `<tr>
           <td class="col-left">${r.ticker}</td>
           <td class="col-center ${crossClass(r.cross_type)}">${r.cross_type}</td>
-          <td class="col-center">${formatCell(r.probability)}</td>
+          <td class="col-center">${formatProbability(r.probability)}</td>
           <td class="col-center ${recClass}">${label}</td>
           <td class="col-center">${formatPrice(r.entry_price)}</td>
           <td class="col-center">${formatPrice(r.prudent_tp_price)}</td>
@@ -449,10 +523,9 @@
         const predictions = parseCsv(
           await loadText("latest/trading_predictions.csv", cacheKey)
         );
-        const toConsider = predictions.filter(r => isConsider(r.recommendation));
 
-        document.getElementById("summary-stats").textContent =
-          `${crosses.length} Crosses Detected · ${toConsider.length} Trades to Consider`;
+        document.getElementById("summary-stats").innerHTML =
+          renderSummary(crosses, predictions);
         document.getElementById("crosses-table").innerHTML = renderCrosses(crosses);
         document.getElementById("predictions-table").innerHTML = renderPredictions(predictions);
         const list = document.getElementById("history-list");
@@ -469,6 +542,7 @@
       } catch (e) {
         document.getElementById("as-of").textContent =
           "Could not load data yet. Browse CSV files in the repository.";
+        document.getElementById("summary-stats").innerHTML = "";
         document.getElementById("crosses-table").innerHTML = "";
         document.getElementById("predictions-table").innerHTML = "";
       }
