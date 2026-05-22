@@ -3,6 +3,9 @@ PCAR,golden_cross,3.2,55.4,,99.12,98.99,103.97
 MTB,golden_cross,1.0,29.2,,187.63,187.62,190.22
 CTRA,golden_cross,8.3,20.4,,25.04,24.98,26.95
 AKAM,golden_cross,3.6,12.9,,81.46,81.33,87.71
+HIMS,death_cross,24.9,9.1,,44.18,44.29,37.51
+HSIC,golden_cross,1.6,8.8,,69.43,69.36,73.11
+VNT,death_cross,1.2,5.3,,38.44,38.49,35.85
 GDXY,golden_cross,0.6,,,16.03,16.03,16.38
 RETL,golden_cross,0.4,,,8.65,8.64,9.04
 ARKB,death_cross,5.7,,,34.06,34.12,28.39
@@ -18,6 +21,3 @@ HODL,death_cross,2.3,,,28.99,29.03,24.2
 IBHG,death_cross,0.1,,,22.37,22.38,22.27
 IBIT,death_cross,69.8,,,58.2,58.31,48.5
 MNTSW,death_cross,0.2,,,0.03,0.03,0.019501
-HIMS,death_cross,24.9,9.1,,44.18,44.29,37.51
-HSIC,golden_cross,1.6,8.8,,69.43,69.36,73.11
-VNT,death_cross,1.2,5.3,,38.44,38.49,35.85

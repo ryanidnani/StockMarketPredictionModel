@@ -1,4 +1,5 @@
 symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+PM,golden_cross,5.7,257.1,,157.81,157.59,165.85
 ADSK,death_cross,1.5,58.9,,295.77,296.41,270.63
 SWK,golden_cross,1.6,12.8,,74.29,74.19,82.9
 XP,death_cross,6.1,8.9,,17.37,17.38,17.01
@@ -10,5 +11,4 @@ ICSH,golden_cross,1.4,,,50.62,50.62,50.625
 SCHP,death_cross,4.4,,,26.68,26.68,26.59
 UDN,death_cross,0.2,,,18.43,18.44,18.09
 WCLD,death_cross,0.2,,,34.97,35.0,33.86
-PM,golden_cross,5.7,257.1,,157.81,157.59,165.85
 MSFL,death_cross,0.2,,,27.9,27.96,25.67

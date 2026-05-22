@@ -4,6 +4,8 @@ MET,death_cross,3.4,50.6,,79.04,79.1,75.57
 HLN,golden_cross,9.4,43.8,,9.8,9.79,10.13
 PPL,golden_cross,6.2,27.2,,35.39,35.36,36.91
 DRI,golden_cross,1.9,24.7,,191.97,191.96,208.88
+MRNA,golden_cross,11.6,16.3,,31.62,31.32,43.0
+XP,golden_cross,5.7,9.0,,17.41,17.38,18.32
 ADT,death_cross,5.2,6.8,,8.2,8.21,7.98
 GBCI,golden_cross,0.9,6.2,,45.16,45.14,46.93
 CLOA,golden_cross,0.5,,,51.8,51.8,51.93
@@ -12,6 +14,4 @@ OILU,golden_cross,0.2,,,24.3,24.26,26.83
 TMV,golden_cross,1.1,,,36.04,35.99,38.03
 CRWL,death_cross,0.1,,,33.4,33.49,27.0232
 TDTF,death_cross,0.2,,,24.06,24.06,23.91
-MRNA,golden_cross,11.6,16.3,,31.62,31.32,43.0
-XP,golden_cross,5.7,9.0,,17.41,17.38,18.32
 USRT,golden_cross,0.6,,,57.82,57.81,58.76

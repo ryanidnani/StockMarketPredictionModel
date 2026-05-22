@@ -1,4 +1,5 @@
 symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+MA,golden_cross,2.8,505.9,,554.25,553.72,571.93
 LOW,golden_cross,3.5,139.2,,241.34,241.27,247.29
 SLF,golden_cross,0.5,33.3,,59.51,59.51,60.41
 TROW,golden_cross,1.8,22.9,,103.17,103.15,104.9
@@ -11,4 +12,3 @@ AUB,golden_cross,1.2,5.2,,34.03,33.97,36.65
 MNTSW,golden_cross,0.2,,,0.03,0.03,0.0469
 MSOS,golden_cross,10.2,,,4.07,4.04,5.8
 VIXM,death_cross,0.2,,,16.18,16.18,15.51
-MA,golden_cross,2.8,505.9,,554.25,553.72,571.93
