@@ -86,4 +86,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-04-09,HFSI,death,1.33,AVOID,,,,,,,
 2026-04-09,DFAT,golden_st,1.31,AVOID,,,,,,,
 2026-04-09,SOXL,golden_st,1.08,AVOID,,,,,,,
-2026-04-09,CARY,death,0.7,CONSIDER,20.83,,,,,,
+2026-04-09,CARY,death,70.0,CONSIDER,20.83,,,,,,

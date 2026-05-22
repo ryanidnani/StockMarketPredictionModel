@@ -68,4 +68,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-23,REGN,death_st,2.55,AVOID,,,,,,,
 2026-03-23,FLCO,death,2.49,AVOID,,,,,,,
 2026-03-23,RPG,death_st,2.37,AVOID,,,,,,,
-2026-03-23,SCHO,death,0.43,AVOID,,,,,,,
+2026-03-23,SCHO,death,43.0,AVOID,,,,,,,

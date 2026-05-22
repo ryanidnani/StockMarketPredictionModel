@@ -62,7 +62,7 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-04-17,HFSI,golden,1.57,AVOID,,,,,,,
 2026-04-17,DFCF,golden,1.13,AVOID,,,,,,,
 2026-04-17,SPAB,golden,1.03,AVOID,,,,,,,
-2026-04-17,PREF,golden,0.87,CONSIDER,19.08,,,,,,
-2026-04-17,SBND,golden,0.81,CONSIDER,18.92,,,,,,
-2026-04-17,JPMPC,golden_st,0.65,CONSIDER,25.38,26.35,32.99,-3.62,24.46,24.0,3.82
-2026-04-17,DUSB,golden,0.37,AVOID,,,,,,,
+2026-04-17,PREF,golden,87.0,CONSIDER,19.08,,,,,,
+2026-04-17,SBND,golden,81.0,CONSIDER,18.92,,,,,,
+2026-04-17,JPMPC,golden_st,65.0,CONSIDER,25.38,26.35,32.99,-3.62,24.46,24.0,3.82
+2026-04-17,DUSB,golden,37.0,AVOID,,,,,,,

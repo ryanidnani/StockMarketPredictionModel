@@ -417,7 +417,17 @@
       return rec;
     }
 
-    function isConsider(rec) {
+    function probabilityPercent(value) {
+      if (value == null || value === "") return null;
+      const num = Number(value);
+      if (!Number.isFinite(num)) return null;
+      if (num > 0 && num <= 1) return num * 100;
+      return num;
+    }
+
+    function isConsider(rec, probability) {
+      const pct = probabilityPercent(probability);
+      if (pct == null || pct < 50) return false;
       return displayRecommendation(rec) === "CONSIDER";
     }
 
@@ -440,9 +450,9 @@
     }
 
     function formatProbability(value) {
-      if (value == null || value === "") return "—";
-      const num = Number(value);
-      return Number.isFinite(num) ? num.toFixed(2) : escapeHtml(value);
+      const pct = probabilityPercent(value);
+      if (pct == null) return "—";
+      return pct.toFixed(2);
     }
 
     function formatPercent(value) {
@@ -492,7 +502,7 @@
     }
 
     function recommendationRank(row) {
-      return isConsider(row.recommendation) ? 0 : 1;
+      return isConsider(row.recommendation, row.probability) ? 0 : 1;
     }
 
     const CROSSES_COLUMNS = [
@@ -598,7 +608,7 @@
         align: "center",
         type: "number",
         tooltip: "Model-estimated probability that the setup meets the quality threshold.",
-        sortValue: (row) => numericField(row, "probability"),
+        sortValue: (row) => probabilityPercent(row.probability),
         render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
       },
       {
@@ -606,11 +616,15 @@
         label: "Recommendation",
         align: "center",
         type: "rank",
-        tooltip: "CONSIDER means the model score cleared the research threshold. It is not trading advice.",
+        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
         sortValue: (row) => recommendationRank(row),
         render: (row) => {
-          const label = displayRecommendation(row.recommendation);
-          const recClass = isConsider(row.recommendation) ? "consider" : "avoid";
+          const label = isConsider(row.recommendation, row.probability)
+            ? "CONSIDER"
+            : displayRecommendation(row.recommendation) === "CONSIDER"
+              ? "AVOID"
+              : displayRecommendation(row.recommendation);
+          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
           return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
         },
       },
@@ -682,12 +696,12 @@
     function renderSummary(crosses, predictions) {
       const crossCounts = countByType(crosses, "signal_type");
       const considerCounts = countByType(
-        predictions.filter((row) => isConsider(row.recommendation)),
+        predictions.filter((row) => isConsider(row.recommendation, row.probability)),
         "cross_type"
       );
       const totalCrosses = crosses.length;
       const totalConsider = predictions.filter((row) =>
-        isConsider(row.recommendation)
+        isConsider(row.recommendation, row.probability)
       ).length;
 
       let rows = "";

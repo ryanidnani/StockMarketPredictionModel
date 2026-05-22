@@ -9,5 +9,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-11,IYH,death,30.85,AVOID,,,,,,,
 2026-05-11,XLV,death,29.44,AVOID,,,,,,,
 2026-05-11,SCIO,death,1.15,AVOID,,,,,,,
-2026-05-11,DIAL,death,0.72,CONSIDER,18.21,,,,,,
-2026-05-11,RYLD,golden,0.62,CONSIDER,15.67,,,,,,
+2026-05-11,DIAL,death,72.0,CONSIDER,18.21,,,,,,
+2026-05-11,RYLD,golden,62.0,CONSIDER,15.67,,,,,,

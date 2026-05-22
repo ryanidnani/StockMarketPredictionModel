@@ -101,4 +101,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-06,PCEF,death_st,1.13,AVOID,,,,,,,
 2026-03-06,HYGV,death,1.06,AVOID,,,,,,,
 2026-03-06,IBHI,death,1.05,AVOID,,,,,,,
-2026-03-06,PULS,death,0.52,CONSIDER,49.62,,,,,,
+2026-03-06,PULS,death,52.0,CONSIDER,49.62,,,,,,

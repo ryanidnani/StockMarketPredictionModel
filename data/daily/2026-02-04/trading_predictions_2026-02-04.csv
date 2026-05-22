@@ -15,4 +15,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-04,ET,golden,20.4,AVOID,,,,,,,
 2026-02-04,IYK,golden,7.98,AVOID,,,,,,,
 2026-02-04,DRSK,death,3.57,AVOID,,,,,,,
-2026-02-04,XTEN,death,0.59,AVOID,,,,,,,
+2026-02-04,XTEN,death,59.0,CONSIDER,,,,,,,

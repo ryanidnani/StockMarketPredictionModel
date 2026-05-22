@@ -10,4 +10,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-20,XYL,death,35.15,AVOID,,,,,,,
 2026-02-20,OKE,golden,31.62,AVOID,,,,,,,
 2026-02-20,EPI,golden,25.01,AVOID,,,,,,,
-2026-02-20,ICLO,golden,0.37,AVOID,,,,,,,
+2026-02-20,ICLO,golden,37.0,AVOID,,,,,,,

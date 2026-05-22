@@ -98,5 +98,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-10,BWZ,death_st,1.46,AVOID,,,,,,,
 2026-03-10,PFF,death_st,1.39,AVOID,,,,,,,
 2026-03-10,ITB,death_st,1.33,AVOID,,,,,,,
-2026-03-10,BNDW,death,0.6,CONSIDER,68.92,,,,,,
-2026-03-10,BBHY,death,0.56,CONSIDER,46.08,,,,,,
+2026-03-10,BNDW,death,60.0,CONSIDER,68.92,,,,,,
+2026-03-10,BBHY,death,56.0,CONSIDER,46.08,,,,,,

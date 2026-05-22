@@ -11,4 +11,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-04-23,ABBV,death,30.51,AVOID,,,,,,,
 2026-04-23,EBND,death,12.65,AVOID,,,,,,,
 2026-04-23,COWG,golden,12.12,AVOID,,,,,,,
-2026-04-23,FLHY,golden,0.4,AVOID,,,,,,,
+2026-04-23,FLHY,golden,40.0,AVOID,,,,,,,

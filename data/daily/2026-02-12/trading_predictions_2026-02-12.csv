@@ -12,4 +12,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-12,VNOM,golden,39.09,AVOID,,,,,,,
 2026-02-12,DTE,golden,24.82,AVOID,,,,,,,
 2026-02-12,VNQ,golden,7.34,AVOID,,,,,,,
-2026-02-12,SHYM,golden,0.37,AVOID,,,,,,,
+2026-02-12,SHYM,golden,37.0,AVOID,,,,,,,
