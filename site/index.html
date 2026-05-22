@@ -294,13 +294,19 @@
     function formatVolume(value) {
       if (value == null || value === "") return "—";
       const num = Number(value);
-      return Number.isFinite(num) ? `${num}M` : value;
+      return Number.isFinite(num) ? `${num.toFixed(1)}M` : value;
     }
 
     function formatMarketCap(value) {
       if (value == null || value === "") return "—";
       const num = Number(value);
-      return Number.isFinite(num) ? `$${num}B` : value;
+      return Number.isFinite(num) ? `$${num.toFixed(1)}B` : value;
+    }
+
+    function formatPrice(value) {
+      if (value == null || value === "") return "—";
+      const num = Number(value);
+      return Number.isFinite(num) ? num.toFixed(2) : value;
     }
 
     function formatPercent(value) {
@@ -363,10 +369,10 @@
           <td class="col-center ${crossClass(sig)}">${sig}</td>
           <td class="col-center">${formatMarketCap(r.market_cap)}</td>
           <td class="col-center">${formatVolume(r.avg_daily_volume_30d)}</td>
-          <td class="col-center">${formatCell(r.current_price)}</td>
-          <td class="col-center">${formatCell(r.ema_21 ?? r.ema_21_current)}</td>
-          <td class="col-center">${formatCell(r.ema_50 ?? r.ema_50_current)}</td>
-          <td class="col-center">${formatCell(r.ema_200 ?? r.ema_200_current)}</td>
+          <td class="col-center">${formatPrice(r.current_price)}</td>
+          <td class="col-center">${formatPrice(r.ema_21 ?? r.ema_21_current)}</td>
+          <td class="col-center">${formatPrice(r.ema_50 ?? r.ema_50_current)}</td>
+          <td class="col-center">${formatPrice(r.ema_200 ?? r.ema_200_current)}</td>
         </tr>`;
       }
       return html + "</tbody></table>";
@@ -395,10 +401,10 @@
           <td class="col-center ${crossClass(r.cross_type)}">${r.cross_type}</td>
           <td class="col-center">${formatCell(r.probability)}</td>
           <td class="col-center ${recClass}">${label}</td>
-          <td class="col-center">${formatCell(r.entry_price)}</td>
-          <td class="col-center">${formatCell(r.prudent_tp_price)}</td>
-          <td class="col-center">${formatCell(r.max_tp_price)}</td>
-          <td class="col-center">${formatCell(r.recommended_actual_stop ?? r.stop_loss_price)}</td>
+          <td class="col-center">${formatPrice(r.entry_price)}</td>
+          <td class="col-center">${formatPrice(r.prudent_tp_price)}</td>
+          <td class="col-center">${formatPrice(r.max_tp_price)}</td>
+          <td class="col-center">${formatPrice(r.recommended_actual_stop ?? r.stop_loss_price)}</td>
           <td class="col-center">${formatPercent(r.return_prudent)}</td>
           <td class="col-center">${formatPercent(r.downside_return)}</td>
         </tr>`;
