@@ -1,0 +1,13 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+HDB,death_cross,4.4,170.3,,35.32,35.32,32.92
+UPS,golden_cross,5.7,90.4,,99.05,98.88,107.4
+HLN,golden_cross,9.7,43.7,,9.78,9.78,9.95
+LYV,golden_cross,2.7,33.9,,143.6,143.57,146.78
+EIX,golden_cross,3.1,23.3,,58.8,58.76,61.62
+FWONA,death_cross,0.1,20.8,,87.45,87.55,82.25
+FIG,death_cross,5.2,16.6,,39.89,40.08,32.36
+KOLD,golden_cross,5.9,,,34.59,34.35,45.3
+SMIG,golden_cross,0.2,,,29.01,29.0,29.73
+CSHI,death_cross,0.3,,,49.76,49.77,49.59
+DFGP,death_cross,0.2,,,54.57,54.57,54.47
+TUA,death_cross,0.2,,,21.92,21.92,21.815

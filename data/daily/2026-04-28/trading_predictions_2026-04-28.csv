@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-28,MEDP,death,82.67,CONSIDER,409.65,382.09,354.53,-13.46,444.29,461.61,6.73
+2026-04-28,BUZZ,golden,63.91,CONSIDER,33.49,36.84,38.81,-5.85,31.53,30.55,9.99
+2026-04-28,EG,golden,45.21,AVOID,,,,,,,
+2026-04-28,GME,golden,42.59,AVOID,,,,,,,
+2026-04-28,PRI,golden,26.88,AVOID,,,,,,,
+2026-04-28,WSO,golden,24.52,AVOID,,,,,,,
+2026-04-28,WINN,golden,17.62,AVOID,,,,,,,
+2026-04-28,VTES,death,70.0,CONSIDER,101.32,,,,,,
+2026-04-28,TBIL,death,61.0,CONSIDER,49.85,,,,,,
+2026-04-28,SHM,death,57.0,CONSIDER,47.92,,,,,,
+2026-04-28,SPAB,death,50.0,CONSIDER,,,,,,,
+2026-04-28,BILS,golden,40.0,AVOID,,,,,,,

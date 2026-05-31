@@ -1,0 +1,15 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+PDD,death_cross,9.0,152.6,,117.43,117.63,106.76
+O,golden_cross,6.5,55.7,,57.98,57.92,61.42
+MET,death_cross,3.4,51.3,,79.18,79.21,76.77
+AIG,death_cross,6.0,39.9,,79.5,79.65,72.93
+STLA,death_cross,11.0,28.9,,10.78,10.8,9.6
+PODD,death_cross,0.7,20.2,,299.08,299.17,287.7
+GRAB,death_cross,43.8,17.9,,5.13,5.13,4.38
+MRNA,golden_cross,11.4,15.4,,31.16,31.08,41.83
+RBRK,death_cross,4.1,13.8,,75.32,75.54,67.1
+TXRH,golden_cross,0.9,12.8,,174.9,174.4,194.49
+CART,death_cross,4.5,10.5,,42.63,42.7,39.41
+QRVO,death_cross,1.0,7.5,,85.57,85.72,80.11
+MLPX,golden_cross,0.4,,,60.33,60.33,62.33
+FLIN,death_cross,0.9,,,38.42,38.43,37.8

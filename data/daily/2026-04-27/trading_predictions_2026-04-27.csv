@@ -1,0 +1,11 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-27,LTH,death,86.43,CONSIDER,26.17,24.63,23.09,-11.77,27.4,28.02,5.88
+2026-04-27,GME,golden,70.42,CONSIDER,25.41,28.97,30.96,-5.62,23.98,23.27,14.0
+2026-04-27,TLN,golden,63.64,CONSIDER,369.67,438.95,474.68,-10.07,332.44,313.83,18.74
+2026-04-27,SSB,golden,58.09,CONSIDER,97.84,110.46,115.95,-5.41,92.55,89.9,12.89
+2026-04-27,VOYA,golden,55.78,CONSIDER,81.72,90.4,97.43,-5.07,77.58,75.51,10.62
+2026-04-27,HMY,death,46.57,AVOID,,,,,,,
+2026-04-27,HLN,death,34.81,AVOID,,,,,,,
+2026-04-27,DFCF,death,88.0,CONSIDER,42.38,,,,,,
+2026-04-27,TBIL,golden,40.0,AVOID,,,,,,,
+2026-04-27,CSHI,golden,37.0,AVOID,,,,,,,

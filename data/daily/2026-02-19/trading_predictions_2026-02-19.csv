@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-19,OXY,golden,96.05,CONSIDER,51.53,57.71,61.84,-5.0,48.95,47.66,12.0
+2026-02-19,CNH,golden,63.18,CONSIDER,12.98,14.54,15.58,-6.04,12.2,11.8,12.0
+2026-02-19,DOW,golden,63.02,CONSIDER,31.39,35.16,37.67,-9.63,28.37,26.85,12.0
+2026-02-19,YINN,death,57.93,CONSIDER,42.16,40.24,38.32,-9.12,46.46,48.62,-4.56
+2026-02-19,DLR,golden,38.67,AVOID,,,,,,,
+2026-02-19,LIN,golden,36.86,AVOID,,,,,,,
+2026-02-19,UNM,death,18.05,AVOID,,,,,,,
+2026-02-19,BACPM,golden,61.0,CONSIDER,,,,,,,
+2026-02-19,BILS,golden,44.0,AVOID,,,,,,,

@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-22,RRX,golden,62.04,CONSIDER,143.18,161.82,178.09,-6.54,133.82,129.14,13.02
+2025-12-22,OLLI,death,51.85,CONSIDER,110.46,106.41,102.35,-7.34,125.87,133.57,-3.67
+2025-12-22,GKOS,golden,51.32,CONSIDER,117.09,128.39,129.48,-5.2,111.0,107.96,9.65
+2025-12-22,APO,golden,49.27,AVOID,,,,,,,
+2025-12-22,BROS,golden,44.07,AVOID,,,,,,,
+2025-12-22,ETSY,death,33.17,AVOID,,,,,,,
+2025-12-22,DFGR,death,20.56,AVOID,,,,,,,
+2025-12-22,OGE,death,19.9,AVOID,,,,,,,
+2025-12-22,STN,death,17.55,AVOID,,,,,,,
+2025-12-22,XLB,golden,17.36,AVOID,,,,,,,
+2025-12-22,DTE,death,14.43,AVOID,,,,,,,

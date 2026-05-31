@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-12,MSOS,golden,82.11,CONSIDER,5.8,7.67,8.64,-11.73,5.12,4.78,32.27
+2025-12-12,MNTSW,golden,79.21,CONSIDER,0.05,0.06,0.07,-15.42,0.04,0.04,36.59
+2025-12-12,STVN,death,75.11,CONSIDER,20.82,19.71,18.6,-10.64,22.41,23.2,-5.32
+2025-12-12,AAON,death,63.88,CONSIDER,77.93,73.41,68.88,-11.61,83.54,86.34,-5.8
+2025-12-12,LOW,golden,57.41,CONSIDER,247.29,267.92,279.77,-4.85,235.29,229.29,8.34
+2025-12-12,MA,golden,47.18,AVOID,,,,,,,
+2025-12-12,AUB,golden,44.33,AVOID,,,,,,,
+2025-12-12,SLF,golden,31.64,AVOID,,,,,,,
+2025-12-12,G,golden,31.22,AVOID,,,,,,,
+2025-12-12,TROW,golden,28.3,AVOID,,,,,,,
+2025-12-12,JKHY,golden,23.51,AVOID,,,,,,,
+2025-12-12,ADC,death,14.05,AVOID,,,,,,,
+2025-12-12,VIXM,death,13.98,AVOID,,,,,,,

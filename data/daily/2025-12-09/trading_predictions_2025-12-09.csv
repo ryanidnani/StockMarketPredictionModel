@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-09,TRGP,golden,51.64,CONSIDER,183.69,208.31,212.35,-2.86,178.44,175.81,13.4
+2025-12-09,GDXY,death,38.93,AVOID,,,,,,,
+2025-12-09,MSOS,death,38.66,AVOID,,,,,,,
+2025-12-09,EDV,death,31.28,AVOID,,,,,,,
+2025-12-09,SLF,death,22.44,AVOID,,,,,,,
+2025-12-09,IYR,death,18.28,AVOID,,,,,,,
+2025-12-09,IBHF,death,8.05,AVOID,,,,,,,
+2025-12-09,SCEPN,golden,4.91,AVOID,,,,,,,

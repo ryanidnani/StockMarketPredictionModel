@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-21,NFLU,death,69.57,CONSIDER,41.03,39.3,37.58,-8.42,45.11,47.15,-4.21
+2025-11-21,NFXL,death,65.33,CONSIDER,40.68,38.07,35.45,-12.85,45.24,47.52,-6.43
+2025-11-21,ACHR.WS,death,49.98,AVOID,,,,,,,
+2025-11-21,ICL,death,27.22,AVOID,,,,,,,
+2025-11-21,GDXY,death,19.62,AVOID,,,,,,,
+2025-11-21,DBA,death,14.62,AVOID,,,,,,,
+2025-11-21,UUP,golden,4.91,AVOID,,,,,,,

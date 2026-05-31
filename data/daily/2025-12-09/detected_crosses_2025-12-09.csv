@@ -1,0 +1,9 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+TRGP,golden_cross,1.6,38.4,,168.23,167.79,183.69
+SLF,death_cross,0.5,32.6,,59.49,59.49,59.08
+SCEpN,golden_cross,0.1,,,22.64,22.61,23.88
+EDV,death_cross,1.1,,,68.17,68.17,66.73
+GDXY,death_cross,0.6,,,16.01,16.01,15.98
+IBHF,death_cross,0.3,,,23.22,23.22,23.1
+IYR,death_cross,7.3,,,95.59,95.61,94.16
+MSOS,death_cross,7.3,,,4.02,4.03,3.74

@@ -1,0 +1,17 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+BDX,death_cross,2.5,50.5,,195.47,195.83,182.68
+MSCI,death_cross,0.7,38.3,,566.9,567.55,545.25
+PRU,death_cross,2.3,35.9,,108.59,108.6,104.33
+CHD,golden_cross,2.7,23.6,,92.59,92.34,102.67
+WLK,golden_cross,1.5,12.5,,84.91,84.64,99.53
+JEF,death_cross,2.6,10.7,,59.5,59.51,53.87
+OGE,golden_cross,1.6,9.7,,44.13,44.07,46.49
+U,death_cross,21.0,7.9,,34.94,35.04,18.55
+TPG,death_cross,3.4,7.2,,58.46,58.48,47.94
+RHP,golden_cross,0.5,6.4,,96.39,96.28,102.13
+LYFT,death_cross,17.4,5.3,,17.68,17.71,13.71
+SCHP,golden_cross,5.3,,,26.67,26.67,26.8
+SRVR,golden_cross,0.2,,,30.75,30.73,32.78
+YYY,golden_cross,0.4,,,11.7,11.69,11.89
+EIDO,death_cross,0.9,,,18.29,18.3,17.87
+DUSB,death_cross,0.3,,,50.76,50.76,50.7

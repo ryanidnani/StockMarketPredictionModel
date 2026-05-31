@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock Market Predictions Model</title>
+  <meta name="description" content="Daily EMA golden cross and death cross detections for trading idea research." />
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d9eff;
+      --green: #3dd68c;
+      --red: #f07178;
+      --gold: #e6c07b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .sub { color: var(--muted); margin-bottom: 1.5rem; }
+    .as-of { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
+    .date-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .date-toolbar label { font-weight: 600; }
+    .date-toolbar select {
+      min-width: 11rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--card);
+      color: var(--text);
+      font: inherit;
+    }
+    .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 2rem; }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .data-table {
+      width: 100%;
+      min-width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+    .data-table th,
+    .data-table td {
+      padding: 0.7rem 0.45rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      vertical-align: middle;
+      text-align: center;
+    }
+    .data-table thead th {
+      background: rgba(255, 255, 255, 0.03);
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+      position: relative;
+      overflow: visible;
+    }
+    .data-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .data-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.76rem;
+      line-height: 1.3;
+      white-space: normal;
+      word-break: break-word;
+      hyphens: auto;
+    }
+    .data-table th.sortable {
+      cursor: pointer;
+      user-select: none;
+    }
+    .data-table th.sortable:hover,
+    .data-table th.sortable:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+    .data-table th.sortable.is-sorted {
+      color: var(--accent);
+    }
+    .data-table th.sortable .th-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      width: 100%;
+    }
+    .data-table th.col-left .th-inner {
+      justify-content: flex-start;
+    }
+    .data-table th.sortable .th-label {
+      min-width: 0;
+      line-height: 1.25;
+    }
+    .sort-indicator {
+      flex: 0 0 auto;
+      font-size: 0.65rem;
+      line-height: 1;
+      opacity: 0.45;
+    }
+    .data-table th.sortable.is-sorted .sort-indicator {
+      opacity: 1;
+      color: var(--accent);
+    }
+    .data-table th.has-tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 0.45rem);
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 240px;
+      padding: 0.45rem 0.6rem;
+      border-radius: 6px;
+      background: #0b1016;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      font-size: 0.72rem;
+      font-weight: 400;
+      line-height: 1.35;
+      white-space: normal;
+      text-align: left;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 5;
+    }
+    .data-table th.has-tooltip:hover::after,
+    .data-table th.has-tooltip:focus-visible::after {
+      opacity: 1;
+    }
+    .data-table td {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-variant-numeric: tabular-nums;
+    }
+    .data-table .col-left,
+    .data-table th.col-left {
+      text-align: left;
+    }
+    .data-table .col-center,
+    .data-table th.col-center {
+      text-align: center;
+    }
+    .tag-golden { color: var(--gold); }
+    .tag-death { color: var(--red); }
+    .consider { color: var(--green); }
+    .avoid { color: var(--muted); }
+    .summary-total {
+      margin: 0 0 0.85rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .summary-table th,
+    .summary-table td {
+      padding: 0.45rem 0.35rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .summary-table th {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+    }
+    .summary-table th:first-child,
+    .summary-table td:first-child {
+      text-align: left;
+    }
+    .summary-table tr:last-child td {
+      border-bottom: none;
+    }
+    .disclaimer {
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .disclaimer strong { color: var(--text); }
+    .defs { margin-bottom: 2rem; }
+    .defs-intro {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 1rem;
+    }
+    .defs-grid {
+      display: grid;
+      gap: 0.85rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .def-item {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .def-item dt {
+      font-weight: 600;
+      font-size: 0.92rem;
+      margin: 0 0 0.35rem;
+    }
+    .def-item dd {
+      margin: 0;
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    #history { margin-top: 2rem; }
+    #history ul { padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
+    #history li { margin: 0.35rem 0; break-inside: avoid; }
+    @media (max-width: 640px) { #history ul { columns: 1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
+      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
+      Past performance does not guarantee future results. You are responsible for your own decisions;
+      the authors may hold positions in securities shown here.
+    </p>
+
+    <h1>Stock Market Predictions Model</h1>
+    <p class="sub">Daily golden cross and death cross detections as well as machine learning predictions for trading ideas. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
+    <p class="as-of" id="as-of">Loading…</p>
+    <div class="date-toolbar">
+      <label for="date-picker">Trading day</label>
+      <select id="date-picker" aria-label="Select trading day"></select>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h2>Download CSV</h2>
+        <p><a id="link-predictions" href="latest/trading_predictions.csv">Trading Predictions (CSV)</a></p>
+        <p><a id="link-crosses" href="latest/detected_crosses.csv">Detected Crosses (CSV)</a></p>
+        <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
+      </div>
+      <div class="card">
+        <h2>Summary</h2>
+        <div id="summary-stats">—</div>
+      </div>
+    </div>
+
+    <section class="card defs">
+      <h2>Cross definitions</h2>
+      <p class="defs-intro">
+        Signals are detected on the latest trading day only.
+        The moving averages must cross between the prior session and today.
+      </p>
+      <dl class="defs-grid">
+        <div class="def-item">
+          <dt class="tag-golden">golden</dt>
+          <dd>
+            <strong>Golden Cross:</strong> the 50-day exponential moving average (EMA) crosses
+            <em>above</em> the 200-day EMA. Often interpreted as a longer-term bullish trend shift.
+          </dd>
+        </div>
+        <div class="def-item">
+          <dt class="tag-death">death</dt>
+          <dd>
+            <strong>Death Cross:</strong> the 50-day EMA crosses <em>below</em> the 200-day EMA.
+            Often interpreted as a longer-term bearish trend shift.
+          </dd>
+        </div>
+        <div class="def-item">
+          <dt class="tag-golden">golden_st</dt>
+          <dd>
+            <strong>Short Term Golden Cross:</strong> the 21-day EMA crosses <em>above</em> the 50-day EMA.
+            A faster signal using shorter moving averages.
+          </dd>
+        </div>
+        <div class="def-item">
+          <dt class="tag-death">death_st</dt>
+          <dd>
+            <strong>Short Term Death Cross:</strong> the 21-day EMA crosses <em>below</em> the 50-day EMA.
+            A faster bearish cross on the 21/50 EMA pair.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2>Trading Predictions</h2>
+      <div class="table-wrap" id="predictions-table">Loading…</div>
+    </section>
+
+    <section class="card" style="margin-top: 1rem;">
+      <h2>Detected Crosses</h2>
+      <div class="table-wrap" id="crosses-table">Loading…</div>
+    </section>
+
+    <section id="history">
+      <h2>Historical archive</h2>
+      <ul id="history-list"></ul>
+    </section>
+  </div>
+
+  <script>
+    const REPO = "ryanidnani/StockMarketPredictionModel";
+    const onPages = location.hostname.endsWith("github.io");
+    const CROSS_TYPES = ["golden", "death", "golden_st", "death_st"];
+
+    const state = {
+      manifest: null,
+      cacheKey: null,
+      latestDate: null,
+      selectedDate: null,
+      crosses: [],
+      predictions: [],
+      sort: {
+        crosses: { key: "market_cap", dir: "desc" },
+        predictions: { key: "probability", dir: "desc" },
+      },
+    };
+
+    function pagesBase() {
+      const segment = location.pathname.split("/").filter(Boolean)[0];
+      return segment ? `/${segment}/` : "/";
+    }
+
+    function assetUrl(path) {
+      const clean = path.replace(/^\//, "");
+      if (onPages) return pagesBase() + clean;
+      return `https://raw.githubusercontent.com/${REPO}/main/${clean}`;
+    }
+
+    function dailyCsvPaths(date) {
+      return {
+        crosses: `data/daily/${date}/detected_crosses_${date}.csv`,
+        predictions: `data/daily/${date}/trading_predictions_${date}.csv`,
+      };
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function setCsvDownloadLink(id, repoPath, downloadName, linkLabel) {
+      const el = document.getElementById(id);
+      el.href = assetUrl(repoPath);
+      el.download = downloadName;
+      if (linkLabel) el.textContent = linkLabel;
+    }
+
+    async function loadText(path, cacheKey) {
+      const url = assetUrl(path);
+      const bust = cacheKey != null ? String(cacheKey) : String(Date.now());
+      const fetchUrl = `${url}${url.includes("?") ? "&" : "?"}v=${encodeURIComponent(bust)}`;
+      const r = await fetch(fetchUrl);
+      if (!r.ok) throw new Error(path);
+      return r.text();
+    }
+
+    function parseCsv(text) {
+      const lines = text.trim().split("\n");
+      if (lines.length < 2) return [];
+      const headers = lines[0].split(",");
+      return lines.slice(1).filter(Boolean).map((line) => {
+        const cols = line.split(",");
+        const row = {};
+        headers.forEach((h, i) => { row[h.trim()] = (cols[i] || "").trim(); });
+        return row;
+      });
+    }
+
+    function crossClass(type) {
+      if (!type) return "";
+      return type.includes("death") ? "tag-death" : "tag-golden";
+    }
+
+    function displayRecommendation(rec) {
+      if (rec === "EXECUTE" || rec === "CONSIDER") return "CONSIDER";
+      return rec;
+    }
+
+    function probabilityPercent(value) {
+      if (value == null || value === "") return null;
+      const num = Number(value);
+      if (!Number.isFinite(num)) return null;
+      if (num > 0 && num <= 1) return num * 100;
+      return num;
+    }
+
+    function isConsider(rec, probability) {
+      const pct = probabilityPercent(probability);
+      if (pct == null || pct < 50) return false;
+      return displayRecommendation(rec) === "CONSIDER";
+    }
+
+    function formatVolume(value) {
+      if (value == null || value === "") return "—";
+      const num = Number(value);
+      return Number.isFinite(num) ? `${num.toFixed(1)}M` : escapeHtml(value);
+    }
+
+    function formatMarketCap(value) {
+      if (value == null || value === "") return "—";
+      const num = Number(value);
+      return Number.isFinite(num) ? `$${num.toFixed(1)}B` : escapeHtml(value);
+    }
+
+    function formatPrice(value) {
+      if (value == null || value === "") return "—";
+      const num = Number(value);
+      return Number.isFinite(num) ? num.toFixed(2) : escapeHtml(value);
+    }
+
+    function formatProbability(value) {
+      const pct = probabilityPercent(value);
+      if (pct == null) return "—";
+      return pct.toFixed(2);
+    }
+
+    function formatPercent(value) {
+      if (value == null || value === "") return "—";
+      const num = Number(value);
+      return Number.isFinite(num) ? `${num.toFixed(2)}%` : escapeHtml(value);
+    }
+
+    function formatUpdatedAt(iso) {
+      if (!iso) return null;
+      const dt = new Date(iso);
+      if (Number.isNaN(dt.getTime())) return null;
+
+      const datePart = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Los_Angeles",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(dt);
+
+      const timeOpts = { hour: "numeric", minute: "2-digit", hour12: true };
+      const pt = new Intl.DateTimeFormat("en-US", {
+        ...timeOpts,
+        timeZone: "America/Los_Angeles",
+      }).format(dt);
+      const et = new Intl.DateTimeFormat("en-US", {
+        ...timeOpts,
+        timeZone: "America/New_York",
+      }).format(dt);
+
+      return `${datePart} at ${pt} PT (${et} ET)`;
+    }
+
+    function crossSignal(row) {
+      return row.signal_type
+        || (row.golden_cross === "True" ? "golden" : row.death_cross === "True" ? "death" : "—");
+    }
+
+    function numericField(row, ...keys) {
+      for (const key of keys) {
+        const value = row[key];
+        if (value == null || value === "") continue;
+        const num = Number(value);
+        if (Number.isFinite(num)) return num;
+      }
+      return null;
+    }
+
+    function recommendationRank(row) {
+      return isConsider(row.recommendation, row.probability) ? 0 : 1;
+    }
+
+    const CROSSES_COLUMNS = [
+      {
+        key: "symbol",
+        label: "Ticker",
+        align: "left",
+        type: "string",
+        tooltip: "Stock or ETF symbol for the detected cross.",
+        sortValue: (row) => row.symbol || "",
+        render: (row) => `<td class="col-left">${escapeHtml(row.symbol)}</td>`,
+      },
+      {
+        key: "signal_type",
+        label: "Cross Type",
+        align: "center",
+        type: "string",
+        tooltip: "Signal detected on the latest session: golden, death, golden_st, or death_st.",
+        sortValue: (row) => crossSignal(row),
+        render: (row) => {
+          const sig = crossSignal(row);
+          return `<td class="col-center ${crossClass(sig)}">${escapeHtml(sig)}</td>`;
+        },
+      },
+      {
+        key: "market_cap",
+        label: "Market Cap",
+        align: "center",
+        type: "number",
+        tooltip: "Market capitalization in billions of USD.",
+        sortValue: (row) => numericField(row, "market_cap"),
+        render: (row) => `<td class="col-center">${formatMarketCap(row.market_cap)}</td>`,
+      },
+      {
+        key: "avg_daily_volume_30d",
+        label: "30d Avg Volume",
+        align: "center",
+        type: "number",
+        tooltip: "Average daily share volume over the last 30 sessions, in millions.",
+        sortValue: (row) => numericField(row, "avg_daily_volume_30d"),
+        render: (row) => `<td class="col-center">${formatVolume(row.avg_daily_volume_30d)}</td>`,
+      },
+      {
+        key: "current_price",
+        label: "Current Price",
+        align: "center",
+        type: "number",
+        tooltip: "Latest closing price used for the cross detection.",
+        sortValue: (row) => numericField(row, "current_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.current_price)}</td>`,
+      },
+      {
+        key: "ema_21",
+        label: "21 Day EMA",
+        align: "center",
+        type: "number",
+        tooltip: "21-day exponential moving average on the signal date.",
+        sortValue: (row) => numericField(row, "ema_21", "ema_21_current"),
+        render: (row) => `<td class="col-center">${formatPrice(row.ema_21 ?? row.ema_21_current)}</td>`,
+      },
+      {
+        key: "ema_50",
+        label: "50 Day EMA",
+        align: "center",
+        type: "number",
+        tooltip: "50-day exponential moving average on the signal date.",
+        sortValue: (row) => numericField(row, "ema_50", "ema_50_current"),
+        render: (row) => `<td class="col-center">${formatPrice(row.ema_50 ?? row.ema_50_current)}</td>`,
+      },
+      {
+        key: "ema_200",
+        label: "200 Day EMA",
+        align: "center",
+        type: "number",
+        tooltip: "200-day exponential moving average on the signal date.",
+        sortValue: (row) => numericField(row, "ema_200", "ema_200_current"),
+        render: (row) => `<td class="col-center">${formatPrice(row.ema_200 ?? row.ema_200_current)}</td>`,
+      },
+    ];
+
+    const PREDICTIONS_COLUMNS = [
+      {
+        key: "ticker",
+        label: "Ticker",
+        align: "left",
+        type: "string",
+        tooltip: "Symbol scored by the prediction model.",
+        sortValue: (row) => row.ticker || "",
+        render: (row) => `<td class="col-left">${escapeHtml(row.ticker)}</td>`,
+      },
+      {
+        key: "cross_type",
+        label: "Cross Type",
+        align: "center",
+        type: "string",
+        tooltip: "Cross type associated with the model score.",
+        sortValue: (row) => row.cross_type || "",
+        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(row.cross_type)}</td>`,
+      },
+      {
+        key: "probability",
+        label: "Probability %",
+        align: "center",
+        type: "number",
+        tooltip: "Model-estimated probability that the setup meets the quality threshold.",
+        sortValue: (row) => probabilityPercent(row.probability),
+        render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
+      },
+      {
+        key: "recommendation",
+        label: "Recommendation",
+        align: "center",
+        type: "rank",
+        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
+        sortValue: (row) => recommendationRank(row),
+        render: (row) => {
+          const label = isConsider(row.recommendation, row.probability)
+            ? "CONSIDER"
+            : displayRecommendation(row.recommendation) === "CONSIDER"
+              ? "AVOID"
+              : displayRecommendation(row.recommendation);
+          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
+          return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
+        },
+      },
+      {
+        key: "entry_price",
+        label: "Entry Price",
+        align: "center",
+        type: "number",
+        tooltip: "Modeled entry price for the setup.",
+        sortValue: (row) => numericField(row, "entry_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
+      },
+      {
+        key: "prudent_tp_price",
+        label: "Prudent Profit Price",
+        align: "center",
+        type: "number",
+        tooltip: "Conservative take-profit price target from the model.",
+        sortValue: (row) => numericField(row, "prudent_tp_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
+      },
+      {
+        key: "max_tp_price",
+        label: "Max Profit Price",
+        align: "center",
+        type: "number",
+        tooltip: "Aggressive take-profit price target from the model.",
+        sortValue: (row) => numericField(row, "max_tp_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.max_tp_price)}</td>`,
+      },
+      {
+        key: "stop_loss_price",
+        label: "Stop Loss Price",
+        align: "center",
+        type: "number",
+        tooltip: "Recommended stop level used by the model, preferring the actual stop when available.",
+        sortValue: (row) => numericField(row, "recommended_actual_stop", "stop_loss_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.recommended_actual_stop ?? row.stop_loss_price)}</td>`,
+      },
+      {
+        key: "return_prudent",
+        label: "Prudent Return",
+        align: "center",
+        type: "number",
+        tooltip: "Expected percentage return to the prudent take-profit level.",
+        sortValue: (row) => numericField(row, "return_prudent"),
+        render: (row) => `<td class="col-center">${formatPercent(row.return_prudent)}</td>`,
+      },
+      {
+        key: "downside_return",
+        label: "Downside Return",
+        align: "center",
+        type: "number",
+        tooltip: "Modeled maximum adverse move from entry, shown as a percentage.",
+        sortValue: (row) => numericField(row, "downside_return"),
+        render: (row) => `<td class="col-center">${formatPercent(row.downside_return)}</td>`,
+      },
+    ];
+
+    function countByType(rows, field) {
+      const counts = Object.fromEntries(CROSS_TYPES.map((type) => [type, 0]));
+      for (const row of rows) {
+        const type = (row[field] || "").trim();
+        if (type in counts) counts[type]++;
+      }
+      return counts;
+    }
+
+    function renderSummary(crosses, predictions) {
+      const crossCounts = countByType(crosses, "signal_type");
+      const considerCounts = countByType(
+        predictions.filter((row) => isConsider(row.recommendation, row.probability)),
+        "cross_type"
+      );
+      const totalCrosses = crosses.length;
+      const totalConsider = predictions.filter((row) =>
+        isConsider(row.recommendation, row.probability)
+      ).length;
+
+      let rows = "";
+      for (const type of CROSS_TYPES) {
+        rows += `<tr>
+          <td class="${crossClass(type)}">${type}</td>
+          <td>${crossCounts[type]}</td>
+          <td>${considerCounts[type]}</td>
+        </tr>`;
+      }
+
+      return `
+        <p class="summary-total">${totalCrosses} crosses · ${totalConsider} to consider</p>
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Crosses</th>
+              <th>Consider</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    }
+
+    function evenColgroup(count) {
+      const width = (100 / count).toFixed(3);
+      let cols = "";
+      for (let i = 0; i < count; i++) {
+        cols += `<col style="width:${width}%">`;
+      }
+      return `<colgroup>${cols}</colgroup>`;
+    }
+
+    function getColumn(columns, key) {
+      return columns.find((column) => column.key === key) || columns[0];
+    }
+
+    function sortRows(rows, column, direction) {
+      const factor = direction === "asc" ? 1 : -1;
+      return [...rows].sort((left, right) => {
+        const leftValue = column.sortValue(left);
+        const rightValue = column.sortValue(right);
+        const leftEmpty = leftValue == null || leftValue === ""
+          || (column.type === "number" && !Number.isFinite(leftValue));
+        const rightEmpty = rightValue == null || rightValue === ""
+          || (column.type === "number" && !Number.isFinite(rightValue));
+
+        if (leftEmpty && rightEmpty) {
+          return String(left.ticker || left.symbol || "")
+            .localeCompare(String(right.ticker || right.symbol || ""));
+        }
+        if (leftEmpty) return 1;
+        if (rightEmpty) return -1;
+
+        if (column.type === "number" || column.type === "rank") {
+          if (leftValue === rightValue) {
+            return String(left.ticker || left.symbol || "")
+              .localeCompare(String(right.ticker || right.symbol || ""));
+          }
+          return factor * (leftValue - rightValue);
+        }
+
+        const cmp = String(leftValue).localeCompare(String(rightValue));
+        if (cmp !== 0) return factor * cmp;
+        return String(left.ticker || left.symbol || "")
+          .localeCompare(String(right.ticker || right.symbol || ""));
+      });
+    }
+
+    function renderDataTable(tableName, columns, rows, sortState) {
+      if (!rows.length) {
+        return "<p>No rows in the selected file.</p>";
+      }
+
+      const column = getColumn(columns, sortState.key);
+      const sortedRows = sortRows(rows, column, sortState.dir);
+      const alignClass = (align) => (align === "left" ? "col-left" : "col-center");
+
+      let header = "";
+      for (const col of columns) {
+        const isSorted = sortState.key === col.key;
+        const indicator = isSorted ? (sortState.dir === "asc" ? "▲" : "▼") : "↕";
+        header += `<th
+          class="${alignClass(col.align)} sortable has-tooltip${isSorted ? " is-sorted" : ""}"
+          data-table="${tableName}"
+          data-sort-key="${col.key}"
+          data-tooltip="${escapeHtml(col.tooltip)}"
+          title="${escapeHtml(col.tooltip)}"
+          tabindex="0"
+          aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
+        ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
+      }
+
+      let body = "";
+      for (const row of sortedRows) {
+        body += "<tr>";
+        for (const col of columns) {
+          body += col.render(row);
+        }
+        body += "</tr>";
+      }
+
+      return `<table class="data-table">${evenColgroup(columns.length)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    function renderTables() {
+      document.getElementById("crosses-table").innerHTML = renderDataTable(
+        "crosses",
+        CROSSES_COLUMNS,
+        state.crosses,
+        state.sort.crosses
+      );
+      document.getElementById("predictions-table").innerHTML = renderDataTable(
+        "predictions",
+        PREDICTIONS_COLUMNS,
+        state.predictions,
+        state.sort.predictions
+      );
+    }
+
+    function bindTableSort(containerId, tableName, columns) {
+      const container = document.getElementById(containerId);
+      container.addEventListener("click", (event) => {
+        const header = event.target.closest("th[data-sort-key]");
+        if (!header || header.dataset.table !== tableName) return;
+
+        const key = header.dataset.sortKey;
+        if (state.sort[tableName].key === key) {
+          state.sort[tableName].dir = state.sort[tableName].dir === "asc" ? "desc" : "asc";
+        } else {
+          const col = getColumn(columns, key);
+          state.sort[tableName].key = key;
+          state.sort[tableName].dir = (col.type === "string" || col.type === "rank") ? "asc" : "desc";
+        }
+        renderTables();
+      });
+
+      container.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        const header = event.target.closest("th[data-sort-key]");
+        if (!header || header.dataset.table !== tableName) return;
+        event.preventDefault();
+        header.click();
+      });
+    }
+
+    function updateAsOfLine() {
+      const updatedAt = formatUpdatedAt(state.manifest.updated_at);
+      document.getElementById("as-of").textContent =
+        updatedAt ? `Last updated: ${updatedAt}` : "";
+    }
+
+    function updateDownloadLinks() {
+      const date = state.selectedDate;
+      if (date === state.latestDate) {
+        setCsvDownloadLink(
+          "link-crosses",
+          "latest/detected_crosses.csv",
+          `detected_crosses_${date}.csv`,
+          "Detected Crosses (CSV)"
+        );
+        setCsvDownloadLink(
+          "link-predictions",
+          "latest/trading_predictions.csv",
+          `trading_predictions_${date}.csv`,
+          "Trading Predictions (CSV)"
+        );
+      } else {
+        const paths = dailyCsvPaths(date);
+        setCsvDownloadLink(
+          "link-crosses",
+          paths.crosses,
+          `detected_crosses_${date}.csv`,
+          "Detected Crosses (CSV)"
+        );
+        setCsvDownloadLink(
+          "link-predictions",
+          paths.predictions,
+          `trading_predictions_${date}.csv`,
+          "Trading Predictions (CSV)"
+        );
+      }
+    }
+
+    function populateDatePicker(dates, selectedDate) {
+      const picker = document.getElementById("date-picker");
+      picker.innerHTML = dates
+        .slice()
+        .reverse()
+        .map((date) => `<option value="${date}"${date === selectedDate ? " selected" : ""}>${date}</option>`)
+        .join("");
+    }
+
+    function renderHistoryList() {
+      const list = document.getElementById("history-list");
+      list.innerHTML = "";
+      state.manifest.dates.slice().reverse().forEach((date) => {
+        const paths = dailyCsvPaths(date);
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${date}</strong> —
+          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">crosses</a>,
+          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">predictions</a>`;
+        list.appendChild(li);
+      });
+    }
+
+    function renderDashboard() {
+      updateAsOfLine();
+      updateDownloadLinks();
+      document.getElementById("summary-stats").innerHTML =
+        renderSummary(state.crosses, state.predictions);
+      renderTables();
+    }
+
+    async function loadTradingDay(date) {
+      state.selectedDate = date;
+      document.getElementById("summary-stats").innerHTML = "Loading…";
+      document.getElementById("crosses-table").innerHTML = "Loading…";
+      document.getElementById("predictions-table").innerHTML = "Loading…";
+
+      if (date === state.latestDate) {
+        state.crosses = parseCsv(
+          await loadText("latest/detected_crosses.csv", state.cacheKey)
+        );
+        state.predictions = parseCsv(
+          await loadText("latest/trading_predictions.csv", state.cacheKey)
+        );
+      } else {
+        const paths = dailyCsvPaths(date);
+        state.crosses = parseCsv(await loadText(paths.crosses, state.cacheKey));
+        state.predictions = parseCsv(await loadText(paths.predictions, state.cacheKey));
+      }
+
+      renderDashboard();
+    }
+
+    async function init() {
+      try {
+        state.manifest = JSON.parse(
+          await loadText("data/manifest.json", Date.now())
+        );
+        state.cacheKey = state.manifest.updated_at || Date.now();
+        state.latestDate = (await loadText("latest/as_of.txt", state.cacheKey)).trim();
+
+        if (!state.manifest.dates.includes(state.latestDate)) {
+          state.manifest.dates = [...state.manifest.dates, state.latestDate].sort();
+        }
+
+        populateDatePicker(state.manifest.dates, state.latestDate);
+        renderHistoryList();
+
+        document.getElementById("date-picker").addEventListener("change", (event) => {
+          loadTradingDay(event.target.value).catch(showLoadError);
+        });
+
+        bindTableSort("crosses-table", "crosses", CROSSES_COLUMNS);
+        bindTableSort("predictions-table", "predictions", PREDICTIONS_COLUMNS);
+
+        await loadTradingDay(state.latestDate);
+      } catch (e) {
+        showLoadError(e);
+      }
+    }
+
+    function showLoadError(error) {
+      console.error(error);
+      document.getElementById("as-of").textContent =
+        "Could not load data yet. Browse CSV files in the repository.";
+      document.getElementById("summary-stats").innerHTML = "";
+      document.getElementById("crosses-table").innerHTML = "";
+      document.getElementById("predictions-table").innerHTML = "";
+    }
+
+    init();
+  </script>
+</body>
+</html>

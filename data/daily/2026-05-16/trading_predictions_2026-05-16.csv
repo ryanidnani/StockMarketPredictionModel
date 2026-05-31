@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-05-16,QXO,death,94.29,CONSIDER,16.33,14.83,13.32,-18.43,18.3,19.29,9.21
+2026-05-16,NRG,death,93.84,CONSIDER,127.81,116.52,105.23,-17.67,134.08,137.21,8.83
+2026-05-16,PANW,golden,74.26,CONSIDER,242.83,288.36,315.83,-8.11,223.14,213.3,18.75
+2026-05-16,QCMU,golden,71.88,CONSIDER,32.32,42.9,47.72,-18.64,26.3,23.28,32.73
+2026-05-16,EUAD,death,65.45,CONSIDER,37.64,35.7,33.75,-10.33,39.54,40.48,5.17
+2026-05-16,CUBE,death,63.92,CONSIDER,38.36,36.53,34.7,-9.53,39.93,40.71,4.77
+2026-05-16,AS,death,56.49,CONSIDER,32.84,31.32,29.81,-9.24,35.81,37.29,4.62
+2026-05-16,PHG,death,50.51,CONSIDER,25.23,24.29,23.36,-7.43,26.81,27.6,3.71
+2026-05-16,EDU,death,48.42,AVOID,,,,,,,
+2026-05-16,HACK,golden,46.66,AVOID,,,,,,,
+2026-05-16,SF,death,40.27,AVOID,,,,,,,
+2026-05-16,MLM,death,38.13,AVOID,,,,,,,
+2026-05-16,SSB,death,37.75,AVOID,,,,,,,
+2026-05-16,HFSI,death,1.18,AVOID,,,,,,,

@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-12,WTRG,golden,70.75,CONSIDER,39.15,43.61,45.19,-2.55,38.15,37.65,11.38
+2026-01-12,CGNX,golden,69.81,CONSIDER,39.43,44.61,47.08,-3.52,38.04,37.35,13.13
+2026-01-12,DHI,golden,63.27,CONSIDER,159.71,180.86,191.72,-3.81,153.63,150.59,13.24
+2026-01-12,ENTG,golden,55.57,CONSIDER,101.84,112.8,120.45,-5.97,95.76,92.72,10.76
+2026-01-12,SUN,golden,54.98,CONSIDER,57.27,63.46,65.54,-2.83,55.65,54.84,10.81
+2026-01-12,MSFL,death,45.97,AVOID,,,,,,,
+2026-01-12,SAIA,golden,38.39,AVOID,,,,,,,
+2026-01-12,LSTR,golden,37.32,AVOID,,,,,,,
+2026-01-12,FWONK,death,34.78,AVOID,,,,,,,
+2026-01-12,XHB,golden,29.24,AVOID,,,,,,,
+2026-01-12,PAA,golden,28.99,AVOID,,,,,,,
+2026-01-12,PM,golden,27.51,AVOID,,,,,,,
+2026-01-12,RS,golden,22.93,AVOID,,,,,,,
+2026-01-12,NTAP,death,18.56,AVOID,,,,,,,
+2026-01-12,SPYD,golden,16.53,AVOID,,,,,,,

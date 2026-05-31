@@ -1,0 +1,13 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+BKNG,death_cross,0.3,151.2,,5139.81,5152.0,4583.1
+AXON,death_cross,0.9,41.9,,664.85,666.78,519.61
+TSCO,death_cross,5.4,27.8,,55.47,55.5,52.64
+IRM,death_cross,1.9,25.6,,98.58,98.67,83.0
+MTCH,death_cross,3.8,7.4,,33.33,33.35,31.25
+BUG,death_cross,0.3,,,33.93,33.99,30.76
+ETU,death_cross,0.3,,,26.82,26.86,14.14
+JPMpK,death_cross,0.1,,,19.87,19.88,19.2
+REM,death_cross,0.7,,,22.09,22.1,21.67
+VNQ,death_cross,3.7,,,90.18,90.23,88.14
+WCLD,death_cross,0.3,,,35.02,35.06,32.92
+XCCC,death_cross,0.5,,,38.49,38.51,37.93

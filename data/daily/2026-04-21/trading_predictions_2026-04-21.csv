@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-21,MSTZ,death,53.33,CONSIDER,6.57,6.16,5.74,-12.57,9.04,10.28,6.29
+2026-04-21,ZM,golden,51.56,CONSIDER,90.96,102.33,114.14,-8.41,83.31,79.48,12.5
+2026-04-21,FAF,golden,34.99,AVOID,,,,,,,
+2026-04-21,LTH,golden,34.68,AVOID,,,,,,,
+2026-04-21,TGTX,golden,29.36,AVOID,,,,,,,
+2026-04-21,WH,golden,26.2,AVOID,,,,,,,
+2026-04-21,SCHG,golden,15.01,AVOID,,,,,,,
+2026-04-21,DFCF,death,1.75,AVOID,,,,,,,
+2026-04-21,AGG,death,98.0,CONSIDER,99.47,,,,,,
+2026-04-21,BSCQ,death,45.0,AVOID,,,,,,,
+2026-04-21,SBND,golden,44.0,AVOID,,,,,,,

@@ -1,0 +1,9 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+MRK,golden_cross,13.0,242.6,,88.19,88.14,100.4
+EPD,golden_cross,4.4,70.2,,31.42,31.4,32.55
+HMC,death_cross,0.9,38.4,,30.83,30.83,29.82
+RBA,death_cross,1.2,17.9,,102.74,102.96,95.52
+TRNO,golden_cross,0.7,6.4,,59.37,59.29,62.27
+IBTF,golden_cross,0.5,,,23.32,23.32,23.34
+IBHG,death_cross,0.1,,,22.38,22.38,22.34
+PGX,death_cross,2.7,,,11.46,11.46,11.2

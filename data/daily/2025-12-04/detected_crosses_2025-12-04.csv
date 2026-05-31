@@ -1,0 +1,11 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+V,death_cross,6.5,636.1,,336.82,337.09,327.1
+FCX,golden_cross,14.8,63.9,,41.61,41.52,44.61
+GEHC,golden_cross,4.2,38.1,,76.16,76.15,82.455
+BRX,death_cross,2.5,7.8,,26.5,26.53,25.26
+GLBE,golden_cross,1.6,7.0,,36.69,36.68,40.5
+SRAD,death_cross,2.1,6.8,,24.45,24.48,22.81
+UBSI,golden_cross,0.7,5.3,,36.75,36.74,38.035
+JEPI,golden_cross,5.2,,,56.92,56.91,57.46
+SCHD,golden_cross,17.8,,,27.14,27.13,27.75
+SGOV,death_cross,16.1,,,100.53,100.54,100.43

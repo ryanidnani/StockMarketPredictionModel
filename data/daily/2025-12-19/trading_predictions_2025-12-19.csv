@@ -1,0 +1,11 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-19,ETHE,death,67.89,CONSIDER,24.57,22.79,21.01,-14.49,29.56,32.05,-7.24
+2025-12-19,ACGL,golden,37.35,AVOID,,,,,,,
+2025-12-19,STN,death,31.73,AVOID,,,,,,,
+2025-12-19,GWRE,death,31.21,AVOID,,,,,,,
+2025-12-19,KRG,golden,28.3,AVOID,,,,,,,
+2025-12-19,OLLI,death,15.91,AVOID,,,,,,,
+2025-12-19,BNDX,death,7.39,AVOID,,,,,,,
+2025-12-19,DUSB,death,7.39,AVOID,,,,,,,
+2025-12-19,SGOV,death,7.39,AVOID,,,,,,,
+2025-12-19,SHV,death,7.39,AVOID,,,,,,,

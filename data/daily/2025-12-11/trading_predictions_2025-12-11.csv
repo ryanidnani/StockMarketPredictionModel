@@ -1,0 +1,7 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-11,MA,golden,43.17,AVOID,,,,,,,
+2025-12-11,SE,death,33.9,AVOID,,,,,,,
+2025-12-11,CTSH,golden,33.72,AVOID,,,,,,,
+2025-12-11,NFLX,death,29.11,AVOID,,,,,,,
+2025-12-11,BSX,death,29.04,AVOID,,,,,,,
+2025-12-11,LQTI,death,7.39,AVOID,,,,,,,

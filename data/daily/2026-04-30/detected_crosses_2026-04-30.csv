@@ -1,0 +1,10 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+VRTX,death,1.2,109.4,437.08,446.86,447.45,427.38
+DHI,golden,2.8,44.4,151.29,149.32,149.3,153.86
+CLIP,golden,0.3,,100.27,100.24,100.24,100.35
+SHV,golden,3.1,,110.29,110.27,110.27,110.39
+USOY,golden,0.9,,8.66,8.29,8.27,9.13
+BSCZ,death,0.1,,20.61,20.66,20.66,20.4965
+CARY,death,0.4,,20.88,20.9,20.9,20.8
+TAFI,death,0.5,,25.21,25.24,25.24,25.2
+JEPI,golden,5.2,,57.34,57.51,57.51,57.59

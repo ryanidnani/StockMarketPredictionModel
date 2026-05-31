@@ -1,0 +1,9 @@
+symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+BUD,golden_cross,2.1,125.7,,62.17,62.13,65.28
+COIN,death_cross,9.7,68.1,,289.25,290.36,244.19
+MET,golden_cross,3.9,54.2,,78.83,78.76,82.53
+STLA,golden_cross,12.9,34.2,,10.8,10.79,11.67
+Z,death_cross,2.7,17.0,,73.74,73.74,68.77
+ACM,death_cross,1.6,13.0,,114.24,114.71,96.69
+SGOV,golden_cross,15.4,,,100.53,100.52,100.56
+RIOX,death_cross,0.5,,,21.45,21.51,12.07
