@@ -255,11 +255,39 @@
     });
   }
 
-  function evenColgroup(count) {
-    const width = (100 / count).toFixed(3);
+  function defaultColMinWidth(col, index) {
+    if (col.minWidth) return col.minWidth;
+    if (index === 0) {
+      return col.key === "event_date" ? "6.75rem" : "4.75rem";
+    }
+    const widths = {
+      cross_type: "6.75rem",
+      signal_type: "6.75rem",
+      recommendation: "7.75rem",
+      probability: "6.75rem",
+      avg_daily_volume_30d: "8.25rem",
+      market_cap: "7rem",
+      current_price: "7.25rem",
+      entry_price: "7rem",
+      prudent_tp_price: "8.75rem",
+      max_tp_price: "8.25rem",
+      stop_loss_price: "8.25rem",
+      return_prudent: "7.75rem",
+      downside_return: "8rem",
+      ema_21: "6.25rem",
+      ema_50: "6.25rem",
+      ema_200: "6.75rem",
+    };
+    if (widths[col.key]) return widths[col.key];
+    if (col.type === "number" || col.type === "rank") return "7rem";
+    return "7.25rem";
+  }
+
+  function buildColgroup(columns) {
     let cols = "";
-    for (let i = 0; i < count; i++) {
-      cols += `<col style="width:${width}%">`;
+    for (let i = 0; i < columns.length; i++) {
+      const min = defaultColMinWidth(columns[i], i);
+      cols += `<col style="min-width:${min}">`;
     }
     return `<colgroup>${cols}</colgroup>`;
   }
@@ -299,7 +327,7 @@
       body += "</tr>";
     }
 
-    return `<table class="data-table">${evenColgroup(columns.length)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+    return `<table class="data-table">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
   function bindTableSort(containerId, tableName, getColumns, getSortState, onSort) {
@@ -367,7 +395,7 @@
     manifestDatesForArchive,
     getColumn,
     sortRows,
-    evenColgroup,
+    buildColgroup,
     renderDataTable,
     bindTableSort,
   };
