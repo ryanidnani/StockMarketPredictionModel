@@ -401,23 +401,84 @@
       line-height: 1.55;
     }
     .disclaimer strong { color: var(--text); }
-    .defs { margin-bottom: 2rem; }
-    .defs-details > summary {
+    .summary-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .summary-card-header h2 { margin: 0; }
+    .defs-open-btn {
+      flex: 0 0 auto;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.82rem;
       cursor: pointer;
+      white-space: nowrap;
+    }
+    .defs-open-btn:hover {
+      background: rgba(61, 158, 255, 0.12);
+      border-color: rgba(61, 158, 255, 0.35);
+      color: var(--accent);
+    }
+    .defs-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+    .defs-modal.is-open { display: flex; }
+    .defs-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .defs-modal-panel {
+      position: relative;
+      width: min(720px, 100%);
+      max-height: min(85vh, 720px);
+      overflow-y: auto;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    }
+    .defs-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .defs-modal-header h2 {
+      margin: 0;
       font-size: 1.1rem;
-      font-weight: 600;
-      margin: 0 0 0.75rem;
-      list-style: none;
     }
-    .defs-details > summary::-webkit-details-marker { display: none; }
-    .defs-details > summary::before {
-      content: "▸ ";
-      display: inline-block;
+    .defs-modal-close {
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
       color: var(--muted);
-      transition: transform 0.15s ease;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
     }
-    .defs-details[open] > summary::before { content: "▾ "; }
-    .defs-details > summary:hover { color: var(--accent); }
+    .defs-modal-close:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--text);
+    }
     .defs-intro {
       color: var(--muted);
       font-size: 0.9rem;
@@ -497,15 +558,28 @@
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">GitHub Repository</a></p>
         <p><a href="ticker-history.html">Ticker History Search</a></p>
       </div>
-      <div class="card">
-        <h2>Summary</h2>
+      <div class="card summary-card">
+        <div class="summary-card-header">
+          <h2>Summary</h2>
+          <button
+            type="button"
+            class="defs-open-btn"
+            id="defs-open-btn"
+            aria-haspopup="dialog"
+            aria-controls="defs-modal"
+          >Cross Definitions</button>
+        </div>
         <div id="summary-stats">—</div>
       </div>
     </div>
 
-    <section class="card defs">
-      <details class="defs-details">
-        <summary>Cross Definitions</summary>
+    <div class="defs-modal" id="defs-modal" hidden role="dialog" aria-modal="true" aria-labelledby="defs-modal-title">
+      <div class="defs-modal-backdrop" data-action="close-defs-modal"></div>
+      <div class="defs-modal-panel">
+        <div class="defs-modal-header">
+          <h2 id="defs-modal-title">Cross Definitions</h2>
+          <button type="button" class="defs-modal-close" id="defs-modal-close" aria-label="Close Cross Definitions">×</button>
+        </div>
         <p class="defs-intro">
           Signals are detected on the latest trading day only.
           The moving averages must cross between the prior session and today.
@@ -540,8 +614,8 @@
             </dd>
           </div>
         </dl>
-      </details>
-    </section>
+      </div>
+    </div>
 
     <section class="card cross-filter-card">
       <h2>Filter by Cross Type</h2>
@@ -1034,6 +1108,43 @@
       });
     }
 
+    function bindDefsModal() {
+      const modal = document.getElementById("defs-modal");
+      const openBtn = document.getElementById("defs-open-btn");
+      const closeBtn = document.getElementById("defs-modal-close");
+      const backdrop = modal.querySelector("[data-action='close-defs-modal']");
+      let previousFocus = null;
+
+      function openModal() {
+        previousFocus = document.activeElement;
+        modal.hidden = false;
+        modal.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        modal.classList.remove("is-open");
+        document.body.style.overflow = "";
+        if (previousFocus && typeof previousFocus.focus === "function") {
+          previousFocus.focus();
+        }
+      }
+
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      backdrop.addEventListener("click", closeModal);
+      modal.querySelector(".defs-modal-panel").addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.classList.contains("is-open")) {
+          closeModal();
+        }
+      });
+    }
+
     const RECOMMENDATION_COLUMN = {
       key: "recommendation",
       label: "Recommendation",
@@ -1149,7 +1260,7 @@
       },
       {
         key: "avg_daily_volume_30d",
-        label: "30d Avg Volume",
+        label: "30D Avg Volume",
         align: "center",
         type: "number",
         tooltip: "Average daily share volume over the last 30 sessions, in millions.",
@@ -1167,7 +1278,7 @@
       },
       {
         key: "ema_21",
-        label: "21 Day EMA",
+        label: "21D EMA",
         align: "center",
         type: "number",
         tooltip: "21-day exponential moving average on the signal date.",
@@ -1176,7 +1287,7 @@
       },
       {
         key: "ema_50",
-        label: "50 Day EMA",
+        label: "50D EMA",
         align: "center",
         type: "number",
         tooltip: "50-day exponential moving average on the signal date.",
@@ -1185,7 +1296,7 @@
       },
       {
         key: "ema_200",
-        label: "200 Day EMA",
+        label: "200D EMA",
         align: "center",
         type: "number",
         tooltip: "200-day exponential moving average on the signal date.",
@@ -1577,6 +1688,7 @@
         bindActiveFilterBar();
         bindFilterClearInline();
         bindTickerHistorySearch();
+        bindDefsModal();
 
         await loadTradingDay(startDate);
         document.getElementById("date-picker").value = startDate;
