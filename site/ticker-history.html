@@ -193,7 +193,7 @@
     </p>
 
     <h1>Ticker History Search</h1>
-    <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol.</p>
+    <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol. The same search is also on the <a href="index.html">daily dashboard</a> next to the trading day picker.</p>
 
     <section class="card quick-links">
       <h2>Quick Links</h2>
@@ -702,9 +702,12 @@
         bindTickerHistory();
         renderTickerHistory();
 
-        const initialTicker = new URLSearchParams(location.search).get("ticker");
+        const params = new URLSearchParams(location.search);
+        const initialTicker = params.get("ticker");
         if (initialTicker) {
           await searchTickerHistory(initialTicker);
+        } else if (params.get("q")) {
+          location.replace(`index.html?ticker=${encodeURIComponent(params.get("q").trim())}`);
         }
       } catch (error) {
         console.error(error);
