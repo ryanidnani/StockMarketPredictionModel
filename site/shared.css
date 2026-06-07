@@ -49,6 +49,10 @@ a:hover { text-decoration: underline; }
 }
 .disclaimer strong { color: var(--text); }
 
+.disclaimer-footer {
+  margin: 2rem 0 0;
+}
+
 .consider-threshold-note {
   margin: 0 0 0.75rem;
   font-size: 0.88rem;
