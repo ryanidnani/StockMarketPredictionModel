@@ -314,7 +314,9 @@
       const col = columns[i];
       const colWidth = defaultColWidth(col, i);
       const isSorted = sortState.key === col.key;
-      const indicator = isSorted ? (sortState.dir === "asc" ? "▲" : "▼") : "↕";
+      const sortClass = isSorted
+        ? `sort-indicator is-active sort-${sortState.dir}`
+        : "sort-indicator";
       header += `<th
         class="${alignClass(col.align)} sortable${isSorted ? " is-sorted" : ""}"
         data-table="${tableName}"
@@ -322,7 +324,7 @@
         tabindex="0"
         style="--col-width:${colWidth}"
         aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
-      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
+      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="${sortClass}" aria-hidden="true"></span></span></th>`;
     }
 
     let body = "";
