@@ -199,7 +199,7 @@
       <h2>Quick Links</h2>
       <p><a href="index.html">Daily Dashboard</a></p>
       <p><a href="historical-archive.html">Historical Crosses and Predictions</a></p>
-      <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
+      <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">GitHub Repository</a></p>
     </section>
 
     <section class="card">
@@ -553,7 +553,7 @@
       }
 
       if (!ticker) {
-        meta.textContent = "Enter a ticker symbol to search the archive.";
+        meta.textContent = "View full cross history of ticker since 2025-11-20";
         table.innerHTML = "";
         return;
       }
@@ -571,7 +571,7 @@
       meta.innerHTML =
         `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
         (considerCount ? ` · <span class="consider">${considerCount} CONSIDER</span>` : "") +
-        ` · Click a row to open that day on the dashboard (ticker filter stays on)`;
+        ` · Click a row to view that day's Daily Dashboard`;
 
       table.innerHTML = renderDataTable(
         "tickerHistory",
@@ -682,11 +682,7 @@
         const historyRow = rows[index];
         if (!historyRow?.event_date) return;
 
-        const ticker = normalizeTicker(state.tickerSearch);
-        const params = new URLSearchParams();
-        params.set("day", historyRow.event_date);
-        if (ticker) params.set("ticker", ticker);
-        location.href = `index.html?${params.toString()}`;
+        location.href = `index.html?day=${encodeURIComponent(historyRow.event_date)}`;
       });
     }
 
