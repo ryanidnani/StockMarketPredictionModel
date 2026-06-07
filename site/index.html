@@ -172,7 +172,6 @@
       probabilityPercent,
       renderDataTable,
       bindTableSort,
-      bindColumnTooltips,
     } = window.GC;
 
     const ANALYTICS_OWNER_PARAM = "gc_owner";
@@ -907,8 +906,6 @@
 
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS, () => state.sort, renderTables);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns, () => state.sort, renderTables);
-        bindColumnTooltips("crosses-table");
-        bindColumnTooltips("predictions-table");
         bindTypeFilters();
         bindFilterClearInline();
         bindTickerHistorySearch();

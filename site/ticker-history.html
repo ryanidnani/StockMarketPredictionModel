@@ -118,7 +118,6 @@
       manifestDatesForArchive,
       renderDataTable,
       bindTableSort,
-      bindColumnTooltips,
     } = window.GC;
 
     const state = {
@@ -378,7 +377,6 @@
           () => state.sort,
           renderTickerHistory
         );
-        bindColumnTooltips("ticker-history-table");
         bindTickerHistory();
         renderTickerHistory();
 

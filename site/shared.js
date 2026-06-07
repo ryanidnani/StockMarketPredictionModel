@@ -323,7 +323,7 @@
         tabindex="0"
         style="--col-width:${colWidth}"
         aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
-      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span>${col.tooltip ? `<button type="button" class="col-help-btn" aria-label="Help: ${escapeHtml(col.label)}" aria-expanded="false">?</button>` : ""}<span class="sort-indicator">${indicator}</span></span></th>`;
+      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator" aria-hidden="true">${indicator}</span></span></th>`;
     }
 
     let body = "";
@@ -341,15 +341,49 @@
     return `<table class="data-table" style="--table-min-width:${tableWidth}">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
+  function closeColumnTooltips(scope) {
+    (scope || document).querySelectorAll("th.is-tooltip-open").forEach((header) => {
+      header.classList.remove("is-tooltip-open");
+    });
+  }
+
+  let columnTooltipGlobalsBound = false;
+
+  function bindColumnTooltipGlobals() {
+    if (columnTooltipGlobalsBound) return;
+    columnTooltipGlobalsBound = true;
+
+    document.addEventListener("click", (event) => {
+      if (event.target.closest(".data-table th.has-tooltip .th-label")) return;
+      closeColumnTooltips();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeColumnTooltips();
+    });
+  }
+
   function bindTableSort(containerId, tableName, getColumns, getSortState, onSort) {
     const container = document.getElementById(containerId);
     const rerender = onSort || (() => {});
+    bindColumnTooltipGlobals();
 
     container.addEventListener("click", (event) => {
-      if (event.target.closest(".col-help-btn")) return;
-
       const header = event.target.closest("th[data-sort-key]");
       if (!header || header.dataset.table !== tableName) return;
+
+      if (header.classList.contains("has-tooltip") && event.target.closest(".th-label")) {
+        event.preventDefault();
+        event.stopPropagation();
+        const willOpen = !header.classList.contains("is-tooltip-open");
+        closeColumnTooltips(container);
+        if (willOpen) header.classList.add("is-tooltip-open");
+        return;
+      }
+
+      if (!event.target.closest(".sort-indicator")) return;
+
+      closeColumnTooltips(container);
 
       const columns = getColumns();
       const sortState = getSortState()[tableName];
@@ -369,47 +403,7 @@
       const header = event.target.closest("th[data-sort-key]");
       if (!header || header.dataset.table !== tableName) return;
       event.preventDefault();
-      header.click();
-    });
-  }
-
-  function closeColumnTooltips(container) {
-    container.querySelectorAll("th.is-tooltip-open").forEach((header) => {
-      header.classList.remove("is-tooltip-open");
-      const btn = header.querySelector(".col-help-btn");
-      if (btn) btn.setAttribute("aria-expanded", "false");
-    });
-  }
-
-  function bindColumnTooltips(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.addEventListener("click", (event) => {
-      const btn = event.target.closest(".col-help-btn");
-      if (!btn) return;
-
-      event.stopPropagation();
-      event.preventDefault();
-
-      const header = btn.closest("th.has-tooltip");
-      if (!header) return;
-
-      const willOpen = !header.classList.contains("is-tooltip-open");
-      closeColumnTooltips(container);
-      if (willOpen) {
-        header.classList.add("is-tooltip-open");
-        btn.setAttribute("aria-expanded", "true");
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (event.target.closest(`#${CSS.escape(containerId)} .col-help-btn`)) return;
-      closeColumnTooltips(container);
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeColumnTooltips(container);
+      header.querySelector(".sort-indicator")?.click();
     });
   }
 
@@ -451,6 +445,5 @@
     buildColgroup,
     renderDataTable,
     bindTableSort,
-    bindColumnTooltips,
   };
 })();
