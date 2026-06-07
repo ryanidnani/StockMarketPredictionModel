@@ -238,6 +238,30 @@
     .summary-table tr:last-child td {
       border-bottom: none;
     }
+    .type-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.85rem;
+    }
+    .type-chip {
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .type-chip:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .type-chip.is-active {
+      border-color: rgba(61, 158, 255, 0.45);
+      background: rgba(61, 158, 255, 0.12);
+      color: var(--text);
+    }
     .disclaimer {
       margin: 0 0 1.5rem;
       padding: 1rem 1.1rem;
@@ -310,6 +334,7 @@
       <div class="card">
         <h2>Summary</h2>
         <div id="summary-stats">—</div>
+        <div class="type-filters" id="type-filters"></div>
       </div>
     </div>
 
@@ -411,6 +436,7 @@
       crosses: [],
       predictions: [],
       showAllPredictions: false,
+      activeCrossTypes: new Set(CROSS_TYPES),
       sort: {
         crosses: { key: "market_cap", dir: "desc" },
         predictions: { key: "probability", dir: "desc" },
@@ -602,10 +628,89 @@
       return rows.filter((row) => isConsider(row.recommendation, row.probability));
     }
 
+    function allCrossTypesActive() {
+      return state.activeCrossTypes.size === CROSS_TYPES.length;
+    }
+
+    function resetCrossTypeFilters() {
+      state.activeCrossTypes = new Set(CROSS_TYPES);
+    }
+
+    function toggleCrossType(type) {
+      if (state.activeCrossTypes.has(type)) {
+        state.activeCrossTypes.delete(type);
+      } else {
+        state.activeCrossTypes.add(type);
+      }
+    }
+
+    function rowMatchesCrossTypeFilter(type) {
+      if (!type || type === "—") return false;
+      if (allCrossTypesActive()) return true;
+      return state.activeCrossTypes.has(type);
+    }
+
+    function crossCountsForDay() {
+      const counts = Object.fromEntries(CROSS_TYPES.map((type) => [type, 0]));
+      for (const row of state.crosses) {
+        const type = crossSignal(row);
+        if (type in counts) counts[type]++;
+      }
+      return counts;
+    }
+
+    function visibleCrosses() {
+      return state.crosses.filter((row) => rowMatchesCrossTypeFilter(crossSignal(row)));
+    }
+
     function visiblePredictions() {
-      return state.showAllPredictions
+      let rows = state.showAllPredictions
         ? state.predictions
         : considerPredictions(state.predictions);
+      if (!allCrossTypesActive()) {
+        rows = rows.filter((row) => rowMatchesCrossTypeFilter(row.cross_type));
+      }
+      return rows;
+    }
+
+    function filteredEmptyMessage(kind) {
+      if (state.activeCrossTypes.size === 0) {
+        return "<p>Select a cross type or click All.</p>";
+      }
+      if (allCrossTypesActive()) {
+        return `<p>No ${kind} rows in the selected file.</p>`;
+      }
+      const types = [...state.activeCrossTypes].sort().join(", ");
+      return `<p>No ${kind} rows match the selected cross types (${escapeHtml(types)}).</p>`;
+    }
+
+    function renderTypeFilters() {
+      const container = document.getElementById("type-filters");
+      const counts = crossCountsForDay();
+      const allActive = allCrossTypesActive();
+
+      let html = `<button type="button" class="type-chip${allActive ? " is-active" : ""}" data-type="all">All</button>`;
+      for (const type of CROSS_TYPES) {
+        const active = state.activeCrossTypes.has(type);
+        html += `<button type="button" class="type-chip${active ? " is-active" : ""} ${crossClass(type)}" data-type="${escapeHtml(type)}">${escapeHtml(type)} (${counts[type]})</button>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function bindTypeFilters() {
+      document.getElementById("type-filters").addEventListener("click", (event) => {
+        const chip = event.target.closest("[data-type]");
+        if (!chip) return;
+
+        const type = chip.dataset.type;
+        if (type === "all") {
+          resetCrossTypeFilters();
+        } else {
+          toggleCrossType(type);
+        }
+        renderTypeFilters();
+        renderTables();
+      });
     }
 
     const RECOMMENDATION_COLUMN = {
@@ -663,11 +768,18 @@
       }
 
       const label = considerCount === 1 ? "signal" : "signals";
-      meta.innerHTML =
+      const visibleCount = visiblePredictions().length;
+      let message =
         `Showing ${considerCount} CONSIDER ${label}` +
         (total > considerCount
           ? ` of ${total} total. <button type="button" id="predictions-toggle">Show all predictions</button>`
           : ".");
+
+      if (!allCrossTypesActive()) {
+        message += ` · ${visibleCount} visible after cross-type filter`;
+      }
+
+      meta.innerHTML = message;
     }
 
     function bindPredictionsToggle() {
@@ -973,22 +1085,22 @@
     }
 
     function renderTables() {
-      document.getElementById("crosses-table").innerHTML = renderDataTable(
-        "crosses",
-        CROSSES_COLUMNS,
-        state.crosses,
-        state.sort.crosses
-      );
+      const crosses = visibleCrosses();
+      document.getElementById("crosses-table").innerHTML = crosses.length
+        ? renderDataTable("crosses", CROSSES_COLUMNS, crosses, state.sort.crosses)
+        : filteredEmptyMessage("cross");
 
       const predictions = visiblePredictions();
       const predictionColumns = getPredictionsColumns();
-      document.getElementById("predictions-table").innerHTML = renderDataTable(
-        "predictions",
-        predictionColumns,
-        predictions,
-        state.sort.predictions,
-        state.showAllPredictions ? predictionsRowClass : null
-      );
+      document.getElementById("predictions-table").innerHTML = predictions.length
+        ? renderDataTable(
+          "predictions",
+          predictionColumns,
+          predictions,
+          state.sort.predictions,
+          state.showAllPredictions ? predictionsRowClass : null
+        )
+        : filteredEmptyMessage("prediction");
       renderPredictionsMeta();
       bindPredictionsToggle();
     }
@@ -1077,6 +1189,7 @@
       updateDownloadLinks();
       document.getElementById("summary-stats").innerHTML =
         renderSummary(state.crosses, state.predictions);
+      renderTypeFilters();
       renderTables();
     }
 
@@ -1139,6 +1252,7 @@
 
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns);
+        bindTypeFilters();
 
         await loadTradingDay(startDate);
         document.getElementById("date-picker").value = startDate;
@@ -1152,6 +1266,7 @@
       document.getElementById("as-of").textContent =
         "Could not load data yet. Browse CSV files in the repository.";
       document.getElementById("summary-stats").innerHTML = "";
+      document.getElementById("type-filters").innerHTML = "";
       document.getElementById("crosses-table").innerHTML = "";
       document.getElementById("predictions-table").innerHTML = "";
     }
