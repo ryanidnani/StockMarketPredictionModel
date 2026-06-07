@@ -18,5 +18,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-10,IYR,golden,18.52,AVOID,,,,,,,
 2026-02-10,XTEN,golden,2.57,AVOID,,,,,,,
 2026-02-10,HYLS,death,1.96,AVOID,,,,,,,
-2026-02-10,XHLF,death,45.0,AVOID,,,,,,,
-2026-02-10,TDTF,golden,40.0,AVOID,,,,,,,
+2026-02-10,XHLF,death,0.45,AVOID,,,,,,,
+2026-02-10,TDTF,golden,0.4,AVOID,,,,,,,

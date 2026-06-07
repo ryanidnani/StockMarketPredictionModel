@@ -13,5 +13,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-08,TM,death,40.14,AVOID,,,,,,,
 2026-05-08,VOT,golden,17.97,AVOID,,,,,,,
 2026-05-08,IGOV,golden,2.53,AVOID,,,,,,,
-2026-05-08,QXOPB,death,45.0,AVOID,,,,,,,
-2026-05-08,PFF,golden,41.0,AVOID,,,,,,,
+2026-05-08,QXOPB,death,0.45,AVOID,,,,,,,
+2026-05-08,PFF,golden,0.41,AVOID,,,,,,,

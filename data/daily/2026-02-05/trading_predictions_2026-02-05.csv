@@ -16,4 +16,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-05,ITB,golden,35.21,AVOID,,,,,,,
 2026-02-05,ETSY,death,27.16,AVOID,,,,,,,
 2026-02-05,HR,death,21.01,AVOID,,,,,,,
-2026-02-05,FLOT,death,45.0,AVOID,,,,,,,
+2026-02-05,FLOT,death,0.45,AVOID,,,,,,,

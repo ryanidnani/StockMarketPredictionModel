@@ -19,5 +19,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-11,PNR,death,30.48,AVOID,,,,,,,
 2026-02-11,SCHH,golden,10.06,AVOID,,,,,,,
 2026-02-11,FREL,golden,6.68,AVOID,,,,,,,
-2026-02-11,CLOI,death,48.0,AVOID,,,,,,,
-2026-02-11,FUMB,golden,37.0,AVOID,,,,,,,
+2026-02-11,CLOI,death,0.48,AVOID,,,,,,,
+2026-02-11,FUMB,golden,0.37,AVOID,,,,,,,

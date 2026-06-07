@@ -105,4 +105,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-11,VCIT,death_st,1.22,AVOID,,,,,,,
 2026-03-11,VWOB,death_st,1.13,AVOID,,,,,,,
 2026-03-11,EMHY,death_st,1.1,AVOID,,,,,,,
-2026-03-11,SCYB,death,80.0,CONSIDER,26.14,,,,,,
+2026-03-11,SCYB,death,0.8,AVOID,,,,,,,

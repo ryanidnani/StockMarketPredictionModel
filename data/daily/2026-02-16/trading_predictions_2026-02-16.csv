@@ -16,5 +16,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-16,UL,golden,35.29,AVOID,,,,,,,
 2026-02-16,APPX,death,32.68,AVOID,,,,,,,
 2026-02-16,DFAR,golden,21.93,AVOID,,,,,,,
-2026-02-16,GOVI,golden,73.0,CONSIDER,,,,,,,
-2026-02-16,SJNK,death,52.0,CONSIDER,,,,,,,
+2026-02-16,GOVI,golden,0.73,AVOID,,,,,,,
+2026-02-16,SJNK,death,0.52,AVOID,,,,,,,

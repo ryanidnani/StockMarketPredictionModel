@@ -60,4 +60,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-17,SLYV,death_st,1.74,AVOID,,,,,,,
 2026-03-17,TWLO,golden_st,1.53,AVOID,,,,,,,
 2026-03-17,SCI,death_st,1.51,AVOID,,,,,,,
-2026-03-17,FLRN,death,58.0,CONSIDER,30.73,,,,,,
+2026-03-17,FLRN,death,0.58,AVOID,,,,,,,

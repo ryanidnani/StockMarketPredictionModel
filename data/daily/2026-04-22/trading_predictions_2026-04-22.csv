@@ -11,5 +11,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-04-22,BAFE,golden,12.45,AVOID,,,,,,,
 2026-04-22,PTLC,golden,4.1,AVOID,,,,,,,
 2026-04-22,EBND,golden,1.27,AVOID,,,,,,,
-2026-04-22,DUSB,death,67.0,CONSIDER,50.7,,,,,,
-2026-04-22,HYD,golden,49.0,AVOID,,,,,,,
+2026-04-22,DUSB,death,0.67,AVOID,,,,,,,
+2026-04-22,HYD,golden,0.49,AVOID,,,,,,,

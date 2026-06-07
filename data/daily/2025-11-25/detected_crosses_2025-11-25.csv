@@ -1,8 +1,8 @@
-symbol,signal_type,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
-META,death_cross,22.1,1545.2,,672.07,672.3,636.22
-REGN,golden_cross,1.1,80.0,,643.21,641.37,787.32
-HMC,death_cross,0.9,38.7,,30.79,30.82,29.96
-EIDO,golden_cross,0.4,,,18.14,18.12,18.73
-FEPI,death_cross,0.2,,,46.69,46.7,44.69
-JPMpM,death_cross,0.1,,,18.69,18.7,18.25
-WFCpZ,death_cross,0.2,,,19.75,19.75,19.63
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+META,death_cross,0,22.1,1545.2,,672.07,672.3,636.22
+REGN,golden_cross,0,1.1,80.0,,643.21,641.37,787.32
+HMC,death_cross,0,0.9,38.7,,30.79,30.82,29.96
+EIDO,golden_cross,0,0.4,,,18.14,18.12,18.73
+FEPI,death_cross,0,0.2,,,46.69,46.7,44.69
+JPMpM,death_cross,0,0.1,,,18.69,18.7,18.25
+WFCpZ,death_cross,0,0.2,,,19.75,19.75,19.63

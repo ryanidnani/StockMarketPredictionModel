@@ -70,5 +70,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-09,DDM,death_st,2.34,AVOID,,,,,,,
 2026-03-09,KMLM,golden,2.27,AVOID,,,,,,,
 2026-03-09,BF.A,death_st,1.79,AVOID,,,,,,,
-2026-03-09,VRP,death,52.0,CONSIDER,24.31,,,,,,
-2026-03-09,CLOA,death,48.0,AVOID,,,,,,,
+2026-03-09,VRP,death,0.52,AVOID,,,,,,,
+2026-03-09,CLOA,death,0.48,AVOID,,,,,,,

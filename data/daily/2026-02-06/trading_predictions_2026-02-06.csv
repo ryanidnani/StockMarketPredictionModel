@@ -5,4 +5,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-06,SIGI,golden,59.41,CONSIDER,90.1,100.91,108.12,-6.15,84.56,81.79,12.0
 2026-02-06,APO,death,40.36,AVOID,,,,,,,
 2026-02-06,KBWD,death,23.69,AVOID,,,,,,,
-2026-02-06,FLGV,death,55.0,CONSIDER,,,,,,,
+2026-02-06,FLGV,death,0.55,AVOID,,,,,,,

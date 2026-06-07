@@ -12,4 +12,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-05-14,IYH,death,28.55,AVOID,,,,,,,
 2026-05-14,XLV,death,15.44,AVOID,,,,,,,
 2026-05-14,DRSK,golden,6.34,AVOID,,,,,,,
-2026-05-14,JMBS,death,59.0,CONSIDER,45.13,,,,,,
+2026-05-14,JMBS,death,0.59,AVOID,,,,,,,

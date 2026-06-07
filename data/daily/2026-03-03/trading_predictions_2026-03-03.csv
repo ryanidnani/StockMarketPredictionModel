@@ -69,4 +69,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-03,LI,death_st,2.41,AVOID,,,,,,,
 2026-03-03,CLOI,death,1.43,AVOID,,,,,,,
 2026-03-03,TLK,death_st,1.01,AVOID,,,,,,,
-2026-03-03,XBIL,death,45.0,AVOID,,,,,,,
+2026-03-03,XBIL,death,0.45,AVOID,,,,,,,

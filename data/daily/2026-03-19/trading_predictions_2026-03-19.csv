@@ -97,4 +97,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-03-19,JHCR,death_st,1.42,AVOID,,,,,,,
 2026-03-19,ACGL,death_st,1.39,AVOID,,,,,,,
 2026-03-19,CGMU,death_st,1.04,AVOID,,,,,,,
-2026-03-19,ICSH,death,55.0,CONSIDER,50.58,,,,,,
+2026-03-19,ICSH,death,0.55,AVOID,,,,,,,

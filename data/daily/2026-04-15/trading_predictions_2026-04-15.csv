@@ -121,4 +121,4 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-04-15,SDVD,golden_st,1.14,AVOID,,,,,,,
 2026-04-15,GVI,death,1.06,AVOID,,,,,,,
 2026-04-15,TIPX,golden_st,1.04,AVOID,,,,,,,
-2026-04-15,FLGPA,golden,61.0,CONSIDER,23.29,,,,,,
+2026-04-15,FLGPA,golden,0.61,AVOID,,,,,,,

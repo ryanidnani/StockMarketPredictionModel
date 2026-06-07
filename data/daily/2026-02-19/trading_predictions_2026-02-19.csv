@@ -6,5 +6,5 @@ event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_p
 2026-02-19,DLR,golden,38.67,AVOID,,,,,,,
 2026-02-19,LIN,golden,36.86,AVOID,,,,,,,
 2026-02-19,UNM,death,18.05,AVOID,,,,,,,
-2026-02-19,BACPM,golden,61.0,CONSIDER,,,,,,,
-2026-02-19,BILS,golden,44.0,AVOID,,,,,,,
+2026-02-19,BACPM,golden,0.61,AVOID,,,,,,,
+2026-02-19,BILS,golden,0.44,AVOID,,,,,,,
