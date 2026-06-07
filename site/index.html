@@ -476,6 +476,20 @@
       return false;
     }
 
+    function parseCrossTypesFromUrl(params) {
+      const raw = params.get("types");
+      if (!raw) return new Set(CROSS_TYPES);
+
+      const valid = new Set(CROSS_TYPES);
+      const selected = raw
+        .split(",")
+        .map((type) => type.trim().toLowerCase())
+        .filter((type) => valid.has(type));
+
+      if (!selected.length) return new Set(CROSS_TYPES);
+      return new Set(selected);
+    }
+
     function updateDashboardUrl() {
       const params = new URLSearchParams(location.search);
 
@@ -489,6 +503,14 @@
         params.set("all", "1");
       } else {
         params.delete("all");
+      }
+
+      if (allCrossTypesActive()) {
+        params.delete("types");
+      } else if (state.activeCrossTypes.size > 0) {
+        params.set("types", [...state.activeCrossTypes].sort().join(","));
+      } else {
+        params.delete("types");
       }
 
       params.delete("consider");
@@ -607,6 +629,7 @@
     function applyCrossFilterChange() {
       renderTypeFilters();
       renderTables();
+      updateDashboardUrl();
     }
 
     function clearCrossTypeFilter() {
@@ -1114,6 +1137,7 @@
           ? initialDay
           : state.latestDate;
         state.showAllPredictions = parseShowAllPredictionsFromUrl(params);
+        state.activeCrossTypes = parseCrossTypesFromUrl(params);
 
         populateDatePicker(state.manifest.dates, startDate);
 
