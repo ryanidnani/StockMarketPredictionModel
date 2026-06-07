@@ -34,24 +34,99 @@
     }
     .sub { color: var(--muted); margin-bottom: 1.5rem; }
     .as-of { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
-    .date-toolbar {
+    .controls-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .control-group {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.65rem;
-      margin-bottom: 1.5rem;
+      gap: 0.55rem 0.65rem;
       font-size: 0.9rem;
       color: var(--muted);
     }
-    .date-toolbar label { font-weight: 600; }
-    .date-toolbar select {
-      min-width: 11rem;
+    .control-group label { font-weight: 600; color: var(--text); }
+    .control-hint {
+      flex: 1 1 100%;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: -0.15rem;
+    }
+    .control-divider {
+      align-self: stretch;
+      width: 1px;
+      min-height: 2.5rem;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .controls-toolbar select,
+    .controls-toolbar input[type="search"] {
+      min-width: 9rem;
       padding: 0.45rem 0.65rem;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      background: var(--card);
+      background: var(--bg);
       color: var(--text);
       font: inherit;
+    }
+    .controls-toolbar select { min-width: 11rem; background: var(--card); }
+    .controls-toolbar input[type="search"] { text-transform: uppercase; }
+    .controls-toolbar button {
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+    .controls-toolbar button:hover { background: rgba(255, 255, 255, 0.1); }
+    .controls-toolbar button#ticker-filter-apply {
+      background: rgba(61, 158, 255, 0.18);
+      border-color: rgba(61, 158, 255, 0.35);
+      color: var(--accent);
+    }
+    .ticker-status {
+      margin-bottom: 1.25rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .ticker-status[hidden] { display: none; }
+    .ticker-status strong { color: var(--text); }
+    .ticker-status button {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .ticker-status button:hover { color: var(--text); }
+    .ticker-history-panel[hidden] { display: none; }
+    .ticker-history-intro {
+      margin: 0 0 0.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .data-table tbody tr.row-selected-day {
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+    .data-table tbody tr.row-clickable { cursor: pointer; }
+    @media (max-width: 720px) {
+      .control-divider { display: none; }
     }
     .quick-links p { margin: 0.45rem 0; }
     .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-bottom: 2rem; }
@@ -238,11 +313,32 @@
     .summary-table tr:last-child td {
       border-bottom: none;
     }
+    .cross-filter-section {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .cross-filter-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.35rem 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+    .cross-filter-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .cross-filter-hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
     .type-filters {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin-top: 0.85rem;
     }
     .type-chip {
       padding: 0.35rem 0.7rem;
@@ -256,11 +352,89 @@
     }
     .type-chip:hover {
       background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
     }
     .type-chip.is-active {
       border-color: rgba(61, 158, 255, 0.45);
       background: rgba(61, 158, 255, 0.12);
       color: var(--text);
+    }
+    .type-chip:not(.is-active) {
+      opacity: 0.72;
+    }
+    .active-filter-bar-wrap {
+      margin-bottom: 1.5rem;
+    }
+    .active-filter-bar-wrap[hidden] {
+      display: none;
+    }
+    .active-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background: rgba(61, 158, 255, 0.08);
+      border: 1px solid rgba(61, 158, 255, 0.2);
+      font-size: 0.84rem;
+    }
+    .active-filter-bar-label {
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .active-filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      flex: 1 1 auto;
+    }
+    .active-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.28rem 0.55rem 0.28rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    .active-filter-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .active-filter-pill span[aria-hidden="true"] {
+      font-size: 1rem;
+      line-height: 1;
+      opacity: 0.7;
+    }
+    .filter-clear-all,
+    .filter-clear-inline {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: inherit;
+    }
+    .filter-clear-all {
+      white-space: nowrap;
+      font-size: 0.82rem;
+    }
+    .filter-clear-all:hover,
+    .filter-clear-inline:hover {
+      color: var(--text);
+    }
+    .empty-filter-msg {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
     }
     .disclaimer {
       margin: 0 0 1.5rem;
@@ -317,10 +491,22 @@
     <p class="sub">Daily golden cross and death cross detections as well as machine learning predictions for trading ideas. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
     <p class="as-of" id="as-of">Loading…</p>
 
-    <div class="date-toolbar">
-      <label for="date-picker">Trading day</label>
-      <select id="date-picker" aria-label="Select trading day"></select>
+    <div class="controls-toolbar">
+      <div class="control-group">
+        <label for="date-picker">Trading day</label>
+        <select id="date-picker" aria-label="Select trading day"></select>
+        <span class="control-hint">Tables below show this date only</span>
+      </div>
+      <span class="control-divider" aria-hidden="true"></span>
+      <div class="control-group">
+        <label for="ticker-filter">Ticker</label>
+        <input id="ticker-filter" type="search" placeholder="e.g. REGN" autocomplete="off" spellcheck="false" aria-label="Filter by ticker symbol" />
+        <button type="button" id="ticker-filter-apply">Apply</button>
+        <button type="button" id="ticker-filter-clear" hidden>Clear</button>
+        <span class="control-hint">Narrows both tables to one symbol on the selected day</span>
+      </div>
     </div>
+    <div class="ticker-status" id="ticker-status" hidden></div>
 
     <div class="cards">
       <div class="card quick-links">
@@ -334,7 +520,21 @@
       <div class="card">
         <h2>Summary</h2>
         <div id="summary-stats">—</div>
-        <div class="type-filters" id="type-filters"></div>
+        <div class="cross-filter-section">
+          <div class="cross-filter-header">
+            <span class="cross-filter-label">Filter by cross type</span>
+            <span class="cross-filter-hint">Applies to both tables below</span>
+          </div>
+          <div class="type-filters" id="type-filters" role="group" aria-label="Filter by cross type"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="active-filter-bar-wrap" id="active-filter-bar-wrap" hidden>
+      <div class="active-filter-bar">
+        <span class="active-filter-bar-label">Showing cross types:</span>
+        <div class="active-filter-pills" id="active-filter-pills"></div>
+        <button type="button" class="filter-clear-all" id="filter-clear-all">Clear all</button>
       </div>
     </div>
 
@@ -387,6 +587,12 @@
       <div class="table-wrap" id="crosses-table">Loading…</div>
     </section>
 
+    <section class="card ticker-history-panel" id="ticker-history-panel" hidden style="margin-top: 1rem;">
+      <h2 id="ticker-history-heading">Cross history</h2>
+      <p class="ticker-history-intro" id="ticker-history-intro"></p>
+      <div class="table-wrap" id="ticker-history-table"></div>
+    </section>
+
   </div>
 
   <script>
@@ -437,9 +643,15 @@
       predictions: [],
       showAllPredictions: false,
       activeCrossTypes: new Set(CROSS_TYPES),
+      tickerFilter: "",
+      tickerHistoryOpen: false,
+      tickerHistory: [],
+      tickerHistoryLoading: false,
+      dailyPredictionsCache: null,
       sort: {
         crosses: { key: "market_cap", dir: "desc" },
         predictions: { key: "probability", dir: "desc" },
+        tickerHistory: { key: "event_date", dir: "desc" },
       },
     };
 
@@ -465,6 +677,13 @@
       return value === "1" || value === "true" || value === "yes";
     }
 
+    function parseShowAllPredictionsFromUrl(params) {
+      if (isTruthyParam(params.get("all"))) return true;
+      // Legacy alias: older share links used consider=1 to mean "show all".
+      if (isTruthyParam(params.get("consider"))) return true;
+      return false;
+    }
+
     function updateDashboardUrl() {
       const params = new URLSearchParams(location.search);
 
@@ -475,12 +694,26 @@
       }
 
       if (state.showAllPredictions) {
-        params.set("consider", "1");
+        params.set("all", "1");
       } else {
-        params.delete("consider");
+        params.delete("all");
       }
 
+      params.delete("consider");
       params.delete("q");
+
+      const ticker = normalizeTicker(state.tickerFilter);
+      if (ticker) {
+        params.set("ticker", ticker);
+      } else {
+        params.delete("ticker");
+      }
+
+      if (state.tickerHistoryOpen && ticker) {
+        params.set("history", "1");
+      } else {
+        params.delete("history");
+      }
 
       const qs = params.toString();
       history.replaceState(
@@ -610,6 +843,36 @@
         || (row.golden_cross === "True" ? "golden" : row.death_cross === "True" ? "death" : "—");
     }
 
+    function normalizeTicker(value) {
+      return String(value ?? "").trim().toUpperCase();
+    }
+
+    function rowMatchesTickerFilter(row) {
+      const ticker = normalizeTicker(state.tickerFilter);
+      if (!ticker) return true;
+      const symbol = normalizeTicker(row.ticker || row.symbol);
+      return symbol === ticker;
+    }
+
+    function tickerCountsOnSelectedDay() {
+      const ticker = normalizeTicker(state.tickerFilter);
+      if (!ticker) return { crosses: 0, predictions: 0 };
+      const crosses = state.crosses.filter((row) => normalizeTicker(row.symbol) === ticker).length;
+      const predictions = state.predictions.filter((row) => normalizeTicker(row.ticker) === ticker).length;
+      return { crosses, predictions };
+    }
+
+    function tickerRawCountOnDay(kind) {
+      const counts = tickerCountsOnSelectedDay();
+      return kind === "cross" ? counts.crosses : counts.predictions;
+    }
+
+    function recommendationLabel(row) {
+      if (isConsider(row.recommendation, row.probability)) return "CONSIDER";
+      if (displayRecommendation(row.recommendation) === "CONSIDER") return "AVOID";
+      return displayRecommendation(row.recommendation) || "—";
+    }
+
     function numericField(row, ...keys) {
       for (const key of keys) {
         const value = row[key];
@@ -660,7 +923,9 @@
     }
 
     function visibleCrosses() {
-      return state.crosses.filter((row) => rowMatchesCrossTypeFilter(crossSignal(row)));
+      return state.crosses
+        .filter((row) => rowMatchesCrossTypeFilter(crossSignal(row)))
+        .filter((row) => rowMatchesTickerFilter(row));
     }
 
     function visiblePredictions() {
@@ -670,18 +935,44 @@
       if (!allCrossTypesActive()) {
         rows = rows.filter((row) => rowMatchesCrossTypeFilter(row.cross_type));
       }
-      return rows;
+      return rows.filter((row) => rowMatchesTickerFilter(row));
     }
 
     function filteredEmptyMessage(kind) {
+      const ticker = normalizeTicker(state.tickerFilter);
+      const day = escapeHtml(state.selectedDate || "");
+      const kindLabel = kind === "cross" ? "detected crosses" : "predictions";
+
+      if (ticker && tickerRawCountOnDay(kind) === 0) {
+        return (
+          `<p class="empty-filter-msg"><strong>${escapeHtml(ticker)}</strong> has no ${kindLabel} on ` +
+          `<strong>${day}</strong>. ` +
+          '<button type="button" class="filter-clear-inline" data-action="open-ticker-history">' +
+          `View cross history for ${escapeHtml(ticker)}</button></p>`
+        );
+      }
+
       if (state.activeCrossTypes.size === 0) {
-        return "<p>Select a cross type or click All.</p>";
+        return (
+          '<p class="empty-filter-msg">No cross types selected. ' +
+          "Choose one or more types in the Summary card, or click <strong>All types</strong>.</p>"
+        );
       }
-      if (allCrossTypesActive()) {
-        return `<p>No ${kind} rows in the selected file.</p>`;
+      if (allCrossTypesActive() && !ticker) {
+        return `<p class="empty-filter-msg">No ${kind} for this trading day.</p>`;
       }
-      const types = [...state.activeCrossTypes].sort().join(", ");
-      return `<p>No ${kind} rows match the selected cross types (${escapeHtml(types)}).</p>`;
+      if (allCrossTypesActive() && ticker) {
+        return `<p class="empty-filter-msg">No ${kind} for <strong>${escapeHtml(ticker)}</strong> on <strong>${day}</strong> with the current filters.</p>`;
+      }
+      const types = [...state.activeCrossTypes].sort();
+      const typeList = types
+        .map((type) => `<strong class="${crossClass(type)}">${escapeHtml(type)}</strong>`)
+        .join(", ");
+      return (
+        `<p class="empty-filter-msg">No ${kind} match ${typeList}. ` +
+        '<button type="button" class="filter-clear-inline" data-action="clear-cross-filter">' +
+        "Clear cross-type filter</button></p>"
+      );
     }
 
     function renderTypeFilters() {
@@ -689,12 +980,43 @@
       const counts = crossCountsForDay();
       const allActive = allCrossTypesActive();
 
-      let html = `<button type="button" class="type-chip${allActive ? " is-active" : ""}" data-type="all">All</button>`;
+      let html = `<button type="button" class="type-chip${allActive ? " is-active" : ""}" data-type="all" aria-pressed="${allActive}">All types</button>`;
       for (const type of CROSS_TYPES) {
         const active = state.activeCrossTypes.has(type);
-        html += `<button type="button" class="type-chip${active ? " is-active" : ""} ${crossClass(type)}" data-type="${escapeHtml(type)}">${escapeHtml(type)} (${counts[type]})</button>`;
+        html += `<button type="button" class="type-chip${active ? " is-active" : ""} ${crossClass(type)}" data-type="${escapeHtml(type)}" aria-pressed="${active}">${escapeHtml(type)} (${counts[type]})</button>`;
       }
       container.innerHTML = html;
+    }
+
+    function renderActiveFilterBar() {
+      const wrap = document.getElementById("active-filter-bar-wrap");
+      const pills = document.getElementById("active-filter-pills");
+
+      if (allCrossTypesActive() || state.activeCrossTypes.size === 0) {
+        wrap.hidden = true;
+        pills.innerHTML = "";
+        return;
+      }
+
+      wrap.hidden = false;
+      const types = [...state.activeCrossTypes].sort();
+      pills.innerHTML = types.map((type) => `
+        <button type="button" class="active-filter-pill ${crossClass(type)}" data-remove-type="${escapeHtml(type)}">
+          ${escapeHtml(type)}
+          <span aria-hidden="true">×</span>
+        </button>
+      `).join("");
+    }
+
+    function applyCrossFilterChange() {
+      renderTypeFilters();
+      renderActiveFilterBar();
+      renderTables();
+    }
+
+    function clearCrossTypeFilter() {
+      resetCrossTypeFilters();
+      applyCrossFilterChange();
     }
 
     function bindTypeFilters() {
@@ -708,8 +1030,360 @@
         } else {
           toggleCrossType(type);
         }
-        renderTypeFilters();
-        renderTables();
+        applyCrossFilterChange();
+      });
+    }
+
+    function bindActiveFilterBar() {
+      document.getElementById("active-filter-bar-wrap").addEventListener("click", (event) => {
+        const removeBtn = event.target.closest("[data-remove-type]");
+        if (removeBtn) {
+          state.activeCrossTypes.delete(removeBtn.dataset.removeType);
+          applyCrossFilterChange();
+          return;
+        }
+        if (event.target.closest("#filter-clear-all")) {
+          clearCrossTypeFilter();
+        }
+      });
+    }
+
+    function bindFilterClearInline() {
+      document.body.addEventListener("click", (event) => {
+        if (event.target.closest('[data-action="clear-cross-filter"]')) {
+          clearCrossTypeFilter();
+          return;
+        }
+        if (event.target.closest('[data-action="open-ticker-history"]')) {
+          openTickerHistory().catch((error) => console.error(error));
+          return;
+        }
+        if (event.target.closest('[data-action="clear-ticker-filter"]')) {
+          clearTickerFilter();
+        }
+      });
+    }
+
+    const TICKER_HISTORY_COLUMNS = [
+      {
+        key: "event_date",
+        label: "Date",
+        align: "center",
+        type: "string",
+        tooltip: "Trading day the cross was detected and scored.",
+        sortValue: (row) => row.event_date || "",
+        render: (row) => `<td class="col-center">${escapeHtml(row.event_date)}</td>`,
+      },
+      {
+        key: "cross_type",
+        label: "Cross Type",
+        align: "center",
+        type: "string",
+        tooltip: "Signal type on that day: golden, death, golden_st, or death_st.",
+        sortValue: (row) => row.cross_type || "",
+        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(row.cross_type)}</td>`,
+      },
+      {
+        key: "recommendation",
+        label: "Recommendation",
+        align: "center",
+        type: "rank",
+        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
+        sortValue: (row) => recommendationRank(row),
+        render: (row) => {
+          const label = recommendationLabel(row);
+          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
+          return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
+        },
+      },
+      {
+        key: "probability",
+        label: "Probability %",
+        align: "center",
+        type: "number",
+        tooltip: "Model-estimated probability that the setup meets the quality threshold.",
+        sortValue: (row) => probabilityPercent(row.probability),
+        render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
+      },
+      {
+        key: "entry_price",
+        label: "Entry Price",
+        align: "center",
+        type: "number",
+        tooltip: "Modeled entry price for the setup.",
+        sortValue: (row) => numericField(row, "entry_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
+      },
+      {
+        key: "prudent_tp_price",
+        label: "Prudent Profit Price",
+        align: "center",
+        type: "number",
+        tooltip: "Conservative take-profit price target from the model.",
+        sortValue: (row) => numericField(row, "prudent_tp_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
+      },
+    ];
+
+    function manifestDatesForArchive() {
+      const dates = [...state.manifest.dates];
+      if (state.latestDate && !dates.includes(state.latestDate)) {
+        dates.push(state.latestDate);
+      }
+      return [...new Set(dates)].sort();
+    }
+
+    async function ensurePredictionsArchive(onProgress) {
+      if (state.dailyPredictionsCache) return;
+
+      const dates = manifestDatesForArchive();
+      state.dailyPredictionsCache = new Map();
+      const batchSize = 12;
+
+      for (let i = 0; i < dates.length; i += batchSize) {
+        const batch = dates.slice(i, i + batchSize);
+        if (onProgress) onProgress(Math.min(i + batch.length, dates.length), dates.length);
+
+        await Promise.all(batch.map(async (date) => {
+          if (state.dailyPredictionsCache.has(date)) return;
+          try {
+            const path = date === state.latestDate
+              ? "latest/trading_predictions.csv"
+              : dailyCsvPaths(date).predictions;
+            const rows = parseCsv(await loadText(path, state.cacheKey));
+            state.dailyPredictionsCache.set(date, rows);
+          } catch {
+            state.dailyPredictionsCache.set(date, []);
+          }
+        }));
+      }
+    }
+
+    function buildTickerHistory(ticker) {
+      const normalized = normalizeTicker(ticker);
+      const results = [];
+
+      for (const rows of state.dailyPredictionsCache.values()) {
+        for (const row of rows) {
+          if (normalizeTicker(row.ticker) !== normalized) continue;
+          results.push({
+            ...row,
+            event_date: String(row.event_date || "").slice(0, 10),
+          });
+        }
+      }
+
+      return results;
+    }
+
+    function renderTickerStatus() {
+      const status = document.getElementById("ticker-status");
+      const clearButton = document.getElementById("ticker-filter-clear");
+      const ticker = normalizeTicker(state.tickerFilter);
+
+      clearButton.hidden = !ticker;
+
+      if (!ticker) {
+        status.hidden = true;
+        status.innerHTML = "";
+        return;
+      }
+
+      status.hidden = false;
+      const day = escapeHtml(state.selectedDate || "");
+      const onDay = tickerCountsOnSelectedDay();
+      const parts = [];
+
+      if (onDay.crosses || onDay.predictions) {
+        const bits = [];
+        if (onDay.crosses) bits.push(`${onDay.crosses} cross${onDay.crosses === 1 ? "" : "es"}`);
+        if (onDay.predictions) bits.push(`${onDay.predictions} prediction${onDay.predictions === 1 ? "" : "s"}`);
+        parts.push(
+          `<strong>${escapeHtml(ticker)}</strong> on <strong>${day}</strong>: ${bits.join(" · ")}`
+        );
+      } else {
+        parts.push(
+          `<strong>${escapeHtml(ticker)}</strong> is not on <strong>${day}</strong>. ` +
+          "Tables below are empty for this day."
+        );
+      }
+
+      if (state.tickerHistoryOpen) {
+        parts.push(
+          '<button type="button" data-action="close-ticker-history">Hide cross history</button>'
+        );
+      } else {
+        parts.push(
+          '<button type="button" data-action="open-ticker-history">View cross history (all dates)</button>'
+        );
+      }
+
+      parts.push('<button type="button" data-action="clear-ticker-filter">Clear ticker filter</button>');
+      status.innerHTML = parts.join(" · ");
+    }
+
+    function renderTickerHistoryPanel() {
+      const panel = document.getElementById("ticker-history-panel");
+      const table = document.getElementById("ticker-history-table");
+      const intro = document.getElementById("ticker-history-intro");
+      const heading = document.getElementById("ticker-history-heading");
+      const ticker = normalizeTicker(state.tickerFilter);
+
+      if (!state.tickerHistoryOpen || !ticker) {
+        panel.hidden = true;
+        table.innerHTML = "";
+        intro.textContent = "";
+        return;
+      }
+
+      panel.hidden = false;
+      heading.textContent = `${ticker} cross history`;
+      intro.innerHTML =
+        `All archived dates for <strong>${escapeHtml(ticker)}</strong>. ` +
+        `Tables above still show <strong>${escapeHtml(state.selectedDate || "")}</strong> only. ` +
+        "Click a row to jump to that trading day.";
+
+      if (state.tickerHistoryLoading) {
+        table.innerHTML = "<p>Loading archive…</p>";
+        return;
+      }
+
+      if (!state.tickerHistory.length) {
+        table.innerHTML = `<p class="empty-filter-msg">No cross history found for <strong>${escapeHtml(ticker)}</strong>.</p>`;
+        return;
+      }
+
+      table.innerHTML = renderDataTable(
+        "tickerHistory",
+        TICKER_HISTORY_COLUMNS,
+        state.tickerHistory,
+        state.sort.tickerHistory,
+        (row) => {
+          const classes = ["row-clickable"];
+          if (row.event_date === state.selectedDate) classes.push("row-selected-day");
+          if (isConsider(row.recommendation, row.probability)) classes.push("row-consider");
+          else classes.push("row-avoid");
+          return classes.join(" ");
+        }
+      );
+    }
+
+    async function loadTickerHistory() {
+      const ticker = normalizeTicker(state.tickerFilter);
+      if (!ticker) {
+        state.tickerHistory = [];
+        return;
+      }
+
+      state.tickerHistoryLoading = true;
+      renderTickerHistoryPanel();
+
+      try {
+        await ensurePredictionsArchive((loaded, total) => {
+          document.getElementById("ticker-history-intro").innerHTML =
+            `Loading archive (${loaded}/${total} days) for <strong>${escapeHtml(ticker)}</strong>. ` +
+            `Tables above still show <strong>${escapeHtml(state.selectedDate || "")}</strong> only.`;
+        });
+        state.tickerHistory = buildTickerHistory(ticker);
+      } catch (error) {
+        console.error(error);
+        state.tickerHistory = [];
+      } finally {
+        state.tickerHistoryLoading = false;
+        renderTickerStatus();
+        renderTickerHistoryPanel();
+      }
+    }
+
+    async function openTickerHistory() {
+      const ticker = normalizeTicker(state.tickerFilter);
+      if (!ticker) return;
+      state.tickerHistoryOpen = true;
+      renderTickerStatus();
+      updateDashboardUrl();
+      await loadTickerHistory();
+      document.getElementById("ticker-history-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function closeTickerHistory() {
+      state.tickerHistoryOpen = false;
+      renderTickerStatus();
+      renderTickerHistoryPanel();
+      updateDashboardUrl();
+    }
+
+    function applyTickerFilter(rawTicker) {
+      const ticker = normalizeTicker(rawTicker);
+      const input = document.getElementById("ticker-filter");
+      input.value = ticker;
+      state.tickerFilter = ticker;
+
+      if (!ticker) {
+        state.tickerHistoryOpen = false;
+        state.tickerHistory = [];
+      }
+
+      renderTickerStatus();
+      renderTables();
+      renderTickerHistoryPanel();
+      updateDashboardUrl();
+    }
+
+    function clearTickerFilter() {
+      state.tickerFilter = "";
+      state.tickerHistoryOpen = false;
+      state.tickerHistory = [];
+      document.getElementById("ticker-filter").value = "";
+      renderTickerStatus();
+      renderTables();
+      renderTickerHistoryPanel();
+      updateDashboardUrl();
+    }
+
+    function bindTickerFilter() {
+      const input = document.getElementById("ticker-filter");
+      const applyButton = document.getElementById("ticker-filter-apply");
+      const clearButton = document.getElementById("ticker-filter-clear");
+      const status = document.getElementById("ticker-status");
+      const historyTable = document.getElementById("ticker-history-table");
+
+      applyButton.addEventListener("click", () => applyTickerFilter(input.value));
+      input.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        event.preventDefault();
+        applyTickerFilter(input.value);
+      });
+      clearButton.addEventListener("click", clearTickerFilter);
+
+      status.addEventListener("click", (event) => {
+        if (event.target.closest('[data-action="open-ticker-history"]')) {
+          openTickerHistory().catch((error) => console.error(error));
+          return;
+        }
+        if (event.target.closest('[data-action="close-ticker-history"]')) {
+          closeTickerHistory();
+          return;
+        }
+        if (event.target.closest('[data-action="clear-ticker-filter"]')) {
+          clearTickerFilter();
+        }
+      });
+
+      historyTable.addEventListener("click", (event) => {
+        const row = event.target.closest("tbody tr");
+        if (!row || state.tickerHistoryLoading || !state.tickerHistory.length) return;
+
+        const rows = sortRows(
+          state.tickerHistory,
+          getColumn(TICKER_HISTORY_COLUMNS, state.sort.tickerHistory.key),
+          state.sort.tickerHistory.dir
+        );
+        const index = Array.from(row.parentElement.children).indexOf(row);
+        const historyRow = rows[index];
+        if (!historyRow?.event_date) return;
+
+        document.getElementById("date-picker").value = historyRow.event_date;
+        loadTradingDay(historyRow.event_date).catch(showLoadError);
       });
     }
 
@@ -1105,8 +1779,10 @@
       bindPredictionsToggle();
     }
 
-    function bindTableSort(containerId, tableName, getColumns) {
+    function bindTableSort(containerId, tableName, getColumns, onSort) {
       const container = document.getElementById(containerId);
+      const rerender = onSort || (() => renderTables());
+
       container.addEventListener("click", (event) => {
         const header = event.target.closest("th[data-sort-key]");
         if (!header || header.dataset.table !== tableName) return;
@@ -1120,7 +1796,7 @@
           state.sort[tableName].key = key;
           state.sort[tableName].dir = (col.type === "string" || col.type === "rank") ? "asc" : "desc";
         }
-        renderTables();
+        rerender();
       });
 
       container.addEventListener("keydown", (event) => {
@@ -1190,7 +1866,10 @@
       document.getElementById("summary-stats").innerHTML =
         renderSummary(state.crosses, state.predictions);
       renderTypeFilters();
+      renderActiveFilterBar();
+      renderTickerStatus();
       renderTables();
+      renderTickerHistoryPanel();
     }
 
     async function loadTradingDay(date) {
@@ -1230,19 +1909,14 @@
         }
 
         const params = new URLSearchParams(location.search);
-        const tickerQuery = params.get("q");
-        if (tickerQuery && tickerQuery.trim()) {
-          location.replace(
-            `ticker-history.html?ticker=${encodeURIComponent(tickerQuery.trim())}`
-          );
-          return;
-        }
-
+        const initialTicker = normalizeTicker(params.get("ticker") || params.get("q") || "");
         const initialDay = params.get("day");
         const startDate = initialDay && state.manifest.dates.includes(initialDay)
           ? initialDay
           : state.latestDate;
-        state.showAllPredictions = isTruthyParam(params.get("consider"));
+        state.showAllPredictions = parseShowAllPredictionsFromUrl(params);
+        state.tickerFilter = initialTicker;
+        state.tickerHistoryOpen = isTruthyParam(params.get("history")) && !!initialTicker;
 
         populateDatePicker(state.manifest.dates, startDate);
 
@@ -1252,10 +1926,22 @@
 
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns);
+        bindTableSort("ticker-history-table", "tickerHistory", () => TICKER_HISTORY_COLUMNS, renderTickerHistoryPanel);
         bindTypeFilters();
+        bindActiveFilterBar();
+        bindFilterClearInline();
+        bindTickerFilter();
+
+        if (initialTicker) {
+          document.getElementById("ticker-filter").value = initialTicker;
+        }
 
         await loadTradingDay(startDate);
         document.getElementById("date-picker").value = startDate;
+
+        if (state.tickerHistoryOpen) {
+          await loadTickerHistory();
+        }
       } catch (e) {
         showLoadError(e);
       }
@@ -1267,6 +1953,7 @@
         "Could not load data yet. Browse CSV files in the repository.";
       document.getElementById("summary-stats").innerHTML = "";
       document.getElementById("type-filters").innerHTML = "";
+      document.getElementById("active-filter-bar-wrap").hidden = true;
       document.getElementById("crosses-table").innerHTML = "";
       document.getElementById("predictions-table").innerHTML = "";
     }
