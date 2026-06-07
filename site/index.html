@@ -93,39 +93,6 @@
       border-color: rgba(61, 158, 255, 0.35);
       color: var(--accent);
     }
-    .ticker-status {
-      margin-bottom: 1.25rem;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .ticker-status[hidden] { display: none; }
-    .ticker-status strong { color: var(--text); }
-    .ticker-status button {
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      color: var(--accent);
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    .ticker-status button:hover { color: var(--text); }
-    .ticker-history-panel { margin-bottom: 1.5rem; }
-    .ticker-history-panel[hidden] { display: none; }
-    .ticker-history-intro {
-      margin: 0 0 0.75rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-    .data-table tbody tr.row-selected-day {
-      box-shadow: inset 3px 0 0 var(--accent);
-    }
-    .data-table tbody tr.row-clickable { cursor: pointer; }
     @media (max-width: 720px) {
       .control-divider { display: none; }
     }
@@ -503,17 +470,9 @@
         <label for="ticker-search">Ticker history</label>
         <input id="ticker-search" type="search" placeholder="e.g. REGN" autocomplete="off" spellcheck="false" aria-label="Search ticker cross history" />
         <button type="button" id="ticker-search-btn">Search</button>
-        <button type="button" id="ticker-search-clear" hidden>Clear</button>
-        <span class="control-hint">All archived dates — separate from the trading day view below</span>
+        <span class="control-hint">Opens full cross history on a separate page</span>
       </div>
     </div>
-    <div class="ticker-status" id="ticker-status" hidden></div>
-
-    <section class="card ticker-history-panel" id="ticker-history-panel" hidden>
-      <h2 id="ticker-history-heading">Cross history</h2>
-      <p class="ticker-history-intro" id="ticker-history-intro"></p>
-      <div class="table-wrap" id="ticker-history-table"></div>
-    </section>
 
     <div class="cards">
       <div class="card quick-links">
@@ -522,7 +481,7 @@
         <p><a id="link-crosses" href="latest/detected_crosses.csv">Today's Detected Crosses (CSV)</a></p>
         <p><a href="historical-archive.html">Historical Crosses and Predictions</a></p>
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
-        <p><a href="ticker-history.html">Ticker history (full page)</a></p>
+        <p><a href="ticker-history.html">Ticker history search</a></p>
       </div>
       <div class="card">
         <h2>Summary</h2>
@@ -644,14 +603,9 @@
       predictions: [],
       showAllPredictions: false,
       activeCrossTypes: new Set(CROSS_TYPES),
-      tickerSearch: "",
-      tickerHistory: [],
-      tickerHistoryLoading: false,
-      dailyPredictionsCache: null,
       sort: {
         crosses: { key: "market_cap", dir: "desc" },
         predictions: { key: "probability", dir: "desc" },
-        tickerHistory: { key: "event_date", dir: "desc" },
       },
     };
 
@@ -701,14 +655,7 @@
 
       params.delete("consider");
       params.delete("q");
-
-      const ticker = normalizeTicker(state.tickerSearch);
-      if (ticker) {
-        params.set("ticker", ticker);
-      } else {
-        params.delete("ticker");
-      }
-
+      params.delete("ticker");
       params.delete("history");
 
       const qs = params.toString();
@@ -841,17 +788,6 @@
 
     function normalizeTicker(value) {
       return String(value ?? "").trim().toUpperCase();
-    }
-
-    function tickerHistoryOnSelectedDay() {
-      const day = state.selectedDate || "";
-      return state.tickerHistory.filter((row) => row.event_date === day);
-    }
-
-    function recommendationLabel(row) {
-      if (isConsider(row.recommendation, row.probability)) return "CONSIDER";
-      if (displayRecommendation(row.recommendation) === "CONSIDER") return "AVOID";
-      return displayRecommendation(row.recommendation) || "—";
     }
 
     function numericField(row, ...keys) {
@@ -1019,290 +955,25 @@
       });
     }
 
-    const TICKER_HISTORY_COLUMNS = [
-      {
-        key: "event_date",
-        label: "Date",
-        align: "center",
-        type: "string",
-        tooltip: "Trading day the cross was detected and scored.",
-        sortValue: (row) => row.event_date || "",
-        render: (row) => `<td class="col-center">${escapeHtml(row.event_date)}</td>`,
-      },
-      {
-        key: "cross_type",
-        label: "Cross Type",
-        align: "center",
-        type: "string",
-        tooltip: "Signal type on that day: golden, death, golden_st, or death_st.",
-        sortValue: (row) => row.cross_type || "",
-        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(row.cross_type)}</td>`,
-      },
-      {
-        key: "recommendation",
-        label: "Recommendation",
-        align: "center",
-        type: "rank",
-        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
-        sortValue: (row) => recommendationRank(row),
-        render: (row) => {
-          const label = recommendationLabel(row);
-          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
-          return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
-        },
-      },
-      {
-        key: "probability",
-        label: "Probability %",
-        align: "center",
-        type: "number",
-        tooltip: "Model-estimated probability that the setup meets the quality threshold.",
-        sortValue: (row) => probabilityPercent(row.probability),
-        render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
-      },
-      {
-        key: "entry_price",
-        label: "Entry Price",
-        align: "center",
-        type: "number",
-        tooltip: "Modeled entry price for the setup.",
-        sortValue: (row) => numericField(row, "entry_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
-      },
-      {
-        key: "prudent_tp_price",
-        label: "Prudent Profit Price",
-        align: "center",
-        type: "number",
-        tooltip: "Conservative take-profit price target from the model.",
-        sortValue: (row) => numericField(row, "prudent_tp_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
-      },
-    ];
-
-    function manifestDatesForArchive() {
-      const dates = [...state.manifest.dates];
-      if (state.latestDate && !dates.includes(state.latestDate)) {
-        dates.push(state.latestDate);
-      }
-      return [...new Set(dates)].sort();
-    }
-
-    async function ensurePredictionsArchive(onProgress) {
-      if (state.dailyPredictionsCache) return;
-
-      const dates = manifestDatesForArchive();
-      state.dailyPredictionsCache = new Map();
-      const batchSize = 12;
-
-      for (let i = 0; i < dates.length; i += batchSize) {
-        const batch = dates.slice(i, i + batchSize);
-        if (onProgress) onProgress(Math.min(i + batch.length, dates.length), dates.length);
-
-        await Promise.all(batch.map(async (date) => {
-          if (state.dailyPredictionsCache.has(date)) return;
-          try {
-            const path = date === state.latestDate
-              ? "latest/trading_predictions.csv"
-              : dailyCsvPaths(date).predictions;
-            const rows = parseCsv(await loadText(path, state.cacheKey));
-            state.dailyPredictionsCache.set(date, rows);
-          } catch {
-            state.dailyPredictionsCache.set(date, []);
-          }
-        }));
-      }
-    }
-
-    function buildTickerHistory(ticker) {
-      const normalized = normalizeTicker(ticker);
-      const results = [];
-
-      for (const rows of state.dailyPredictionsCache.values()) {
-        for (const row of rows) {
-          if (normalizeTicker(row.ticker) !== normalized) continue;
-          results.push({
-            ...row,
-            event_date: String(row.event_date || "").slice(0, 10),
-          });
-        }
-      }
-
-      return results;
-    }
-
-    function renderTickerStatus() {
-      const status = document.getElementById("ticker-status");
-      const clearButton = document.getElementById("ticker-search-clear");
-      const ticker = normalizeTicker(state.tickerSearch);
-
-      clearButton.hidden = !ticker;
-
-      if (!ticker) {
-        status.hidden = true;
-        status.innerHTML = "";
-        return;
-      }
-
-      status.hidden = false;
-      const day = escapeHtml(state.selectedDate || "");
-      const parts = [];
-
-      if (state.tickerHistoryLoading) {
-        parts.push(`Loading cross history for <strong>${escapeHtml(ticker)}</strong>…`);
-        status.innerHTML = parts.join(" ");
-        return;
-      }
-
-      if (!state.tickerHistory.length) {
-        parts.push(`No cross history found for <strong>${escapeHtml(ticker)}</strong>.`);
-        status.innerHTML = parts.join(" ");
-        return;
-      }
-
-      const label = state.tickerHistory.length === 1 ? "event" : "events";
-      const onSelectedDay = tickerHistoryOnSelectedDay();
-      parts.push(
-        `<strong>${escapeHtml(ticker)}</strong> history: ${state.tickerHistory.length} ${label} across all dates.`
-      );
-
-      if (onSelectedDay.length) {
-        const dayLabel = onSelectedDay.length === 1 ? "event" : "events";
-        parts.push(
-          `${onSelectedDay.length} ${dayLabel} on the selected trading day (<strong>${day}</strong>, highlighted below).`
-        );
-      } else {
-        parts.push(
-          `None on the selected trading day (<strong>${day}</strong>) — daily tables below are unchanged.`
-        );
-      }
-
-      parts.push("Click a history row to jump to that trading day.");
-      status.innerHTML = parts.join(" ");
-    }
-
-    function renderTickerHistoryPanel() {
-      const panel = document.getElementById("ticker-history-panel");
-      const table = document.getElementById("ticker-history-table");
-      const intro = document.getElementById("ticker-history-intro");
-      const heading = document.getElementById("ticker-history-heading");
-      const ticker = normalizeTicker(state.tickerSearch);
-
-      if (!ticker) {
-        panel.hidden = true;
-        table.innerHTML = "";
-        intro.textContent = "";
-        return;
-      }
-
-      panel.hidden = false;
-      heading.textContent = `${ticker} cross history (all dates)`;
-      intro.innerHTML =
-        `Archived cross detections and model scores for <strong>${escapeHtml(ticker)}</strong>. ` +
-        `This table can include many dates. The daily dashboard below still shows ` +
-        `<strong>${escapeHtml(state.selectedDate || "")}</strong> only.`;
-
-      if (state.tickerHistoryLoading) {
-        table.innerHTML = "<p>Loading archive…</p>";
-        return;
-      }
-
-      if (!state.tickerHistory.length) {
-        table.innerHTML = `<p class="empty-filter-msg">No cross history found for <strong>${escapeHtml(ticker)}</strong>.</p>`;
-        return;
-      }
-
-      table.innerHTML = renderDataTable(
-        "tickerHistory",
-        TICKER_HISTORY_COLUMNS,
-        state.tickerHistory,
-        state.sort.tickerHistory,
-        (row) => {
-          const classes = ["row-clickable"];
-          if (row.event_date === state.selectedDate) classes.push("row-selected-day");
-          if (isConsider(row.recommendation, row.probability)) classes.push("row-consider");
-          else classes.push("row-avoid");
-          return classes.join(" ");
-        }
-      );
-    }
-
-    async function searchTickerHistory(rawTicker) {
+    function goToTickerHistory(rawTicker) {
       const ticker = normalizeTicker(rawTicker);
       const input = document.getElementById("ticker-search");
-      input.value = ticker;
-      state.tickerSearch = ticker;
-      updateDashboardUrl();
-
       if (!ticker) {
-        state.tickerHistory = [];
-        renderTickerStatus();
-        renderTickerHistoryPanel();
+        input.focus();
         return;
       }
-
-      state.tickerHistoryLoading = true;
-      state.tickerHistory = [];
-      renderTickerStatus();
-      renderTickerHistoryPanel();
-
-      try {
-        await ensurePredictionsArchive((loaded, total) => {
-          document.getElementById("ticker-history-intro").innerHTML =
-            `Loading archive (${loaded}/${total} days) for <strong>${escapeHtml(ticker)}</strong>. ` +
-            `Daily tables below still show <strong>${escapeHtml(state.selectedDate || "")}</strong> only.`;
-        });
-        state.tickerHistory = buildTickerHistory(ticker);
-      } catch (error) {
-        console.error(error);
-        state.tickerHistory = [];
-      } finally {
-        state.tickerHistoryLoading = false;
-        renderTickerStatus();
-        renderTickerHistoryPanel();
-      }
+      location.href = `ticker-history.html?ticker=${encodeURIComponent(ticker)}`;
     }
 
-    function clearTickerHistory() {
-      state.tickerSearch = "";
-      state.tickerHistory = [];
-      document.getElementById("ticker-search").value = "";
-      renderTickerStatus();
-      renderTickerHistoryPanel();
-      updateDashboardUrl();
-    }
-
-    function bindTickerHistory() {
+    function bindTickerHistorySearch() {
       const input = document.getElementById("ticker-search");
       const searchButton = document.getElementById("ticker-search-btn");
-      const clearButton = document.getElementById("ticker-search-clear");
-      const historyTable = document.getElementById("ticker-history-table");
 
-      searchButton.addEventListener("click", () => {
-        searchTickerHistory(input.value).catch((error) => console.error(error));
-      });
+      searchButton.addEventListener("click", () => goToTickerHistory(input.value));
       input.addEventListener("keydown", (event) => {
         if (event.key !== "Enter") return;
         event.preventDefault();
-        searchTickerHistory(input.value).catch((error) => console.error(error));
-      });
-      clearButton.addEventListener("click", clearTickerHistory);
-
-      historyTable.addEventListener("click", (event) => {
-        const row = event.target.closest("tbody tr");
-        if (!row || state.tickerHistoryLoading || !state.tickerHistory.length) return;
-
-        const rows = sortRows(
-          state.tickerHistory,
-          getColumn(TICKER_HISTORY_COLUMNS, state.sort.tickerHistory.key),
-          state.sort.tickerHistory.dir
-        );
-        const index = Array.from(row.parentElement.children).indexOf(row);
-        const historyRow = rows[index];
-        if (!historyRow?.event_date) return;
-
-        document.getElementById("date-picker").value = historyRow.event_date;
-        loadTradingDay(historyRow.event_date).catch(showLoadError);
+        goToTickerHistory(input.value);
       });
     }
 
@@ -1786,9 +1457,7 @@
         renderSummary(state.crosses, state.predictions);
       renderTypeFilters();
       renderActiveFilterBar();
-      renderTickerStatus();
       renderTables();
-      renderTickerHistoryPanel();
     }
 
     async function loadTradingDay(date) {
@@ -1829,12 +1498,16 @@
 
         const params = new URLSearchParams(location.search);
         const initialTicker = normalizeTicker(params.get("ticker") || params.get("q") || "");
+        if (initialTicker) {
+          location.replace(`ticker-history.html?ticker=${encodeURIComponent(initialTicker)}`);
+          return;
+        }
+
         const initialDay = params.get("day");
         const startDate = initialDay && state.manifest.dates.includes(initialDay)
           ? initialDay
           : state.latestDate;
         state.showAllPredictions = parseShowAllPredictionsFromUrl(params);
-        state.tickerSearch = initialTicker;
 
         populateDatePicker(state.manifest.dates, startDate);
 
@@ -1844,22 +1517,13 @@
 
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns);
-        bindTableSort("ticker-history-table", "tickerHistory", () => TICKER_HISTORY_COLUMNS, renderTickerHistoryPanel);
         bindTypeFilters();
         bindActiveFilterBar();
         bindFilterClearInline();
-        bindTickerHistory();
-
-        if (initialTicker) {
-          document.getElementById("ticker-search").value = initialTicker;
-        }
+        bindTickerHistorySearch();
 
         await loadTradingDay(startDate);
         document.getElementById("date-picker").value = startDate;
-
-        if (initialTicker) {
-          await searchTickerHistory(initialTicker);
-        }
       } catch (e) {
         showLoadError(e);
       }
