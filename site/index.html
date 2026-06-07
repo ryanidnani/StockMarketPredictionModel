@@ -152,50 +152,6 @@
       color: var(--text);
     }
     .type-chip:not(.is-active) { opacity: 0.72; }
-    .active-filter-bar-wrap { margin-bottom: 1.5rem; }
-    .active-filter-bar-wrap[hidden] { display: none; }
-    .active-filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.55rem 0.75rem;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      background: rgba(61, 158, 255, 0.08);
-      border: 1px solid rgba(61, 158, 255, 0.2);
-      font-size: 0.84rem;
-    }
-    .active-filter-bar-label {
-      color: var(--muted);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .active-filter-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      flex: 1 1 auto;
-    }
-    .active-filter-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.28rem 0.55rem 0.28rem 0.65rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      font: inherit;
-      font-size: 0.78rem;
-      cursor: pointer;
-    }
-    .active-filter-pill:hover { background: rgba(255, 255, 255, 0.12); }
-    .active-filter-pill span[aria-hidden="true"] {
-      font-size: 1rem;
-      line-height: 1;
-      opacity: 0.7;
-    }
-    .filter-clear-all,
     .filter-clear-inline {
       background: none;
       border: none;
@@ -206,11 +162,6 @@
       text-decoration: underline;
       font-size: inherit;
     }
-    .filter-clear-all {
-      white-space: nowrap;
-      font-size: 0.82rem;
-    }
-    .filter-clear-all:hover,
     .filter-clear-inline:hover { color: var(--text); }
     .empty-filter-msg {
       margin: 0;
@@ -401,14 +352,6 @@
       <p class="cross-filter-hint">Applies to both tables below</p>
       <div class="type-filters" id="type-filters" role="group" aria-label="Filter by Cross Type"></div>
     </section>
-
-    <div class="active-filter-bar-wrap" id="active-filter-bar-wrap" hidden>
-      <div class="active-filter-bar">
-        <span class="active-filter-bar-label">Showing Cross Types:</span>
-        <div class="active-filter-pills" id="active-filter-pills"></div>
-        <button type="button" class="filter-clear-all" id="filter-clear-all">Clear All</button>
-      </div>
-    </div>
 
     <section class="card">
       <h2>Trading Predictions to Consider</h2>
@@ -647,29 +590,8 @@
       container.innerHTML = html;
     }
 
-    function renderActiveFilterBar() {
-      const wrap = document.getElementById("active-filter-bar-wrap");
-      const pills = document.getElementById("active-filter-pills");
-
-      if (allCrossTypesActive() || state.activeCrossTypes.size === 0) {
-        wrap.hidden = true;
-        pills.innerHTML = "";
-        return;
-      }
-
-      wrap.hidden = false;
-      const types = [...state.activeCrossTypes].sort();
-      pills.innerHTML = types.map((type) => `
-        <button type="button" class="active-filter-pill ${crossClass(type)}" data-remove-type="${escapeHtml(type)}">
-          ${escapeHtml(crossTypeLabel(type))}
-          <span aria-hidden="true">×</span>
-        </button>
-      `).join("");
-    }
-
     function applyCrossFilterChange() {
       renderTypeFilters();
-      renderActiveFilterBar();
       renderTables();
     }
 
@@ -690,20 +612,6 @@
           toggleCrossType(type);
         }
         applyCrossFilterChange();
-      });
-    }
-
-    function bindActiveFilterBar() {
-      document.getElementById("active-filter-bar-wrap").addEventListener("click", (event) => {
-        const removeBtn = event.target.closest("[data-remove-type]");
-        if (removeBtn) {
-          state.activeCrossTypes.delete(removeBtn.dataset.removeType);
-          applyCrossFilterChange();
-          return;
-        }
-        if (event.target.closest("#filter-clear-all")) {
-          clearCrossTypeFilter();
-        }
       });
     }
 
@@ -1142,7 +1050,6 @@
       document.getElementById("summary-stats").innerHTML =
         renderSummary(state.crosses, state.predictions);
       renderTypeFilters();
-      renderActiveFilterBar();
       renderTables();
     }
 
@@ -1203,7 +1110,6 @@
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS, () => state.sort, renderTables);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns, () => state.sort, renderTables);
         bindTypeFilters();
-        bindActiveFilterBar();
         bindFilterClearInline();
         bindTickerHistorySearch();
         bindDefsModal();
@@ -1221,7 +1127,6 @@
         "Could not load data yet. Browse CSV files in the repository.";
       document.getElementById("summary-stats").innerHTML = "";
       document.getElementById("type-filters").innerHTML = "";
-      document.getElementById("active-filter-bar-wrap").hidden = true;
       document.getElementById("crosses-table").innerHTML = "";
       document.getElementById("predictions-table").innerHTML = "";
     }
