@@ -66,11 +66,6 @@
 </head>
 <body>
   <div class="wrap">
-    <p class="disclaimer">
-      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
-      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
-    </p>
-
     <h1>Ticker History Search</h1>
     <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol. You can also start a search from the <a href="index.html">Daily Dashboard</a> toolbar.</p>
 
@@ -137,6 +132,7 @@
         label: "Date",
         align: "center",
         type: "string",
+        tooltip: "Trading day the cross was detected and scored.",
         sortValue: (row) => row.event_date || "",
         render: (row) => `<td class="col-center">${escapeHtml(row.event_date)}</td>`,
       },
@@ -145,6 +141,7 @@
         label: "Cross Type",
         align: "center",
         type: "string",
+        tooltip: "Signal type on that day: Golden, Death, Golden ST, or Death ST.",
         sortValue: (row) => row.cross_type || "",
         render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(crossTypeLabel(row.cross_type))}</td>`,
       },
@@ -153,6 +150,7 @@
         label: "Recommendation",
         align: "center",
         type: "rank",
+        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
         sortValue: (row) => recommendationRank(row),
         render: (row) => {
           const label = recommendationLabel(row);
@@ -165,6 +163,7 @@
         label: "Probability %",
         align: "center",
         type: "number",
+        tooltip: "Model-estimated probability that the setup meets the quality threshold.",
         sortValue: (row) => probabilityPercent(row.probability),
         render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
       },
@@ -173,6 +172,7 @@
         label: "Entry Price",
         align: "center",
         type: "number",
+        tooltip: "Closing price on the trading day the cross was detected.",
         sortValue: (row) => numericField(row, "entry_price"),
         render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
       },
@@ -181,6 +181,7 @@
         label: "Prudent Profit Price",
         align: "center",
         type: "number",
+        tooltip: "Conservative take-profit price target from the model.",
         sortValue: (row) => numericField(row, "prudent_tp_price"),
         render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
       },
