@@ -316,14 +316,13 @@
       const isSorted = sortState.key === col.key;
       const indicator = isSorted ? (sortState.dir === "asc" ? "▲" : "▼") : "↕";
       header += `<th
-        class="${alignClass(col.align)} sortable${col.tooltip ? " has-tooltip" : ""}${isSorted ? " is-sorted" : ""}"
+        class="${alignClass(col.align)} sortable${isSorted ? " is-sorted" : ""}"
         data-table="${tableName}"
         data-sort-key="${col.key}"
-        ${col.tooltip ? `data-tooltip="${escapeHtml(col.tooltip)}"` : ""}
         tabindex="0"
         style="--col-width:${colWidth}"
         aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
-      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator" aria-hidden="true">${indicator}</span></span></th>`;
+      ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
     }
 
     let body = "";
@@ -341,49 +340,13 @@
     return `<table class="data-table" style="--table-min-width:${tableWidth}">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
-  function closeColumnTooltips(scope) {
-    (scope || document).querySelectorAll("th.is-tooltip-open").forEach((header) => {
-      header.classList.remove("is-tooltip-open");
-    });
-  }
-
-  let columnTooltipGlobalsBound = false;
-
-  function bindColumnTooltipGlobals() {
-    if (columnTooltipGlobalsBound) return;
-    columnTooltipGlobalsBound = true;
-
-    document.addEventListener("click", (event) => {
-      if (event.target.closest(".data-table th.has-tooltip .th-label")) return;
-      closeColumnTooltips();
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeColumnTooltips();
-    });
-  }
-
   function bindTableSort(containerId, tableName, getColumns, getSortState, onSort) {
     const container = document.getElementById(containerId);
     const rerender = onSort || (() => {});
-    bindColumnTooltipGlobals();
 
     container.addEventListener("click", (event) => {
       const header = event.target.closest("th[data-sort-key]");
       if (!header || header.dataset.table !== tableName) return;
-
-      if (header.classList.contains("has-tooltip") && event.target.closest(".th-label")) {
-        event.preventDefault();
-        event.stopPropagation();
-        const willOpen = !header.classList.contains("is-tooltip-open");
-        closeColumnTooltips(container);
-        if (willOpen) header.classList.add("is-tooltip-open");
-        return;
-      }
-
-      if (!event.target.closest(".sort-indicator")) return;
-
-      closeColumnTooltips(container);
 
       const columns = getColumns();
       const sortState = getSortState()[tableName];
@@ -403,7 +366,7 @@
       const header = event.target.closest("th[data-sort-key]");
       if (!header || header.dataset.table !== tableName) return;
       event.preventDefault();
-      header.querySelector(".sort-indicator")?.click();
+      header.click();
     });
   }
 

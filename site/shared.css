@@ -142,73 +142,16 @@ a:hover { text-decoration: underline; }
   line-height: 1.25;
 }
 
-.data-table th.has-tooltip .th-label {
-  cursor: help;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.35);
-}
-
 .sort-indicator {
   flex: 0 0 auto;
   font-size: 0.65rem;
   line-height: 1;
   opacity: 0.45;
-  cursor: pointer;
-  padding: 0.15rem;
-  margin: -0.15rem;
 }
 
 .data-table th.sortable.is-sorted .sort-indicator {
   opacity: 1;
   color: var(--accent);
-}
-
-.data-table th.has-tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 50%;
-  top: calc(100% + 0.45rem);
-  bottom: auto;
-  transform: translateX(-50%);
-  width: max-content;
-  max-width: 280px;
-  padding: 0.45rem 0.6rem;
-  border-radius: 6px;
-  background: #0b1016;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text);
-  font-size: 0.72rem;
-  font-weight: 400;
-  line-height: 1.35;
-  white-space: normal;
-  text-align: left;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s ease;
-  z-index: 8;
-}
-
-.data-table th.has-tooltip.is-tooltip-open {
-  z-index: 8;
-}
-
-.data-table thead th:first-child.has-tooltip.is-tooltip-open {
-  z-index: 9;
-}
-
-.data-table th.has-tooltip:hover::after,
-.data-table th.has-tooltip.is-tooltip-open::after {
-  opacity: 1;
-}
-
-@media (hover: none) {
-  .data-table th.has-tooltip:hover::after {
-    opacity: 0;
-  }
-
-  .data-table th.has-tooltip.is-tooltip-open::after {
-    opacity: 1;
-  }
 }
 
 .data-table td {
