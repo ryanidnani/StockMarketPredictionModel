@@ -5,55 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ticker History Search · Stock Market Predictions Model</title>
   <meta name="description" content="Search archived golden cross and death cross model scores by ticker symbol." />
+  <link rel="stylesheet" href="shared.css" />
   <style>
-    :root {
-      --bg: #0f1419;
-      --card: #1a2332;
-      --text: #e7ecf3;
-      --muted: #8b9cb3;
-      --accent: #3d9eff;
-      --green: #3dd68c;
-      --red: #f07178;
-      --gold: #e6c07b;
-    }
-    * { box-sizing: border-box; }
-    body {
-      font-family: "Segoe UI", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      line-height: 1.5;
-    }
-    .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
-    h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
-    .sub { color: var(--muted); margin-bottom: 1.5rem; }
-    .quick-links p { margin: 0.45rem 0; }
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 1.25rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 1.5rem;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .disclaimer {
-      margin: 0 0 1.5rem;
-      padding: 1rem 1.1rem;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .disclaimer strong { color: var(--text); }
-    .defs-intro {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin: 0 0 1rem;
-    }
+    .card { margin-bottom: 1.5rem; }
     .ticker-toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -93,102 +47,6 @@
       color: var(--muted);
     }
     .ticker-meta strong { color: var(--text); font-weight: 600; }
-    .consider-threshold-note {
-      margin: 0 0 0.75rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .table-wrap {
-      overflow-x: auto;
-      margin-top: 0.5rem;
-      -webkit-overflow-scrolling: touch;
-    }
-    .data-table {
-      width: 100%;
-      min-width: 100%;
-      table-layout: fixed;
-      border-collapse: collapse;
-      font-size: 0.82rem;
-    }
-    .data-table th,
-    .data-table td {
-      padding: 0.7rem 0.45rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      vertical-align: middle;
-      text-align: center;
-    }
-    .data-table thead th {
-      background: rgba(255, 255, 255, 0.03);
-      padding-top: 0.8rem;
-      padding-bottom: 0.8rem;
-      position: relative;
-      overflow: visible;
-    }
-    .data-table tbody tr:hover { background: rgba(255, 255, 255, 0.02); }
-    .data-table th {
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.76rem;
-      line-height: 1.3;
-      white-space: normal;
-      word-break: break-word;
-    }
-    .data-table th.sortable { cursor: pointer; user-select: none; }
-    .data-table th.sortable:hover,
-    .data-table th.sortable:focus-visible { color: var(--text); outline: none; }
-    .data-table th.sortable.is-sorted { color: var(--accent); }
-    .data-table th.sortable .th-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      width: 100%;
-    }
-    .data-table th.col-left .th-inner { justify-content: flex-start; }
-    .sort-indicator { flex: 0 0 auto; font-size: 0.65rem; opacity: 0.45; }
-    .data-table th.sortable.is-sorted .sort-indicator { opacity: 1; color: var(--accent); }
-    .data-table th.has-tooltip::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      left: 50%;
-      bottom: calc(100% + 0.45rem);
-      transform: translateX(-50%);
-      width: max-content;
-      max-width: 240px;
-      padding: 0.45rem 0.6rem;
-      border-radius: 6px;
-      background: #0b1016;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text);
-      font-size: 0.72rem;
-      font-weight: 400;
-      line-height: 1.35;
-      white-space: normal;
-      text-align: left;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 5;
-    }
-    .data-table th.has-tooltip:hover::after,
-    .data-table th.has-tooltip:focus-visible::after { opacity: 1; }
-    .data-table td {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-variant-numeric: tabular-nums;
-    }
-    .data-table .col-left, .data-table th.col-left { text-align: left; }
-    .data-table .col-center, .data-table th.col-center { text-align: center; }
-    .tag-golden { color: var(--gold); }
-    .tag-death { color: var(--red); }
-    .consider { color: var(--green); }
-    .avoid { color: var(--muted); }
-    .data-table tbody tr.row-consider { box-shadow: inset 3px 0 0 var(--green); }
-    .data-table tbody tr.row-avoid { opacity: 0.62; }
-    .data-table tbody tr.row-avoid:hover { opacity: 0.82; }
-    .data-table tbody tr.row-clickable { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -199,7 +57,7 @@
     </p>
 
     <h1>Ticker History Search</h1>
-    <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol. You can also start a search from the <a href="index.html">daily dashboard</a> toolbar.</p>
+    <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol. You can also start a search from the <a href="index.html">Daily Dashboard</a> toolbar.</p>
 
     <section class="card quick-links">
       <h2>Quick Links</h2>
@@ -224,15 +82,28 @@
     </section>
   </div>
 
+  <script src="shared.js"></script>
   <script>
-    const REPO = "ryanidnani/StockMarketPredictionModel";
-    const onPages = location.hostname.endsWith("github.io");
-    const CROSS_TYPE_LABELS = {
-      golden: "Golden",
-      death: "Death",
-      golden_st: "Golden ST",
-      death_st: "Death ST",
-    };
+    const {
+      escapeHtml,
+      loadText,
+      parseCsv,
+      crossClass,
+      crossTypeLabel,
+      archiveStartHint,
+      normalizeTicker,
+      isConsider,
+      recommendationRank,
+      recommendationLabel,
+      formatPrice,
+      formatProbability,
+      probabilityPercent,
+      numericField,
+      dashboardDayUrl,
+      manifestDatesForArchive,
+      renderDataTable,
+      bindTableSort,
+    } = window.GC;
 
     const state = {
       manifest: null,
@@ -244,133 +115,6 @@
       dailyPredictionsCache: null,
       sort: { tickerHistory: { key: "event_date", dir: "desc" } },
     };
-
-    function pagesBase() {
-      const segment = location.pathname.split("/").filter(Boolean)[0];
-      return segment ? `/${segment}/` : "/";
-    }
-
-    function dashboardDayUrl(date) {
-      return `${pagesBase()}index.html?day=${encodeURIComponent(date)}`;
-    }
-
-    function assetUrl(path) {
-      const clean = path.replace(/^\//, "");
-      if (onPages) return pagesBase() + clean;
-      return `https://raw.githubusercontent.com/${REPO}/main/${clean}`;
-    }
-
-    function dailyCsvPaths(date) {
-      return {
-        predictions: `data/daily/${date}/trading_predictions_${date}.csv`,
-      };
-    }
-
-    function escapeHtml(value) {
-      return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    async function loadText(path, cacheKey) {
-      const url = assetUrl(path);
-      const bust = cacheKey != null ? String(cacheKey) : String(Date.now());
-      const fetchUrl = `${url}${url.includes("?") ? "&" : "?"}v=${encodeURIComponent(bust)}`;
-      const r = await fetch(fetchUrl);
-      if (!r.ok) throw new Error(path);
-      return r.text();
-    }
-
-    function parseCsv(text) {
-      const lines = text.trim().split("\n");
-      if (lines.length < 2) return [];
-      const headers = lines[0].split(",");
-      return lines.slice(1).filter(Boolean).map((line) => {
-        const cols = line.split(",");
-        const row = {};
-        headers.forEach((h, i) => { row[h.trim()] = (cols[i] || "").trim(); });
-        return row;
-      });
-    }
-
-    function crossClass(type) {
-      if (!type) return "";
-      return type.includes("death") ? "tag-death" : "tag-golden";
-    }
-
-    function crossTypeLabel(type) {
-      if (!type || type === "—") return "—";
-      return CROSS_TYPE_LABELS[type] || type;
-    }
-
-    function archiveStartDate() {
-      if (!state.manifest?.dates?.length) return null;
-      return [...state.manifest.dates].sort()[0];
-    }
-
-    function archiveStartHint() {
-      const start = archiveStartDate();
-      return start
-        ? `Search a ticker to view cross history since ${start}. Click a row to open that day on the Daily Dashboard.`
-        : "Search a ticker to view its archived cross history. Click a row to open that day on the Daily Dashboard.";
-    }
-
-    function normalizeTicker(value) {
-      return String(value ?? "").trim().toUpperCase();
-    }
-
-    function displayRecommendation(rec) {
-      if (rec === "EXECUTE" || rec === "CONSIDER") return "CONSIDER";
-      return rec;
-    }
-
-    function probabilityPercent(value) {
-      if (value == null || value === "") return null;
-      const num = Number(value);
-      if (!Number.isFinite(num)) return null;
-      if (num > 0 && num <= 1) return num * 100;
-      return num;
-    }
-
-    function isConsider(rec, probability) {
-      const pct = probabilityPercent(probability);
-      if (pct == null || pct < 50) return false;
-      return displayRecommendation(rec) === "CONSIDER";
-    }
-
-    function recommendationRank(row) {
-      return isConsider(row.recommendation, row.probability) ? 0 : 1;
-    }
-
-    function recommendationLabel(row) {
-      if (isConsider(row.recommendation, row.probability)) return "CONSIDER";
-      if (displayRecommendation(row.recommendation) === "CONSIDER") return "AVOID";
-      return displayRecommendation(row.recommendation) || "—";
-    }
-
-    function formatPrice(value) {
-      if (value == null || value === "") return "—";
-      const num = Number(value);
-      return Number.isFinite(num) ? num.toFixed(2) : escapeHtml(value);
-    }
-
-    function formatProbability(value) {
-      const pct = probabilityPercent(value);
-      if (pct == null) return "—";
-      return pct.toFixed(2);
-    }
-
-    function numericField(row, ...keys) {
-      for (const key of keys) {
-        const value = row[key];
-        if (value == null || value === "") continue;
-        const num = Number(value);
-        if (Number.isFinite(num)) return num;
-      }
-      return null;
-    }
 
     const TICKER_HISTORY_COLUMNS = [
       {
@@ -433,100 +177,10 @@
       },
     ];
 
-    function getColumn(columns, key) {
-      return columns.find((column) => column.key === key) || columns[0];
-    }
-
-    function sortRows(rows, column, direction) {
-      const factor = direction === "asc" ? 1 : -1;
-      return [...rows].sort((left, right) => {
-        const leftValue = column.sortValue(left);
-        const rightValue = column.sortValue(right);
-        const leftEmpty = leftValue == null || leftValue === ""
-          || (column.type === "number" && !Number.isFinite(leftValue));
-        const rightEmpty = rightValue == null || rightValue === ""
-          || (column.type === "number" && !Number.isFinite(rightValue));
-
-        if (leftEmpty && rightEmpty) {
-          return String(left.ticker || "").localeCompare(String(right.ticker || ""));
-        }
-        if (leftEmpty) return 1;
-        if (rightEmpty) return -1;
-
-        if (column.type === "number" || column.type === "rank") {
-          if (leftValue === rightValue) {
-            return String(left.ticker || "").localeCompare(String(right.ticker || ""));
-          }
-          return factor * (leftValue - rightValue);
-        }
-
-        const cmp = String(leftValue).localeCompare(String(rightValue));
-        if (cmp !== 0) return factor * cmp;
-        return String(left.ticker || "").localeCompare(String(right.ticker || ""));
-      });
-    }
-
-    function evenColgroup(count) {
-      const width = (100 / count).toFixed(3);
-      let cols = "";
-      for (let i = 0; i < count; i++) {
-        cols += `<col style="width:${width}%">`;
-      }
-      return `<colgroup>${cols}</colgroup>`;
-    }
-
-    function renderDataTable(tableName, columns, rows, sortState, rowClassFn) {
-      if (!rows.length) {
-        return "<p>No rows in the selected file.</p>";
-      }
-
-      const column = getColumn(columns, sortState.key);
-      const sortedRows = sortRows(rows, column, sortState.dir);
-      const alignClass = (align) => (align === "left" ? "col-left" : "col-center");
-
-      let header = "";
-      for (const col of columns) {
-        const isSorted = sortState.key === col.key;
-        const indicator = isSorted ? (sortState.dir === "asc" ? "▲" : "▼") : "↕";
-        header += `<th
-          class="${alignClass(col.align)} sortable has-tooltip${isSorted ? " is-sorted" : ""}"
-          data-table="${tableName}"
-          data-sort-key="${col.key}"
-          data-tooltip="${escapeHtml(col.tooltip)}"
-          title="${escapeHtml(col.tooltip)}"
-          tabindex="0"
-          aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
-        ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
-      }
-
-      let body = "";
-      for (const row of sortedRows) {
-        const rowClass = rowClassFn ? rowClassFn(row) : "";
-        const eventDateAttr = row.event_date
-          ? ` data-event-date="${escapeHtml(row.event_date)}"`
-          : "";
-        body += `<tr${rowClass ? ` class="${rowClass}"` : ""}${eventDateAttr}>`;
-        for (const col of columns) {
-          body += col.render(row);
-        }
-        body += "</tr>";
-      }
-
-      return `<table class="data-table">${evenColgroup(columns.length)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
-    }
-
-    function manifestDatesForArchive() {
-      const dates = [...state.manifest.dates];
-      if (state.latestDate && !dates.includes(state.latestDate)) {
-        dates.push(state.latestDate);
-      }
-      return [...new Set(dates)].sort();
-    }
-
     async function ensurePredictionsArchive(onProgress) {
       if (state.dailyPredictionsCache) return;
 
-      const dates = manifestDatesForArchive();
+      const dates = manifestDatesForArchive(state.manifest, state.latestDate);
       state.dailyPredictionsCache = new Map();
       const batchSize = 12;
 
@@ -539,7 +193,7 @@
           try {
             const path = date === state.latestDate
               ? "latest/trading_predictions.csv"
-              : dailyCsvPaths(date).predictions;
+              : `data/daily/${date}/trading_predictions_${date}.csv`;
             const rows = parseCsv(await loadText(path, state.cacheKey));
             state.dailyPredictionsCache.set(date, rows);
           } catch {
@@ -593,7 +247,7 @@
       }
 
       if (!ticker) {
-        meta.textContent = archiveStartHint();
+        meta.textContent = archiveStartHint(state.manifest);
         table.innerHTML = "";
         return;
       }
@@ -620,7 +274,8 @@
         state.sort.tickerHistory,
         (row) => (
           isConsider(row.recommendation, row.probability) ? "row-consider row-clickable" : "row-avoid row-clickable"
-        )
+        ),
+        (row) => (row.event_date ? ` data-event-date="${escapeHtml(row.event_date)}"` : "")
       );
     }
 
@@ -665,33 +320,6 @@
       renderTickerHistory();
     }
 
-    function bindTableSort(containerId, tableName, getColumns) {
-      const container = document.getElementById(containerId);
-      container.addEventListener("click", (event) => {
-        const header = event.target.closest("th[data-sort-key]");
-        if (!header || header.dataset.table !== tableName) return;
-
-        const columns = getColumns();
-        const key = header.dataset.sortKey;
-        if (state.sort[tableName].key === key) {
-          state.sort[tableName].dir = state.sort[tableName].dir === "asc" ? "desc" : "asc";
-        } else {
-          const col = getColumn(columns, key);
-          state.sort[tableName].key = key;
-          state.sort[tableName].dir = (col.type === "string" || col.type === "rank") ? "asc" : "desc";
-        }
-        renderTickerHistory();
-      });
-
-      container.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter" && event.key !== " ") return;
-        const header = event.target.closest("th[data-sort-key]");
-        if (!header || header.dataset.table !== tableName) return;
-        event.preventDefault();
-        header.click();
-      });
-    }
-
     function bindTickerHistory() {
       const input = document.getElementById("ticker-search");
       const searchButton = document.getElementById("ticker-search-btn");
@@ -727,7 +355,13 @@
         state.cacheKey = state.manifest.updated_at || Date.now();
         state.latestDate = (await loadText("latest/as_of.txt", state.cacheKey)).trim();
 
-        bindTableSort("ticker-history-table", "tickerHistory", () => TICKER_HISTORY_COLUMNS);
+        bindTableSort(
+          "ticker-history-table",
+          "tickerHistory",
+          () => TICKER_HISTORY_COLUMNS,
+          () => state.sort,
+          renderTickerHistory
+        );
         bindTickerHistory();
         renderTickerHistory();
 

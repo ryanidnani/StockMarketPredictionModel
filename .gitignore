@@ -3,3 +3,6 @@ Thumbs.db
 .vscode/
 .idea/
 *.log
+
+# Built locally by the GitHub Pages workflow; deploy copies site/ into public/.
+public/
