@@ -124,7 +124,7 @@
   function formatProbability(value) {
     const pct = probabilityPercent(value);
     if (pct == null) return "—";
-    return pct.toFixed(2);
+    return `${pct.toFixed(2)}%`;
   }
 
   function formatPercent(value) {

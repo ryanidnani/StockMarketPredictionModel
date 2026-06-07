@@ -48,10 +48,11 @@ StockMarketPredictionModel/
 │           ├── detected_crosses_YYYY-MM-DD.csv
 │           └── trading_predictions_YYYY-MM-DD.csv
 ├── docs/
-│   └── social-preview.png     # Repo banner / social thumbnail
+│   └── social-preview.jpg     # Repo banner / social thumbnail
 └── site/                      # GitHub Pages dashboard
     ├── index.html
-    └── social-preview.png
+    ├── favicon.svg
+    └── social-preview.jpg
 ```
 
 ## License
