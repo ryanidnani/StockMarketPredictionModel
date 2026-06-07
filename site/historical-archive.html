@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Historical Crosses and Predictions · Stock Market Predictions Model</title>
+  <meta name="description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3d9eff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .sub { color: var(--muted); margin-bottom: 1.5rem; }
+    .as-of { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+    .quick-links p { margin: 0.45rem 0; }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.25rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 1.5rem;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .disclaimer {
+      margin: 0 0 1.5rem;
+      padding: 1rem 1.1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .disclaimer strong { color: var(--text); }
+    #history-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+    #history-list li {
+      margin: 0.35rem 0;
+      break-inside: avoid;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    #history-list strong { color: var(--text); }
+    @media (max-width: 640px) { #history-list { columns: 1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="disclaimer">
+      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
+      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
+    </p>
+
+    <h1>Historical Crosses and Predictions</h1>
+    <p class="sub">Download archived daily CSV files or open a trading day on the dashboard.</p>
+    <p class="as-of" id="as-of">Loading…</p>
+
+    <section class="card quick-links">
+      <h2>Quick Links</h2>
+      <p><a href="index.html">Daily Dashboard</a></p>
+      <p><a href="ticker-history.html">Ticker History Search</a></p>
+      <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
+    </section>
+
+    <section class="card">
+      <h2>Historical archive</h2>
+      <ul id="history-list">Loading…</ul>
+    </section>
+  </div>
+
+  <script>
+    const REPO = "ryanidnani/StockMarketPredictionModel";
+    const onPages = location.hostname.endsWith("github.io");
+
+    function pagesBase() {
+      const segment = location.pathname.split("/").filter(Boolean)[0];
+      return segment ? `/${segment}/` : "/";
+    }
+
+    function assetUrl(path) {
+      const clean = path.replace(/^\//, "");
+      if (onPages) return pagesBase() + clean;
+      return `https://raw.githubusercontent.com/${REPO}/main/${clean}`;
+    }
+
+    function dailyCsvPaths(date) {
+      return {
+        crosses: `data/daily/${date}/detected_crosses_${date}.csv`,
+        predictions: `data/daily/${date}/trading_predictions_${date}.csv`,
+      };
+    }
+
+    async function loadText(path, cacheKey) {
+      const url = assetUrl(path);
+      const bust = cacheKey != null ? String(cacheKey) : String(Date.now());
+      const fetchUrl = `${url}${url.includes("?") ? "&" : "?"}v=${encodeURIComponent(bust)}`;
+      const r = await fetch(fetchUrl);
+      if (!r.ok) throw new Error(path);
+      return r.text();
+    }
+
+    function formatUpdatedAt(iso) {
+      if (!iso) return null;
+      const dt = new Date(iso);
+      if (Number.isNaN(dt.getTime())) return null;
+
+      const datePart = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Los_Angeles",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(dt);
+
+      const timeOpts = { hour: "numeric", minute: "2-digit", hour12: true };
+      const pt = new Intl.DateTimeFormat("en-US", {
+        ...timeOpts,
+        timeZone: "America/Los_Angeles",
+      }).format(dt);
+
+      return `${datePart} at ${pt} PT`;
+    }
+
+    function renderHistoryList(manifest, latestDate) {
+      const list = document.getElementById("history-list");
+      list.innerHTML = "";
+
+      const dates = [...manifest.dates];
+      if (latestDate && !dates.includes(latestDate)) {
+        dates.push(latestDate);
+      }
+
+      dates.sort().reverse().forEach((date) => {
+        const paths = dailyCsvPaths(date);
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${date}</strong> —
+          <a href="index.html?day=${encodeURIComponent(date)}">dashboard</a>,
+          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">crosses</a>,
+          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">predictions</a>`;
+        list.appendChild(li);
+      });
+    }
+
+    async function init() {
+      try {
+        const manifest = JSON.parse(await loadText("data/manifest.json", Date.now()));
+        const cacheKey = manifest.updated_at || Date.now();
+        const latestDate = (await loadText("latest/as_of.txt", cacheKey)).trim();
+        const updatedAt = formatUpdatedAt(manifest.updated_at);
+
+        document.getElementById("as-of").textContent = updatedAt
+          ? `Archive last updated: ${updatedAt}`
+          : "";
+
+        renderHistoryList(manifest, latestDate);
+      } catch (error) {
+        console.error(error);
+        document.getElementById("as-of").textContent =
+          "Could not load archive index yet. Browse CSV files in the repository.";
+        document.getElementById("history-list").innerHTML = "";
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stock Market Predictions Model</title>
+  <title>Stock Market Predictions Model Daily Dashboard</title>
   <meta name="description" content="Daily EMA golden cross and death cross detections for trading idea research." />
   <style>
     :root {
@@ -25,8 +25,13 @@
       line-height: 1.5;
     }
     .wrap { max-width: 1280px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.35rem; }
     h2 { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .byline {
+      margin: 0 0 0.65rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
     .sub { color: var(--muted); margin-bottom: 1.5rem; }
     .as-of { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
     .date-toolbar {
@@ -272,10 +277,6 @@
       color: var(--muted);
       line-height: 1.5;
     }
-    #history { margin-top: 2rem; }
-    #history ul { padding-left: 1.25rem; columns: 2; column-gap: 2rem; }
-    #history li { margin: 0.35rem 0; break-inside: avoid; }
-    @media (max-width: 640px) { #history ul { columns: 1; } }
   </style>
 </head>
 <body>
@@ -287,7 +288,8 @@
       the authors may hold positions in securities shown here.
     </p>
 
-    <h1>Stock Market Predictions Model</h1>
+    <h1>Stock Market Predictions Model Daily Dashboard</h1>
+    <p class="byline">By: Ryan Idnani</p>
     <p class="sub">Daily golden cross and death cross detections as well as machine learning predictions for trading ideas. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
     <p class="as-of" id="as-of">Loading…</p>
 
@@ -301,6 +303,7 @@
         <h2>Quick Links</h2>
         <p><a id="link-predictions" href="latest/trading_predictions.csv">Today's Trading Predictions (CSV)</a></p>
         <p><a id="link-crosses" href="latest/detected_crosses.csv">Today's Detected Crosses (CSV)</a></p>
+        <p><a href="historical-archive.html">Historical Crosses and Predictions</a></p>
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
         <p><a href="ticker-history.html">Ticker History Search</a></p>
       </div>
@@ -359,10 +362,6 @@
       <div class="table-wrap" id="crosses-table">Loading…</div>
     </section>
 
-    <section id="history">
-      <h2>Historical archive</h2>
-      <ul id="history-list"></ul>
-    </section>
   </div>
 
   <script>
@@ -1043,19 +1042,6 @@
         .join("");
     }
 
-    function renderHistoryList() {
-      const list = document.getElementById("history-list");
-      list.innerHTML = "";
-      state.manifest.dates.slice().reverse().forEach((date) => {
-        const paths = dailyCsvPaths(date);
-        const li = document.createElement("li");
-        li.innerHTML = `<strong>${date}</strong> —
-          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">crosses</a>,
-          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">predictions</a>`;
-        list.appendChild(li);
-      });
-    }
-
     function renderDashboard() {
       updateAsOfLine();
       updateDownloadLinks();
@@ -1101,7 +1087,6 @@
         }
 
         populateDatePicker(state.manifest.dates, state.latestDate);
-        renderHistoryList();
 
         document.getElementById("date-picker").addEventListener("change", (event) => {
           loadTradingDay(event.target.value).catch(showLoadError);
