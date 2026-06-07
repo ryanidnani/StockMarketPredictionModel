@@ -255,10 +255,10 @@
     });
   }
 
-  function defaultColMinWidth(col, index) {
+  function defaultColWidth(col, index) {
     if (col.minWidth) return col.minWidth;
     if (index === 0) {
-      return col.key === "event_date" ? "6.75rem" : "4.75rem";
+      return col.key === "event_date" ? "7rem" : "5.25rem";
     }
     const widths = {
       cross_type: "6.75rem",
@@ -283,11 +283,19 @@
     return "7.25rem";
   }
 
+  function tableWidthRem(columns) {
+    let total = 0;
+    for (let i = 0; i < columns.length; i++) {
+      total += parseFloat(defaultColWidth(columns[i], i));
+    }
+    return total;
+  }
+
   function buildColgroup(columns) {
     let cols = "";
     for (let i = 0; i < columns.length; i++) {
-      const min = defaultColMinWidth(columns[i], i);
-      cols += `<col style="min-width:${min}">`;
+      const width = defaultColWidth(columns[i], i);
+      cols += `<col style="width:${width}">`;
     }
     return `<colgroup>${cols}</colgroup>`;
   }
@@ -302,7 +310,9 @@
     const alignClass = (align) => (align === "left" ? "col-left" : "col-center");
 
     let header = "";
-    for (const col of columns) {
+    for (let i = 0; i < columns.length; i++) {
+      const col = columns[i];
+      const colWidth = defaultColWidth(col, i);
       const isSorted = sortState.key === col.key;
       const indicator = isSorted ? (sortState.dir === "asc" ? "▲" : "▼") : "↕";
       header += `<th
@@ -312,6 +322,7 @@
         data-tooltip="${escapeHtml(col.tooltip)}"
         title="${escapeHtml(col.tooltip)}"
         tabindex="0"
+        style="width:${colWidth};min-width:${colWidth}"
         aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
       ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
     }
@@ -327,7 +338,8 @@
       body += "</tr>";
     }
 
-    return `<table class="data-table">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+    const tableWidth = `${tableWidthRem(columns)}rem`;
+    return `<table class="data-table" style="width:${tableWidth};min-width:${tableWidth}">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
   function bindTableSort(containerId, tableName, getColumns, getSortState, onSort) {

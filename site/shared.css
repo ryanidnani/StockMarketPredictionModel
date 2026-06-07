@@ -57,16 +57,17 @@ a:hover { text-decoration: underline; }
 }
 
 .table-wrap {
+  display: block;
   overflow-x: auto;
+  overflow-y: visible;
   margin-top: 0.5rem;
   max-width: 100%;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
 }
 
 .data-table {
-  width: max-content;
-  min-width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.82rem;
@@ -118,11 +119,12 @@ a:hover { text-decoration: underline; }
 }
 
 .data-table th.sortable .th-inner {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .data-table th.col-left .th-inner {
@@ -130,7 +132,8 @@ a:hover { text-decoration: underline; }
 }
 
 .data-table th.sortable .th-label {
-  min-width: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
   line-height: 1.25;
 }
 
