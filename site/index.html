@@ -281,26 +281,12 @@
     .summary-table tr:last-child td {
       border-bottom: none;
     }
-    .cross-filter-section {
-      margin-top: 0.85rem;
-      padding-top: 0.85rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    .cross-filter-card {
+      margin-bottom: 1.5rem;
     }
-    .cross-filter-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.35rem 0.75rem;
-      margin-bottom: 0.55rem;
-    }
-    .cross-filter-label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .cross-filter-hint {
-      font-size: 0.78rem;
+    .cross-filter-card .cross-filter-hint {
+      margin: 0 0 0.85rem;
+      font-size: 0.88rem;
       color: var(--muted);
     }
     .type-filters {
@@ -486,15 +472,14 @@
       <div class="card">
         <h2>Summary</h2>
         <div id="summary-stats">—</div>
-        <div class="cross-filter-section">
-          <div class="cross-filter-header">
-            <span class="cross-filter-label">Filter by cross type</span>
-            <span class="cross-filter-hint">Applies to both tables below</span>
-          </div>
-          <div class="type-filters" id="type-filters" role="group" aria-label="Filter by cross type"></div>
-        </div>
       </div>
     </div>
+
+    <section class="card cross-filter-card">
+      <h2>Filter by cross type</h2>
+      <p class="cross-filter-hint">Applies to both tables below</p>
+      <div class="type-filters" id="type-filters" role="group" aria-label="Filter by cross type"></div>
+    </section>
 
     <div class="active-filter-bar-wrap" id="active-filter-bar-wrap" hidden>
       <div class="active-filter-bar">
@@ -857,7 +842,7 @@
       if (state.activeCrossTypes.size === 0) {
         return (
           '<p class="empty-filter-msg">No cross types selected. ' +
-          "Choose one or more types in the Summary card, or click <strong>All types</strong>.</p>"
+          "Choose one or more cross types above, or click <strong>All types</strong>.</p>"
         );
       }
       if (allCrossTypesActive()) {
@@ -1497,13 +1482,12 @@
         }
 
         const params = new URLSearchParams(location.search);
+        const initialDay = params.get("day");
         const initialTicker = normalizeTicker(params.get("ticker") || params.get("q") || "");
-        if (initialTicker) {
+        if (initialTicker && !initialDay) {
           location.replace(`ticker-history.html?ticker=${encodeURIComponent(initialTicker)}`);
           return;
         }
-
-        const initialDay = params.get("day");
         const startDate = initialDay && state.manifest.dates.includes(initialDay)
           ? initialDay
           : state.latestDate;

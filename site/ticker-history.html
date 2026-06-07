@@ -234,6 +234,10 @@
       return segment ? `/${segment}/` : "/";
     }
 
+    function dashboardDayUrl(date) {
+      return `${pagesBase()}index.html?day=${encodeURIComponent(date)}`;
+    }
+
     function assetUrl(path) {
       const clean = path.replace(/^\//, "");
       if (onPages) return pagesBase() + clean;
@@ -465,7 +469,10 @@
       let body = "";
       for (const row of sortedRows) {
         const rowClass = rowClassFn ? rowClassFn(row) : "";
-        body += `<tr${rowClass ? ` class="${rowClass}"` : ""}>`;
+        const eventDateAttr = row.event_date
+          ? ` data-event-date="${escapeHtml(row.event_date)}"`
+          : "";
+        body += `<tr${rowClass ? ` class="${rowClass}"` : ""}${eventDateAttr}>`;
         for (const col of columns) {
           body += col.render(row);
         }
@@ -671,18 +678,11 @@
       clearButton.addEventListener("click", clearTickerHistory);
 
       table.addEventListener("click", (event) => {
-        const row = event.target.closest("tbody tr");
+        if (event.target.closest("th[data-sort-key]")) return;
+        const row = event.target.closest("tbody tr[data-event-date]");
         if (!row) return;
-        const rows = sortRows(
-          state.tickerHistory,
-          getColumn(TICKER_HISTORY_COLUMNS, state.sort.tickerHistory.key),
-          state.sort.tickerHistory.dir
-        );
-        const index = Array.from(row.parentElement.children).indexOf(row);
-        const historyRow = rows[index];
-        if (!historyRow?.event_date) return;
-
-        location.href = `index.html?day=${encodeURIComponent(historyRow.event_date)}`;
+        event.preventDefault();
+        location.assign(dashboardDayUrl(row.dataset.eventDate));
       });
     }
 
