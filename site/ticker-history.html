@@ -118,6 +118,7 @@
       manifestDatesForArchive,
       renderDataTable,
       bindTableSort,
+      bindColumnTooltips,
     } = window.GC;
 
     const state = {
@@ -177,7 +178,7 @@
         label: "Entry Price",
         align: "center",
         type: "number",
-        tooltip: "Modeled entry price for the setup.",
+        tooltip: "Closing price on the trading day the cross was detected.",
         sortValue: (row) => numericField(row, "entry_price"),
         render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
       },
@@ -377,6 +378,7 @@
           () => state.sort,
           renderTickerHistory
         );
+        bindColumnTooltips("ticker-history-table");
         bindTickerHistory();
         renderTickerHistory();
 
