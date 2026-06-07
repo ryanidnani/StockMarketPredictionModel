@@ -322,7 +322,7 @@
         data-tooltip="${escapeHtml(col.tooltip)}"
         title="${escapeHtml(col.tooltip)}"
         tabindex="0"
-        style="width:${colWidth};min-width:${colWidth}"
+        style="--col-width:${colWidth}"
         aria-sort="${isSorted ? (sortState.dir === "asc" ? "ascending" : "descending") : "none"}"
       ><span class="th-inner"><span class="th-label">${escapeHtml(col.label)}</span><span class="sort-indicator">${indicator}</span></span></th>`;
     }
@@ -339,7 +339,7 @@
     }
 
     const tableWidth = `${tableWidthRem(columns)}rem`;
-    return `<table class="data-table" style="width:${tableWidth};min-width:${tableWidth}">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
+    return `<table class="data-table" style="--table-min-width:${tableWidth}">${buildColgroup(columns)}<thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
   }
 
   function bindTableSort(containerId, tableName, getColumns, getSortState, onSort) {

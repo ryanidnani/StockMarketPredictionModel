@@ -67,7 +67,8 @@ a:hover { text-decoration: underline; }
 }
 
 .data-table {
-  table-layout: fixed;
+  width: 100%;
+  table-layout: auto;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.82rem;
@@ -283,6 +284,12 @@ a:hover { text-decoration: underline; }
   line-height: 1.5;
 }
 
+@media (min-width: 769px) {
+  .data-table col {
+    width: auto !important;
+  }
+}
+
 @media (max-width: 768px) {
   .wrap {
     padding: 1.25rem 0.85rem 3rem;
@@ -303,6 +310,17 @@ a:hover { text-decoration: underline; }
     font-size: 0.74rem;
     color: var(--muted);
     text-align: center;
+  }
+
+  .data-table {
+    width: max-content;
+    min-width: var(--table-min-width);
+    table-layout: fixed;
+  }
+
+  .data-table th {
+    width: var(--col-width);
+    min-width: var(--col-width);
   }
 
   .data-table th,
