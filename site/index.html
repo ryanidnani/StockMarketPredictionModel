@@ -48,6 +48,7 @@
       color: var(--text);
       font: inherit;
     }
+    .quick-links p { margin: 0.45rem 0; }
     .ticker-toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -87,6 +88,10 @@
       margin: 0 0 0.75rem;
       font-size: 0.88rem;
       color: var(--muted);
+    }
+    .ticker-meta strong {
+      color: var(--text);
+      font-weight: 600;
     }
     .data-table tbody tr.row-clickable {
       cursor: pointer;
@@ -332,12 +337,27 @@
     <h1>Stock Market Predictions Model</h1>
     <p class="sub">Daily golden cross and death cross detections as well as machine learning predictions for trading ideas. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
     <p class="as-of" id="as-of">Loading…</p>
+
     <div class="date-toolbar">
       <label for="date-picker">Trading day</label>
       <select id="date-picker" aria-label="Select trading day"></select>
     </div>
 
-    <section class="card" id="ticker-search-section">
+    <div class="cards">
+      <div class="card quick-links">
+        <h2>Quick links</h2>
+        <p><a id="link-predictions" href="latest/trading_predictions.csv">Today's Trading Predictions (CSV)</a></p>
+        <p><a id="link-crosses" href="latest/detected_crosses.csv">Today's Detected Crosses (CSV)</a></p>
+        <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
+        <p><a href="#ticker-history" id="link-ticker-history">Ticker History</a></p>
+      </div>
+      <div class="card">
+        <h2>Summary</h2>
+        <div id="summary-stats">—</div>
+      </div>
+    </div>
+
+    <section class="card" id="ticker-history">
       <h2>Ticker history</h2>
       <p class="defs-intro">Search the archive for every cross and model score recorded for a symbol.</p>
       <div class="ticker-toolbar">
@@ -349,19 +369,6 @@
       <p class="ticker-meta" id="ticker-meta"></p>
       <div class="table-wrap" id="ticker-history-table"></div>
     </section>
-
-    <div class="cards">
-      <div class="card">
-        <h2>Download CSV</h2>
-        <p><a id="link-predictions" href="latest/trading_predictions.csv">Trading Predictions (CSV)</a></p>
-        <p><a id="link-crosses" href="latest/detected_crosses.csv">Detected Crosses (CSV)</a></p>
-        <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">Repository on GitHub</a></p>
-      </div>
-      <div class="card">
-        <h2>Summary</h2>
-        <div id="summary-stats">—</div>
-      </div>
-    </div>
 
     <section class="card defs">
       <h2>Cross definitions</h2>
@@ -856,7 +863,7 @@
       clearButton.hidden = !ticker;
 
       if (state.tickerHistoryLoading) {
-        meta.textContent = `Loading archive for ${ticker}…`;
+        meta.innerHTML = `Loading archive for <strong>${escapeHtml(ticker)}</strong>…`;
         table.innerHTML = "";
         return;
       }
@@ -868,7 +875,7 @@
       }
 
       if (!state.tickerHistory.length) {
-        meta.textContent = `No cross history found for ${ticker}.`;
+        meta.innerHTML = `No cross history found for <strong>${escapeHtml(ticker)}</strong>.`;
         table.innerHTML = "";
         return;
       }
@@ -877,10 +884,10 @@
         isConsider(row.recommendation, row.probability)
       ).length;
       const label = state.tickerHistory.length === 1 ? "event" : "events";
-      meta.textContent =
-        `${state.tickerHistory.length} ${label} for ${ticker}` +
-        (considerCount ? ` · ${considerCount} CONSIDER` : "") +
-        " · Click a row to open that trading day";
+      meta.innerHTML =
+        `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
+        (considerCount ? ` · <span class="consider">${considerCount} CONSIDER</span>` : "") +
+        ` · Click a row to open that trading day`;
 
       table.innerHTML = renderDataTable(
         "tickerHistory",
@@ -911,15 +918,15 @@
 
       try {
         await ensurePredictionsArchive((loaded, total) => {
-          document.getElementById("ticker-meta").textContent =
-            `Loading archive (${loaded}/${total} days) for ${ticker}…`;
+          document.getElementById("ticker-meta").innerHTML =
+            `Loading archive (${loaded}/${total} days) for <strong>${escapeHtml(ticker)}</strong>…`;
         });
         state.tickerHistory = buildTickerHistory(ticker);
       } catch (error) {
         console.error(error);
         state.tickerHistory = [];
-        document.getElementById("ticker-meta").textContent =
-          `Could not load history for ${ticker}.`;
+        document.getElementById("ticker-meta").innerHTML =
+          `Could not load history for <strong>${escapeHtml(ticker)}</strong>.`;
       } finally {
         state.tickerHistoryLoading = false;
         renderTickerHistory();
@@ -934,11 +941,18 @@
       renderTickerHistory();
     }
 
+    function focusTickerHistory() {
+      const section = document.getElementById("ticker-history");
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById("ticker-search").focus();
+    }
+
     function bindTickerHistory() {
       const input = document.getElementById("ticker-search");
       const searchButton = document.getElementById("ticker-search-btn");
       const clearButton = document.getElementById("ticker-search-clear");
       const table = document.getElementById("ticker-history-table");
+      const quickLink = document.getElementById("link-ticker-history");
 
       searchButton.addEventListener("click", () => {
         searchTickerHistory(input.value).catch((error) => console.error(error));
@@ -951,6 +965,11 @@
       });
 
       clearButton.addEventListener("click", clearTickerHistory);
+
+      quickLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        focusTickerHistory();
+      });
 
       table.addEventListener("click", (event) => {
         const row = event.target.closest("tbody tr");
@@ -1314,6 +1333,11 @@
         updatedAt ? `Last updated: ${updatedAt}` : "";
     }
 
+    function csvLinkLabel(kind, date) {
+      const prefix = date === state.latestDate ? "Today's" : date;
+      return `${prefix} ${kind} (CSV)`;
+    }
+
     function updateDownloadLinks() {
       const date = state.selectedDate;
       if (date === state.latestDate) {
@@ -1321,13 +1345,13 @@
           "link-crosses",
           "latest/detected_crosses.csv",
           `detected_crosses_${date}.csv`,
-          "Detected Crosses (CSV)"
+          csvLinkLabel("Detected Crosses", date)
         );
         setCsvDownloadLink(
           "link-predictions",
           "latest/trading_predictions.csv",
           `trading_predictions_${date}.csv`,
-          "Trading Predictions (CSV)"
+          csvLinkLabel("Trading Predictions", date)
         );
       } else {
         const paths = dailyCsvPaths(date);
@@ -1335,13 +1359,13 @@
           "link-crosses",
           paths.crosses,
           `detected_crosses_${date}.csv`,
-          "Detected Crosses (CSV)"
+          csvLinkLabel("Detected Crosses", date)
         );
         setCsvDownloadLink(
           "link-predictions",
           paths.predictions,
           `trading_predictions_${date}.csv`,
-          "Trading Predictions (CSV)"
+          csvLinkLabel("Trading Predictions", date)
         );
       }
     }
