@@ -152,9 +152,9 @@
         const paths = dailyCsvPaths(date);
         const li = document.createElement("li");
         li.innerHTML = `<strong>${date}</strong> —
-          <a href="index.html?day=${encodeURIComponent(date)}">dashboard</a>,
-          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">crosses</a>,
-          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">predictions</a>`;
+          <a href="index.html?day=${encodeURIComponent(date)}">Dashboard</a>,
+          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">Crosses</a>,
+          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">Predictions</a>`;
         list.appendChild(li);
       });
     }

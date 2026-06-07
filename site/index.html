@@ -402,11 +402,39 @@
     }
     .disclaimer strong { color: var(--text); }
     .defs { margin-bottom: 2rem; }
+    .defs-details > summary {
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+      list-style: none;
+    }
+    .defs-details > summary::-webkit-details-marker { display: none; }
+    .defs-details > summary::before {
+      content: "▸ ";
+      display: inline-block;
+      color: var(--muted);
+      transition: transform 0.15s ease;
+    }
+    .defs-details[open] > summary::before { content: "▾ "; }
+    .defs-details > summary:hover { color: var(--accent); }
     .defs-intro {
       color: var(--muted);
       font-size: 0.9rem;
       margin: 0 0 1rem;
     }
+    .consider-threshold-note {
+      margin: -0.35rem 0 0.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .ticker-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .ticker-link:hover { text-decoration: underline; }
     .defs-grid {
       display: grid;
       gap: 0.85rem;
@@ -447,16 +475,16 @@
 
     <div class="controls-toolbar">
       <div class="control-group">
-        <label for="date-picker">Trading day</label>
+        <label for="date-picker">Trading Day</label>
         <select id="date-picker" aria-label="Select trading day"></select>
         <span class="control-hint">Tables below show this date only</span>
       </div>
       <span class="control-divider" aria-hidden="true"></span>
       <div class="control-group">
-        <label for="ticker-search">Ticker history</label>
+        <label for="ticker-search">Ticker History</label>
         <input id="ticker-search" type="search" placeholder="e.g. REGN" autocomplete="off" spellcheck="false" aria-label="Search ticker cross history" />
         <button type="button" id="ticker-search-btn">Search</button>
-        <span class="control-hint">View full cross history of ticker since 2025-11-20</span>
+        <span class="control-hint" id="archive-start-hint">View full cross history of a ticker</span>
       </div>
     </div>
 
@@ -476,41 +504,43 @@
     </div>
 
     <section class="card defs">
-      <h2>Cross Definitions</h2>
-      <p class="defs-intro">
-        Signals are detected on the latest trading day only.
-        The moving averages must cross between the prior session and today.
-      </p>
-      <dl class="defs-grid">
-        <div class="def-item">
-          <dt class="tag-golden">golden</dt>
-          <dd>
-            <strong>Golden Cross:</strong> the 50-day exponential moving average (EMA) crosses
-            <em>above</em> the 200-day EMA. Often interpreted as a longer-term bullish trend shift.
-          </dd>
-        </div>
-        <div class="def-item">
-          <dt class="tag-death">death</dt>
-          <dd>
-            <strong>Death Cross:</strong> the 50-day EMA crosses <em>below</em> the 200-day EMA.
-            Often interpreted as a longer-term bearish trend shift.
-          </dd>
-        </div>
-        <div class="def-item">
-          <dt class="tag-golden">golden_st</dt>
-          <dd>
-            <strong>Short Term Golden Cross:</strong> the 21-day EMA crosses <em>above</em> the 50-day EMA.
-            A faster signal using shorter moving averages.
-          </dd>
-        </div>
-        <div class="def-item">
-          <dt class="tag-death">death_st</dt>
-          <dd>
-            <strong>Short Term Death Cross:</strong> the 21-day EMA crosses <em>below</em> the 50-day EMA.
-            A faster bearish cross on the 21/50 EMA pair.
-          </dd>
-        </div>
-      </dl>
+      <details class="defs-details">
+        <summary>Cross Definitions</summary>
+        <p class="defs-intro">
+          Signals are detected on the latest trading day only.
+          The moving averages must cross between the prior session and today.
+        </p>
+        <dl class="defs-grid">
+          <div class="def-item">
+            <dt class="tag-golden">Golden</dt>
+            <dd>
+              <strong>Golden Cross:</strong> the 50-day exponential moving average (EMA) crosses
+              <em>above</em> the 200-day EMA. Often interpreted as a longer-term bullish trend shift.
+            </dd>
+          </div>
+          <div class="def-item">
+            <dt class="tag-death">Death</dt>
+            <dd>
+              <strong>Death Cross:</strong> the 50-day EMA crosses <em>below</em> the 200-day EMA.
+              Often interpreted as a longer-term bearish trend shift.
+            </dd>
+          </div>
+          <div class="def-item">
+            <dt class="tag-golden">Golden ST</dt>
+            <dd>
+              <strong>Short Term Golden Cross:</strong> the 21-day EMA crosses <em>above</em> the 50-day EMA.
+              A faster signal using shorter moving averages.
+            </dd>
+          </div>
+          <div class="def-item">
+            <dt class="tag-death">Death ST</dt>
+            <dd>
+              <strong>Short Term Death Cross:</strong> the 21-day EMA crosses <em>below</em> the 50-day EMA.
+              A faster bearish cross on the 21/50 EMA pair.
+            </dd>
+          </div>
+        </dl>
+      </details>
     </section>
 
     <section class="card cross-filter-card">
@@ -521,14 +551,18 @@
 
     <div class="active-filter-bar-wrap" id="active-filter-bar-wrap" hidden>
       <div class="active-filter-bar">
-        <span class="active-filter-bar-label">Showing cross types:</span>
+        <span class="active-filter-bar-label">Showing Cross Types:</span>
         <div class="active-filter-pills" id="active-filter-pills"></div>
-        <button type="button" class="filter-clear-all" id="filter-clear-all">Clear all</button>
+        <button type="button" class="filter-clear-all" id="filter-clear-all">Clear All</button>
       </div>
     </div>
 
     <section class="card">
       <h2>Trading Predictions to Consider</h2>
+      <p class="consider-threshold-note">
+        A row is labeled <strong>CONSIDER</strong> only when model probability is at least 50% and trade targets are present.
+        That label is for research screening, not a recommendation to buy or sell.
+      </p>
       <p class="predictions-meta" id="predictions-meta"></p>
       <div class="table-wrap" id="predictions-table">Loading…</div>
     </section>
@@ -544,6 +578,12 @@
     const REPO = "ryanidnani/StockMarketPredictionModel";
     const onPages = location.hostname.endsWith("github.io");
     const CROSS_TYPES = ["golden", "death", "golden_st", "death_st"];
+    const CROSS_TYPE_LABELS = {
+      golden: "Golden",
+      death: "Death",
+      golden_st: "Golden ST",
+      death_st: "Death ST",
+    };
     const ANALYTICS_OWNER_PARAM = "gc_owner";
     // Paste your Cloudflare Web Analytics token here (see docs/ANALYTICS.md).
     const CF_ANALYTICS_TOKEN = "ab36e26d8e0c46819ff486271ee69eee";
@@ -690,6 +730,37 @@
     function crossClass(type) {
       if (!type) return "";
       return type.includes("death") ? "tag-death" : "tag-golden";
+    }
+
+    function crossTypeLabel(type) {
+      if (!type || type === "—") return "—";
+      return CROSS_TYPE_LABELS[type] || type;
+    }
+
+    function archiveStartDate() {
+      if (!state.manifest?.dates?.length) return null;
+      return [...state.manifest.dates].sort()[0];
+    }
+
+    function updateArchiveStartHint() {
+      const el = document.getElementById("archive-start-hint");
+      if (!el) return;
+      const start = archiveStartDate();
+      el.textContent = start
+        ? `View full cross history of a ticker since ${start}`
+        : "View full cross history of a ticker";
+    }
+
+    function tickerHistoryUrl(ticker) {
+      const symbol = normalizeTicker(ticker);
+      if (!symbol) return "#";
+      return `ticker-history.html?ticker=${encodeURIComponent(symbol)}`;
+    }
+
+    function renderTickerLink(ticker) {
+      const symbol = normalizeTicker(ticker);
+      if (!symbol) return "—";
+      return `<a class="ticker-link" href="${tickerHistoryUrl(symbol)}">${escapeHtml(symbol)}</a>`;
     }
 
     function displayRecommendation(rec) {
@@ -839,23 +910,24 @@
     }
 
     function filteredEmptyMessage(kind) {
+      const kindLabel = kind === "cross" ? "crosses" : "predictions";
       if (state.activeCrossTypes.size === 0) {
         return (
           '<p class="empty-filter-msg">No cross types selected. ' +
-          "Choose one or more cross types above, or click <strong>All types</strong>.</p>"
+          "Choose one or more cross types above, or click <strong>All Types</strong>.</p>"
         );
       }
       if (allCrossTypesActive()) {
-        return `<p class="empty-filter-msg">No ${kind} for this trading day.</p>`;
+        return `<p class="empty-filter-msg">No ${kindLabel} for this trading day.</p>`;
       }
       const types = [...state.activeCrossTypes].sort();
       const typeList = types
-        .map((type) => `<strong class="${crossClass(type)}">${escapeHtml(type)}</strong>`)
+        .map((type) => `<strong class="${crossClass(type)}">${escapeHtml(crossTypeLabel(type))}</strong>`)
         .join(", ");
       return (
-        `<p class="empty-filter-msg">No ${kind} match ${typeList}. ` +
+        `<p class="empty-filter-msg">No ${kindLabel} match ${typeList}. ` +
         '<button type="button" class="filter-clear-inline" data-action="clear-cross-filter">' +
-        "Clear cross-type filter</button></p>"
+        "Clear Cross-Type Filter</button></p>"
       );
     }
 
@@ -864,10 +936,10 @@
       const counts = crossCountsForDay();
       const allActive = allCrossTypesActive();
 
-      let html = `<button type="button" class="type-chip${allActive ? " is-active" : ""}" data-type="all" aria-pressed="${allActive}">All types</button>`;
+      let html = `<button type="button" class="type-chip${allActive ? " is-active" : ""}" data-type="all" aria-pressed="${allActive}">All Types</button>`;
       for (const type of CROSS_TYPES) {
         const active = state.activeCrossTypes.has(type);
-        html += `<button type="button" class="type-chip${active ? " is-active" : ""} ${crossClass(type)}" data-type="${escapeHtml(type)}" aria-pressed="${active}">${escapeHtml(type)} (${counts[type]})</button>`;
+        html += `<button type="button" class="type-chip${active ? " is-active" : ""} ${crossClass(type)}" data-type="${escapeHtml(type)}" aria-pressed="${active}">${escapeHtml(crossTypeLabel(type))} (${counts[type]})</button>`;
       }
       container.innerHTML = html;
     }
@@ -886,7 +958,7 @@
       const types = [...state.activeCrossTypes].sort();
       pills.innerHTML = types.map((type) => `
         <button type="button" class="active-filter-pill ${crossClass(type)}" data-remove-type="${escapeHtml(type)}">
-          ${escapeHtml(type)}
+          ${escapeHtml(crossTypeLabel(type))}
           <span aria-hidden="true">×</span>
         </button>
       `).join("");
@@ -1003,25 +1075,24 @@
       if (state.showAllPredictions) {
         meta.innerHTML =
           `Showing all ${total} predictions ` +
-          `(<span class="consider">${considerCount} CONSIDER</span>, ` +
+          `(<span class="consider">${considerCount} to Consider</span>, ` +
           `<span class="avoid">${total - considerCount} AVOID</span>). ` +
-          `<button type="button" id="predictions-toggle">Show CONSIDER only</button>`;
+          `<button type="button" id="predictions-toggle">Show Consider Only</button>`;
         return;
       }
 
       if (!considerCount) {
         meta.innerHTML =
-          `No CONSIDER signals for this day (${total} total). ` +
-          `<button type="button" id="predictions-toggle">Show all ${total} predictions</button>`;
+          `Nothing to Consider for this day (${total} total). ` +
+          `<button type="button" id="predictions-toggle">Show All ${total} Predictions</button>`;
         return;
       }
 
-      const label = considerCount === 1 ? "signal" : "signals";
       const visibleCount = visiblePredictions().length;
       let message =
-        `Showing ${considerCount} CONSIDER ${label}` +
+        `Showing ${considerCount} to Consider` +
         (total > considerCount
-          ? ` of ${total} total. <button type="button" id="predictions-toggle">Show all predictions</button>`
+          ? ` of ${total} total. <button type="button" id="predictions-toggle">Show All Predictions</button>`
           : ".");
 
       if (!allCrossTypesActive()) {
@@ -1053,18 +1124,18 @@
         type: "string",
         tooltip: "Stock or ETF symbol for the detected cross.",
         sortValue: (row) => row.symbol || "",
-        render: (row) => `<td class="col-left">${escapeHtml(row.symbol)}</td>`,
+        render: (row) => `<td class="col-left">${renderTickerLink(row.symbol)}</td>`,
       },
       {
         key: "signal_type",
         label: "Cross Type",
         align: "center",
         type: "string",
-        tooltip: "Signal detected on the latest session: golden, death, golden_st, or death_st.",
+        tooltip: "Signal detected on the latest session: Golden, Death, Golden ST, or Death ST.",
         sortValue: (row) => crossSignal(row),
         render: (row) => {
           const sig = crossSignal(row);
-          return `<td class="col-center ${crossClass(sig)}">${escapeHtml(sig)}</td>`;
+          return `<td class="col-center ${crossClass(sig)}">${escapeHtml(crossTypeLabel(sig))}</td>`;
         },
       },
       {
@@ -1131,7 +1202,7 @@
         type: "string",
         tooltip: "Symbol scored by the prediction model.",
         sortValue: (row) => row.ticker || "",
-        render: (row) => `<td class="col-left">${escapeHtml(row.ticker)}</td>`,
+        render: (row) => `<td class="col-left">${renderTickerLink(row.ticker)}</td>`,
       },
       {
         key: "cross_type",
@@ -1140,7 +1211,7 @@
         type: "string",
         tooltip: "Cross type associated with the model score.",
         sortValue: (row) => row.cross_type || "",
-        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(row.cross_type)}</td>`,
+        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(crossTypeLabel(row.cross_type))}</td>`,
       },
       {
         key: "probability",
@@ -1231,14 +1302,14 @@
       let rows = "";
       for (const type of CROSS_TYPES) {
         rows += `<tr>
-          <td class="${crossClass(type)}">${type}</td>
+          <td class="${crossClass(type)}">${escapeHtml(crossTypeLabel(type))}</td>
           <td>${crossCounts[type]}</td>
           <td>${considerCounts[type]}</td>
         </tr>`;
       }
 
       return `
-        <p class="summary-total">${totalCrosses} crosses · ${totalConsider} to consider</p>
+        <p class="summary-total">${totalCrosses} Crosses · ${totalConsider} to Consider</p>
         <table class="summary-table">
           <thead>
             <tr>
@@ -1437,6 +1508,7 @@
 
     function renderDashboard() {
       updateAsOfLine();
+      updateArchiveStartHint();
       updateDownloadLinks();
       document.getElementById("summary-stats").innerHTML =
         renderSummary(state.crosses, state.predictions);

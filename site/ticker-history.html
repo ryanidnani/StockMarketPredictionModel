@@ -93,6 +93,12 @@
       color: var(--muted);
     }
     .ticker-meta strong { color: var(--text); font-weight: 600; }
+    .consider-threshold-note {
+      margin: 0 0 0.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
     .table-wrap {
       overflow-x: auto;
       margin-top: 0.5rem;
@@ -209,6 +215,10 @@
         <button type="button" id="ticker-search-btn">Search</button>
         <button type="button" id="ticker-search-clear" hidden>Clear</button>
       </div>
+      <p class="consider-threshold-note">
+        A row is labeled <strong>CONSIDER</strong> only when model probability is at least 50% and trade targets are present.
+        That label is for research screening, not a recommendation to buy or sell.
+      </p>
       <p class="ticker-meta" id="ticker-meta"></p>
       <div class="table-wrap" id="ticker-history-table"></div>
     </section>
@@ -217,6 +227,12 @@
   <script>
     const REPO = "ryanidnani/StockMarketPredictionModel";
     const onPages = location.hostname.endsWith("github.io");
+    const CROSS_TYPE_LABELS = {
+      golden: "Golden",
+      death: "Death",
+      golden_st: "Golden ST",
+      death_st: "Death ST",
+    };
 
     const state = {
       manifest: null,
@@ -282,6 +298,23 @@
     function crossClass(type) {
       if (!type) return "";
       return type.includes("death") ? "tag-death" : "tag-golden";
+    }
+
+    function crossTypeLabel(type) {
+      if (!type || type === "—") return "—";
+      return CROSS_TYPE_LABELS[type] || type;
+    }
+
+    function archiveStartDate() {
+      if (!state.manifest?.dates?.length) return null;
+      return [...state.manifest.dates].sort()[0];
+    }
+
+    function archiveStartHint() {
+      const start = archiveStartDate();
+      return start
+        ? `Search a ticker to view cross history since ${start}. Click a row to open that day on the Daily Dashboard.`
+        : "Search a ticker to view its archived cross history. Click a row to open that day on the Daily Dashboard.";
     }
 
     function normalizeTicker(value) {
@@ -354,9 +387,9 @@
         label: "Cross Type",
         align: "center",
         type: "string",
-        tooltip: "Signal type on that day: golden, death, golden_st, or death_st.",
+        tooltip: "Signal type on that day: Golden, Death, Golden ST, or Death ST.",
         sortValue: (row) => row.cross_type || "",
-        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(row.cross_type)}</td>`,
+        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(crossTypeLabel(row.cross_type))}</td>`,
       },
       {
         key: "recommendation",
@@ -560,7 +593,7 @@
       }
 
       if (!ticker) {
-        meta.textContent = "View full cross history of ticker since 2025-11-20";
+        meta.textContent = archiveStartHint();
         table.innerHTML = "";
         return;
       }
@@ -574,10 +607,10 @@
       const considerCount = state.tickerHistory.filter((row) =>
         isConsider(row.recommendation, row.probability)
       ).length;
-      const label = state.tickerHistory.length === 1 ? "event" : "events";
+      const label = state.tickerHistory.length === 1 ? "Event" : "Events";
       meta.innerHTML =
         `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
-        (considerCount ? ` · <span class="consider">${considerCount} CONSIDER</span>` : "") +
+        (considerCount ? ` · ${considerCount} to Consider` : "") +
         ` · Click a row to view that day's Daily Dashboard`;
 
       table.innerHTML = renderDataTable(
