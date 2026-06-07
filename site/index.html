@@ -339,6 +339,40 @@
     const REPO = "ryanidnani/StockMarketPredictionModel";
     const onPages = location.hostname.endsWith("github.io");
     const CROSS_TYPES = ["golden", "death", "golden_st", "death_st"];
+    const ANALYTICS_OWNER_PARAM = "gc_owner";
+    // Paste your Cloudflare Web Analytics token here (see docs/ANALYTICS.md).
+    const CF_ANALYTICS_TOKEN = "ab36e26d8e0c46819ff486271ee69eee";
+
+    function markOwnerBrowserIfRequested() {
+      const params = new URLSearchParams(location.search);
+      if (params.get(ANALYTICS_OWNER_PARAM) !== "1") return;
+      localStorage.setItem("gc_analytics_role", "owner");
+      params.delete(ANALYTICS_OWNER_PARAM);
+      const qs = params.toString();
+      history.replaceState(
+        null,
+        "",
+        location.pathname + (qs ? `?${qs}` : "") + location.hash
+      );
+    }
+
+    function loadCloudflareAnalytics() {
+      markOwnerBrowserIfRequested();
+      if (!onPages) return;
+      if (localStorage.getItem("gc_analytics_role") === "owner") return;
+      if (!CF_ANALYTICS_TOKEN) return;
+
+      const script = document.createElement("script");
+      script.defer = true;
+      script.src = "https://static.cloudflareinsights.com/beacon.min.js";
+      script.setAttribute(
+        "data-cf-beacon",
+        JSON.stringify({ token: CF_ANALYTICS_TOKEN })
+      );
+      document.head.appendChild(script);
+    }
+
+    loadCloudflareAnalytics();
 
     const state = {
       manifest: null,
