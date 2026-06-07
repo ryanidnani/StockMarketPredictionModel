@@ -50,7 +50,9 @@ StockMarketPredictionModel/
 ├── docs/
 │   └── social-preview.jpg     # Repo banner / social thumbnail
 └── site/                      # GitHub Pages dashboard
+    ├── asset-boot.js          # Loads shared assets with manifest cache keys
     ├── index.html
+    ├── index.css
     ├── favicon.svg
     └── social-preview.jpg
 ```

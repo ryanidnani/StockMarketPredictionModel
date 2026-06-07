@@ -19,7 +19,8 @@
   <meta name="twitter:title" content="Ticker History Search · Stock Market Predictions Model" />
   <meta name="twitter:description" content="Search archived golden cross and death cross model scores by ticker symbol." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
-  <link rel="stylesheet" href="shared.css?v=6" />
+  <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
+  <script src="asset-boot.js"></script>
   <style>
     .card { margin-bottom: 1.5rem; }
     .ticker-toolbar {
@@ -96,8 +97,8 @@
     </section>
   </div>
 
-  <script src="shared.js?v=7"></script>
   <script>
+  GCAssetBoot.ready().then(function () {
     const {
       escapeHtml,
       loadText,
@@ -392,6 +393,7 @@
     }
 
     init();
+  });
   </script>
 </body>
 </html>

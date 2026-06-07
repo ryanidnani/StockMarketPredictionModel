@@ -19,250 +19,9 @@
   <meta name="twitter:title" content="Stock Market Predictions Model Daily Dashboard" />
   <meta name="twitter:description" content="Daily EMA golden cross and death cross detections for trading idea research." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
-  <link rel="stylesheet" href="shared.css?v=6" />
-  <style>
-    h1 { margin: 0 0 0.35rem; }
-    .byline {
-      margin: 0 0 0.65rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .controls-toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      gap: 1rem 1.25rem;
-      margin-bottom: 1rem;
-      padding: 1rem 1.1rem;
-      border-radius: 12px;
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .control-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.55rem 0.65rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .control-group label { font-weight: 600; color: var(--text); }
-    .control-hint {
-      flex: 1 1 100%;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: -0.15rem;
-    }
-    .control-divider {
-      align-self: stretch;
-      width: 1px;
-      min-height: 2.5rem;
-      background: rgba(255, 255, 255, 0.1);
-    }
-    .controls-toolbar select,
-    .controls-toolbar input[type="search"] {
-      min-width: 9rem;
-      padding: 0.45rem 0.65rem;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: var(--bg);
-      color: var(--text);
-      font: inherit;
-    }
-    .controls-toolbar select { min-width: 11rem; background: var(--card); }
-    .controls-toolbar input[type="search"] { text-transform: uppercase; }
-    .controls-toolbar button {
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      font: inherit;
-      cursor: pointer;
-    }
-    .controls-toolbar button:hover { background: rgba(255, 255, 255, 0.1); }
-    .controls-toolbar button#ticker-search-btn {
-      background: rgba(61, 158, 255, 0.18);
-      border-color: rgba(61, 158, 255, 0.35);
-      color: var(--accent);
-    }
-    @media (max-width: 720px) {
-      .control-divider { display: none; }
-    }
-    .cards {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      margin-bottom: 2rem;
-    }
-    .predictions-meta {
-      margin: -0.35rem 0 0.75rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-    .predictions-meta button {
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      color: var(--accent);
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    .predictions-meta button:hover { color: var(--text); }
-    .summary-total {
-      margin: 0 0 0.85rem;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-    .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-    .summary-table th,
-    .summary-table td {
-      padding: 0.45rem 0.35rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-    }
-    .summary-table th {
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.78rem;
-    }
-    .summary-table th:first-child,
-    .summary-table td:first-child { text-align: left; }
-    .summary-table tr:last-child td { border-bottom: none; }
-    .cross-filter-card { margin-bottom: 1.5rem; }
-    .cross-filter-card .cross-filter-hint {
-      margin: 0 0 0.85rem;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-    .type-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-    .type-chip {
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      font: inherit;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-    .type-chip:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text);
-    }
-    .type-chip.is-active {
-      border-color: rgba(61, 158, 255, 0.45);
-      background: rgba(61, 158, 255, 0.12);
-      color: var(--text);
-    }
-    .type-chip:not(.is-active) { opacity: 0.72; }
-    .filter-clear-inline {
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      color: var(--accent);
-      cursor: pointer;
-      text-decoration: underline;
-      font-size: inherit;
-    }
-    .filter-clear-inline:hover { color: var(--text); }
-    .empty-filter-msg {
-      margin: 0;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .summary-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .summary-card-header h2 { margin: 0; }
-    .defs-open-btn {
-      flex: 0 0 auto;
-      padding: 0.35rem 0.75rem;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text);
-      font: inherit;
-      font-size: 0.82rem;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .defs-open-btn:hover {
-      background: rgba(61, 158, 255, 0.12);
-      border-color: rgba(61, 158, 255, 0.35);
-      color: var(--accent);
-    }
-    .defs-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-    }
-    .defs-modal.is-open { display: flex; }
-    .defs-modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-    }
-    .defs-modal-panel {
-      position: relative;
-      width: min(720px, 100%);
-      max-height: min(85vh, 720px);
-      overflow-y: auto;
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 1.25rem;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
-    }
-    .defs-modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-    .defs-modal-header h2 {
-      margin: 0;
-      font-size: 1.1rem;
-    }
-    .defs-modal-close {
-      flex: 0 0 auto;
-      width: 2rem;
-      height: 2rem;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--muted);
-      font-size: 1.35rem;
-      line-height: 1;
-      cursor: pointer;
-    }
-    .defs-modal-close:hover {
-      background: rgba(255, 255, 255, 0.12);
-      color: var(--text);
-    }
-    .consider-threshold-note { margin: -0.35rem 0 0.75rem; }
-  </style>
+  <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
+  <link rel="stylesheet" href="index.css" data-gc-stylesheet="index.css" />
+  <script src="asset-boot.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -384,8 +143,8 @@
 
   </div>
 
-  <script src="shared.js?v=7"></script>
   <script>
+  GCAssetBoot.ready().then(function () {
     const {
       CROSS_TYPES,
       onPages,
@@ -1170,6 +929,13 @@
     }
 
     init();
+  }).catch(function (error) {
+    console.error(error);
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      '<p style="padding:1rem;color:#f07178;">Could not load dashboard scripts.</p>'
+    );
+  });
   </script>
 </body>
 </html>

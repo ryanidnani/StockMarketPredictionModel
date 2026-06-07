@@ -19,7 +19,8 @@
   <meta name="twitter:title" content="Historical Crosses and Predictions · Stock Market Predictions Model" />
   <meta name="twitter:description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
-  <link rel="stylesheet" href="shared.css?v=6" />
+  <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
+  <script src="asset-boot.js"></script>
   <style>
     .card { margin-bottom: 1.5rem; }
     .as-of { margin-bottom: 1rem; }
@@ -63,8 +64,8 @@
     </section>
   </div>
 
-  <script src="shared.js?v=7"></script>
   <script>
+  GCAssetBoot.ready().then(function () {
     const {
       assetUrl,
       dailyCsvPaths,
@@ -111,6 +112,7 @@
     }
 
     init();
+  });
   </script>
 </body>
 </html>
