@@ -177,6 +177,32 @@
     .tag-death { color: var(--red); }
     .consider { color: var(--green); }
     .avoid { color: var(--muted); }
+    .predictions-meta {
+      margin: -0.35rem 0 0.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .predictions-meta button {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .predictions-meta button:hover {
+      color: var(--text);
+    }
+    .data-table tbody tr.row-consider {
+      box-shadow: inset 3px 0 0 var(--green);
+    }
+    .data-table tbody tr.row-avoid {
+      opacity: 0.62;
+    }
+    .data-table tbody tr.row-avoid:hover {
+      opacity: 0.82;
+    }
     .summary-total {
       margin: 0 0 0.85rem;
       font-size: 0.95rem;
@@ -320,7 +346,8 @@
     </section>
 
     <section class="card">
-      <h2>Trading Predictions</h2>
+      <h2>Trading Predictions to Consider</h2>
+      <p class="predictions-meta" id="predictions-meta"></p>
       <div class="table-wrap" id="predictions-table">Loading…</div>
     </section>
 
@@ -381,6 +408,7 @@
       selectedDate: null,
       crosses: [],
       predictions: [],
+      showAllPredictions: false,
       sort: {
         crosses: { key: "market_cap", dir: "desc" },
         predictions: { key: "probability", dir: "desc" },
@@ -539,6 +567,91 @@
       return isConsider(row.recommendation, row.probability) ? 0 : 1;
     }
 
+    function considerPredictions(rows) {
+      return rows.filter((row) => isConsider(row.recommendation, row.probability));
+    }
+
+    function visiblePredictions() {
+      return state.showAllPredictions
+        ? state.predictions
+        : considerPredictions(state.predictions);
+    }
+
+    const RECOMMENDATION_COLUMN = {
+      key: "recommendation",
+      label: "Recommendation",
+      align: "center",
+      type: "rank",
+      tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
+      sortValue: (row) => recommendationRank(row),
+      render: (row) => {
+        const label = isConsider(row.recommendation, row.probability)
+          ? "CONSIDER"
+          : displayRecommendation(row.recommendation) === "CONSIDER"
+            ? "AVOID"
+            : displayRecommendation(row.recommendation);
+        const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
+        return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
+      },
+    };
+
+    function getPredictionsColumns() {
+      if (state.showAllPredictions) return PREDICTIONS_COLUMNS;
+      return PREDICTIONS_COLUMNS.filter((column) => column.key !== "recommendation");
+    }
+
+    function predictionsRowClass(row) {
+      if (!state.showAllPredictions) return "";
+      return isConsider(row.recommendation, row.probability) ? "row-consider" : "row-avoid";
+    }
+
+    function renderPredictionsMeta() {
+      const total = state.predictions.length;
+      const considerCount = considerPredictions(state.predictions).length;
+      const meta = document.getElementById("predictions-meta");
+
+      if (!total) {
+        meta.innerHTML = "No predictions for this day.";
+        return;
+      }
+
+      if (state.showAllPredictions) {
+        meta.innerHTML =
+          `Showing all ${total} predictions ` +
+          `(<span class="consider">${considerCount} CONSIDER</span>, ` +
+          `<span class="avoid">${total - considerCount} AVOID</span>). ` +
+          `<button type="button" id="predictions-toggle">Show CONSIDER only</button>`;
+        return;
+      }
+
+      if (!considerCount) {
+        meta.innerHTML =
+          `No CONSIDER signals for this day (${total} total). ` +
+          `<button type="button" id="predictions-toggle">Show all ${total} predictions</button>`;
+        return;
+      }
+
+      const label = considerCount === 1 ? "signal" : "signals";
+      meta.innerHTML =
+        `Showing ${considerCount} CONSIDER ${label}` +
+        (total > considerCount
+          ? ` of ${total} total. <button type="button" id="predictions-toggle">Show all predictions</button>`
+          : ".");
+    }
+
+    function bindPredictionsToggle() {
+      const button = document.getElementById("predictions-toggle");
+      if (!button) return;
+      button.addEventListener("click", () => {
+        state.showAllPredictions = !state.showAllPredictions;
+        if (!state.showAllPredictions && state.sort.predictions.key === "recommendation") {
+          state.sort.predictions.key = "probability";
+          state.sort.predictions.dir = "desc";
+        }
+        renderTables();
+      });
+    }
+
     const CROSSES_COLUMNS = [
       {
         key: "symbol",
@@ -645,23 +758,7 @@
         sortValue: (row) => probabilityPercent(row.probability),
         render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
       },
-      {
-        key: "recommendation",
-        label: "Recommendation",
-        align: "center",
-        type: "rank",
-        tooltip: "CONSIDER only when probability is at least 50%. It is a research label, not trading advice.",
-        sortValue: (row) => recommendationRank(row),
-        render: (row) => {
-          const label = isConsider(row.recommendation, row.probability)
-            ? "CONSIDER"
-            : displayRecommendation(row.recommendation) === "CONSIDER"
-              ? "AVOID"
-              : displayRecommendation(row.recommendation);
-          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
-          return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
-        },
-      },
+      RECOMMENDATION_COLUMN,
       {
         key: "entry_price",
         label: "Entry Price",
@@ -806,7 +903,7 @@
       });
     }
 
-    function renderDataTable(tableName, columns, rows, sortState) {
+    function renderDataTable(tableName, columns, rows, sortState, rowClassFn) {
       if (!rows.length) {
         return "<p>No rows in the selected file.</p>";
       }
@@ -832,7 +929,8 @@
 
       let body = "";
       for (const row of sortedRows) {
-        body += "<tr>";
+        const rowClass = rowClassFn ? rowClassFn(row) : "";
+        body += `<tr${rowClass ? ` class="${rowClass}"` : ""}>`;
         for (const col of columns) {
           body += col.render(row);
         }
@@ -849,20 +947,27 @@
         state.crosses,
         state.sort.crosses
       );
+
+      const predictions = visiblePredictions();
+      const predictionColumns = getPredictionsColumns();
       document.getElementById("predictions-table").innerHTML = renderDataTable(
         "predictions",
-        PREDICTIONS_COLUMNS,
-        state.predictions,
-        state.sort.predictions
+        predictionColumns,
+        predictions,
+        state.sort.predictions,
+        state.showAllPredictions ? predictionsRowClass : null
       );
+      renderPredictionsMeta();
+      bindPredictionsToggle();
     }
 
-    function bindTableSort(containerId, tableName, columns) {
+    function bindTableSort(containerId, tableName, getColumns) {
       const container = document.getElementById(containerId);
       container.addEventListener("click", (event) => {
         const header = event.target.closest("th[data-sort-key]");
         if (!header || header.dataset.table !== tableName) return;
 
+        const columns = getColumns();
         const key = header.dataset.sortKey;
         if (state.sort[tableName].key === key) {
           state.sort[tableName].dir = state.sort[tableName].dir === "asc" ? "desc" : "asc";
@@ -953,9 +1058,11 @@
 
     async function loadTradingDay(date) {
       state.selectedDate = date;
+      state.showAllPredictions = false;
       document.getElementById("summary-stats").innerHTML = "Loading…";
       document.getElementById("crosses-table").innerHTML = "Loading…";
       document.getElementById("predictions-table").innerHTML = "Loading…";
+      document.getElementById("predictions-meta").innerHTML = "";
 
       if (date === state.latestDate) {
         state.crosses = parseCsv(
@@ -992,8 +1099,8 @@
           loadTradingDay(event.target.value).catch(showLoadError);
         });
 
-        bindTableSort("crosses-table", "crosses", CROSSES_COLUMNS);
-        bindTableSort("predictions-table", "predictions", PREDICTIONS_COLUMNS);
+        bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS);
+        bindTableSort("predictions-table", "predictions", getPredictionsColumns);
 
         await loadTradingDay(state.latestDate);
       } catch (e) {
