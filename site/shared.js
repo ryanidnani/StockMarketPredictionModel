@@ -118,7 +118,7 @@
   function formatPrice(value) {
     if (value == null || value === "") return "—";
     const num = Number(value);
-    return Number.isFinite(num) ? num.toFixed(2) : escapeHtml(value);
+    return Number.isFinite(num) ? `$${num.toFixed(2)}` : escapeHtml(value);
   }
 
   function formatProbability(value) {
