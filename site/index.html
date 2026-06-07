@@ -435,6 +435,35 @@
       };
     }
 
+    function isTruthyParam(value) {
+      return value === "1" || value === "true" || value === "yes";
+    }
+
+    function updateDashboardUrl() {
+      const params = new URLSearchParams(location.search);
+
+      if (state.selectedDate && state.selectedDate !== state.latestDate) {
+        params.set("day", state.selectedDate);
+      } else {
+        params.delete("day");
+      }
+
+      if (state.showAllPredictions) {
+        params.set("consider", "1");
+      } else {
+        params.delete("consider");
+      }
+
+      params.delete("q");
+
+      const qs = params.toString();
+      history.replaceState(
+        null,
+        "",
+        location.pathname + (qs ? `?${qs}` : "") + location.hash
+      );
+    }
+
     function escapeHtml(value) {
       return String(value ?? "")
         .replace(/&/g, "&amp;")
@@ -651,6 +680,7 @@
           state.sort.predictions.dir = "desc";
         }
         renderTables();
+        updateDashboardUrl();
       });
     }
 
@@ -1052,7 +1082,6 @@
 
     async function loadTradingDay(date) {
       state.selectedDate = date;
-      state.showAllPredictions = false;
       document.getElementById("summary-stats").innerHTML = "Loading…";
       document.getElementById("crosses-table").innerHTML = "Loading…";
       document.getElementById("predictions-table").innerHTML = "Loading…";
@@ -1072,6 +1101,7 @@
       }
 
       renderDashboard();
+      updateDashboardUrl();
     }
 
     async function init() {
@@ -1086,7 +1116,22 @@
           state.manifest.dates = [...state.manifest.dates, state.latestDate].sort();
         }
 
-        populateDatePicker(state.manifest.dates, state.latestDate);
+        const params = new URLSearchParams(location.search);
+        const tickerQuery = params.get("q");
+        if (tickerQuery && tickerQuery.trim()) {
+          location.replace(
+            `ticker-history.html?ticker=${encodeURIComponent(tickerQuery.trim())}`
+          );
+          return;
+        }
+
+        const initialDay = params.get("day");
+        const startDate = initialDay && state.manifest.dates.includes(initialDay)
+          ? initialDay
+          : state.latestDate;
+        state.showAllPredictions = isTruthyParam(params.get("consider"));
+
+        populateDatePicker(state.manifest.dates, startDate);
 
         document.getElementById("date-picker").addEventListener("change", (event) => {
           loadTradingDay(event.target.value).catch(showLoadError);
@@ -1095,15 +1140,8 @@
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS);
         bindTableSort("predictions-table", "predictions", getPredictionsColumns);
 
-        const params = new URLSearchParams(location.search);
-        const initialDay = params.get("day");
-        const startDate = initialDay && state.manifest.dates.includes(initialDay)
-          ? initialDay
-          : state.latestDate;
         await loadTradingDay(startDate);
-        if (initialDay) {
-          document.getElementById("date-picker").value = initialDay;
-        }
+        document.getElementById("date-picker").value = startDate;
       } catch (e) {
         showLoadError(e);
       }
