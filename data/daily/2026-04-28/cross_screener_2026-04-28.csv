@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-28,MEDP,death,82.67,70.0,12.67,LOOK,1
+2026-04-28,BUZZ,golden,63.91,70.0,-6.09,SKIP,2
+2026-04-28,EG,golden,45.21,70.0,-24.79,SKIP,3
+2026-04-28,GME,golden,42.59,70.0,-27.41,SKIP,4
+2026-04-28,PRI,golden,26.88,70.0,-43.12,SKIP,5
+2026-04-28,WSO,golden,24.52,70.0,-45.48,SKIP,6
+2026-04-28,WINN,golden,17.62,70.0,-52.38,SKIP,7
+2026-04-28,VTES,death,0.7,70.0,-69.3,SKIP,8
+2026-04-28,TBIL,death,0.61,70.0,-69.39,SKIP,9
+2026-04-28,SHM,death,0.57,70.0,-69.43,SKIP,10
+2026-04-28,SPAB,death,0.5,70.0,-69.5,SKIP,11
+2026-04-28,BILS,golden,0.4,70.0,-69.6,SKIP,12

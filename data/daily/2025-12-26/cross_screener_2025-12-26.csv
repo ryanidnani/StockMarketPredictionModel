@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-26,ON,golden,42.62,70.0,-27.38,SKIP,1
+2025-12-26,SEIC,golden,40.04,70.0,-29.96,SKIP,2
+2025-12-26,AMZU,death,37.87,70.0,-32.13,SKIP,3
+2025-12-26,ETN,death,27.71,70.0,-42.29,SKIP,4
+2025-12-26,MNSO,death,18.95,70.0,-51.05,SKIP,5
+2025-12-26,COMT,death,15.75,70.0,-54.25,SKIP,6
+2025-12-26,EHC,death,13.06,70.0,-56.94,SKIP,7
+2025-12-26,TAK,golden,11.16,70.0,-58.84,SKIP,8
+2025-12-26,SJNK,death,8.65,70.0,-61.35,SKIP,9
+2025-12-26,SPTL,death,8.05,70.0,-61.95,SKIP,10
+2025-12-26,FLRN,death,7.87,70.0,-62.13,SKIP,11
+2025-12-26,USRT,death,7.87,70.0,-62.13,SKIP,12
+2025-12-26,APOPA,golden,4.91,70.0,-65.09,SKIP,13

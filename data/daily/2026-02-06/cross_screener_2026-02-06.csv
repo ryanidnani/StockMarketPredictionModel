@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-02-06,VNT,golden,94.43,70.0,24.43,LOOK,1
+2026-02-06,TGT,golden,83.66,70.0,13.66,LOOK,2
+2026-02-06,FLR,golden,81.31,70.0,11.31,LOOK,3
+2026-02-06,SIGI,golden,59.41,70.0,-10.59,SKIP,4
+2026-02-06,APO,death,40.36,70.0,-29.64,SKIP,5
+2026-02-06,KBWD,death,23.69,70.0,-46.31,SKIP,6
+2026-02-06,FLGV,death,0.55,70.0,-69.45,SKIP,7

@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-22,TECL,golden,91.79,70.0,21.79,LOOK,1
+2026-04-22,BITQ,golden,76.7,70.0,6.7,LOOK,2
+2026-04-22,NVDU,golden,72.47,70.0,2.47,LOOK,3
+2026-04-22,FOX,golden,60.29,70.0,-9.71,SKIP,4
+2026-04-22,SYF,golden,50.55,70.0,-19.45,SKIP,5
+2026-04-22,TCHP,golden,34.39,70.0,-35.61,SKIP,6
+2026-04-22,FUTU,golden,34.24,70.0,-35.76,SKIP,7
+2026-04-22,SYY,death,25.46,70.0,-44.54,SKIP,8
+2026-04-22,SSB,golden,18.93,70.0,-51.07,SKIP,9
+2026-04-22,BAFE,golden,12.45,70.0,-57.55,SKIP,10
+2026-04-22,PTLC,golden,4.1,70.0,-65.9,SKIP,11
+2026-04-22,EBND,golden,1.27,70.0,-68.73,SKIP,12
+2026-04-22,DUSB,death,0.67,70.0,-69.33,SKIP,13
+2026-04-22,HYD,golden,0.49,70.0,-69.51,SKIP,14

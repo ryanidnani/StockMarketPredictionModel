@@ -1,0 +1,11 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-19,ETHE,death,67.89,70.0,-2.11,SKIP,1
+2025-12-19,ACGL,golden,37.35,70.0,-32.65,SKIP,2
+2025-12-19,STN,death,31.73,70.0,-38.27,SKIP,3
+2025-12-19,GWRE,death,31.21,70.0,-38.79,SKIP,4
+2025-12-19,KRG,golden,28.3,70.0,-41.7,SKIP,5
+2025-12-19,OLLI,death,15.91,70.0,-54.09,SKIP,6
+2025-12-19,BNDX,death,7.39,70.0,-62.61,SKIP,7
+2025-12-19,DUSB,death,7.39,70.0,-62.61,SKIP,8
+2025-12-19,SGOV,death,7.39,70.0,-62.61,SKIP,9
+2025-12-19,SHV,death,7.39,70.0,-62.61,SKIP,10

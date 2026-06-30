@@ -1,8 +1,0 @@
-event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2025-12-31,BITI,golden,60.1,CONSIDER,23.17,26.97,29.11,-5.91,21.8,21.12,16.41
-2025-12-31,UBER,death,16.8,AVOID,,,,,,,
-2025-12-31,QGEN,death,15.12,AVOID,,,,,,,
-2025-12-31,CVX,golden,12.37,AVOID,,,,,,,
-2025-12-31,ICSH,death,7.87,AVOID,,,,,,,
-2025-12-31,CLIP,death,7.33,AVOID,,,,,,,
-2025-12-31,CSHI,death,7.33,AVOID,,,,,,,

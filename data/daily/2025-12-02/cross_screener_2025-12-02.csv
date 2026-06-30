@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-02,VIST,golden,68.96,70.0,-1.04,SKIP,1
+2025-12-02,SMR,death,62.4,70.0,-7.6,SKIP,2
+2025-12-02,ACHR,death,48.4,70.0,-21.6,SKIP,3
+2025-12-02,LYV,death,47.51,70.0,-22.49,SKIP,4
+2025-12-02,VFC,golden,42.57,70.0,-27.43,SKIP,5
+2025-12-02,HTZWW,death,28.43,70.0,-41.57,SKIP,6
+2025-12-02,SUI,golden,26.15,70.0,-43.85,SKIP,7
+2025-12-02,IBTF,death,7.39,70.0,-62.61,SKIP,8
+2025-12-02,CLIP,death,7.33,70.0,-62.67,SKIP,9

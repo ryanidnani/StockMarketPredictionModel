@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-03,ERX,golden,76.29,70.0,6.29,LOOK,1
+2025-12-03,DVN,golden,56.29,70.0,-13.71,SKIP,2
+2025-12-03,MTB,golden,32.11,70.0,-37.89,SKIP,3
+2025-12-03,SYY,death,24.64,70.0,-45.36,SKIP,4
+2025-12-03,MSCI,death,22.27,70.0,-47.73,SKIP,5
+2025-12-03,PTC,death,22.03,70.0,-47.97,SKIP,6
+2025-12-03,BIL,death,7.39,70.0,-62.61,SKIP,7

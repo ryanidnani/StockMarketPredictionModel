@@ -1,8 +1,0 @@
-event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
-2026-01-02,RRX,golden,66.87,CONSIDER,146.1,166.53,175.1,-5.38,138.25,134.32,13.98
-2026-01-02,DKS,death,29.93,AVOID,,,,,,,
-2026-01-02,IAGG,death,19.01,AVOID,,,,,,,
-2026-01-02,USDU,death,12.24,AVOID,,,,,,,
-2026-01-02,UBER,death,11.65,AVOID,,,,,,,
-2026-01-02,DFIP,death,9.37,AVOID,,,,,,,
-2026-01-02,VTIP,death,7.39,AVOID,,,,,,,

@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-05-11,CRCL,golden,96.48,70.0,26.48,LOOK,1
+2026-05-11,DDOG,golden,93.68,70.0,23.68,LOOK,2
+2026-05-11,QCOM,golden,86.76,70.0,16.76,LOOK,3
+2026-05-11,SITE,death,61.95,70.0,-8.05,SKIP,4
+2026-05-11,CACI,death,55.31,70.0,-14.69,SKIP,5
+2026-05-11,SMMT,death,40.89,70.0,-29.11,SKIP,6
+2026-05-11,TFX,golden,33.87,70.0,-36.13,SKIP,7
+2026-05-11,IYH,death,30.85,70.0,-39.15,SKIP,8
+2026-05-11,XLV,death,29.44,70.0,-40.56,SKIP,9
+2026-05-11,SCIO,death,1.15,70.0,-68.85,SKIP,10
+2026-05-11,DIAL,death,0.72,70.0,-69.28,SKIP,11
+2026-05-11,RYLD,golden,0.62,70.0,-69.38,SKIP,12

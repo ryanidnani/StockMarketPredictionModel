@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-11-21,NFLU,death,69.57,70.0,-0.43,SKIP,1
+2025-11-21,NFXL,death,65.33,70.0,-4.67,SKIP,2
+2025-11-21,ACHR.WS,death,49.98,70.0,-20.02,SKIP,3
+2025-11-21,ICL,death,27.22,70.0,-42.78,SKIP,4
+2025-11-21,GDXY,death,19.62,70.0,-50.38,SKIP,5
+2025-11-21,DBA,death,14.62,70.0,-55.38,SKIP,6
+2025-11-21,UUP,golden,4.91,70.0,-65.09,SKIP,7

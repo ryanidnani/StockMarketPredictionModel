@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-02-20,OXY.WS,golden,88.64,70.0,18.64,LOOK,1
+2026-02-20,RRC,golden,82.3,70.0,12.3,LOOK,2
+2026-02-20,BMRN,golden,62.97,70.0,-7.03,SKIP,3
+2026-02-20,DAPP,death,59.46,70.0,-10.54,SKIP,4
+2026-02-20,HOOD,death,53.0,70.0,-17.0,SKIP,5
+2026-02-20,KIM,golden,46.19,70.0,-23.81,SKIP,6
+2026-02-20,FCN,death,46.18,70.0,-23.82,SKIP,7
+2026-02-20,EPRT,golden,45.59,70.0,-24.41,SKIP,8
+2026-02-20,XYL,death,35.15,70.0,-34.85,SKIP,9
+2026-02-20,OKE,golden,31.62,70.0,-38.38,SKIP,10
+2026-02-20,EPI,golden,25.01,70.0,-44.99,SKIP,11
+2026-02-20,ICLO,golden,0.37,70.0,-69.63,SKIP,12

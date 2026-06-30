@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-08,RBRK,golden,85.44,70.0,15.44,LOOK,1
+2025-12-08,WAY,death,64.8,70.0,-5.2,SKIP,2
+2025-12-08,KOF,golden,59.12,70.0,-10.88,SKIP,3
+2025-12-08,ABT,death,57.43,70.0,-12.57,SKIP,4
+2025-12-08,TRGP,golden,37.78,70.0,-32.22,SKIP,5
+2025-12-08,UBSI,golden,34.59,70.0,-35.41,SKIP,6
+2025-12-08,SCI,death,23.58,70.0,-46.42,SKIP,7
+2025-12-08,VRSN,death,19.96,70.0,-50.04,SKIP,8
+2025-12-08,KEX,golden,19.67,70.0,-50.33,SKIP,9
+2025-12-08,SLF,death,16.99,70.0,-53.01,SKIP,10
+2025-12-08,BKLN,golden,4.91,70.0,-65.09,SKIP,11

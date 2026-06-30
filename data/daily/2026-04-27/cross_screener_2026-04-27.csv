@@ -1,0 +1,11 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-27,LTH,death,86.43,70.0,16.43,LOOK,1
+2026-04-27,GME,golden,70.42,70.0,0.42,LOOK,2
+2026-04-27,TLN,golden,63.64,70.0,-6.36,SKIP,3
+2026-04-27,SSB,golden,58.09,70.0,-11.91,SKIP,4
+2026-04-27,VOYA,golden,55.78,70.0,-14.22,SKIP,5
+2026-04-27,HMY,death,46.57,70.0,-23.43,SKIP,6
+2026-04-27,HLN,death,34.81,70.0,-35.19,SKIP,7
+2026-04-27,DFCF,death,0.88,70.0,-69.12,SKIP,8
+2026-04-27,TBIL,golden,0.4,70.0,-69.6,SKIP,9
+2026-04-27,CSHI,golden,0.37,70.0,-69.63,SKIP,10

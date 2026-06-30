@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-23,MA,death,46.96,70.0,-23.04,SKIP,1
+2026-01-23,BALL,golden,37.79,70.0,-32.21,SKIP,2
+2026-01-23,DKS,death,26.74,70.0,-43.26,SKIP,3
+2026-01-23,DASH,death,24.67,70.0,-45.33,SKIP,4
+2026-01-23,SONY,death,23.39,70.0,-46.61,SKIP,5
+2026-01-23,SPHD,golden,21.4,70.0,-48.6,SKIP,6
+2026-01-23,NCLH,death,20.79,70.0,-49.21,SKIP,7
+2026-01-23,EPI,death,19.45,70.0,-50.55,SKIP,8
+2026-01-23,STRF,death,17.58,70.0,-52.42,SKIP,9

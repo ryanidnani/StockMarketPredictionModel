@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-21,MSTZ,death,53.33,70.0,-16.67,SKIP,1
+2026-04-21,ZM,golden,51.56,70.0,-18.44,SKIP,2
+2026-04-21,FAF,golden,34.99,70.0,-35.01,SKIP,3
+2026-04-21,LTH,golden,34.68,70.0,-35.32,SKIP,4
+2026-04-21,TGTX,golden,29.36,70.0,-40.64,SKIP,5
+2026-04-21,WH,golden,26.2,70.0,-43.8,SKIP,6
+2026-04-21,SCHG,golden,15.01,70.0,-54.99,SKIP,7
+2026-04-21,DFCF,death,1.75,70.0,-68.25,SKIP,8
+2026-04-21,AGG,death,0.98,70.0,-69.02,SKIP,9
+2026-04-21,BSCQ,death,0.45,70.0,-69.55,SKIP,10
+2026-04-21,SBND,golden,0.44,70.0,-69.56,SKIP,11

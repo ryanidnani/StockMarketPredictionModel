@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-15,FANG,golden,56.85,70.0,-13.15,SKIP,1
+2026-01-15,SSD,golden,54.65,70.0,-15.35,SKIP,2
+2026-01-15,MORT,golden,54.11,70.0,-15.89,SKIP,3
+2026-01-15,STM,golden,46.74,70.0,-23.26,SKIP,4
+2026-01-15,IEX,golden,45.19,70.0,-24.81,SKIP,5
+2026-01-15,XOP,golden,38.96,70.0,-31.04,SKIP,6
+2026-01-15,NIO,death,38.69,70.0,-31.31,SKIP,7
+2026-01-15,SFD,golden,33.98,70.0,-36.02,SKIP,8
+2026-01-15,SSB,golden,33.69,70.0,-36.31,SKIP,9
+2026-01-15,MSA,golden,28.76,70.0,-41.24,SKIP,10
+2026-01-15,GWW,golden,23.52,70.0,-46.48,SKIP,11
+2026-01-15,BITI,death,22.74,70.0,-47.26,SKIP,12
+2026-01-15,FCN,golden,21.16,70.0,-48.84,SKIP,13
+2026-01-15,BDX,golden,20.78,70.0,-49.22,SKIP,14
+2026-01-15,USFR,golden,4.91,70.0,-65.09,SKIP,15

@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-05-05,DAPP,golden,86.09,70.0,16.09,LOOK,1
+2026-05-05,OZK,golden,45.35,70.0,-24.65,SKIP,2
+2026-05-05,FAZ,death,44.58,70.0,-25.42,SKIP,3
+2026-05-05,VRTX,death,41.06,70.0,-28.94,SKIP,4
+2026-05-05,CNC,golden,38.5,70.0,-31.5,SKIP,5
+2026-05-05,LSGR,golden,8.39,70.0,-61.61,SKIP,6
+2026-05-05,LGOV,death,6.91,70.0,-63.09,SKIP,7
+2026-05-05,BAB,death,1.64,70.0,-68.36,SKIP,8
+2026-05-05,JBND,death,0.69,70.0,-69.31,SKIP,9
+2026-05-05,TMB,death,0.62,70.0,-69.38,SKIP,10
+2026-05-05,JPLD,death,0.54,70.0,-69.46,SKIP,11
+2026-05-05,FSMB,death,0.51,70.0,-69.49,SKIP,12

@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-05-06,OSCR,golden,96.0,70.0,26.0,LOOK,1
+2026-05-06,AAPU,golden,91.5,70.0,21.5,LOOK,2
+2026-05-06,COR,death,89.2,70.0,19.2,LOOK,3
+2026-05-06,QQQU,golden,82.85,70.0,12.85,LOOK,4
+2026-05-06,CARR,golden,81.3,70.0,11.3,LOOK,5
+2026-05-06,CNA,death,72.16,70.0,2.16,LOOK,6
+2026-05-06,CAIE,golden,2.46,70.0,-67.54,SKIP,7
+2026-05-06,SPYI,golden,0.81,70.0,-69.19,SKIP,8
+2026-05-06,GBIL,death,0.44,70.0,-69.56,SKIP,9

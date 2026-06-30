@@ -1,0 +1,7 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-22,BITI,golden,55.22,70.0,-14.78,SKIP,1
+2026-01-22,KOLD,death,51.87,70.0,-18.13,SKIP,2
+2026-01-22,SCI,golden,32.58,70.0,-37.42,SKIP,3
+2026-01-22,ITW,golden,28.47,70.0,-41.53,SKIP,4
+2026-01-22,KNG,golden,20.8,70.0,-49.2,SKIP,5
+2026-01-22,FLRN,golden,4.91,70.0,-65.09,SKIP,6

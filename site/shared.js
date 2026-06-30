@@ -13,6 +13,13 @@
     death_st: "Death ST",
   };
 
+  const FAMILY_THRESHOLDS = {
+    golden: 70,
+    golden_st: 75,
+    death: 70,
+    death_st: 75,
+  };
+
   function pagesBase() {
     const segment = location.pathname.split("/").filter(Boolean)[0];
     return segment ? `/${segment}/` : "/";
@@ -27,7 +34,9 @@
   function dailyCsvPaths(date) {
     return {
       crosses: `data/daily/${date}/detected_crosses_${date}.csv`,
-      predictions: `data/daily/${date}/trading_predictions_${date}.csv`,
+      screener: `data/daily/${date}/cross_screener_${date}.csv`,
+      // Legacy alias for older archive links.
+      predictions: `data/daily/${date}/cross_screener_${date}.csv`,
     };
   }
 
@@ -75,8 +84,10 @@
   }
 
   function displayRecommendation(rec) {
-    if (rec === "EXECUTE" || rec === "CONSIDER") return "CONSIDER";
-    return rec;
+    const value = String(rec ?? "").toUpperCase();
+    if (value === "LOOK" || value === "EXECUTE" || value === "CONSIDER") return "LOOK";
+    if (value === "SKIP" || value === "AVOID") return "SKIP";
+    return value || "—";
   }
 
   function probabilityPercent(value) {
@@ -87,20 +98,30 @@
     return num;
   }
 
-  function isConsider(rec, probability) {
+  function lookThreshold(row) {
+    const explicit = probabilityPercent(row.look_threshold_pct);
+    if (explicit != null) return explicit;
+    const family = String(row.cross_type || "").toLowerCase();
+    return FAMILY_THRESHOLDS[family] ?? 50;
+  }
+
+  function isLook(rec, probability, row) {
+    if (displayRecommendation(rec) === "LOOK") return true;
     const pct = probabilityPercent(probability);
-    if (pct == null || pct < 50) return false;
-    return displayRecommendation(rec) === "CONSIDER";
+    const threshold = row ? lookThreshold(row) : 50;
+    return pct != null && pct >= threshold;
+  }
+
+  function isConsider(rec, probability, row) {
+    return isLook(rec, probability, row);
   }
 
   function recommendationRank(row) {
-    return isConsider(row.recommendation, row.probability) ? 0 : 1;
+    return isLook(row.recommendation, row.probability, row) ? 0 : 1;
   }
 
   function recommendationLabel(row) {
-    if (isConsider(row.recommendation, row.probability)) return "CONSIDER";
-    if (displayRecommendation(row.recommendation) === "CONSIDER") return "AVOID";
-    return displayRecommendation(row.recommendation) || "—";
+    return isLook(row.recommendation, row.probability, row) ? "LOOK" : "SKIP";
   }
 
   function formatVolume(value) {
@@ -263,17 +284,14 @@
     const widths = {
       cross_type: "6.75rem",
       signal_type: "6.75rem",
-      recommendation: "7.75rem",
+      recommendation: "7rem",
       probability: "6.75rem",
+      look_threshold_pct: "7.5rem",
+      look_margin_pct: "7.5rem",
+      rank: "4.5rem",
       avg_daily_volume_30d: "8.25rem",
       market_cap: "7rem",
       current_price: "7.25rem",
-      entry_price: "7rem",
-      prudent_tp_price: "8.75rem",
-      max_tp_price: "8.25rem",
-      stop_loss_price: "8.25rem",
-      return_prudent: "7.75rem",
-      downside_return: "8rem",
       ema_21: "6.25rem",
       ema_50: "6.25rem",
       ema_200: "6.75rem",
@@ -388,6 +406,8 @@
     normalizeTicker,
     displayRecommendation,
     probabilityPercent,
+    lookThreshold,
+    isLook,
     isConsider,
     recommendationRank,
     recommendationLabel,

@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-13,ADSK,death,60.98,70.0,-9.02,SKIP,1
+2026-01-13,SITE,golden,59.97,70.0,-10.03,SKIP,2
+2026-01-13,MSFL,death,55.66,70.0,-14.34,SKIP,3
+2026-01-13,FAF,death,47.05,70.0,-22.95,SKIP,4
+2026-01-13,SWK,golden,46.57,70.0,-23.43,SKIP,5
+2026-01-13,PM,golden,35.94,70.0,-34.06,SKIP,6
+2026-01-13,HQY,death,35.06,70.0,-34.94,SKIP,7
+2026-01-13,XP,death,30.24,70.0,-39.76,SKIP,8
+2026-01-13,WCLD,death,25.62,70.0,-44.38,SKIP,9
+2026-01-13,AXTA,golden,19.01,70.0,-50.99,SKIP,10
+2026-01-13,SCHP,death,14.29,70.0,-55.71,SKIP,11
+2026-01-13,UDN,death,6.83,70.0,-63.17,SKIP,12
+2026-01-13,ICSH,golden,4.91,70.0,-65.09,SKIP,13

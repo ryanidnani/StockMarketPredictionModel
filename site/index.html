@@ -4,20 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stock Market Predictions Model Daily Dashboard</title>
-  <meta name="description" content="Daily EMA golden cross and death cross detections for trading idea research." />
+  <meta name="description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="social-preview.jpg" />
   <meta name="theme-color" content="#0f1419" />
   <meta property="og:site_name" content="Stock Market Predictions Model" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Stock Market Predictions Model Daily Dashboard" />
-  <meta property="og:description" content="Daily EMA golden cross and death cross detections for trading idea research." />
+  <meta property="og:description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
   <meta property="og:url" content="https://ryanidnani.github.io/StockMarketPredictionModel/" />
   <meta property="og:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <meta property="og:image:alt" content="Golden cross chart showing a bullish 50-day and 200-day moving average crossover." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Stock Market Predictions Model Daily Dashboard" />
-  <meta name="twitter:description" content="Daily EMA golden cross and death cross detections for trading idea research." />
+  <meta name="twitter:description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
   <link rel="stylesheet" href="index.css" data-gc-stylesheet="index.css" />
@@ -27,7 +27,7 @@
   <div class="wrap">
     <h1>Stock Market Predictions Model Daily Dashboard</h1>
     <p class="byline">By: Ryan Idnani</p>
-    <p class="sub">Daily golden cross and death cross detections as well as machine learning predictions for trading ideas. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
+    <p class="sub">Daily golden cross and death cross detections plus a v4 model screener that ranks each cross and flags which ones are worth reviewing. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
     <p class="as-of" id="as-of">Loading…</p>
 
     <div class="controls-toolbar">
@@ -48,9 +48,9 @@
     <div class="cards">
       <div class="card quick-links">
         <h2>Quick Links</h2>
-        <p><a id="link-predictions" href="latest/trading_predictions.csv">Today's Trading Predictions (CSV)</a></p>
+        <p><a id="link-screener" href="latest/cross_screener.csv">Today's Cross Screener (CSV)</a></p>
         <p><a id="link-crosses" href="latest/detected_crosses.csv">Today's Detected Crosses (CSV)</a></p>
-        <p><a href="historical-archive.html">Historical Crosses and Predictions</a></p>
+        <p><a href="historical-archive.html">Historical Crosses and Screener</a></p>
         <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">GitHub Repository</a></p>
         <p><a href="ticker-history.html">Ticker History Search</a></p>
       </div>
@@ -120,13 +120,13 @@
     </section>
 
     <section class="card">
-      <h2>Model-Flagged Research Ideas</h2>
+      <h2>Cross Screener</h2>
       <p class="consider-threshold-note">
-        A row is labeled <strong>CONSIDER</strong> only when model probability is at least 50% and trade targets are present.
-        That label is for research screening, not a recommendation to buy or sell.
+        A row is labeled <strong>LOOK</strong> when it passes universe and rule gates and model probability meets the family look-at threshold (70–75%).
+        That label means worth reviewing for research — not a recommendation to buy or sell.
       </p>
-      <p class="predictions-meta" id="predictions-meta"></p>
-      <div class="table-wrap" id="predictions-table">Loading…</div>
+      <p class="predictions-meta" id="screener-meta"></p>
+      <div class="table-wrap" id="screener-table">Loading…</div>
     </section>
 
     <section class="card" style="margin-top: 1rem;">
@@ -158,6 +158,7 @@
       archiveStartHint,
       renderTickerLink,
       displayRecommendation,
+      isLook,
       isConsider,
       formatVolume,
       formatMarketCap,
@@ -168,6 +169,8 @@
       crossSignal,
       normalizeTicker,
       numericField,
+      lookThreshold,
+      recommendationLabel,
       recommendationRank,
       probabilityPercent,
       renderDataTable,
@@ -215,12 +218,12 @@
       latestDate: null,
       selectedDate: null,
       crosses: [],
-      predictions: [],
-      showAllPredictions: false,
+      screener: [],
+      showAllScreener: false,
       activeCrossTypes: new Set(CROSS_TYPES),
       sort: {
         crosses: { key: "market_cap", dir: "desc" },
-        predictions: { key: "probability", dir: "desc" },
+        screener: { key: "rank", dir: "asc" },
       },
     };
 
@@ -228,9 +231,8 @@
       return value === "1" || value === "true" || value === "yes";
     }
 
-    function parseShowAllPredictionsFromUrl(params) {
+    function parseShowAllScreenerFromUrl(params) {
       if (isTruthyParam(params.get("all"))) return true;
-      // Legacy alias: older share links used consider=1 to mean "show all".
       if (isTruthyParam(params.get("consider"))) return true;
       return false;
     }
@@ -258,7 +260,7 @@
         params.delete("day");
       }
 
-      if (state.showAllPredictions) {
+      if (state.showAllScreener) {
         params.set("all", "1");
       } else {
         params.delete("all");
@@ -301,8 +303,8 @@
       });
     }
 
-    function considerPredictions(rows) {
-      return rows.filter((row) => isConsider(row.recommendation, row.probability));
+    function lookRows(rows) {
+      return rows.filter((row) => isLook(row.recommendation, row.probability, row));
     }
 
     function allCrossTypesActive() {
@@ -340,10 +342,10 @@
       return state.crosses.filter((row) => rowMatchesCrossTypeFilter(crossSignal(row)));
     }
 
-    function visiblePredictions() {
-      let rows = state.showAllPredictions
-        ? state.predictions
-        : considerPredictions(state.predictions);
+    function visibleScreener() {
+      let rows = state.showAllScreener
+        ? state.screener
+        : lookRows(state.screener);
       if (!allCrossTypesActive()) {
         rows = rows.filter((row) => rowMatchesCrossTypeFilter(row.cross_type));
       }
@@ -351,7 +353,7 @@
     }
 
     function filteredEmptyMessage(kind) {
-      const kindLabel = kind === "cross" ? "crosses" : "predictions";
+      const kindLabel = kind === "cross" ? "crosses" : "screener rows";
       if (state.activeCrossTypes.size === 0) {
         return (
           '<p class="empty-filter-msg">No cross types selected. ' +
@@ -480,62 +482,58 @@
 
     const RECOMMENDATION_COLUMN = {
       key: "recommendation",
-      label: "Recommendation",
+      label: "Screen",
       align: "center",
       type: "rank",
       sortValue: (row) => recommendationRank(row),
       render: (row) => {
-        const label = isConsider(row.recommendation, row.probability)
-          ? "CONSIDER"
-          : displayRecommendation(row.recommendation) === "CONSIDER"
-            ? "AVOID"
-            : displayRecommendation(row.recommendation);
-        const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
+        const label = recommendationLabel(row);
+        const recClass = label === "LOOK" ? "consider" : "avoid";
         return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
       },
     };
 
-    function getPredictionsColumns() {
-      if (state.showAllPredictions) return PREDICTIONS_COLUMNS;
-      return PREDICTIONS_COLUMNS.filter((column) => column.key !== "recommendation");
+    function getScreenerColumns() {
+      if (state.showAllScreener) return SCREENER_COLUMNS;
+      return SCREENER_COLUMNS.filter((column) => column.key !== "recommendation");
     }
 
-    function predictionsRowClass(row) {
-      if (!state.showAllPredictions) return "";
-      return isConsider(row.recommendation, row.probability) ? "row-consider" : "row-avoid";
+    function screenerRowClass(row) {
+      if (!state.showAllScreener) return "";
+      return isLook(row.recommendation, row.probability, row) ? "row-consider" : "row-avoid";
     }
 
-    function renderPredictionsMeta() {
-      const total = state.predictions.length;
-      const considerCount = considerPredictions(state.predictions).length;
-      const meta = document.getElementById("predictions-meta");
+    function renderScreenerMeta() {
+      const total = state.screener.length;
+      const lookCount = lookRows(state.screener).length;
+      const meta = document.getElementById("screener-meta");
 
       if (!total) {
-        meta.innerHTML = "No predictions for this day.";
+        meta.innerHTML = "No screener rows for this day.";
         return;
       }
 
-      if (state.showAllPredictions) {
+      if (state.showAllScreener) {
         meta.innerHTML =
-          `Showing all ${total} predictions ` +
-          `(<span class="consider">${considerCount} to Consider</span>, ` +
-          `<span class="avoid">${total - considerCount} AVOID</span>). ` +
-          `<button type="button" id="predictions-toggle">Show Consider Only</button>`;
+          `Showing all ${total} screener rows ` +
+          `(<span class="consider">${lookCount} LOOK</span>, ` +
+          `<span class="avoid">${total - lookCount} SKIP</span>). ` +
+          `<button type="button" id="screener-toggle">Show LOOK Only</button>`;
         return;
       }
 
-      if (!considerCount) {
+      if (!lookCount) {
         meta.innerHTML =
-          `Nothing to Consider for this day (${total} total). ` +
-          `<button type="button" id="predictions-toggle">Show All ${total} Predictions</button>`;
+          `Nothing flagged LOOK for this day (${total} total). ` +
+          `<button type="button" id="screener-toggle">Show All ${total} Rows</button>`;
         return;
       }
 
-      const visibleCount = visiblePredictions().length;
+      const visibleCount = visibleScreener().length;
       let message =
-        `Showing ${considerCount} to Consider` +
-        (total > considerCount
-          ? ` of ${total} total. <button type="button" id="predictions-toggle">Show All Predictions</button>`
+        `Showing ${lookCount} LOOK` +
+        (total > lookCount
+          ? ` of ${total} total. <button type="button" id="screener-toggle">Show All Rows</button>`
           : ".");
 
       if (!allCrossTypesActive()) {
@@ -545,14 +543,14 @@
       meta.innerHTML = message;
     }
 
-    function bindPredictionsToggle() {
-      const button = document.getElementById("predictions-toggle");
+    function bindScreenerToggle() {
+      const button = document.getElementById("screener-toggle");
       if (!button) return;
       button.addEventListener("click", () => {
-        state.showAllPredictions = !state.showAllPredictions;
-        if (!state.showAllPredictions && state.sort.predictions.key === "recommendation") {
-          state.sort.predictions.key = "probability";
-          state.sort.predictions.dir = "desc";
+        state.showAllScreener = !state.showAllScreener;
+        if (!state.showAllScreener && state.sort.screener.key === "recommendation") {
+          state.sort.screener.key = "rank";
+          state.sort.screener.dir = "asc";
         }
         renderTables();
         updateDashboardUrl();
@@ -629,7 +627,15 @@
       },
     ];
 
-    const PREDICTIONS_COLUMNS = [
+    const SCREENER_COLUMNS = [
+      {
+        key: "rank",
+        label: "Rank",
+        align: "center",
+        type: "number",
+        sortValue: (row) => numericField(row, "rank"),
+        render: (row) => `<td class="col-center">${escapeHtml(row.rank || "—")}</td>`,
+      },
       {
         key: "ticker",
         label: "Ticker",
@@ -654,55 +660,23 @@
         sortValue: (row) => probabilityPercent(row.probability),
         render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
       },
+      {
+        key: "look_threshold_pct",
+        label: "Look At %",
+        align: "center",
+        type: "number",
+        sortValue: (row) => lookThreshold(row),
+        render: (row) => `<td class="col-center">${formatProbability(lookThreshold(row))}</td>`,
+      },
+      {
+        key: "look_margin_pct",
+        label: "Margin",
+        align: "center",
+        type: "number",
+        sortValue: (row) => numericField(row, "look_margin_pct"),
+        render: (row) => `<td class="col-center">${formatPercent(row.look_margin_pct)}</td>`,
+      },
       RECOMMENDATION_COLUMN,
-      {
-        key: "entry_price",
-        label: "Entry Price",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "entry_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
-      },
-      {
-        key: "prudent_tp_price",
-        label: "Prudent Profit Price",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "prudent_tp_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
-      },
-      {
-        key: "max_tp_price",
-        label: "Max Profit Price",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "max_tp_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.max_tp_price)}</td>`,
-      },
-      {
-        key: "stop_loss_price",
-        label: "Stop Loss Price",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "recommended_actual_stop", "stop_loss_price"),
-        render: (row) => `<td class="col-center">${formatPrice(row.recommended_actual_stop ?? row.stop_loss_price)}</td>`,
-      },
-      {
-        key: "return_prudent",
-        label: "Prudent Return",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "return_prudent"),
-        render: (row) => `<td class="col-center">${formatPercent(row.return_prudent)}</td>`,
-      },
-      {
-        key: "downside_return",
-        label: "Downside Return",
-        align: "center",
-        type: "number",
-        sortValue: (row) => numericField(row, "downside_return"),
-        render: (row) => `<td class="col-center">${formatPercent(row.downside_return)}</td>`,
-      },
     ];
 
     function countByType(rows, field) {
@@ -714,15 +688,15 @@
       return counts;
     }
 
-    function renderSummary(crosses, predictions) {
+    function renderSummary(crosses, screener) {
       const crossCounts = countByType(crosses, "signal_type");
-      const considerCounts = countByType(
-        predictions.filter((row) => isConsider(row.recommendation, row.probability)),
+      const lookCounts = countByType(
+        screener.filter((row) => isLook(row.recommendation, row.probability, row)),
         "cross_type"
       );
       const totalCrosses = crosses.length;
-      const totalConsider = predictions.filter((row) =>
-        isConsider(row.recommendation, row.probability)
+      const totalLook = screener.filter((row) =>
+        isLook(row.recommendation, row.probability, row)
       ).length;
 
       let rows = "";
@@ -730,18 +704,18 @@
         rows += `<tr>
           <td class="${crossClass(type)}">${escapeHtml(crossTypeLabel(type))}</td>
           <td>${crossCounts[type]}</td>
-          <td>${considerCounts[type]}</td>
+          <td>${lookCounts[type]}</td>
         </tr>`;
       }
 
       return `
-        <p class="summary-total">${totalCrosses} Crosses · ${totalConsider} to Consider</p>
+        <p class="summary-total">${totalCrosses} Crosses · ${totalLook} LOOK</p>
         <table class="summary-table">
           <thead>
             <tr>
               <th>Type</th>
               <th>Crosses</th>
-              <th>Consider</th>
+              <th>LOOK</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -754,19 +728,19 @@
         ? renderDataTable("crosses", CROSSES_COLUMNS, crosses, state.sort.crosses)
         : filteredEmptyMessage("cross");
 
-      const predictions = visiblePredictions();
-      const predictionColumns = getPredictionsColumns();
-      document.getElementById("predictions-table").innerHTML = predictions.length
+      const screener = visibleScreener();
+      const screenerColumns = getScreenerColumns();
+      document.getElementById("screener-table").innerHTML = screener.length
         ? renderDataTable(
-          "predictions",
-          predictionColumns,
-          predictions,
-          state.sort.predictions,
-          state.showAllPredictions ? predictionsRowClass : null
+          "screener",
+          screenerColumns,
+          screener,
+          state.sort.screener,
+          state.showAllScreener ? screenerRowClass : null
         )
         : filteredEmptyMessage("prediction");
-      renderPredictionsMeta();
-      bindPredictionsToggle();
+      renderScreenerMeta();
+      bindScreenerToggle();
     }
 
     function updateAsOfLine() {
@@ -790,10 +764,10 @@
           csvLinkLabel("Detected Crosses", date)
         );
         setCsvDownloadLink(
-          "link-predictions",
-          "latest/trading_predictions.csv",
-          `trading_predictions_${date}.csv`,
-          csvLinkLabel("Trading Predictions", date)
+          "link-screener",
+          "latest/cross_screener.csv",
+          `cross_screener_${date}.csv`,
+          csvLinkLabel("Cross Screener", date)
         );
       } else {
         const paths = dailyCsvPaths(date);
@@ -804,10 +778,10 @@
           csvLinkLabel("Detected Crosses", date)
         );
         setCsvDownloadLink(
-          "link-predictions",
-          paths.predictions,
-          `trading_predictions_${date}.csv`,
-          csvLinkLabel("Trading Predictions", date)
+          "link-screener",
+          paths.screener,
+          `cross_screener_${date}.csv`,
+          csvLinkLabel("Cross Screener", date)
         );
       }
     }
@@ -826,7 +800,7 @@
       updateArchiveStartHint();
       updateDownloadLinks();
       document.getElementById("summary-stats").innerHTML =
-        renderSummary(state.crosses, state.predictions);
+        renderSummary(state.crosses, state.screener);
       renderTypeFilters();
       renderTables();
     }
@@ -835,20 +809,20 @@
       state.selectedDate = date;
       document.getElementById("summary-stats").innerHTML = "Loading…";
       document.getElementById("crosses-table").innerHTML = "Loading…";
-      document.getElementById("predictions-table").innerHTML = "Loading…";
-      document.getElementById("predictions-meta").innerHTML = "";
+      document.getElementById("screener-table").innerHTML = "Loading…";
+      document.getElementById("screener-meta").innerHTML = "";
 
       if (date === state.latestDate) {
         state.crosses = parseCsv(
           await loadText("latest/detected_crosses.csv", state.cacheKey)
         );
-        state.predictions = parseCsv(
-          await loadText("latest/trading_predictions.csv", state.cacheKey)
+        state.screener = parseCsv(
+          await loadText("latest/cross_screener.csv", state.cacheKey)
         );
       } else {
         const paths = dailyCsvPaths(date);
         state.crosses = parseCsv(await loadText(paths.crosses, state.cacheKey));
-        state.predictions = parseCsv(await loadText(paths.predictions, state.cacheKey));
+        state.screener = parseCsv(await loadText(paths.screener, state.cacheKey));
       }
 
       renderDashboard();
@@ -877,7 +851,7 @@
         const startDate = initialDay && state.manifest.dates.includes(initialDay)
           ? initialDay
           : state.latestDate;
-        state.showAllPredictions = parseShowAllPredictionsFromUrl(params);
+        state.showAllScreener = parseShowAllScreenerFromUrl(params);
         state.activeCrossTypes = parseCrossTypesFromUrl(params);
 
         populateDatePicker(state.manifest.dates, startDate);
@@ -887,7 +861,7 @@
         });
 
         bindTableSort("crosses-table", "crosses", () => CROSSES_COLUMNS, () => state.sort, renderTables);
-        bindTableSort("predictions-table", "predictions", getPredictionsColumns, () => state.sort, renderTables);
+        bindTableSort("screener-table", "screener", getScreenerColumns, () => state.sort, renderTables);
         bindTypeFilters();
         bindFilterClearInline();
         bindTickerHistorySearch();
@@ -907,7 +881,7 @@
       document.getElementById("summary-stats").innerHTML = "";
       document.getElementById("type-filters").innerHTML = "";
       document.getElementById("crosses-table").innerHTML = "";
-      document.getElementById("predictions-table").innerHTML = "";
+      document.getElementById("screener-table").innerHTML = "";
     }
 
     init();

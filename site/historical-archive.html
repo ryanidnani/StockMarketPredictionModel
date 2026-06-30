@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Historical Crosses and Predictions · Stock Market Predictions Model</title>
-  <meta name="description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <title>Historical Crosses and Screener · Stock Market Predictions Model</title>
+  <meta name="description" content="Browse archived daily golden cross and death cross detections and v4 cross screener results." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="social-preview.jpg" />
   <meta name="theme-color" content="#0f1419" />
   <meta property="og:site_name" content="Stock Market Predictions Model" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Historical Crosses and Predictions · Stock Market Predictions Model" />
-  <meta property="og:description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <meta property="og:title" content="Historical Crosses and Screener · Stock Market Predictions Model" />
+  <meta property="og:description" content="Browse archived daily golden cross and death cross detections and v4 cross screener results." />
   <meta property="og:url" content="https://ryanidnani.github.io/StockMarketPredictionModel/historical-archive.html" />
   <meta property="og:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <meta property="og:image:alt" content="Golden cross chart showing a bullish 50-day and 200-day moving average crossover." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Historical Crosses and Predictions · Stock Market Predictions Model" />
-  <meta name="twitter:description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <meta name="twitter:title" content="Historical Crosses and Screener · Stock Market Predictions Model" />
+  <meta name="twitter:description" content="Browse archived daily golden cross and death cross detections and v4 cross screener results." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
   <script src="asset-boot.js"></script>
@@ -42,7 +42,7 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>Historical Crosses and Predictions</h1>
+    <h1>Historical Crosses and Screener</h1>
     <p class="sub">Download archived daily CSV files or open a trading day on the dashboard.</p>
     <p class="as-of" id="as-of">Loading…</p>
 
@@ -60,7 +60,7 @@
 
     <p class="disclaimer disclaimer-footer">
       <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
-      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
+      Daily crosses and model scores are automated outputs for <strong>research screening</strong>, not recommendations to buy or sell.
       Past performance does not guarantee future results. You are responsible for your own decisions;
       the authors may hold positions in securities shown here.
     </p>
@@ -88,7 +88,7 @@
         li.innerHTML = `<strong>${date}</strong> —
           <a href="index.html?day=${encodeURIComponent(date)}">Dashboard</a>,
           <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">Crosses</a>,
-          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">Predictions</a>`;
+          <a href="${assetUrl(paths.screener)}" download="cross_screener_${date}.csv">Screener</a>`;
         list.appendChild(li);
       });
     }

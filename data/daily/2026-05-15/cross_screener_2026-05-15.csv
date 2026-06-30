@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-05-15,SMMT,death,90.63,70.0,20.63,LOOK,1
+2026-05-15,GLXY,golden,88.34,70.0,18.34,LOOK,2
+2026-05-15,QCML,golden,73.38,70.0,3.38,LOOK,3
+2026-05-15,GAP,death,52.61,70.0,-17.39,SKIP,4
+2026-05-15,RSPH,death,46.19,70.0,-23.81,SKIP,5
+2026-05-15,RAL,golden,34.37,70.0,-35.63,SKIP,6
+2026-05-15,MTG,death,33.68,70.0,-36.32,SKIP,7
+2026-05-15,UNHG,golden,32.06,70.0,-37.94,SKIP,8
+2026-05-15,LH,death,30.36,70.0,-39.64,SKIP,9
+2026-05-15,NRG,death,27.73,70.0,-42.27,SKIP,10
+2026-05-15,LOGI,golden,20.01,70.0,-49.99,SKIP,11
+2026-05-15,TSPY,golden,4.14,70.0,-65.86,SKIP,12

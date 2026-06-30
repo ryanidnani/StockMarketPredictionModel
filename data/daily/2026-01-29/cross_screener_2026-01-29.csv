@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-29,MVLL,death,75.44,70.0,5.44,LOOK,1
+2026-01-29,HLI,death,70.15,70.0,0.15,LOOK,2
+2026-01-29,MSFT,death,63.04,70.0,-6.96,SKIP,3
+2026-01-29,PCOR,death,58.92,70.0,-11.08,SKIP,4
+2026-01-29,EQNR,golden,55.31,70.0,-14.69,SKIP,5
+2026-01-29,AFG,death,37.58,70.0,-32.42,SKIP,6
+2026-01-29,WM,golden,25.93,70.0,-44.07,SKIP,7
+2026-01-29,CIGI,death,23.15,70.0,-46.85,SKIP,8
+2026-01-29,CHDN,death,20.17,70.0,-49.83,SKIP,9
+2026-01-29,VCLT,death,12.43,70.0,-57.57,SKIP,10
+2026-01-29,XLP,golden,11.78,70.0,-58.22,SKIP,11

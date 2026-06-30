@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-16,KITTW,golden,76.0,70.0,6.0,LOOK,1
+2025-12-16,OVV,death,68.81,70.0,-1.19,SKIP,2
+2025-12-16,PBR.A,death,50.74,70.0,-19.26,SKIP,3
+2025-12-16,UBRL,death,48.97,70.0,-21.03,SKIP,4
+2025-12-16,SNV,golden,40.1,70.0,-29.9,SKIP,5
+2025-12-16,HRI,golden,39.77,70.0,-30.23,SKIP,6
+2025-12-16,MGM,golden,33.47,70.0,-36.53,SKIP,7
+2025-12-16,SUN,death,19.25,70.0,-50.75,SKIP,8
+2025-12-16,VEEV,death,19.11,70.0,-50.89,SKIP,9

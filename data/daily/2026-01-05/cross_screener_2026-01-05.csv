@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-05,QGEN,golden,62.08,70.0,-7.92,SKIP,1
+2026-01-05,LMT,golden,35.44,70.0,-34.56,SKIP,2
+2026-01-05,PANW,death,28.73,70.0,-41.27,SKIP,3
+2026-01-05,WCLD,death,24.17,70.0,-45.83,SKIP,4
+2026-01-05,FTGC,death,20.03,70.0,-49.97,SKIP,5
+2026-01-05,CMS,death,17.21,70.0,-52.79,SKIP,6
+2026-01-05,DE,death,17.2,70.0,-52.8,SKIP,7
+2026-01-05,PEP,death,16.93,70.0,-53.07,SKIP,8

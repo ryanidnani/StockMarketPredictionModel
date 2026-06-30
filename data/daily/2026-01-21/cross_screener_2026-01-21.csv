@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-21,GTES,golden,81.75,70.0,11.75,LOOK,1
+2026-01-21,IBRX,golden,80.42,70.0,10.42,LOOK,2
+2026-01-21,ALKS,golden,75.42,70.0,5.42,LOOK,3
+2026-01-21,IR,golden,68.75,70.0,-1.25,SKIP,4
+2026-01-21,HOMB,golden,67.53,70.0,-2.47,SKIP,5
+2026-01-21,HLI,golden,52.53,70.0,-17.47,SKIP,6
+2026-01-21,GPC,golden,52.52,70.0,-17.48,SKIP,7
+2026-01-21,LYV,death,38.36,70.0,-31.64,SKIP,8
+2026-01-21,IGV,death,28.21,70.0,-41.79,SKIP,9
+2026-01-21,INDA,death,16.97,70.0,-53.03,SKIP,10
+2026-01-21,GOVI,death,8.05,70.0,-61.95,SKIP,11
+2026-01-21,BSJQ,death,7.39,70.0,-62.61,SKIP,12
+2026-01-21,PFF,golden,5.61,70.0,-64.39,SKIP,13

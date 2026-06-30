@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-16,MRNA,golden,85.73,70.0,15.73,LOOK,1
+2026-01-16,STLA,death,69.59,70.0,-0.41,SKIP,2
+2026-01-16,MLPX,golden,65.82,70.0,-4.18,SKIP,3
+2026-01-16,RBRK,death,63.9,70.0,-6.1,SKIP,4
+2026-01-16,O,golden,53.02,70.0,-16.98,SKIP,5
+2026-01-16,GRAB,death,48.32,70.0,-21.68,SKIP,6
+2026-01-16,AIG,death,40.62,70.0,-29.38,SKIP,7
+2026-01-16,CART,death,34.55,70.0,-35.45,SKIP,8
+2026-01-16,PDD,death,28.23,70.0,-41.77,SKIP,9
+2026-01-16,TXRH,golden,24.55,70.0,-45.45,SKIP,10
+2026-01-16,MET,death,21.84,70.0,-48.16,SKIP,11
+2026-01-16,QRVO,death,19.35,70.0,-50.65,SKIP,12
+2026-01-16,PODD,death,17.76,70.0,-52.24,SKIP,13
+2026-01-16,FLIN,death,15.07,70.0,-54.93,SKIP,14

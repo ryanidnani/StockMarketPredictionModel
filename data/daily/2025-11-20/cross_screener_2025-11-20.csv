@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-11-20,ETU,death,83.71,70.0,13.71,LOOK,1
+2025-11-20,AXON,death,67.18,70.0,-2.82,SKIP,2
+2025-11-20,IRM,death,65.06,70.0,-4.94,SKIP,3
+2025-11-20,BKNG,death,60.35,70.0,-9.65,SKIP,4
+2025-11-20,BUG,death,59.99,70.0,-10.01,SKIP,5
+2025-11-20,WCLD,death,57.92,70.0,-12.08,SKIP,6
+2025-11-20,VNQ,death,47.04,70.0,-22.96,SKIP,7
+2025-11-20,MTCH,death,38.15,70.0,-31.85,SKIP,8
+2025-11-20,TSCO,death,30.66,70.0,-39.34,SKIP,9
+2025-11-20,REM,death,26.1,70.0,-43.9,SKIP,10
+2025-11-20,XCCC,death,7.33,70.0,-62.67,SKIP,11
+2025-11-20,JPMPK,death,6.83,70.0,-63.17,SKIP,12

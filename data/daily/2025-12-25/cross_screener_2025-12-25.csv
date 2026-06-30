@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-25,CART,golden,74.92,70.0,4.92,LOOK,1
+2025-12-25,ON,golden,49.5,70.0,-20.5,SKIP,2
+2025-12-25,SEIC,golden,43.33,70.0,-26.67,SKIP,3
+2025-12-25,NFXS,golden,36.83,70.0,-33.17,SKIP,4
+2025-12-25,VRTX,golden,36.83,70.0,-33.17,SKIP,5
+2025-12-25,PDD,death,18.53,70.0,-51.47,SKIP,6
+2025-12-25,BXP,death,18.5,70.0,-51.5,SKIP,7
+2025-12-25,UUP,death,15.74,70.0,-54.26,SKIP,8
+2025-12-25,COMT,death,15.05,70.0,-54.95,SKIP,9
+2025-12-25,FLOT,death,8.07,70.0,-61.93,SKIP,10
+2025-12-25,ICLO,death,7.39,70.0,-62.61,SKIP,11
+2025-12-25,CLIP,golden,4.91,70.0,-65.09,SKIP,12

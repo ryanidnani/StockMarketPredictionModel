@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-12,MSOS,golden,82.11,70.0,12.11,LOOK,1
+2025-12-12,MNTSW,golden,79.21,70.0,9.21,LOOK,2
+2025-12-12,STVN,death,75.11,70.0,5.11,LOOK,3
+2025-12-12,AAON,death,63.88,70.0,-6.12,SKIP,4
+2025-12-12,LOW,golden,57.41,70.0,-12.59,SKIP,5
+2025-12-12,MA,golden,47.18,70.0,-22.82,SKIP,6
+2025-12-12,AUB,golden,44.33,70.0,-25.67,SKIP,7
+2025-12-12,SLF,golden,31.64,70.0,-38.36,SKIP,8
+2025-12-12,G,golden,31.22,70.0,-38.78,SKIP,9
+2025-12-12,TROW,golden,28.3,70.0,-41.7,SKIP,10
+2025-12-12,JKHY,golden,23.51,70.0,-46.49,SKIP,11
+2025-12-12,ADC,death,14.05,70.0,-55.95,SKIP,12
+2025-12-12,VIXM,death,13.98,70.0,-56.02,SKIP,13
