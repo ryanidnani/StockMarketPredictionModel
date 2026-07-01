@@ -277,7 +277,7 @@
       const label = state.tickerHistory.length === 1 ? "Event" : "Events";
       meta.innerHTML =
         `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
-        (lookCount ? ` · ${lookCount} LOOK` : "") +
+        (lookCount ? ` · ${lookCount} Review` : "") +
         ` · Click a row to view that day's Daily Dashboard`;
 
       table.innerHTML = renderDataTable(
