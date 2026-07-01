@@ -1,7 +1,7 @@
 symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
-MA,golden_cross,0,2.8,483.9,,553.53,553.34,563.37
-NFLX,death_cross,0,46.5,393.3,,109.42,109.74,94.09
-BSX,death_cross,0,9.0,137.4,,98.93,99.11,91.75
-SE,death_cross,0,5.4,73.5,,148.77,149.23,126.6
-CTSH,golden_cross,0,4.7,40.2,,74.51,74.25,83.82
-LQTI,death_cross,0,0.1,,,20.22,20.22,20.06
+MA,golden,0,2.8,483.9,,553.53,553.34,563.37
+NFLX,death,0,46.5,393.3,,109.42,109.74,94.09
+BSX,death,0,9.0,137.4,,98.93,99.11,91.75
+SE,death,0,5.4,73.5,,148.77,149.23,126.6
+CTSH,golden,0,4.7,40.2,,74.51,74.25,83.82
+LQTI,death,0,0.1,,,20.22,20.22,20.06
