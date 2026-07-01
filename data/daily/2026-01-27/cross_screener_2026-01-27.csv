@@ -1,7 +1,7 @@
 event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2026-01-27,OVV,golden,75.89,70.0,5.89,LOOK,1
-2026-01-27,HUM,death,55.87,70.0,-14.13,SKIP,2
-2026-01-27,FSTA,golden,21.97,70.0,-48.03,SKIP,3
-2026-01-27,PEY,golden,15.07,70.0,-54.93,SKIP,4
-2026-01-27,BILS,golden,4.91,70.0,-65.09,SKIP,5
-2026-01-27,JAAA,golden,4.91,70.0,-65.09,SKIP,6
+2026-01-27,HUM,death,45.72,70.0,-24.28,SKIP,1
+2026-01-27,OVV,golden,37.42,70.0,-32.58,SKIP,2
+2026-01-27,BILS,golden,7.33,70.0,-62.67,SKIP,3
+2026-01-27,PEY,golden,7.2,70.0,-62.8,SKIP,4
+2026-01-27,JAAA,golden,6.07,70.0,-63.93,SKIP,5
+2026-01-27,FSTA,golden,4.39,70.0,-65.61,SKIP,6
