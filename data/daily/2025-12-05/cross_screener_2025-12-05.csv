@@ -1,8 +1,8 @@
 event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2025-12-05,NNAVW,golden,72.8,70.0,2.8,LOOK,1
-2025-12-05,DAR,golden,65.4,70.0,-4.6,SKIP,2
-2025-12-05,KR,death,28.65,70.0,-41.35,SKIP,3
-2025-12-05,DOV,golden,26.33,70.0,-43.67,SKIP,4
-2025-12-05,HBAN,golden,14.18,70.0,-55.82,SKIP,5
-2025-12-05,BWX,death,12.35,70.0,-57.65,SKIP,6
-2025-12-05,SHV,death,7.33,70.0,-62.67,SKIP,7
+2025-12-05,NNAVW,golden,53.73,70.0,-16.27,SKIP,1
+2025-12-05,DAR,golden,45.47,70.0,-24.53,SKIP,2
+2025-12-05,KR,death,22.45,70.0,-47.55,SKIP,3
+2025-12-05,BWX,death,17.64,70.0,-52.36,SKIP,4
+2025-12-05,HBAN,golden,16.63,70.0,-53.37,SKIP,5
+2025-12-05,SHV,death,14.23,70.0,-55.77,SKIP,6
+2025-12-05,DOV,golden,13.48,70.0,-56.52,SKIP,7

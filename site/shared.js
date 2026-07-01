@@ -121,7 +121,7 @@
   }
 
   function recommendationLabel(row) {
-    return isLook(row.recommendation, row.probability, row) ? "LOOK" : "SKIP";
+    return isLook(row.recommendation, row.probability, row) ? "Review" : "SKIP";
   }
 
   function formatVolume(value) {

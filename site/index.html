@@ -4,20 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Stock Market Predictions Model Daily Dashboard</title>
-  <meta name="description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
+  <meta name="description" content="Daily golden cross and death cross detections plus a model screener that ranks each cross and flags which ones are worth reviewing." />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="social-preview.jpg" />
   <meta name="theme-color" content="#0f1419" />
   <meta property="og:site_name" content="Stock Market Predictions Model" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Stock Market Predictions Model Daily Dashboard" />
-  <meta property="og:description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
+  <meta property="og:description" content="Daily golden cross and death cross detections plus a model screener that ranks each cross and flags which ones are worth reviewing." />
   <meta property="og:url" content="https://ryanidnani.github.io/StockMarketPredictionModel/" />
   <meta property="og:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <meta property="og:image:alt" content="Golden cross chart showing a bullish 50-day and 200-day moving average crossover." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Stock Market Predictions Model Daily Dashboard" />
-  <meta name="twitter:description" content="Daily EMA golden cross and death cross detections with a v4 model screener for research." />
+  <meta name="twitter:description" content="Daily golden cross and death cross detections plus a model screener that ranks each cross and flags which ones are worth reviewing." />
   <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
   <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
   <link rel="stylesheet" href="index.css" data-gc-stylesheet="index.css" />
@@ -27,7 +27,7 @@
   <div class="wrap">
     <h1>Stock Market Predictions Model Daily Dashboard</h1>
     <p class="byline">By: Ryan Idnani</p>
-    <p class="sub">Daily golden cross and death cross detections plus a v4 model screener that ranks each cross and flags which ones are worth reviewing. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
+    <p class="sub">Daily golden cross and death cross detections plus a model screener that ranks each cross and flags which ones are worth reviewing. Updated on US market weekdays, typically by 5:30 PM Pacific (8:30 PM Eastern).</p>
     <p class="as-of" id="as-of">Loading…</p>
 
     <div class="controls-toolbar">
@@ -122,7 +122,7 @@
     <section class="card">
       <h2>Cross Screener</h2>
       <p class="consider-threshold-note">
-        A row is labeled <strong>LOOK</strong> when it passes universe and rule gates and model probability meets the family look-at threshold (70–75%).
+        A row is labeled <strong>Review</strong> when it passes universe and rule gates and model probability meets the family look-at threshold (70–75%).
         That label means worth reviewing for research — not a recommendation to buy or sell.
       </p>
       <p class="predictions-meta" id="screener-meta"></p>
@@ -488,7 +488,7 @@
       sortValue: (row) => recommendationRank(row),
       render: (row) => {
         const label = recommendationLabel(row);
-        const recClass = label === "LOOK" ? "consider" : "avoid";
+        const recClass = isLook(row.recommendation, row.probability, row) ? "consider" : "avoid";
         return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
       },
     };
@@ -516,22 +516,22 @@
       if (state.showAllScreener) {
         meta.innerHTML =
           `Showing all ${total} screener rows ` +
-          `(<span class="consider">${lookCount} LOOK</span>, ` +
+          `(<span class="consider">${lookCount} Review</span>, ` +
           `<span class="avoid">${total - lookCount} SKIP</span>). ` +
-          `<button type="button" id="screener-toggle">Show LOOK Only</button>`;
+          `<button type="button" id="screener-toggle">Show Review Only</button>`;
         return;
       }
 
       if (!lookCount) {
         meta.innerHTML =
-          `Nothing flagged LOOK for this day (${total} total). ` +
+          `Nothing flagged for review this day (${total} total). ` +
           `<button type="button" id="screener-toggle">Show All ${total} Rows</button>`;
         return;
       }
 
       const visibleCount = visibleScreener().length;
       let message =
-        `Showing ${lookCount} LOOK` +
+        `Showing ${lookCount} Review` +
         (total > lookCount
           ? ` of ${total} total. <button type="button" id="screener-toggle">Show All Rows</button>`
           : ".");
@@ -709,13 +709,13 @@
       }
 
       return `
-        <p class="summary-total">${totalCrosses} Crosses · ${totalLook} LOOK</p>
+        <p class="summary-total">${totalCrosses} Crosses · ${totalLook} Review</p>
         <table class="summary-table">
           <thead>
             <tr>
               <th>Type</th>
               <th>Crosses</th>
-              <th>LOOK</th>
+              <th>Review</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>

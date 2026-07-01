@@ -1,8 +1,8 @@
 symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
-KR,death_cross,0,6.9,41.8,,66.36,66.41,62.71
-HBAN,golden_cross,0,31.5,26.9,,16.19,16.18,16.9
-DOV,golden_cross,0,1.1,26.1,,179.86,179.62,191.09
-DAR,golden_cross,0,2.2,5.8,,33.89,33.81,36.51
-NNAVW,golden_cross,0,0.1,,,5.34,5.33,6.52
-BWX,death_cross,0,0.4,,,22.66,22.67,22.51
-SHV,death_cross,0,2.6,,,110.29,110.3,110.2
+KR,death,0,6.9,41.8,,66.36,66.41,62.71
+HBAN,golden,0,31.5,26.9,,16.19,16.18,16.9
+DOV,golden,0,1.1,26.1,,179.86,179.62,191.09
+DAR,golden,0,2.2,5.8,,33.89,33.81,36.51
+NNAVW,golden,0,0.1,,,5.34,5.33,6.52
+BWX,death,0,0.4,,,22.66,22.67,22.51
+SHV,death,0,2.6,,,110.29,110.3,110.2
