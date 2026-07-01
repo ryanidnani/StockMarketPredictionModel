@@ -1,8 +1,8 @@
 symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
-CVX,golden_cross,0,8.4,304.7,,151.58,151.57,152.41
-UBER,death_cross,0,19.9,169.8,,87.01,87.03,81.71
-QGEN,death_cross,0,1.1,9.8,,45.94,45.94,44.97
-BITI,golden_cross,0,2.8,,,21.89,21.85,23.17
-CLIP,death_cross,0,0.3,,,100.25,100.26,100.11
-CSHI,death_cross,0,0.2,,,49.78,49.78,49.73
-ICSH,death_cross,0,1.4,,,50.62,50.62,50.58
+CVX,golden,0,8.4,304.7,,151.58,151.57,152.41
+UBER,death,0,19.9,169.8,,87.01,87.03,81.71
+QGEN,death,0,1.1,9.8,,45.94,45.94,44.97
+BITI,golden,0,2.8,,,21.89,21.85,23.17
+CLIP,death,0,0.3,,,100.25,100.26,100.11
+CSHI,death,0,0.2,,,49.78,49.78,49.73
+ICSH,death,0,1.4,,,50.62,50.62,50.58
