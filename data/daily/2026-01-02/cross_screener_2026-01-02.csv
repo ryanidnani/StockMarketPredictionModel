@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-02,RRX,golden,29.88,70.0,-40.12,SKIP,1
+2026-01-02,UBER,death,19.6,70.0,-50.4,SKIP,2
+2026-01-02,DKS,death,17.33,70.0,-52.67,SKIP,3
+2026-01-02,USDU,death,16.41,70.0,-53.59,SKIP,4
+2026-01-02,VTIP,death,13.54,70.0,-56.46,SKIP,5
+2026-01-02,DFIP,death,12.19,70.0,-57.81,SKIP,6
+2026-01-02,IAGG,death,11.56,70.0,-58.44,SKIP,7

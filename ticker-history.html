@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ticker History Search · Stock Market Predictions Model</title>
+  <meta name="description" content="Search archived golden cross and death cross model scores by ticker symbol." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="social-preview.jpg" />
+  <meta name="theme-color" content="#0f1419" />
+  <meta property="og:site_name" content="Stock Market Predictions Model" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ticker History Search · Stock Market Predictions Model" />
+  <meta property="og:description" content="Search archived golden cross and death cross model scores by ticker symbol." />
+  <meta property="og:url" content="https://ryanidnani.github.io/StockMarketPredictionModel/ticker-history.html" />
+  <meta property="og:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
+  <meta property="og:image:alt" content="Golden cross chart showing a bullish 50-day and 200-day moving average crossover." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ticker History Search · Stock Market Predictions Model" />
+  <meta name="twitter:description" content="Search archived golden cross and death cross model scores by ticker symbol." />
+  <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
+  <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
+  <script src="asset-boot.js"></script>
+  <style>
+    .card { margin-bottom: 1.5rem; }
+    .ticker-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+    .ticker-toolbar label { font-weight: 600; font-size: 0.9rem; color: var(--muted); }
+    .ticker-toolbar input {
+      min-width: 9rem;
+      padding: 0.45rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      text-transform: uppercase;
+    }
+    .ticker-toolbar button {
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+    }
+    .ticker-toolbar button:hover { background: rgba(255, 255, 255, 0.1); }
+    .ticker-toolbar button#ticker-search-btn {
+      background: rgba(61, 158, 255, 0.18);
+      border-color: rgba(61, 158, 255, 0.35);
+      color: var(--accent);
+    }
+    .ticker-meta {
+      margin: 0 0 0.75rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .ticker-meta strong { color: var(--text); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Ticker History Search</h1>
+    <p class="sub">Look up every archived cross detection and model score for a US equity or ETF symbol. You can also start a search from the <a href="index.html">Daily Dashboard</a> toolbar.</p>
+
+    <section class="card quick-links">
+      <h2>Quick Links</h2>
+      <p><a href="index.html">Daily Dashboard</a></p>
+      <p><a href="historical-archive.html">Historical Crosses and Predictions</a></p>
+      <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">GitHub Repository</a></p>
+    </section>
+
+    <section class="card">
+      <div class="ticker-toolbar">
+        <label for="ticker-search">Ticker</label>
+        <input id="ticker-search" type="search" placeholder="e.g. REGN" autocomplete="off" spellcheck="false" aria-label="Ticker symbol" />
+        <button type="button" id="ticker-search-btn">Search</button>
+        <button type="button" id="ticker-search-clear" hidden>Clear</button>
+      </div>
+      <p class="consider-threshold-note">
+        A row is labeled <strong>Review</strong> when model probability meets the family look-at threshold (70–75%) after passing universe and rule gates.
+        That label is for research screening, not a recommendation to buy or sell.
+      </p>
+      <p class="ticker-meta" id="ticker-meta"></p>
+      <div class="table-wrap" id="ticker-history-table"></div>
+    </section>
+
+    <p class="disclaimer disclaimer-footer">
+      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
+      Daily crosses and model scores are automated outputs for <strong>research screening</strong>, not recommendations to buy or sell.
+      Past performance does not guarantee future results. You are responsible for your own decisions;
+      the authors may hold positions in securities shown here.
+    </p>
+  </div>
+
+  <script>
+  GCAssetBoot.ready().then(function () {
+    const {
+      escapeHtml,
+      loadText,
+      parseCsv,
+      crossClass,
+      crossTypeLabel,
+      archiveStartHint,
+      normalizeTicker,
+      isLook,
+      isConsider,
+      recommendationLabel,
+      recommendationRank,
+      recommendationLabel,
+      formatPrice,
+      formatProbability,
+      probabilityPercent,
+      numericField,
+      dashboardDayUrl,
+      manifestDatesForArchive,
+      renderDataTable,
+      bindTableSort,
+    } = window.GC;
+
+    const state = {
+      manifest: null,
+      cacheKey: null,
+      latestDate: null,
+      tickerSearch: "",
+      tickerHistory: [],
+      tickerHistoryLoading: false,
+      dailyPredictionsCache: null,
+      sort: { tickerHistory: { key: "event_date", dir: "desc" } },
+    };
+
+    const TICKER_HISTORY_COLUMNS = [
+      {
+        key: "event_date",
+        label: "Date",
+        align: "center",
+        type: "string",
+        sortValue: (row) => row.event_date || "",
+        render: (row) => `<td class="col-center">${escapeHtml(row.event_date)}</td>`,
+      },
+      {
+        key: "cross_type",
+        label: "Cross Type",
+        align: "center",
+        type: "string",
+        sortValue: (row) => row.cross_type || "",
+        render: (row) => `<td class="col-center ${crossClass(row.cross_type)}">${escapeHtml(crossTypeLabel(row.cross_type))}</td>`,
+      },
+      {
+        key: "recommendation",
+        label: "Recommendation",
+        align: "center",
+        type: "rank",
+        sortValue: (row) => recommendationRank(row),
+        render: (row) => {
+          const label = recommendationLabel(row);
+          const recClass = isLook(row.recommendation, row.probability, row) ? "consider" : "avoid";
+          return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
+        },
+      },
+      {
+        key: "probability",
+        label: "Probability %",
+        align: "center",
+        type: "number",
+        sortValue: (row) => probabilityPercent(row.probability),
+        render: (row) => `<td class="col-center">${formatProbability(row.probability)}</td>`,
+      },
+      {
+        key: "entry_price",
+        label: "Entry Price",
+        align: "center",
+        type: "number",
+        sortValue: (row) => numericField(row, "entry_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.entry_price)}</td>`,
+      },
+      {
+        key: "prudent_tp_price",
+        label: "Prudent Profit Price",
+        align: "center",
+        type: "number",
+        sortValue: (row) => numericField(row, "prudent_tp_price"),
+        render: (row) => `<td class="col-center">${formatPrice(row.prudent_tp_price)}</td>`,
+      },
+    ];
+
+    async function ensurePredictionsArchive(onProgress) {
+      if (state.dailyPredictionsCache) return;
+
+      const dates = manifestDatesForArchive(state.manifest, state.latestDate);
+      state.dailyPredictionsCache = new Map();
+      const batchSize = 12;
+
+      for (let i = 0; i < dates.length; i += batchSize) {
+        const batch = dates.slice(i, i + batchSize);
+        if (onProgress) onProgress(Math.min(i + batch.length, dates.length), dates.length);
+
+        await Promise.all(batch.map(async (date) => {
+          if (state.dailyPredictionsCache.has(date)) return;
+          try {
+            const path = date === state.latestDate
+              ? "latest/cross_screener.csv"
+              : `data/daily/${date}/cross_screener_${date}.csv`;
+            const rows = parseCsv(await loadText(path, state.cacheKey));
+            state.dailyPredictionsCache.set(date, rows);
+          } catch {
+            state.dailyPredictionsCache.set(date, []);
+          }
+        }));
+      }
+    }
+
+    function buildTickerHistory(ticker) {
+      const normalized = normalizeTicker(ticker);
+      const results = [];
+
+      for (const rows of state.dailyPredictionsCache.values()) {
+        for (const row of rows) {
+          if (normalizeTicker(row.ticker) !== normalized) continue;
+          results.push({
+            ...row,
+            event_date: String(row.event_date || "").slice(0, 10),
+          });
+        }
+      }
+
+      return results;
+    }
+
+    function updateTickerUrl(ticker) {
+      const params = new URLSearchParams(location.search);
+      const normalized = normalizeTicker(ticker);
+      if (normalized) {
+        params.set("ticker", normalized);
+      } else {
+        params.delete("ticker");
+      }
+      const qs = params.toString();
+      history.replaceState(null, "", location.pathname + (qs ? `?${qs}` : "") + location.hash);
+    }
+
+    function renderTickerHistory() {
+      const table = document.getElementById("ticker-history-table");
+      const meta = document.getElementById("ticker-meta");
+      const clearButton = document.getElementById("ticker-search-clear");
+      const ticker = normalizeTicker(state.tickerSearch);
+
+      clearButton.hidden = !ticker;
+
+      if (state.tickerHistoryLoading) {
+        meta.innerHTML = `Loading archive for <strong>${escapeHtml(ticker)}</strong>…`;
+        table.innerHTML = "";
+        return;
+      }
+
+      if (!ticker) {
+        meta.textContent = archiveStartHint(state.manifest);
+        table.innerHTML = "";
+        return;
+      }
+
+      if (!state.tickerHistory.length) {
+        meta.innerHTML = `No cross history found for <strong>${escapeHtml(ticker)}</strong>.`;
+        table.innerHTML = "";
+        return;
+      }
+
+      const lookCount = state.tickerHistory.filter((row) =>
+        isLook(row.recommendation, row.probability, row)
+      ).length;
+      const label = state.tickerHistory.length === 1 ? "Event" : "Events";
+      meta.innerHTML =
+        `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
+        (lookCount ? ` · ${lookCount} Review` : "") +
+        ` · Click a row to view that day's Daily Dashboard`;
+
+      table.innerHTML = renderDataTable(
+        "tickerHistory",
+        TICKER_HISTORY_COLUMNS,
+        state.tickerHistory,
+        state.sort.tickerHistory,
+        (row) => (
+          isLook(row.recommendation, row.probability, row) ? "row-consider row-clickable" : "row-avoid row-clickable"
+        ),
+        (row) => (row.event_date ? ` data-event-date="${escapeHtml(row.event_date)}"` : "")
+      );
+    }
+
+    async function searchTickerHistory(rawTicker) {
+      const ticker = normalizeTicker(rawTicker);
+      const input = document.getElementById("ticker-search");
+      input.value = ticker;
+      state.tickerSearch = ticker;
+      updateTickerUrl(ticker);
+
+      if (!ticker) {
+        state.tickerHistory = [];
+        renderTickerHistory();
+        return;
+      }
+
+      state.tickerHistoryLoading = true;
+      renderTickerHistory();
+
+      try {
+        await ensurePredictionsArchive((loaded, total) => {
+          document.getElementById("ticker-meta").innerHTML =
+            `Loading archive (${loaded}/${total} days) for <strong>${escapeHtml(ticker)}</strong>…`;
+        });
+        state.tickerHistory = buildTickerHistory(ticker);
+      } catch (error) {
+        console.error(error);
+        state.tickerHistory = [];
+        document.getElementById("ticker-meta").innerHTML =
+          `Could not load history for <strong>${escapeHtml(ticker)}</strong>.`;
+      } finally {
+        state.tickerHistoryLoading = false;
+        renderTickerHistory();
+      }
+    }
+
+    function clearTickerHistory() {
+      state.tickerSearch = "";
+      state.tickerHistory = [];
+      document.getElementById("ticker-search").value = "";
+      updateTickerUrl("");
+      renderTickerHistory();
+    }
+
+    function bindTickerHistory() {
+      const input = document.getElementById("ticker-search");
+      const searchButton = document.getElementById("ticker-search-btn");
+      const clearButton = document.getElementById("ticker-search-clear");
+      const table = document.getElementById("ticker-history-table");
+
+      searchButton.addEventListener("click", () => {
+        searchTickerHistory(input.value).catch((error) => console.error(error));
+      });
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        event.preventDefault();
+        searchTickerHistory(input.value).catch((error) => console.error(error));
+      });
+
+      clearButton.addEventListener("click", clearTickerHistory);
+
+      table.addEventListener("click", (event) => {
+        if (event.target.closest("th[data-sort-key]")) return;
+        const row = event.target.closest("tbody tr[data-event-date]");
+        if (!row) return;
+        event.preventDefault();
+        location.assign(dashboardDayUrl(row.dataset.eventDate));
+      });
+    }
+
+    async function init() {
+      try {
+        state.manifest = JSON.parse(
+          await loadText("data/manifest.json", Date.now())
+        );
+        state.cacheKey = state.manifest.updated_at || Date.now();
+        state.latestDate = (await loadText("latest/as_of.txt", state.cacheKey)).trim();
+
+        bindTableSort(
+          "ticker-history-table",
+          "tickerHistory",
+          () => TICKER_HISTORY_COLUMNS,
+          () => state.sort,
+          renderTickerHistory
+        );
+        bindTickerHistory();
+        renderTickerHistory();
+
+        const params = new URLSearchParams(location.search);
+        const initialTicker = params.get("ticker") || params.get("q");
+        if (initialTicker) {
+          await searchTickerHistory(initialTicker);
+        }
+      } catch (error) {
+        console.error(error);
+        document.getElementById("ticker-meta").textContent =
+          "Could not load archive data yet. Browse CSV files in the repository.";
+      }
+    }
+
+    init();
+  });
+  </script>
+</body>
+</html>

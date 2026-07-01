@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-09,MSOS,death,31.1,70.0,-38.9,SKIP,1
+2025-12-09,GDXY,death,27.53,70.0,-42.47,SKIP,2
+2025-12-09,TRGP,golden,24.76,70.0,-45.24,SKIP,3
+2025-12-09,SLF,death,17.01,70.0,-52.99,SKIP,4
+2025-12-09,IYR,death,16.95,70.0,-53.05,SKIP,5
+2025-12-09,EDV,death,16.25,70.0,-53.75,SKIP,6
+2025-12-09,IBHF,death,13.8,70.0,-56.2,SKIP,7

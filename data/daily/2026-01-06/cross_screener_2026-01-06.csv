@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-01-06,EAT,golden,46.6,70.0,-23.4,SKIP,1
+2026-01-06,RRX,golden,45.43,70.0,-24.57,SKIP,2
+2026-01-06,MCHP,golden,42.21,70.0,-27.79,SKIP,3
+2026-01-06,TFII,golden,26.57,70.0,-43.43,SKIP,4
+2026-01-06,MIDD,golden,26.04,70.0,-43.96,SKIP,5
+2026-01-06,DHI,death,23.21,70.0,-46.79,SKIP,6
+2026-01-06,PANW,death,17.94,70.0,-52.06,SKIP,7
+2026-01-06,XOP,death,17.01,70.0,-52.99,SKIP,8
+2026-01-06,LMT,golden,13.57,70.0,-56.43,SKIP,9
+2026-01-06,CSHI,death,12.52,70.0,-57.48,SKIP,10
+2026-01-06,KT,golden,12.31,70.0,-57.69,SKIP,11
+2026-01-06,DE,golden,11.71,70.0,-58.29,SKIP,12
+2026-01-06,CTVA,golden,9.4,70.0,-60.6,SKIP,13

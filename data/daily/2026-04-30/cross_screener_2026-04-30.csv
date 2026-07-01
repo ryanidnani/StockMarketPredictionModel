@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-30,USOY,golden,55.71,70.0,-14.29,SKIP,1
+2026-04-30,DHI,golden,28.33,70.0,-41.67,SKIP,2
+2026-04-30,TAFI,death,15.64,70.0,-54.36,SKIP,3
+2026-04-30,CARY,death,13.99,70.0,-56.01,SKIP,4
+2026-04-30,VRTX,death,13.95,70.0,-56.05,SKIP,5
+2026-04-30,BSCZ,death,12.43,70.0,-57.57,SKIP,6
+2026-04-30,SHV,golden,6.95,70.0,-63.05,SKIP,7
+2026-04-30,CLIP,golden,6.76,70.0,-63.24,SKIP,8
+2026-04-30,JEPI,golden,5.24,70.0,-64.76,SKIP,9

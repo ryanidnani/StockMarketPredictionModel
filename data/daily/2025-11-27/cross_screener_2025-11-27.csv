@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-11-27,AMTM,golden,50.9,70.0,-19.1,SKIP,1
+2025-11-27,EVLVW,death,41.22,70.0,-28.78,SKIP,2
+2025-11-27,APPF,death,24.77,70.0,-45.23,SKIP,3
+2025-11-27,MTB,golden,23.94,70.0,-46.06,SKIP,4
+2025-11-27,KT,death,19.69,70.0,-50.31,SKIP,5
+2025-11-27,DIS,death,17.05,70.0,-52.95,SKIP,6
+2025-11-27,LMT,death,15.89,70.0,-54.11,SKIP,7
+2025-11-27,IBHG,golden,6.04,70.0,-63.96,SKIP,8

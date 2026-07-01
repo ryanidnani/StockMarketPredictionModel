@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2025-12-31,BITI,golden,50.74,70.0,-19.26,SKIP,1
+2025-12-31,UBER,death,17.92,70.0,-52.08,SKIP,2
+2025-12-31,CLIP,death,15.44,70.0,-54.56,SKIP,3
+2025-12-31,CSHI,death,13.52,70.0,-56.48,SKIP,4
+2025-12-31,ICSH,death,12.74,70.0,-57.26,SKIP,5
+2025-12-31,QGEN,death,12.15,70.0,-57.85,SKIP,6
+2025-12-31,CVX,golden,8.03,70.0,-61.97,SKIP,7

@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-02-12,BTCZ,golden,55.25,70.0,-14.75,SKIP,1
+2026-02-12,AFRM,death,42.57,70.0,-27.43,SKIP,2
+2026-02-12,AMZZ,death,37.75,70.0,-32.25,SKIP,3
+2026-02-12,PTIR,death,35.92,70.0,-34.08,SKIP,4
+2026-02-12,AVL,death,35.49,70.0,-34.51,SKIP,5
+2026-02-12,RGTIW,death,35.43,70.0,-34.57,SKIP,6
+2026-02-12,BTGD,death,34.88,70.0,-35.12,SKIP,7
+2026-02-12,MAS,golden,30.02,70.0,-39.98,SKIP,8
+2026-02-12,VNOM,golden,25.31,70.0,-44.69,SKIP,9
+2026-02-12,PNQI,death,18.22,70.0,-51.78,SKIP,10
+2026-02-12,TBT,death,14.43,70.0,-55.57,SKIP,11
+2026-02-12,DTE,golden,9.89,70.0,-60.11,SKIP,12
+2026-02-12,SHYM,golden,9.39,70.0,-60.61,SKIP,13
+2026-02-12,VNQ,golden,7.05,70.0,-62.95,SKIP,14

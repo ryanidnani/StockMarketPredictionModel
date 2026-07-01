@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
+2026-04-23,URBN,golden,44.85,70.0,-25.15,SKIP,1
+2026-04-23,CVNA,golden,44.36,70.0,-25.64,SKIP,2
+2026-04-23,AVL,golden,39.82,70.0,-30.18,SKIP,3
+2026-04-23,CR,death,32.23,70.0,-37.77,SKIP,4
+2026-04-23,WST,golden,26.83,70.0,-43.17,SKIP,5
+2026-04-23,BMA,death,26.53,70.0,-43.47,SKIP,6
+2026-04-23,METD,death,24.01,70.0,-45.99,SKIP,7
+2026-04-23,ABBV,death,18.23,70.0,-51.77,SKIP,8
+2026-04-23,EBND,death,14.82,70.0,-55.18,SKIP,9
+2026-04-23,COWG,golden,9.48,70.0,-60.52,SKIP,10
+2026-04-23,MTG,golden,8.75,70.0,-61.25,SKIP,11
+2026-04-23,ESNT,golden,7.28,70.0,-62.72,SKIP,12
+2026-04-23,FLHY,golden,5.34,70.0,-64.66,SKIP,13
