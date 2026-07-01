@@ -1,9 +1,8 @@
 event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2025-12-29,ON,golden,38.17,70.0,-31.83,SKIP,1
-2025-12-29,MNSO,death,33.84,70.0,-36.16,SKIP,2
-2025-12-29,MSFX,death,28.55,70.0,-41.45,SKIP,3
-2025-12-29,ADT,death,26.85,70.0,-43.15,SKIP,4
-2025-12-29,RBLX,death,25.91,70.0,-44.09,SKIP,5
-2025-12-29,ZS,death,25.34,70.0,-44.66,SKIP,6
-2025-12-29,TSN,golden,21.44,70.0,-48.56,SKIP,7
-2025-12-29,APOPA,golden,4.91,70.0,-65.09,SKIP,8
+2025-12-29,ON,golden,50.95,70.0,-19.05,SKIP,1
+2025-12-29,RBLX,death,29.35,70.0,-40.65,SKIP,2
+2025-12-29,MNSO,death,25.33,70.0,-44.67,SKIP,3
+2025-12-29,MSFX,death,18.59,70.0,-51.41,SKIP,4
+2025-12-29,ZS,death,16.47,70.0,-53.53,SKIP,5
+2025-12-29,ADT,death,13.61,70.0,-56.39,SKIP,6
+2025-12-29,TSN,golden,9.56,70.0,-60.44,SKIP,7
