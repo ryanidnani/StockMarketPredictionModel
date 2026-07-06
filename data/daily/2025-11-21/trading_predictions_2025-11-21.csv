@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-21,NFLU,death,37.33,AVOID,,,,,,,
+2025-11-21,NFXL,death,27.12,AVOID,,,,,,,
+2025-11-21,GDXY,death,21.53,AVOID,,,,,,,
+2025-11-21,DBA,death,21.26,AVOID,,,,,,,
+2025-11-21,ACHR.WS,death,20.74,AVOID,,,,,,,
+2025-11-21,ICL,death,17.49,AVOID,,,,,,,
+2025-11-21,UUP,golden,0.0,AVOID,,,,,,,

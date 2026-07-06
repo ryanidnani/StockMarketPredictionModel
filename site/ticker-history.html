@@ -84,7 +84,7 @@
         <button type="button" id="ticker-search-clear" hidden>Clear</button>
       </div>
       <p class="consider-threshold-note">
-        A row is labeled <strong>Review</strong> when model probability meets the family look-at threshold (70–75%) after passing universe and rule gates.
+        A row is labeled <strong>CONSIDER</strong> only when model probability is at least 50% and trade targets are present.
         That label is for research screening, not a recommendation to buy or sell.
       </p>
       <p class="ticker-meta" id="ticker-meta"></p>
@@ -93,7 +93,7 @@
 
     <p class="disclaimer disclaimer-footer">
       <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
-      Daily crosses and model scores are automated outputs for <strong>research screening</strong>, not recommendations to buy or sell.
+      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
       Past performance does not guarantee future results. You are responsible for your own decisions;
       the authors may hold positions in securities shown here.
     </p>
@@ -109,9 +109,7 @@
       crossTypeLabel,
       archiveStartHint,
       normalizeTicker,
-      isLook,
       isConsider,
-      recommendationLabel,
       recommendationRank,
       recommendationLabel,
       formatPrice,
@@ -160,7 +158,7 @@
         sortValue: (row) => recommendationRank(row),
         render: (row) => {
           const label = recommendationLabel(row);
-          const recClass = isLook(row.recommendation, row.probability, row) ? "consider" : "avoid";
+          const recClass = isConsider(row.recommendation, row.probability) ? "consider" : "avoid";
           return `<td class="col-center ${recClass}">${escapeHtml(label)}</td>`;
         },
       },
@@ -205,8 +203,8 @@
           if (state.dailyPredictionsCache.has(date)) return;
           try {
             const path = date === state.latestDate
-              ? "latest/cross_screener.csv"
-              : `data/daily/${date}/cross_screener_${date}.csv`;
+              ? "latest/trading_predictions.csv"
+              : `data/daily/${date}/trading_predictions_${date}.csv`;
             const rows = parseCsv(await loadText(path, state.cacheKey));
             state.dailyPredictionsCache.set(date, rows);
           } catch {
@@ -271,13 +269,13 @@
         return;
       }
 
-      const lookCount = state.tickerHistory.filter((row) =>
-        isLook(row.recommendation, row.probability, row)
+      const considerCount = state.tickerHistory.filter((row) =>
+        isConsider(row.recommendation, row.probability)
       ).length;
       const label = state.tickerHistory.length === 1 ? "Event" : "Events";
       meta.innerHTML =
         `<strong>${escapeHtml(ticker)}</strong> · ${state.tickerHistory.length} ${label}` +
-        (lookCount ? ` · ${lookCount} Review` : "") +
+        (considerCount ? ` · ${considerCount} to Consider` : "") +
         ` · Click a row to view that day's Daily Dashboard`;
 
       table.innerHTML = renderDataTable(
@@ -286,7 +284,7 @@
         state.tickerHistory,
         state.sort.tickerHistory,
         (row) => (
-          isLook(row.recommendation, row.probability, row) ? "row-consider row-clickable" : "row-avoid row-clickable"
+          isConsider(row.recommendation, row.probability) ? "row-consider row-clickable" : "row-avoid row-clickable"
         ),
         (row) => (row.event_date ? ` data-event-date="${escapeHtml(row.event_date)}"` : "")
       );

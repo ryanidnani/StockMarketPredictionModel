@@ -1,9 +1,0 @@
-event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2026-02-19,OXY,golden,47.82,70.0,-22.18,SKIP,1
-2026-02-19,DOW,golden,46.83,70.0,-23.17,SKIP,2
-2026-02-19,CNH,golden,35.51,70.0,-34.49,SKIP,3
-2026-02-19,YINN,death,30.38,70.0,-39.62,SKIP,4
-2026-02-19,DLR,golden,25.03,70.0,-44.97,SKIP,5
-2026-02-19,UNM,death,15.77,70.0,-54.23,SKIP,6
-2026-02-19,LIN,golden,13.56,70.0,-56.44,SKIP,7
-2026-02-19,BILS,golden,5.68,70.0,-64.32,SKIP,8

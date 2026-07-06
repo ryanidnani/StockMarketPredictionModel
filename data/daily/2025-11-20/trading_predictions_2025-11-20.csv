@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-20,IRM,death,72.33,CONSIDER,83.0,76.45,69.9,-15.78,88.73,91.59,7.89
+2025-11-20,AXON,death,65.13,CONSIDER,519.61,477.25,434.9,-16.3,581.53,612.5,8.15
+2025-11-20,JPMPK,death,34.99,AVOID,,,,,,,
+2025-11-20,ETU,death,33.6,AVOID,,,,,,,
+2025-11-20,MTCH,death,21.66,AVOID,,,,,,,
+2025-11-20,TSCO,death,21.66,AVOID,,,,,,,
+2025-11-20,BUG,death,21.29,AVOID,,,,,,,
+2025-11-20,REM,death,21.26,AVOID,,,,,,,
+2025-11-20,XCCC,death,21.26,AVOID,,,,,,,
+2025-11-20,VNQ,death,20.69,AVOID,,,,,,,
+2025-11-20,BKNG,death,19.09,AVOID,,,,,,,
+2025-11-20,WCLD,death,16.76,AVOID,,,,,,,

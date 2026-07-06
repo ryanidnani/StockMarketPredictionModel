@@ -1,9 +1,0 @@
-event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2025-12-17,STLA,golden,40.86,70.0,-29.14,SKIP,1
-2025-12-17,RIOX,death,37.31,70.0,-32.69,SKIP,2
-2025-12-17,COIN,death,31.07,70.0,-38.93,SKIP,3
-2025-12-17,Z,death,30.94,70.0,-39.06,SKIP,4
-2025-12-17,ACM,death,24.39,70.0,-45.61,SKIP,5
-2025-12-17,MET,golden,9.21,70.0,-60.79,SKIP,6
-2025-12-17,BUD,golden,8.74,70.0,-61.26,SKIP,7
-2025-12-17,SGOV,golden,7.53,70.0,-62.47,SKIP,8

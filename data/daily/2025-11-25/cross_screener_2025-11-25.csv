@@ -1,6 +1,0 @@
-event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2025-11-25,REGN,golden,33.68,70.0,-36.32,SKIP,1
-2025-11-25,FEPI,death,32.04,70.0,-37.96,SKIP,2
-2025-11-25,META,death,24.53,70.0,-45.47,SKIP,3
-2025-11-25,HMC,death,19.41,70.0,-50.59,SKIP,4
-2025-11-25,EIDO,golden,11.76,70.0,-58.24,SKIP,5

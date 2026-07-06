@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-22,BITQ,golden,67.58,CONSIDER,24.89,29.62,31.97,-7.8,22.95,21.98,19.01
+2026-04-22,TECL,golden,52.23,CONSIDER,143.38,183.28,185.87,-10.12,128.87,121.61,27.83
+2026-04-22,SYY,death,41.05,AVOID,,,,,,,
+2026-04-22,NVDU,golden,36.21,AVOID,,,,,,,
+2026-04-22,SYF,golden,33.07,AVOID,,,,,,,
+2026-04-22,FUTU,golden,27.32,AVOID,,,,,,,
+2026-04-22,DUSB,death,21.67,AVOID,,,,,,,
+2026-04-22,SSB,golden,20.65,AVOID,,,,,,,
+2026-04-22,TCHP,golden,20.12,AVOID,,,,,,,
+2026-04-22,FOX,golden,16.66,AVOID,,,,,,,
+2026-04-22,HYD,golden,11.9,AVOID,,,,,,,
+2026-04-22,BAFE,golden,11.24,AVOID,,,,,,,
+2026-04-22,EBND,golden,10.36,AVOID,,,,,,,
+2026-04-22,PTLC,golden,9.41,AVOID,,,,,,,

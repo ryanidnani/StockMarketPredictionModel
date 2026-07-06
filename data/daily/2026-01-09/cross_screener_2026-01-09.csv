@@ -1,8 +1,0 @@
-event_date,ticker,cross_type,probability,look_threshold_pct,look_margin_pct,recommendation,rank
-2026-01-09,ALGM,golden,58.17,70.0,-11.83,SKIP,1
-2026-01-09,RVTY,golden,37.57,70.0,-32.43,SKIP,2
-2026-01-09,ARES,golden,20.41,70.0,-49.59,SKIP,3
-2026-01-09,WTRG,death,15.02,70.0,-54.98,SKIP,4
-2026-01-09,AVY,golden,13.34,70.0,-56.66,SKIP,5
-2026-01-09,HLN,golden,12.08,70.0,-57.92,SKIP,6
-2026-01-09,SPYD,golden,8.41,70.0,-61.59,SKIP,7
