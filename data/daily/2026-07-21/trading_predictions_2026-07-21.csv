@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-21,CAG,golden_st,65.93,CONSIDER,14.85,18.3,19.25,-10.01,13.36,12.62,23.21
+2026-07-21,CVE,golden_st,60.17,CONSIDER,28.79,34.0,36.63,-9.86,25.95,24.53,18.09
+2026-07-21,COST,death,38.21,AVOID,,,,,,,
+2026-07-21,OVV,golden_st,34.29,AVOID,,,,,,,
+2026-07-21,PR,golden_st,34.23,AVOID,,,,,,,
+2026-07-21,SBRA,golden_st,32.42,AVOID,,,,,,,
+2026-07-21,XOP,golden_st,28.23,AVOID,,,,,,,
+2026-07-21,YUM,death_st,21.38,AVOID,,,,,,,
+2026-07-21,WH,death,21.22,AVOID,,,,,,,
+2026-07-21,PEG,death_st,19.46,AVOID,,,,,,,
+2026-07-21,WRB,golden,0.0,AVOID,,,,,,,
+2026-07-21,MCO,golden,0.0,AVOID,,,,,,,
+2026-07-21,LNC,golden,0.0,AVOID,,,,,,,
+2026-07-21,AON,golden,0.0,AVOID,,,,,,,
