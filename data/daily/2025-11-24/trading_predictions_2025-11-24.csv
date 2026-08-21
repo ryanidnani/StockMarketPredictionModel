@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-24,HMC,death,43.2,AVOID,,,,,,,
+2025-11-24,PGX,death,27.31,AVOID,,,,,,,
+2025-11-24,RBA,death,22.01,AVOID,,,,,,,
+2025-11-24,IBHG,death,21.26,AVOID,,,,,,,
+2025-11-24,EPD,golden,0.0,AVOID,,,,,,,
+2025-11-24,IBTF,golden,0.0,AVOID,,,,,,,
+2025-11-24,MRK,golden,0.0,AVOID,,,,,,,
+2025-11-24,TRNO,golden,0.0,AVOID,,,,,,,

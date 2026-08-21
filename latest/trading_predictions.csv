@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-21,UNH,death_st,91.92,CONSIDER,390.11,377.06,364.0,-6.69,422.58,438.82,3.35
+2026-08-21,DOW,golden,58.51,CONSIDER,32.35,37.63,39.79,-9.12,29.4,27.92,16.33
+2026-08-21,AR,golden,54.08,CONSIDER,37.94,42.79,46.63,-9.27,34.42,32.67,12.79
+2026-08-21,TTEK,golden,51.56,CONSIDER,37.0,41.66,45.09,-8.16,33.98,32.47,12.59
+2026-08-21,PSKY,golden_st,45.99,AVOID,,,,,,,
+2026-08-21,VLTO,golden,41.07,AVOID,,,,,,,
+2026-08-21,PPLT,golden_st,35.92,AVOID,,,,,,,
+2026-08-21,EXC,death,34.57,AVOID,,,,,,,
+2026-08-21,DEO,golden,31.42,AVOID,,,,,,,
+2026-08-21,COO,golden,26.99,AVOID,,,,,,,
+2026-08-21,BN,death,22.01,AVOID,,,,,,,
+2026-08-21,ATO,death,18.86,AVOID,,,,,,,
+2026-08-21,SSNC,golden,7.05,AVOID,,,,,,,
+2026-08-21,KIM,death_st,6.17,AVOID,,,,,,,
+2026-08-21,FE,death_st,1.24,AVOID,,,,,,,

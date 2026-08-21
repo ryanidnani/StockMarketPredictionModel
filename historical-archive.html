@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Historical Crosses and Predictions · Stock Market Predictions Model</title>
+  <meta name="description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="social-preview.jpg" />
+  <meta name="theme-color" content="#0f1419" />
+  <meta property="og:site_name" content="Stock Market Predictions Model" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Historical Crosses and Predictions · Stock Market Predictions Model" />
+  <meta property="og:description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <meta property="og:url" content="https://ryanidnani.github.io/StockMarketPredictionModel/historical-archive.html" />
+  <meta property="og:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
+  <meta property="og:image:alt" content="Golden cross chart showing a bullish 50-day and 200-day moving average crossover." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Historical Crosses and Predictions · Stock Market Predictions Model" />
+  <meta name="twitter:description" content="Browse archived daily golden cross and death cross detections and trading predictions." />
+  <meta name="twitter:image" content="https://ryanidnani.github.io/StockMarketPredictionModel/social-preview.jpg" />
+  <link rel="stylesheet" href="shared.css" data-gc-stylesheet="shared.css" />
+  <script src="asset-boot.js"></script>
+  <style>
+    .card { margin-bottom: 1.5rem; }
+    .as-of { margin-bottom: 1rem; }
+    #history-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      columns: 2;
+      column-gap: 2rem;
+    }
+    #history-list li {
+      margin: 0.35rem 0;
+      break-inside: avoid;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    #history-list strong { color: var(--text); }
+    @media (max-width: 640px) { #history-list { columns: 1; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Historical Crosses and Predictions</h1>
+    <p class="sub">Download archived daily CSV files or open a trading day on the dashboard.</p>
+    <p class="as-of" id="as-of">Loading…</p>
+
+    <section class="card quick-links">
+      <h2>Quick Links</h2>
+      <p><a href="index.html">Daily Dashboard</a></p>
+      <p><a href="ticker-history.html">Ticker History Search</a></p>
+      <p><a href="https://github.com/ryanidnani/StockMarketPredictionModel">GitHub Repository</a></p>
+    </section>
+
+    <section class="card">
+      <h2>Historical Archive</h2>
+      <ul id="history-list">Loading…</ul>
+    </section>
+
+    <p class="disclaimer disclaimer-footer">
+      <strong>Disclaimer:</strong> For education and research only — not financial, investment, or trading advice.
+      Daily crosses and model scores are automated outputs for <strong>idea research</strong>, not recommendations to buy or sell.
+      Past performance does not guarantee future results. You are responsible for your own decisions;
+      the authors may hold positions in securities shown here.
+    </p>
+  </div>
+
+  <script>
+  GCAssetBoot.ready().then(function () {
+    const {
+      assetUrl,
+      dailyCsvPaths,
+      loadText,
+      formatUpdatedAt,
+      manifestDatesForArchive,
+    } = window.GC;
+
+    function renderHistoryList(manifest, latestDate) {
+      const list = document.getElementById("history-list");
+      list.innerHTML = "";
+
+      const dates = manifestDatesForArchive(manifest, latestDate).slice().reverse();
+
+      dates.forEach((date) => {
+        const paths = dailyCsvPaths(date);
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${date}</strong> —
+          <a href="index.html?day=${encodeURIComponent(date)}">Dashboard</a>,
+          <a href="${assetUrl(paths.crosses)}" download="detected_crosses_${date}.csv">Crosses</a>,
+          <a href="${assetUrl(paths.predictions)}" download="trading_predictions_${date}.csv">Predictions</a>`;
+        list.appendChild(li);
+      });
+    }
+
+    async function init() {
+      try {
+        const manifest = JSON.parse(await loadText("data/manifest.json", Date.now()));
+        const cacheKey = manifest.updated_at || Date.now();
+        const latestDate = (await loadText("latest/as_of.txt", cacheKey)).trim();
+        const updatedAt = formatUpdatedAt(manifest.updated_at, { includeEastern: false });
+
+        document.getElementById("as-of").textContent = updatedAt
+          ? `Archive last updated: ${updatedAt}`
+          : "";
+
+        renderHistoryList(manifest, latestDate);
+      } catch (error) {
+        console.error(error);
+        document.getElementById("as-of").textContent =
+          "Could not load archive index yet. Browse CSV files in the repository.";
+        document.getElementById("history-list").innerHTML = "";
+      }
+    }
+
+    init();
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+IR,golden,0,2.5,33.6,,81.87,81.86,89.82
+LYV,death,0,2.6,32.7,,143.44,143.51,139.71
+GPC,golden,0,1.1,18.4,,129.25,129.11,136.24
+HLI,golden,0,0.4,13.3,,182.46,182.39,191.06
+IBRX,golden,0,32.0,6.4,,2.79,2.67,6.92
+GTES,golden,0,2.0,5.8,,22.54,22.54,23.32
+HOMB,golden,0,1.4,5.6,,28.28,28.26,29.44
+ALKS,golden,0,1.9,5.2,,29.6,29.51,33.85
+PFF,golden,0,3.5,,,31.28,31.27,31.85
+BSJQ,death,0,0.4,,,23.35,23.35,23.28
+GOVI,death,0,0.2,,,27.69,27.69,27.43
+IGV,death,0,4.9,,,105.57,105.85,95.4
+INDA,death,0,5.8,,,53.56,53.62,51.55

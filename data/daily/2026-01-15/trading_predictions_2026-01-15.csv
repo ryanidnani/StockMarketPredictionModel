@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-15,NIO,death,61.98,CONSIDER,4.64,4.34,4.03,-13.07,5.05,5.26,6.53
+2026-01-15,BITI,death,18.53,AVOID,,,,,,,
+2026-01-15,BDX,golden,0.0,AVOID,,,,,,,
+2026-01-15,FANG,golden,0.0,AVOID,,,,,,,
+2026-01-15,FCN,golden,0.0,AVOID,,,,,,,
+2026-01-15,GWW,golden,0.0,AVOID,,,,,,,
+2026-01-15,IEX,golden,0.0,AVOID,,,,,,,
+2026-01-15,MORT,golden,0.0,AVOID,,,,,,,
+2026-01-15,MSA,golden,0.0,AVOID,,,,,,,
+2026-01-15,SFD,golden,0.0,AVOID,,,,,,,
+2026-01-15,SSB,golden,0.0,AVOID,,,,,,,
+2026-01-15,SSD,golden,0.0,AVOID,,,,,,,
+2026-01-15,STM,golden,0.0,AVOID,,,,,,,
+2026-01-15,USFR,golden,0.0,AVOID,,,,,,,
+2026-01-15,XOP,golden,0.0,AVOID,,,,,,,

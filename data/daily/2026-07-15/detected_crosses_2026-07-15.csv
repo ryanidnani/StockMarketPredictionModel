@@ -1,0 +1,11 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+NU,golden_st,0,74.1,67.6,13.34,13.33,14.21,13.88
+RYAAY,golden,5,1.4,33.4,63.72,61.85,61.33,66.63
+NWS,golden,0,1.9,16.9,30.18,29.86,29.85,31.66
+NWSA,golden,0,5.9,15.0,26.63,26.24,26.19,27.98
+SF,golden_st,0,1.4,11.7,73.97,73.8,75.37,78.75
+JKHY,golden_st,0,1.7,10.3,141.68,141.35,155.42,148.47
+DBA,golden_st,3,1.2,,27.28,27.17,26.82,27.98
+MAGS,golden_st,1,5.2,,66.19,66.01,63.71,69.02
+AMZD,death_st,2,15.6,,9.23,9.26,9.93,8.8519
+DTCR,death_st,0,1.8,,29.58,29.6,25.86,28.32

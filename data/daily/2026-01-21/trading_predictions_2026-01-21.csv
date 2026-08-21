@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-21,IBRX,golden,88.9,CONSIDER,6.92,8.93,8.98,-10.43,6.2,5.84,29.07
+2026-01-21,IR,golden,58.01,CONSIDER,89.82,101.23,109.17,-7.3,83.26,79.98,12.7
+2026-01-21,GTES,golden,41.28,AVOID,,,,,,,
+2026-01-21,ALKS,golden,32.15,AVOID,,,,,,,
+2026-01-21,HLI,golden,28.22,AVOID,,,,,,,
+2026-01-21,GPC,golden,24.91,AVOID,,,,,,,
+2026-01-21,GOVI,death,21.26,AVOID,,,,,,,
+2026-01-21,BSJQ,death,20.93,AVOID,,,,,,,
+2026-01-21,LYV,death,20.13,AVOID,,,,,,,
+2026-01-21,IGV,death,18.77,AVOID,,,,,,,
+2026-01-21,HOMB,golden,18.06,AVOID,,,,,,,
+2026-01-21,INDA,death,17.36,AVOID,,,,,,,
+2026-01-21,PFF,golden,14.88,AVOID,,,,,,,

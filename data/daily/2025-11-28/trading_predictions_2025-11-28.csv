@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-28,GBTC,death,87.2,CONSIDER,71.01,65.98,60.95,-14.17,75.79,78.19,7.09
+2025-11-28,HIMS,death,80.49,CONSIDER,39.76,37.08,34.4,-13.48,43.33,45.12,6.74
+2025-11-28,FLG,golden,53.43,CONSIDER,12.24,13.9,15.22,-11.38,10.85,10.15,13.57
+2025-11-28,RBRK,death,46.93,AVOID,,,,,,,
+2025-11-28,VNT,death,46.13,AVOID,,,,,,,
+2025-11-28,XHB,golden,38.56,AVOID,,,,,,,
+2025-11-28,SCEPM,golden,38.37,AVOID,,,,,,,
+2025-11-28,COFPJ,death,34.99,AVOID,,,,,,,
+2025-11-28,DOCS,death,33.39,AVOID,,,,,,,
+2025-11-28,HSIC,golden,27.26,AVOID,,,,,,,
+2025-11-28,WMG,death,22.33,AVOID,,,,,,,
+2025-11-28,ZTO,golden,18.56,AVOID,,,,,,,
