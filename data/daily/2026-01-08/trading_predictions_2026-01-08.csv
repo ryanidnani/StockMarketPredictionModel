@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-08,ETSY,golden,59.07,CONSIDER,61.23,71.31,76.95,-6.78,57.08,55.0,16.46
+2026-01-08,AMZU,golden,44.71,AVOID,,,,,,,
+2026-01-08,CGNX,death,38.25,AVOID,,,,,,,
+2026-01-08,SPGI,golden,37.39,AVOID,,,,,,,
+2026-01-08,VST,death,27.87,AVOID,,,,,,,
+2026-01-08,PB,golden,22.29,AVOID,,,,,,,
+2026-01-08,TTC,golden,21.73,AVOID,,,,,,,
+2026-01-08,SARO,golden,19.59,AVOID,,,,,,,
+2026-01-08,DBX,death,19.58,AVOID,,,,,,,
+2026-01-08,FICO,death,19.09,AVOID,,,,,,,
+2026-01-08,NTAP,death,18.77,AVOID,,,,,,,
+2026-01-08,IVOL,death,18.43,AVOID,,,,,,,
+2026-01-08,CWAN,golden,13.32,AVOID,,,,,,,
+2026-01-08,PAAA,golden,11.45,AVOID,,,,,,,
+2026-01-08,FRT,golden,11.2,AVOID,,,,,,,
+2026-01-08,HLN,golden,9.18,AVOID,,,,,,,

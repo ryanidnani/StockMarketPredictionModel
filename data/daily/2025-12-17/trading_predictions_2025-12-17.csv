@@ -1,0 +1,9 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-17,COIN,death,77.61,CONSIDER,244.19,228.03,211.88,-13.23,269.26,281.8,6.62
+2025-12-17,RIOX,death,41.43,AVOID,,,,,,,
+2025-12-17,Z,death,37.59,AVOID,,,,,,,
+2025-12-17,ACM,death,28.13,AVOID,,,,,,,
+2025-12-17,BUD,golden,0.0,AVOID,,,,,,,
+2025-12-17,MET,golden,0.0,AVOID,,,,,,,
+2025-12-17,SGOV,golden,0.0,AVOID,,,,,,,
+2025-12-17,STLA,golden,0.0,AVOID,,,,,,,

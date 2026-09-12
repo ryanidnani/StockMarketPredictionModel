@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-23,GDLC,death,62.5,CONSIDER,41.4,39.27,37.15,-10.28,45.24,47.16,5.14
+2025-12-23,ETH,death,59.2,CONSIDER,28.02,26.48,24.94,-10.99,31.72,33.57,5.5
+2025-12-23,ETSY,death,56.32,CONSIDER,55.04,52.44,49.84,-9.45,60.22,62.8,4.72
+2025-12-23,GNRC,death,43.24,AVOID,,,,,,,
+2025-12-23,LW,death,28.93,AVOID,,,,,,,
+2025-12-23,BILS,death,21.26,AVOID,,,,,,,
+2025-12-23,DFGR,death,21.26,AVOID,,,,,,,
+2025-12-23,VGLT,death,21.26,AVOID,,,,,,,
+2025-12-23,ANF,golden,0.0,AVOID,,,,,,,
+2025-12-23,CFR,golden,0.0,AVOID,,,,,,,
+2025-12-23,DIS,golden,0.0,AVOID,,,,,,,
+2025-12-23,JEF,golden,0.0,AVOID,,,,,,,
+2025-12-23,NXPI,golden,0.0,AVOID,,,,,,,

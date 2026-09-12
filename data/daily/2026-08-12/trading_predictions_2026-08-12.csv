@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-12,ADC,death_st,61.02,CONSIDER,74.36,71.92,69.48,-6.56,80.21,83.14,3.28
+2026-08-12,OTF,golden_st,54.15,CONSIDER,11.51,13.47,14.74,-7.7,10.62,10.18,17.07
+2026-08-12,AR,golden_st,45.41,AVOID,,,,,,,
+2026-08-12,CMCSA,golden_st,43.04,AVOID,,,,,,,
+2026-08-12,XOVR,golden_st,41.85,AVOID,,,,,,,
+2026-08-12,ARKK,golden_st,39.61,AVOID,,,,,,,
+2026-08-12,BWA,golden_st,38.43,AVOID,,,,,,,
+2026-08-12,ELV,golden_st,37.15,AVOID,,,,,,,
+2026-08-12,KDP,death_st,5.1,AVOID,,,,,,,
+2026-08-12,UDR,death_st,4.61,AVOID,,,,,,,
+2026-08-12,ALLE,golden,0.0,AVOID,,,,,,,

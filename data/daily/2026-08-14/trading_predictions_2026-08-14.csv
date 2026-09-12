@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-14,IGV,golden,58.9,CONSIDER,104.08,115.75,124.38,-7.93,95.82,91.69,11.21
+2026-08-14,KDP,golden_st,50.79,CONSIDER,31.44,36.57,39.03,-7.64,29.04,27.84,16.32
+2026-08-14,APG,golden_st,28.22,AVOID,,,,,,,
+2026-08-14,QSR,golden_st,22.02,AVOID,,,,,,,
+2026-08-14,WBD,golden_st,20.93,AVOID,,,,,,,
+2026-08-14,SNN,death_st,11.87,AVOID,,,,,,,
+2026-08-14,AS,death_st,8.14,AVOID,,,,,,,
