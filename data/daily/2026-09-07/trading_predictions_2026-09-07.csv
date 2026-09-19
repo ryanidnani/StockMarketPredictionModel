@@ -1,0 +1,7 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-09-07,ITUB,golden,70.43,CONSIDER,8.15,9.57,10.15,-8.6,7.45,7.1,17.38
+2026-09-07,CNX,golden,33.78,AVOID,,,,,,,
+2026-09-07,HRL,death,15.99,AVOID,,,,,,,
+2026-09-07,ARCC,golden,13.1,AVOID,,,,,,,
+2026-09-07,SONY,golden,12.07,AVOID,,,,,,,
+2026-09-07,ADC,death,4.96,AVOID,,,,,,,

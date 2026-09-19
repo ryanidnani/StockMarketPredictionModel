@@ -1,0 +1,11 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-15,NU,golden_st,58.02,CONSIDER,13.88,16.75,18.1,-11.62,12.27,11.46,20.68
+2026-07-15,NWS,golden,53.14,CONSIDER,31.66,35.74,39.07,-6.5,29.6,28.57,12.9
+2026-07-15,NWSA,golden,52.45,CONSIDER,27.98,31.51,34.37,-7.09,26.0,25.0,12.6
+2026-07-15,SF,golden_st,50.18,CONSIDER,78.75,90.9,97.95,-8.62,71.96,68.57,15.43
+2026-07-15,JKHY,golden_st,49.95,AVOID,,,,,,,
+2026-07-15,MAGS,golden_st,32.89,AVOID,,,,,,,
+2026-07-15,DTCR,death_st,29.58,AVOID,,,,,,,
+2026-07-15,RYAAY,golden,28.46,AVOID,,,,,,,
+2026-07-15,AMZD,death_st,22.02,AVOID,,,,,,,
+2026-07-15,DBA,golden_st,7.2,AVOID,,,,,,,

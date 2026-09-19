@@ -1,0 +1,8 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+UBER,death,0,19.7,169.8,,86.85,86.96,82.86
+DKS,death,0,1.8,17.8,,213.3,213.39,200.22
+RRX,golden,0,0.7,9.3,,143.04,142.99,146.1
+DFIP,death,0,0.1,,,41.9,41.9,41.545
+IAGG,death,0,1.1,,,51.1,51.12,50.05
+USDU,death,0,0.4,,,26.62,26.63,25.83
+VTIP,death,0,1.9,,,49.91,49.92,49.45

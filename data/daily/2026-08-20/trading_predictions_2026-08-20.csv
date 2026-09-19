@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-20,CBRE,golden,73.42,CONSIDER,151.79,173.01,183.52,-7.08,141.05,135.68,13.98
+2026-08-20,TT,death_st,69.87,CONSIDER,451.1,435.44,419.79,-6.94,492.66,513.45,3.47
+2026-08-20,BUD,death_st,57.46,CONSIDER,77.92,75.2,72.49,-6.97,83.96,86.98,3.49
+2026-08-20,NYT,death,48.19,AVOID,,,,,,,
+2026-08-20,HTHT,golden_st,47.67,AVOID,,,,,,,
+2026-08-20,AS,death,42.44,AVOID,,,,,,,
+2026-08-20,PBR.A,golden_st,41.66,AVOID,,,,,,,
+2026-08-20,TW,golden_st,40.17,AVOID,,,,,,,
+2026-08-20,PBR,golden_st,37.64,AVOID,,,,,,,
+2026-08-20,PGR,golden_st,34.37,AVOID,,,,,,,
+2026-08-20,BCE,golden_st,20.72,AVOID,,,,,,,
+2026-08-20,PUK,death,20.63,AVOID,,,,,,,
+2026-08-20,TEL,death,14.57,AVOID,,,,,,,
+2026-08-20,FNF,death_st,6.8,AVOID,,,,,,,
+2026-08-20,WEC,death,5.93,AVOID,,,,,,,
+2026-08-20,ALLY,death_st,4.87,AVOID,,,,,,,

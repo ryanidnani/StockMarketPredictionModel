@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-10,MKC,golden_st,57.36,CONSIDER,52.45,62.95,67.78,-7.09,48.73,46.87,20.02
+2026-07-10,DG,golden_st,43.92,AVOID,,,,,,,
+2026-07-10,TTEK,golden_st,43.15,AVOID,,,,,,,
+2026-07-10,TKO,death_st,40.34,AVOID,,,,,,,
+2026-07-10,UNG,death_st,35.87,AVOID,,,,,,,
+2026-07-10,ITUB,golden_st,33.22,AVOID,,,,,,,
+2026-07-10,LHX,death,26.03,AVOID,,,,,,,
+2026-07-10,HAS,death,18.22,AVOID,,,,,,,
+2026-07-10,BXP,golden,0.0,AVOID,,,,,,,
+2026-07-10,SCHW,golden,0.0,AVOID,,,,,,,
+2026-07-10,ITW,golden,0.0,AVOID,,,,,,,
+2026-07-10,KVUE,golden,0.0,AVOID,,,,,,,
+2026-07-10,WFC,golden,0.0,AVOID,,,,,,,
