@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-23,DASH,death,52.1,CONSIDER,207.23,198.7,190.16,-8.24,227.72,237.97,4.12
+2026-01-23,NCLH,death,43.24,AVOID,,,,,,,
+2026-01-23,DKS,death,32.26,AVOID,,,,,,,
+2026-01-23,SONY,death,23.66,AVOID,,,,,,,
+2026-01-23,MA,death,18.77,AVOID,,,,,,,
+2026-01-23,STRF,death,17.36,AVOID,,,,,,,
+2026-01-23,EPI,death,15.68,AVOID,,,,,,,
+2026-01-23,BALL,golden,0.0,AVOID,,,,,,,
+2026-01-23,SPHD,golden,0.0,AVOID,,,,,,,

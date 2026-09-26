@@ -1,0 +1,8 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+WBD,golden_st,0,22.8,69.3,26.7,26.65,25.03,27.99
+KDP,golden_st,0,13.2,40.2,30.58,30.54,29.75,31.44
+QSR,golden_st,0,2.6,26.1,74.48,74.39,72.72,77.64
+AS,death_st,0,4.1,19.2,34.88,34.99,34.98,32.87
+APG,golden_st,0,2.7,18.8,41.63,41.6,40.52,43.95
+SNN,death_st,4,1.7,12.5,30.46,30.61,31.73,29.81
+IGV,golden,2,13.5,,98.74,95.19,94.33,104.08
