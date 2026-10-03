@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-09-08,CLX,death_st,92.41,CONSIDER,91.6,87.98,84.36,-7.9,99.51,103.46,3.95
+2026-09-08,VRSK,death_st,58.64,CONSIDER,175.49,168.58,161.67,-7.88,197.12,207.94,3.94
+2026-09-08,COO,death,44.11,AVOID,,,,,,,
+2026-09-08,VALE,golden_st,40.76,AVOID,,,,,,,
+2026-09-08,ZTO,death,36.89,AVOID,,,,,,,
+2026-09-08,SUI,death_st,36.28,AVOID,,,,,,,
+2026-09-08,WMB,golden_st,34.26,AVOID,,,,,,,
+2026-09-08,VNO,death_st,17.39,AVOID,,,,,,,
+2026-09-08,SON,death_st,15.88,AVOID,,,,,,,
+2026-09-08,TAP,death_st,15.31,AVOID,,,,,,,
+2026-09-08,PHM,death_st,13.98,AVOID,,,,,,,
+2026-09-08,XHB,death,7.75,AVOID,,,,,,,
+2026-09-08,BA,death,5.42,AVOID,,,,,,,
+2026-09-08,ORLY,death_st,4.81,AVOID,,,,,,,
+2026-09-08,WM,death,4.59,AVOID,,,,,,,
+2026-09-08,CNX,golden,0.0,AVOID,,,,,,,

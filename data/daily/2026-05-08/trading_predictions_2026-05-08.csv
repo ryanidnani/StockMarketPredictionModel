@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-05-08,FROG,golden,85.61,CONSIDER,70.55,90.72,91.49,-8.81,64.33,61.23,28.59
+2026-05-08,SMMT,death,63.58,CONSIDER,18.08,17.05,16.02,-11.41,21.09,22.6,5.71
+2026-05-08,TFX,golden,57.58,CONSIDER,133.06,162.13,170.97,-7.87,122.59,117.35,21.85
+2026-05-08,VOT,golden,49.45,AVOID,,,,,,,
+2026-05-08,AUR,golden,48.44,AVOID,,,,,,,
+2026-05-08,AN,golden,36.89,AVOID,,,,,,,
+2026-05-08,TSMY,golden,35.1,AVOID,,,,,,,
+2026-05-08,QXOPB,death,34.99,AVOID,,,,,,,
+2026-05-08,FTNT,golden,31.13,AVOID,,,,,,,
+2026-05-08,INSM,death,29.57,AVOID,,,,,,,
+2026-05-08,AMDY,golden,29.46,AVOID,,,,,,,
+2026-05-08,EAT,death,29.17,AVOID,,,,,,,
+2026-05-08,SCHW,death,22.01,AVOID,,,,,,,
+2026-05-08,TM,death,19.09,AVOID,,,,,,,
+2026-05-08,IGOV,golden,12.31,AVOID,,,,,,,
+2026-05-08,PFF,golden,11.96,AVOID,,,,,,,

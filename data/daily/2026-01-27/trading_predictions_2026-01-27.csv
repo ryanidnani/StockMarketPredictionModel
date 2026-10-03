@@ -1,0 +1,7 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-27,HUM,death,45.76,AVOID,,,,,,,
+2026-01-27,BILS,golden,0.0,AVOID,,,,,,,
+2026-01-27,FSTA,golden,0.0,AVOID,,,,,,,
+2026-01-27,JAAA,golden,0.0,AVOID,,,,,,,
+2026-01-27,OVV,golden,0.0,AVOID,,,,,,,
+2026-01-27,PEY,golden,0.0,AVOID,,,,,,,

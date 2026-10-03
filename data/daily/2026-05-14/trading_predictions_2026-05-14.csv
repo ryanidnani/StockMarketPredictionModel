@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-05-14,SMMT,death,45.21,AVOID,,,,,,,
+2026-05-14,RSPH,death,28.22,AVOID,,,,,,,
+2026-05-14,GAP,death,25.44,AVOID,,,,,,,
+2026-05-14,NRG,death,25.44,AVOID,,,,,,,
+2026-05-14,MTG,death,18.53,AVOID,,,,,,,
+2026-05-14,LH,death,18.22,AVOID,,,,,,,
+2026-05-14,GLXY,golden,0.0,AVOID,,,,,,,
+2026-05-14,LOGI,golden,0.0,AVOID,,,,,,,
+2026-05-14,QCML,golden,0.0,AVOID,,,,,,,
+2026-05-14,RAL,golden,0.0,AVOID,,,,,,,
+2026-05-14,TSPY,golden,0.0,AVOID,,,,,,,
+2026-05-14,UNHG,golden,0.0,AVOID,,,,,,,
