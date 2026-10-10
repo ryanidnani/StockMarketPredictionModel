@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-15,MC,golden,56.63,CONSIDER,69.41,79.41,85.32,-5.78,65.4,63.4,14.41
+2025-12-15,BKNG,golden,56.26,CONSIDER,218.31,243.34,265.74,-7.82,201.25,192.72,11.47
+2025-12-15,SPOT,death,47.56,AVOID,,,,,,,
+2025-12-15,STVN,death,45.13,AVOID,,,,,,,
+2025-12-15,SLB,golden,44.09,AVOID,,,,,,,
+2025-12-15,DPST,golden,42.84,AVOID,,,,,,,
+2025-12-15,MVSTW,death,41.34,AVOID,,,,,,,
+2025-12-15,OPCH,golden,33.32,AVOID,,,,,,,
+2025-12-15,MNTSW,death,31.36,AVOID,,,,,,,
+2025-12-15,PSN,death,29.64,AVOID,,,,,,,
+2025-12-15,SN,golden,26.3,AVOID,,,,,,,
+2025-12-15,WCLD,death,21.26,AVOID,,,,,,,
+2025-12-15,OVV,death,20.46,AVOID,,,,,,,
+2025-12-15,UNP,golden,19.35,AVOID,,,,,,,
+2025-12-15,TLT,death,18.43,AVOID,,,,,,,
+2025-12-15,FTV,golden,12.35,AVOID,,,,,,,

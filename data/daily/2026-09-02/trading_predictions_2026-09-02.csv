@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-09-02,AON,death_st,98.13,CONSIDER,330.88,317.97,305.06,-7.8,367.57,385.91,3.9
+2026-09-02,GE,death_st,85.74,CONSIDER,329.5,316.95,304.39,-7.62,361.86,378.04,3.81
+2026-09-02,RPM,death_st,82.33,CONSIDER,103.23,99.47,95.7,-7.29,111.66,115.87,3.65
+2026-09-02,CNP,death,57.62,CONSIDER,39.51,38.33,37.16,-5.96,42.43,43.89,2.98
+2026-09-02,HAL,golden_st,38.3,AVOID,,,,,,,
+2026-09-02,EWZ,golden_st,20.74,AVOID,,,,,,,
+2026-09-02,ILF,golden_st,15.32,AVOID,,,,,,,
+2026-09-02,DHI,death,5.03,AVOID,,,,,,,
+2026-09-02,AOS,death_st,4.51,AVOID,,,,,,,
+2026-09-02,CUBE,death_st,1.97,AVOID,,,,,,,
+2026-09-02,MDT,golden,0.0,AVOID,,,,,,,
+2026-09-02,ARCC,golden,0.0,AVOID,,,,,,,
+2026-09-02,RCI,golden,0.0,AVOID,,,,,,,

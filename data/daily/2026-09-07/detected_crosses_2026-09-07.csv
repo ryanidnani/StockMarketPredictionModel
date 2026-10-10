@@ -1,0 +1,7 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+SONY,golden,0,5.1,143.5,23.98,23.02,22.99,24.56
+ITUB,golden,2,20.1,89.8,7.78,7.9,7.88,8.15
+ARCC,golden,0,4.2,14.4,19.82,19.46,19.45,20.04
+HRL,death,4,4.8,11.9,23.11,23.74,24.02,21.54
+ADC,death,3,1.5,9.0,74.04,75.29,75.54,72.62
+CNX,golden,0,1.4,5.5,36.31,35.55,35.55,37.49

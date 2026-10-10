@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-08,RBRK,golden,67.13,CONSIDER,89.1,113.16,114.94,-7.87,82.09,78.58,27.01
+2025-12-08,KOF,golden,21.39,AVOID,,,,,,,
+2025-12-08,UBSI,golden,21.18,AVOID,,,,,,,
+2025-12-08,WAY,death,19.77,AVOID,,,,,,,
+2025-12-08,TRGP,golden,19.58,AVOID,,,,,,,
+2025-12-08,SLF,death,18.43,AVOID,,,,,,,
+2025-12-08,ABT,death,18.22,AVOID,,,,,,,
+2025-12-08,SCI,death,17.36,AVOID,,,,,,,
+2025-12-08,KEX,golden,17.2,AVOID,,,,,,,
+2025-12-08,BKLN,golden,13.34,AVOID,,,,,,,
+2025-12-08,VRSN,death,12.6,AVOID,,,,,,,
