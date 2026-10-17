@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-23,METD,death,58.34,CONSIDER,15.3,14.46,13.63,-10.94,16.57,17.21,5.47
+2026-04-23,CR,death,56.93,CONSIDER,180.42,171.87,163.32,-9.48,197.55,206.12,4.74
+2026-04-23,BMA,death,30.35,AVOID,,,,,,,
+2026-04-23,EBND,death,21.26,AVOID,,,,,,,
+2026-04-23,ABBV,death,19.58,AVOID,,,,,,,
+2026-04-23,AVL,golden,0.0,AVOID,,,,,,,
+2026-04-23,COWG,golden,0.0,AVOID,,,,,,,
+2026-04-23,CVNA,golden,0.0,AVOID,,,,,,,
+2026-04-23,ESNT,golden,0.0,AVOID,,,,,,,
+2026-04-23,FLHY,golden,0.0,AVOID,,,,,,,
+2026-04-23,MTG,golden,0.0,AVOID,,,,,,,
+2026-04-23,URBN,golden,0.0,AVOID,,,,,,,
+2026-04-23,WST,golden,0.0,AVOID,,,,,,,

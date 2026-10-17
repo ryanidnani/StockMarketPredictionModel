@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-09,NWS,golden_st,66.03,CONSIDER,31.13,37.01,39.9,-7.74,28.72,27.52,18.87
+2026-07-09,ALNY,golden_st,60.58,CONSIDER,312.79,373.5,390.8,-10.87,278.8,261.81,19.41
+2026-07-09,BXP,golden,51.14,CONSIDER,66.93,75.24,80.93,-7.62,61.83,59.28,12.41
+2026-07-09,GLD,death,40.97,AVOID,,,,,,,
+2026-07-09,COST,death,34.28,AVOID,,,,,,,
+2026-07-09,CBRE,golden_st,32.46,AVOID,,,,,,,
+2026-07-09,AZN,death_st,28.87,AVOID,,,,,,,
+2026-07-09,GLDM,death,22.07,AVOID,,,,,,,
+2026-07-09,IAUM,death,22.07,AVOID,,,,,,,
+2026-07-09,SGOL,death,22.07,AVOID,,,,,,,
+2026-07-09,MDLZ,death_st,20.96,AVOID,,,,,,,
+2026-07-09,LNG,golden_st,20.2,AVOID,,,,,,,
+2026-07-09,EWH,death,18.43,AVOID,,,,,,,
+2026-07-09,AAAU,death,18.22,AVOID,,,,,,,
+2026-07-09,IAU,death,18.22,AVOID,,,,,,,
+2026-07-09,MTG,golden,16.63,AVOID,,,,,,,

@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-06,RRX,golden,58.7,CONSIDER,157.63,179.37,192.74,-7.17,146.32,140.67,13.79
+2026-01-06,LMT,golden,45.37,AVOID,,,,,,,
+2026-01-06,EAT,golden,45.2,AVOID,,,,,,,
+2026-01-06,DHI,death,35.11,AVOID,,,,,,,
+2026-01-06,MCHP,golden,30.94,AVOID,,,,,,,
+2026-01-06,XOP,death,29.19,AVOID,,,,,,,
+2026-01-06,CSHI,death,28.22,AVOID,,,,,,,
+2026-01-06,DE,golden,26.63,AVOID,,,,,,,
+2026-01-06,PANW,death,20.68,AVOID,,,,,,,
+2026-01-06,TFII,golden,17.01,AVOID,,,,,,,
+2026-01-06,MIDD,golden,15.0,AVOID,,,,,,,
+2026-01-06,KT,golden,14.31,AVOID,,,,,,,
+2026-01-06,CTVA,golden,12.6,AVOID,,,,,,,
