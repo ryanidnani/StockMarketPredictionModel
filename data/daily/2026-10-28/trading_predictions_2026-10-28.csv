@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-10-28,VIV,death_st,89.03,CONSIDER,11.42,10.88,10.35,-9.4,12.59,13.18,4.7
+2026-10-28,UAL,death,68.28,CONSIDER,103.43,99.15,94.86,-8.28,119.19,127.07,4.14
+2026-10-28,SW,death,51.35,CONSIDER,40.33,38.07,35.82,-11.19,43.63,45.27,5.59
+2026-10-28,AMX,golden_st,46.35,AVOID,,,,,,,
+2026-10-28,NOC,golden_st,37.43,AVOID,,,,,,,
+2026-10-28,JNJ,golden_st,36.64,AVOID,,,,,,,
+2026-10-28,SOLV,death_st,32.31,AVOID,,,,,,,
+2026-10-28,PPG,golden_st,30.18,AVOID,,,,,,,
+2026-10-28,MLI,death,28.2,AVOID,,,,,,,
+2026-10-28,SCI,golden_st,23.3,AVOID,,,,,,,
+2026-10-28,DOV,golden_st,21.48,AVOID,,,,,,,
+2026-10-28,VZ,death,19.04,AVOID,,,,,,,
+2026-10-28,APG,golden_st,18.6,AVOID,,,,,,,
+2026-10-28,SCHW,death,3.56,AVOID,,,,,,,
+2026-10-28,BAC,death,1.88,AVOID,,,,,,,
+2026-10-28,TW,golden,0.0,AVOID,,,,,,,
