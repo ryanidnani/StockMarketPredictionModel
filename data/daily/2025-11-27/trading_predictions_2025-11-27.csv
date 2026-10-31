@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-11-27,AMTM,golden,66.25,CONSIDER,29.33,37.69,38.08,-9.21,26.63,25.28,28.49
+2025-11-27,EVLVW,death,62.56,CONSIDER,0.18,0.17,0.16,-13.66,0.2,0.21,6.83
+2025-11-27,KT,death,38.36,AVOID,,,,,,,
+2025-11-27,METPF,death,34.99,AVOID,,,,,,,
+2025-11-27,APPF,death,34.31,AVOID,,,,,,,
+2025-11-27,DIS,death,19.91,AVOID,,,,,,,
+2025-11-27,MTB,golden,19.72,AVOID,,,,,,,
+2025-11-27,LMT,death,17.36,AVOID,,,,,,,
+2025-11-27,IBHG,golden,13.2,AVOID,,,,,,,

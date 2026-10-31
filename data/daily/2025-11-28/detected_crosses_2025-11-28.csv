@@ -1,0 +1,13 @@
+symbol,signal_type,cross_days_ago,avg_daily_volume_30d,market_cap,ema_21,ema_50,ema_200,current_price
+ZTO,golden,0,1.4,16.4,,19.21,19.19,20.65
+WMG,death,0,2.0,14.6,,31.06,31.1,28.24
+RBRK,death,0,2.4,13.5,,75.28,75.29,69.32
+DOCS,death,0,2.0,9.6,,59.64,59.78,51.44
+HSIC,golden,0,1.6,8.9,,69.28,69.24,74.57
+HIMS,death,0,26.9,8.7,,44.45,44.48,39.76
+VNT,death,0,1.2,5.2,,38.54,38.57,36.28
+FLG,golden,0,4.8,5.1,,11.52,11.52,12.24
+SCEPM,golden,0,0.2,,,23.64,23.64,24.73
+XHB,golden,0,1.9,,,106.46,106.43,108.88
+COFPJ,death,0,0.1,,,18.9,18.91,18.2
+GBTC,death,0,6.0,,,80.89,81.02,71.01

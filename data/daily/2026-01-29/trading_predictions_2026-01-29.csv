@@ -1,0 +1,12 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-29,PCOR,death,67.08,CONSIDER,56.79,53.97,51.15,-9.93,61.22,63.44,4.96
+2026-01-29,EQNR,golden,50.79,CONSIDER,26.91,30.63,33.78,-8.1,24.73,23.64,13.83
+2026-01-29,MVLL,death,47.53,AVOID,,,,,,,
+2026-01-29,CHDN,death,30.44,AVOID,,,,,,,
+2026-01-29,WM,golden,26.68,AVOID,,,,,,,
+2026-01-29,HLI,death,25.36,AVOID,,,,,,,
+2026-01-29,MSFT,death,21.9,AVOID,,,,,,,
+2026-01-29,VCLT,death,21.26,AVOID,,,,,,,
+2026-01-29,CIGI,death,18.22,AVOID,,,,,,,
+2026-01-29,AFG,death,17.36,AVOID,,,,,,,
+2026-01-29,XLP,golden,8.79,AVOID,,,,,,,

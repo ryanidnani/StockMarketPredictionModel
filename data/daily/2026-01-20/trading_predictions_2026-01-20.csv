@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-20,OILU,golden,71.64,CONSIDER,26.83,32.04,34.34,-7.74,24.75,23.72,19.4
+2026-01-20,XP,golden,56.99,CONSIDER,18.32,21.11,22.98,-8.0,16.85,16.12,15.2
+2026-01-20,CRWL,death,51.33,CONSIDER,27.02,24.93,22.84,-15.47,30.13,31.68,7.73
+2026-01-20,GBCI,golden,47.31,AVOID,,,,,,,
+2026-01-20,COP,golden,35.43,AVOID,,,,,,,
+2026-01-20,ADT,death,34.31,AVOID,,,,,,,
+2026-01-20,MRNA,golden,25.95,AVOID,,,,,,,
+2026-01-20,PPL,golden,22.02,AVOID,,,,,,,
+2026-01-20,DRI,golden,21.48,AVOID,,,,,,,
+2026-01-20,TDTF,death,20.93,AVOID,,,,,,,
+2026-01-20,MET,death,18.87,AVOID,,,,,,,
+2026-01-20,TMV,golden,17.34,AVOID,,,,,,,
+2026-01-20,CLOA,golden,13.12,AVOID,,,,,,,
+2026-01-20,ICSH,golden,11.46,AVOID,,,,,,,
+2026-01-20,USRT,golden,11.32,AVOID,,,,,,,
+2026-01-20,HLN,golden,10.98,AVOID,,,,,,,

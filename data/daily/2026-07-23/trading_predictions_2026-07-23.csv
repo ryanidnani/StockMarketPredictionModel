@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-23,GGLS,golden_st,67.05,CONSIDER,63.9,74.39,79.78,-7.2,59.3,56.99,16.42
+2026-07-23,ALLE,golden_st,51.62,CONSIDER,154.57,177.84,191.22,-7.41,143.12,137.4,15.05
+2026-07-23,AZN,death,43.04,AVOID,,,,,,,
+2026-07-23,CVX,golden_st,40.98,AVOID,,,,,,,
+2026-07-23,SU,golden_st,37.42,AVOID,,,,,,,
+2026-07-23,SHEL,golden_st,29.25,AVOID,,,,,,,
+2026-07-23,AS,death,26.83,AVOID,,,,,,,
+2026-07-23,DBC,golden_st,25.35,AVOID,,,,,,,
+2026-07-23,FXN,golden_st,22.67,AVOID,,,,,,,
+2026-07-23,VMC,death_st,22.4,AVOID,,,,,,,
+2026-07-23,PDBC,golden_st,18.48,AVOID,,,,,,,
+2026-07-23,QQQI,death_st,16.25,AVOID,,,,,,,
+2026-07-23,HRL,golden,0.0,AVOID,,,,,,,
