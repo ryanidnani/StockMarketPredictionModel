@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-29,NXPI,golden,69.22,CONSIDER,289.25,372.26,375.1,-10.55,258.73,243.48,28.7
+2026-04-29,AMZZ,golden,66.33,CONSIDER,38.69,48.07,49.47,-6.45,36.19,34.94,24.24
+2026-04-29,ETSY,golden,64.85,CONSIDER,69.6,84.4,88.33,-6.98,64.74,62.31,21.27
+2026-04-29,DKS,golden,27.25,AVOID,,,,,,,
+2026-04-29,JEPI,death,22.36,AVOID,,,,,,,
+2026-04-29,EBND,death,22.02,AVOID,,,,,,,
+2026-04-29,AGG,death,21.26,AVOID,,,,,,,
+2026-04-29,GBND,death,21.26,AVOID,,,,,,,
+2026-04-29,PMMF,death,20.93,AVOID,,,,,,,
+2026-04-29,SCCR,death,20.93,AVOID,,,,,,,
+2026-04-29,TILL,golden,19.42,AVOID,,,,,,,
+2026-04-29,MCD,death,17.36,AVOID,,,,,,,
+2026-04-29,REM,golden,14.71,AVOID,,,,,,,
+2026-04-29,CLOA,golden,13.12,AVOID,,,,,,,
+2026-04-29,QDVO,golden,9.45,AVOID,,,,,,,

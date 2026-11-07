@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-17,KKR,golden_st,68.47,CONSIDER,100.94,119.09,126.9,-8.33,92.53,88.32,17.98
+2026-07-17,NDAQ,golden_st,56.22,CONSIDER,91.64,108.38,117.23,-9.9,82.57,78.04,18.27
+2026-07-17,ROST,golden_st,43.56,AVOID,,,,,,,
+2026-07-17,EOG,golden_st,39.74,AVOID,,,,,,,
+2026-07-17,REXR,golden_st,33.26,AVOID,,,,,,,
+2026-07-17,VZ,death,31.71,AVOID,,,,,,,
+2026-07-17,GOOGL,death_st,24.53,AVOID,,,,,,,
+2026-07-17,ASHR,death_st,22.6,AVOID,,,,,,,
+2026-07-17,TEVA,death_st,21.34,AVOID,,,,,,,
+2026-07-17,TAK,golden_st,18.32,AVOID,,,,,,,
+2026-07-17,BMRN,golden,0.0,AVOID,,,,,,,
+2026-07-17,NTES,golden,0.0,AVOID,,,,,,,
+2026-07-17,WRB,golden,0.0,AVOID,,,,,,,

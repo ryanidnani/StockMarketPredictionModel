@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-07-30,FIS,golden_st,58.92,CONSIDER,46.0,55.46,58.86,-8.13,42.26,40.39,20.57
+2026-07-30,MTUM,death_st,48.62,AVOID,,,,,,,
+2026-07-30,GGG,golden_st,38.81,AVOID,,,,,,,
+2026-07-30,BP,golden_st,35.27,AVOID,,,,,,,
+2026-07-30,XPO,death_st,35.03,AVOID,,,,,,,
+2026-07-30,RITM,golden_st,32.89,AVOID,,,,,,,
+2026-07-30,AROC,death_st,31.95,AVOID,,,,,,,
+2026-07-30,ICE,golden_st,27.68,AVOID,,,,,,,
+2026-07-30,NTR,golden_st,25.34,AVOID,,,,,,,
+2026-07-30,TXT,death_st,19.52,AVOID,,,,,,,
+2026-07-30,EWA,golden_st,18.21,AVOID,,,,,,,
+2026-07-30,WEC,death_st,15.05,AVOID,,,,,,,
+2026-07-30,EWH,golden_st,13.22,AVOID,,,,,,,
+2026-07-30,CTAS,golden,0.0,AVOID,,,,,,,
+2026-07-30,AMCR,golden,0.0,AVOID,,,,,,,

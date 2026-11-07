@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-18,CVS,death_st,85.02,CONSIDER,94.91,91.21,87.52,-7.79,103.57,107.9,3.89
+2026-08-18,VLTO,golden,71.48,CONSIDER,96.07,109.1,116.21,-7.94,88.44,84.63,13.56
+2026-08-18,BAM,golden,56.58,CONSIDER,51.47,59.27,62.63,-7.85,47.43,45.41,15.15
+2026-08-18,LEVI,death_st,46.68,AVOID,,,,,,,
+2026-08-18,LYB,golden_st,42.12,AVOID,,,,,,,
+2026-08-18,UGI,golden_st,41.54,AVOID,,,,,,,
+2026-08-18,BSX,golden_st,24.65,AVOID,,,,,,,
+2026-08-18,DKS,death,21.4,AVOID,,,,,,,
+2026-08-18,COO,golden,15.87,AVOID,,,,,,,
+2026-08-18,PFE,golden,15.09,AVOID,,,,,,,
+2026-08-18,BN,death_st,12.71,AVOID,,,,,,,
+2026-08-18,OHI,death_st,12.66,AVOID,,,,,,,

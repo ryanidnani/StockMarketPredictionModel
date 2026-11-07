@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-28,JD,death_st,99.5,CONSIDER,28.74,27.65,26.56,-7.58,31.09,32.27,3.79
+2026-08-28,BURL,death_st,99.05,CONSIDER,272.95,260.7,248.44,-8.98,303.23,318.37,4.49
+2026-08-28,CSCO,death_st,95.61,CONSIDER,109.93,105.57,101.21,-7.93,121.21,126.85,3.96
+2026-08-28,AR,golden,79.37,CONSIDER,38.45,43.35,47.21,-7.56,35.54,34.09,12.74
+2026-08-28,IRM,death_st,56.54,CONSIDER,117.4,113.13,108.86,-7.27,130.92,137.68,3.64
+2026-08-28,XLU,death,45.44,AVOID,,,,,,,
+2026-08-28,BSX,death_st,31.9,AVOID,,,,,,,
+2026-08-28,APG,death_st,27.09,AVOID,,,,,,,
+2026-08-28,PHYS,golden,25.98,AVOID,,,,,,,
+2026-08-28,JETS,death_st,24.83,AVOID,,,,,,,
+2026-08-28,TJX,death,13.83,AVOID,,,,,,,
+2026-08-28,TXT,death,11.9,AVOID,,,,,,,
+2026-08-28,D,death_st,7.92,AVOID,,,,,,,
+2026-08-28,COLB,death_st,6.86,AVOID,,,,,,,
+2026-08-28,WAL,death_st,2.79,AVOID,,,,,,,
