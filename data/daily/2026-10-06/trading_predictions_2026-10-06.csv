@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-10-06,PSLV,death_st,82.72,CONSIDER,20.0,19.24,18.47,-7.63,21.97,22.96,3.81
+2026-10-06,TEL,golden,80.87,CONSIDER,219.51,248.96,266.53,-8.08,201.76,192.89,13.42
+2026-10-06,BAH,death_st,70.12,CONSIDER,68.14,65.56,62.97,-7.58,74.85,78.2,3.79
+2026-10-06,KMX,death_st,61.83,CONSIDER,55.29,53.18,51.06,-7.65,61.9,65.2,3.82
+2026-10-06,TEX,death,48.03,AVOID,,,,,,,
+2026-10-06,FIVE,death_st,45.63,AVOID,,,,,,,
+2026-10-06,TOST,death,20.69,AVOID,,,,,,,
+2026-10-06,BNY,death_st,18.11,AVOID,,,,,,,
+2026-10-06,NVDY,golden_st,16.74,AVOID,,,,,,,
+2026-10-06,IYR,death,5.06,AVOID,,,,,,,
+2026-10-06,BXSL,death_st,3.41,AVOID,,,,,,,
+2026-10-06,VNQ,death,3.17,AVOID,,,,,,,

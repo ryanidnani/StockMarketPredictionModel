@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-06,FLR,golden,59.53,CONSIDER,46.92,56.9,60.01,-7.92,43.21,41.35,21.27
+2026-02-06,KBWD,death,40.01,AVOID,,,,,,,
+2026-02-06,SIGI,golden,37.1,AVOID,,,,,,,
+2026-02-06,APO,death,37.09,AVOID,,,,,,,
+2026-02-06,TGT,golden,33.39,AVOID,,,,,,,
+2026-02-06,FLGV,death,28.22,AVOID,,,,,,,
+2026-02-06,VNT,golden,27.89,AVOID,,,,,,,

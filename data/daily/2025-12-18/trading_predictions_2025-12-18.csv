@@ -1,0 +1,15 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-18,CPNG,death,72.05,CONSIDER,22.69,21.53,20.37,-10.22,23.85,24.43,5.11
+2025-12-18,ARM,death,63.81,CONSIDER,113.51,106.8,100.1,-11.82,120.92,124.62,5.91
+2025-12-18,ZG,death,40.8,AVOID,,,,,,,
+2025-12-18,HLI,death,23.83,AVOID,,,,,,,
+2025-12-18,MO,death,21.26,AVOID,,,,,,,
+2025-12-18,AZO,death,19.09,AVOID,,,,,,,
+2025-12-18,BBY,death,16.99,AVOID,,,,,,,
+2025-12-18,ACGL,golden,0.0,AVOID,,,,,,,
+2025-12-18,AIG,golden,0.0,AVOID,,,,,,,
+2025-12-18,BMY,golden,0.0,AVOID,,,,,,,
+2025-12-18,CHDN,golden,0.0,AVOID,,,,,,,
+2025-12-18,CLH,golden,0.0,AVOID,,,,,,,
+2025-12-18,KRG,golden,0.0,AVOID,,,,,,,
+2025-12-18,SPYD,golden,0.0,AVOID,,,,,,,

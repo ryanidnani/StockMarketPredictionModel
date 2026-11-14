@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-03,ERX,golden,63.69,CONSIDER,58.65,68.86,74.32,-7.61,54.19,51.96,17.41
+2025-12-03,PTC,death,42.39,AVOID,,,,,,,
+2025-12-03,DVN,golden,28.35,AVOID,,,,,,,
+2025-12-03,BIL,death,21.26,AVOID,,,,,,,
+2025-12-03,SYY,death,20.93,AVOID,,,,,,,
+2025-12-03,MTB,golden,19.53,AVOID,,,,,,,
+2025-12-03,MSCI,death,17.36,AVOID,,,,,,,

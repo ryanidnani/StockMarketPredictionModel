@@ -1,0 +1,8 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-05,NNAVW,golden,60.76,CONSIDER,6.52,8.44,8.47,-9.23,5.92,5.62,29.4
+2025-12-05,DAR,golden,47.4,AVOID,,,,,,,
+2025-12-05,DOV,golden,23.88,AVOID,,,,,,,
+2025-12-05,SHV,death,21.26,AVOID,,,,,,,
+2025-12-05,KR,death,20.46,AVOID,,,,,,,
+2025-12-05,BWX,death,18.43,AVOID,,,,,,,
+2025-12-05,HBAN,golden,15.17,AVOID,,,,,,,
