@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2025-12-16,KITTW,golden,71.2,CONSIDER,0.12,0.15,0.15,-9.64,0.1,0.1,29.17
+2025-12-16,HRI,golden,40.26,AVOID,,,,,,,
+2025-12-16,MGM,golden,36.28,AVOID,,,,,,,
+2025-12-16,PBR.A,death,33.77,AVOID,,,,,,,
+2025-12-16,UBRL,death,29.64,AVOID,,,,,,,
+2025-12-16,VEEV,death,24.93,AVOID,,,,,,,
+2025-12-16,OVV,death,21.17,AVOID,,,,,,,
+2025-12-16,SNV,golden,20.1,AVOID,,,,,,,
+2025-12-16,SUN,death,17.86,AVOID,,,,,,,

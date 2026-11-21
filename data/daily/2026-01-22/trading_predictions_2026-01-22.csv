@@ -1,0 +1,7 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-01-22,KOLD,death,41.43,AVOID,,,,,,,
+2026-01-22,BITI,golden,0.0,AVOID,,,,,,,
+2026-01-22,FLRN,golden,0.0,AVOID,,,,,,,
+2026-01-22,ITW,golden,0.0,AVOID,,,,,,,
+2026-01-22,KNG,golden,0.0,AVOID,,,,,,,
+2026-01-22,SCI,golden,0.0,AVOID,,,,,,,

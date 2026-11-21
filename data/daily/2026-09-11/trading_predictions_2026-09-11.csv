@@ -1,0 +1,14 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-09-11,SBUX,death_st,94.85,CONSIDER,98.74,95.32,91.91,-6.92,106.74,110.75,3.46
+2026-09-11,RCL,death,70.7,CONSIDER,260.14,247.9,235.66,-9.41,286.49,299.67,4.71
+2026-09-11,CG,death_st,70.34,CONSIDER,42.34,40.36,38.39,-9.34,47.01,49.35,4.67
+2026-09-11,NLY,death_st,50.76,CONSIDER,21.9,21.18,20.46,-6.59,23.19,23.84,3.29
+2026-09-11,CPB,death_st,20.61,AVOID,,,,,,,
+2026-09-11,GMED,death_st,19.57,AVOID,,,,,,,
+2026-09-11,UDR,death,10.75,AVOID,,,,,,,
+2026-09-11,XEL,death,4.12,AVOID,,,,,,,
+2026-09-11,ENB,death,3.6,AVOID,,,,,,,
+2026-09-11,DOC,death_st,3.59,AVOID,,,,,,,
+2026-09-11,BF.B,death_st,0.36,AVOID,,,,,,,
+2026-09-11,HLN,death_st,0.13,AVOID,,,,,,,
+2026-09-11,REXR,golden,0.0,AVOID,,,,,,,

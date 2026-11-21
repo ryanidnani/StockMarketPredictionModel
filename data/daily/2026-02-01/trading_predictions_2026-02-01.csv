@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-02-01,NEU,death,70.18,CONSIDER,670.79,640.11,609.42,-9.15,726.58,754.47,4.57
+2026-02-01,AVT,golden,55.82,CONSIDER,62.39,73.04,78.14,-4.88,59.35,57.83,17.06
+2026-02-01,LTH,golden,50.57,CONSIDER,29.17,33.67,36.15,-8.1,26.81,25.63,15.44
+2026-02-01,HOOX,death,45.96,AVOID,,,,,,,
+2026-02-01,KBWD,death,41.1,AVOID,,,,,,,
+2026-02-01,AMP,golden,38.44,AVOID,,,,,,,
+2026-02-01,DDOG,death,35.85,AVOID,,,,,,,
+2026-02-01,APOPA,death,34.99,AVOID,,,,,,,
+2026-02-01,KKRPD,death,34.99,AVOID,,,,,,,
+2026-02-01,BNTX,golden,32.97,AVOID,,,,,,,
+2026-02-01,PLNT,death,30.44,AVOID,,,,,,,
+2026-02-01,TBLL,death,28.22,AVOID,,,,,,,
+2026-02-01,TUSI,death,28.22,AVOID,,,,,,,
+2026-02-01,DRS,golden,23.32,AVOID,,,,,,,
+2026-02-01,COMT,golden,16.86,AVOID,,,,,,,

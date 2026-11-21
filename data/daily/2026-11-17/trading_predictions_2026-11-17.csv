@@ -1,0 +1,17 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-11-17,BITB,death_st,83.07,CONSIDER,34.65,33.16,31.67,-8.59,38.18,39.94,4.29
+2026-11-17,FXN,death_st,50.51,CONSIDER,22.43,21.59,20.76,-7.45,24.8,25.98,3.73
+2026-11-17,TMV,golden_st,50.32,CONSIDER,46.11,52.76,56.14,-8.45,42.21,40.26,14.42
+2026-11-17,ROST,death_st,45.81,AVOID,,,,,,,
+2026-11-17,DXD,golden_st,45.47,AVOID,,,,,,,
+2026-11-17,CX,death_st,40.62,AVOID,,,,,,,
+2026-11-17,VSNT,golden_st,39.34,AVOID,,,,,,,
+2026-11-17,ST,death,33.22,AVOID,,,,,,,
+2026-11-17,HSIC,death_st,30.36,AVOID,,,,,,,
+2026-11-17,NWG,death,22.63,AVOID,,,,,,,
+2026-11-17,MTCH,death_st,21.68,AVOID,,,,,,,
+2026-11-17,EFG,death,19.23,AVOID,,,,,,,
+2026-11-17,GPIQ,death,14.11,AVOID,,,,,,,
+2026-11-17,VWO,death,8.29,AVOID,,,,,,,
+2026-11-17,AZN,golden,0.0,AVOID,,,,,,,
+2026-11-17,BR,golden,0.0,AVOID,,,,,,,

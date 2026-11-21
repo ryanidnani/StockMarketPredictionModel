@@ -1,0 +1,13 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-05-05,DAPP,golden,53.27,CONSIDER,20.76,25.59,26.8,-9.02,18.89,17.95,23.28
+2026-05-05,FAZ,death,38.22,AVOID,,,,,,,
+2026-05-05,CNC,golden,28.72,AVOID,,,,,,,
+2026-05-05,BAB,death,21.26,AVOID,,,,,,,
+2026-05-05,JBND,death,21.26,AVOID,,,,,,,
+2026-05-05,JPLD,death,21.26,AVOID,,,,,,,
+2026-05-05,TMB,death,21.26,AVOID,,,,,,,
+2026-05-05,FSMB,death,20.93,AVOID,,,,,,,
+2026-05-05,VRTX,death,20.75,AVOID,,,,,,,
+2026-05-05,LGOV,death,18.43,AVOID,,,,,,,
+2026-05-05,OZK,golden,17.58,AVOID,,,,,,,
+2026-05-05,LSGR,golden,8.57,AVOID,,,,,,,
