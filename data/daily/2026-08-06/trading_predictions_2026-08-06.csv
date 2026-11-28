@@ -1,0 +1,16 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-08-06,DG,golden,83.08,CONSIDER,127.45,143.91,153.92,-7.09,118.41,113.89,12.91
+2026-08-06,IR,golden,76.86,CONSIDER,88.24,102.59,107.74,-8.97,80.33,76.37,16.26
+2026-08-06,TME,golden_st,60.17,CONSIDER,9.59,11.44,12.33,-8.57,8.77,8.36,19.33
+2026-08-06,ORLY,golden_st,47.72,AVOID,,,,,,,
+2026-08-06,PAYX,golden,35.98,AVOID,,,,,,,
+2026-08-06,WTRG,golden,35.11,AVOID,,,,,,,
+2026-08-06,SHW,golden,32.46,AVOID,,,,,,,
+2026-08-06,DD,golden_st,30.98,AVOID,,,,,,,
+2026-08-06,TJX,golden_st,24.36,AVOID,,,,,,,
+2026-08-06,HMC,golden,22.48,AVOID,,,,,,,
+2026-08-06,BIZD,golden_st,16.63,AVOID,,,,,,,
+2026-08-06,BTI,death_st,15.07,AVOID,,,,,,,
+2026-08-06,TRP,death_st,8.93,AVOID,,,,,,,
+2026-08-06,UGI,death,7.25,AVOID,,,,,,,
+2026-08-06,PNW,death_st,2.45,AVOID,,,,,,,

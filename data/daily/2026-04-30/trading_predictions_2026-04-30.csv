@@ -1,0 +1,10 @@
+event_date,ticker,cross_type,probability,recommendation,entry_price,prudent_tp_price,max_tp_price,downside_return,stop_loss_price,recommended_actual_stop,return_prudent
+2026-04-30,USOY,golden,64.29,CONSIDER,9.13,11.38,11.84,-11.39,8.09,7.57,24.69
+2026-04-30,DHI,golden,31.22,AVOID,,,,,,,
+2026-04-30,BSCZ,death,21.26,AVOID,,,,,,,
+2026-04-30,TAFI,death,21.26,AVOID,,,,,,,
+2026-04-30,CARY,death,20.93,AVOID,,,,,,,
+2026-04-30,VRTX,death,17.36,AVOID,,,,,,,
+2026-04-30,JEPI,golden,16.99,AVOID,,,,,,,
+2026-04-30,CLIP,golden,16.46,AVOID,,,,,,,
+2026-04-30,SHV,golden,14.73,AVOID,,,,,,,
